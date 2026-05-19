@@ -96,11 +96,11 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 | Topic | HTML | MD |
 |---|---|---|
 | **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
-| Agentic RL (RL for tool use / agent trajectories) | 🚧 | — |
-| Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MemGPT) | 🚧 | — |
-| Self-Evolving Agents (Ctx2Skill / Native Evolution / Voyager / Reflexion) | 🚧 | — |
+| **Agentic RL (AgentTuning / ToolRL / RAGEN / WebRL / SWE-RL / GRPO for tool use)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agentic_rl_tutorial.html) | [MD](docs/tutorials/agentic_rl_tutorial.md) |
+| **Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MoA / Debate / MemGPT / LATS)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/multi_agent_long_horizon_tutorial.html) | [MD](docs/tutorials/multi_agent_long_horizon_tutorial.md) |
+| **Self-Evolving Agents (Ctx2Skill / Native Evolution / A²RD / Voyager / Reflexion / STaR)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/self_evolving_agents_tutorial.html) | [MD](docs/tutorials/self_evolving_agents_tutorial.md) |
 
-> 🚀 **16 tutorials live** (including Agent Foundations, audited across 9 codex rounds); 3 more Agents being DIY-reviewed in the main session. Diffusion Post-Training / Flow-OPD / Audio Gen / further SOTA updates will be added over time — PRs welcome.
+> 🎉 **19 tutorials live** (2026-05) spanning all six buckets (General / Post-Training / Architecture / Generative / Multimodal / Agents). Diffusion Post-Training / Flow-OPD / Audio Gen / further SOTA updates will be added over time — **PRs welcome** (see [CONTRIBUTING](CONTRIBUTING.md)).
 
 ---
 

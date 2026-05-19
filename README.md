@@ -96,11 +96,11 @@
 | Topic | HTML | MD |
 |---|---|---|
 | **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
-| Agentic RL (RL for tool use / agent trajectories) | 🚧 | — |
-| Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MemGPT) | 🚧 | — |
-| Self-Evolving Agents (Ctx2Skill / Native Evolution / Voyager / Reflexion) | 🚧 | — |
+| **Agentic RL (AgentTuning / ToolRL / RAGEN / WebRL / SWE-RL / GRPO for tool use)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agentic_rl_tutorial.html) | [MD](docs/tutorials/agentic_rl_tutorial.md) |
+| **Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MoA / Debate / MemGPT / LATS)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/multi_agent_long_horizon_tutorial.html) | [MD](docs/tutorials/multi_agent_long_horizon_tutorial.md) |
+| **Self-Evolving Agents (Ctx2Skill / Native Evolution / A²RD / Voyager / Reflexion / STaR)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/self_evolving_agents_tutorial.html) | [MD](docs/tutorials/self_evolving_agents_tutorial.md) |
 
-> 🚀 **16 篇就位**（含 Agent Foundations，9 轮 codex 严格审过）；剩 3 篇 Agents 在主对话 DIY 中。后续 Diffusion Post-Training / Flow-OPD / Audio Gen / 更新 SOTA 等会逐步加 —— PR 欢迎。
+> 🎉 **19 篇 cheat sheet 全部就位**（2026-05），覆盖 General / Post-Training / Architecture / Generative / Multimodal / Agents 六大类。后续 Diffusion Post-Training / Flow-OPD / Audio Gen / 更新 SOTA 等会逐步加 —— **PR 欢迎**（详见 [CONTRIBUTING](CONTRIBUTING.md)）。
 
 ---
 
