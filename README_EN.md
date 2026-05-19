@@ -57,7 +57,7 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 | Topic | HTML | MD |
 |---|---|---|
 | RLHF / DPO / GRPO / PPO | 🚧 | — |
-| Reasoning Models (o1 / R1 / Test-Time Compute / PRM) | 🚧 | — |
+| **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
 
 ### 🏛️ LLM Architecture & Systems
 
@@ -81,9 +81,9 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 
 | Topic | HTML | MD |
 |---|---|---|
-| Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet) | 🚧 | — |
+| **Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/image_generation_systems_tutorial.html) | [MD](docs/tutorials/image_generation_systems_tutorial.md) |
 | **Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial.html) | [MD](docs/tutorials/video_generation_tutorial.md) |
-| 3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis) | 🚧 | — |
+| **3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/3d_generation_tutorial.html) | [MD](docs/tutorials/3d_generation_tutorial.md) |
 
 ### 👁️ Multimodal
 
@@ -91,7 +91,7 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 |---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> 🚧 = in flight (7 background agents still running: RLHF · Reasoning · MoE · Quantization · VAE/VQ · Image Gen · 3D Gen). Rows fill in as they finish.
+> 🚧 = still in the queue (4 left: RLHF · MoE · Quantization · VAE/VQ — being generated sequentially from the main session).
 
 ---
 
@@ -110,8 +110,16 @@ Cross-model adversarial review (executor ≠ reviewer family) is ARIS's core inv
 
 ---
 
+## 🤝 Contributing
+
+One person can only cover so much. The hope is that many hands make this collection more complete.
+
+If you'd like to add a cheat sheet or fix existing content, please use ARIS's [`/interview-cheatsheet`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/interview-cheatsheet/SKILL.md) + [`/render-html`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md) workflow to generate it, then open a PR here. Both skills enforce a cross-model codex GPT-5.5 xhigh review gate (math / code / citations / render fidelity), so anything merged through PR has a baseline quality floor.
+
+**Honest disclaimer**: across the existing tutorials, the HTML structural foundations (math, code, tables, callouts, TOC, responsive layout) are solid. But the very latest frontier work in any given topic (e.g., methods released in late 2025, niche subfield updates) likely is not fully covered. If you spot something outdated or wrong, PRs and issues are equally welcome — let's keep this resource alive together.
+
+---
+
 ## License
 
 [MIT](LICENSE) — use, modify, share, fork freely. Hope this helps your job search. 💪
-
-PRs welcome if you write new cheat sheets and want to contribute them.

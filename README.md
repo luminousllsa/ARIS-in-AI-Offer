@@ -57,7 +57,7 @@
 | Topic | HTML | MD |
 |---|---|---|
 | RLHF / DPO / GRPO / PPO | 🚧 | — |
-| Reasoning Models (o1 / R1 / Test-Time Compute / PRM) | 🚧 | — |
+| **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
 
 ### 🏛️ LLM Architecture & Systems
 
@@ -81,9 +81,9 @@
 
 | Topic | HTML | MD |
 |---|---|---|
-| Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet) | 🚧 | — |
+| **Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/image_generation_systems_tutorial.html) | [MD](docs/tutorials/image_generation_systems_tutorial.md) |
 | **Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial.html) | [MD](docs/tutorials/video_generation_tutorial.md) |
-| 3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis) | 🚧 | — |
+| **3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/3d_generation_tutorial.html) | [MD](docs/tutorials/3d_generation_tutorial.md) |
 
 ### 👁️ Multimodal
 
@@ -91,7 +91,7 @@
 |---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> 🚧 表示正在跑（剩 7 篇 background agent 进行中：RLHF · Reasoning · MoE · Quantization · VAE/VQ · Image Gen · 3D Gen，跑完会逐个填入）。
+> 🚧 表示还在路上（剩 4 篇：RLHF · MoE · Quantization · VAE/VQ，主对话顺序生成中）。
 
 ---
 
@@ -110,8 +110,16 @@
 
 ---
 
+## 🤝 欢迎贡献
+
+一个人的力量有限，希望靠大家一起把这套教程做得更完善。
+
+如果你想加一篇 cheat sheet 或修正现有内容，欢迎用 ARIS 的 [`/interview-cheatsheet`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/interview-cheatsheet/SKILL.md) + [`/render-html`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md) workflow 跑出来再提 PR。两个 skill 都内置跨模型 codex 5.5 xhigh 审查 gate（数学 / 代码 / 引用 / 渲染保真），过了 PR 进来就有质量底线。
+
+**坦白说**：现有教程把 HTML 基础结构（公式 / 代码 / 表格 / callout / TOC / 响应式）都做扎实了，但具体到某些主题最前沿（比如 2025 下半年才出的方法、某些细分领域的最新论文）大概率没全覆盖。发现哪里过时或有错，PR / issue 都欢迎，一起把这份资料持续维护。
+
+---
+
 ## License
 
 [MIT](LICENSE) — 用、改、传、二开都行。希望对正在准备秋招的你有帮助。加油 💪
-
-如果你写了新的 cheat sheet 想合并进来，欢迎 PR。
