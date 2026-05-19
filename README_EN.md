@@ -91,7 +91,16 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 |---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> ✅ **15 tutorials live** — initial batch complete (2026-05). New topics (e.g. Diffusion Post-Training, Flow-OPD, Audio Gen, fresh SOTA methods) will be added over time; PRs welcome.
+### 🤖 Agents
+
+| Topic | HTML | MD |
+|---|---|---|
+| **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
+| Agentic RL (RL for tool use / agent trajectories) | 🚧 | — |
+| Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MemGPT) | 🚧 | — |
+| Self-Evolving Agents (Ctx2Skill / Native Evolution / Voyager / Reflexion) | 🚧 | — |
+
+> 🚀 **16 tutorials live** (including Agent Foundations, audited across 9 codex rounds); 3 more Agents being DIY-reviewed in the main session. Diffusion Post-Training / Flow-OPD / Audio Gen / further SOTA updates will be added over time — PRs welcome.
 
 ---
 
@@ -114,7 +123,9 @@ Cross-model adversarial review (executor ≠ reviewer family) is ARIS's core inv
 
 One person can only cover so much. The hope is that many hands make this collection more complete.
 
-If you'd like to add a cheat sheet or fix existing content, please use ARIS's [`/interview-cheatsheet`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/interview-cheatsheet/SKILL.md) + [`/render-html`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md) workflow to generate it, then open a PR here. Both skills enforce a cross-model codex GPT-5.5 xhigh review gate (math / code / citations / render fidelity), so anything merged through PR has a baseline quality floor.
+Full contribution guide: [**CONTRIBUTING.md**](CONTRIBUTING.md) ([English](CONTRIBUTING.md) · [中文](CONTRIBUTING_CN.md)) — covers ARIS workflow invocation, strict style guide (headings / math / tables / callouts / personal-info banlist), and PR checklist.
+
+**TL;DR**: use the [`/interview-cheatsheet`](skills/interview-cheatsheet/SKILL.md) + [`/render-html`](skills/render-html/SKILL.md) workflow to generate, then open a PR. Both skills enforce a cross-model codex GPT-5.5 xhigh review gate (math / code / citation / render fidelity), so anything merged via PR has a baseline quality floor. Skill source and `tools/render_html.py` are bundled in this repo so you can fork & extend.
 
 **Honest disclaimer**: across the existing tutorials, the HTML structural foundations (math, code, tables, callouts, TOC, responsive layout) are solid. But the very latest frontier work in any given topic (e.g., methods released in late 2025, niche subfield updates) likely is not fully covered. If you spot something outdated or wrong, PRs and issues are equally welcome — let's keep this resource alive together.
 

@@ -91,7 +91,16 @@
 |---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> ✅ **15 篇齐了** —— 第一波全部就位（2026-05）。后续如果有新方向（Diffusion Post-Training、Flow-OPD、Audio Gen、新 SOTA 方法等）会逐步加；欢迎 PR。
+### 🤖 Agents
+
+| Topic | HTML | MD |
+|---|---|---|
+| **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
+| Agentic RL (RL for tool use / agent trajectories) | 🚧 | — |
+| Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MemGPT) | 🚧 | — |
+| Self-Evolving Agents (Ctx2Skill / Native Evolution / Voyager / Reflexion) | 🚧 | — |
+
+> 🚀 **16 篇就位**（含 Agent Foundations，9 轮 codex 严格审过）；剩 3 篇 Agents 在主对话 DIY 中。后续 Diffusion Post-Training / Flow-OPD / Audio Gen / 更新 SOTA 等会逐步加 —— PR 欢迎。
 
 ---
 
@@ -114,9 +123,11 @@
 
 一个人的力量有限，希望靠大家一起把这套教程做得更完善。
 
-如果你想加一篇 cheat sheet 或修正现有内容，欢迎用 ARIS 的 [`/interview-cheatsheet`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/interview-cheatsheet/SKILL.md) + [`/render-html`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md) workflow 跑出来再提 PR。两个 skill 都内置跨模型 codex 5.5 xhigh 审查 gate（数学 / 代码 / 引用 / 渲染保真），过了 PR 进来就有质量底线。
+完整贡献指南见 [**CONTRIBUTING.md**](CONTRIBUTING.md)（[English](CONTRIBUTING.md) · [中文](CONTRIBUTING_CN.md)）—— 含 ARIS workflow 调用、严格风格指南（headings / math / tables / callouts / 个人信息 banlist）、PR checklist。
 
-**坦白说**：现有教程把 HTML 基础结构（公式 / 代码 / 表格 / callout / TOC / 响应式）都做扎实了，但具体到某些主题最前沿（比如 2025 下半年才出的方法、某些细分领域的最新论文）大概率没全覆盖。发现哪里过时或有错，PR / issue 都欢迎，一起把这份资料持续维护。
+**TL;DR**：用 ARIS 的 [`/interview-cheatsheet`](skills/interview-cheatsheet/SKILL.md) + [`/render-html`](skills/render-html/SKILL.md) workflow 跑出来再提 PR；两个 skill 都内置跨模型 codex 5.5 xhigh 审查 gate（数学 / 代码 / 引用 / 渲染保真），过了就有质量底线。Skill 源码和 `tools/render_html.py` 都在这个仓库里，可以直接 fork。
+
+**坦白说**：现有教程把 HTML 基础结构（公式 / 代码 / 表格 / callout / TOC / 响应式）做扎实了，但某些主题最前沿（2025 下半年才出的方法、某些细分领域最新论文）大概率没全覆盖。发现哪里过时或有错，PR / issue 都欢迎。
 
 ---
 

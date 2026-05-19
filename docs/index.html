@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARIS-in-AI-Offer · 关于</title>
+
+<meta name="generator" content="ARIS render-html (academic, v1)">
+<meta name="aris:source-path" content="docs/about.md">
+<meta name="aris:source-sha256" content="7ad55b31c4cc62c45d9b03f7b12899a7e768ce813b707566053792e55f8d9413">
+<meta name="aris:generated-at" content="2026-05-19 12:43 UTC">
+
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+<!-- highlight.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+
+
+<style>
+:root {
+  --bg: #fdfcf7;
+  --bg-soft: #f4f1ea;
+  --bg-code: #f8f5ec;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #6b6b6b;
+  --primary: #1a4a8c;
+  --primary-soft: #2d6cb8;
+  --accent: #b8390e;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+  --info-bg: #dbeafe;
+  --good-bg: #d1fae5;
+  --good: #065f46;
+  --bad-bg: #fee2e2;
+  --bad: #991b1b;
+  --border: #d6d0c0;
+  --border-soft: #e8e3d5;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Serif Pro", "Source Serif 4", "Crimson Pro", "Georgia", "Songti SC", "STSong", serif;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 40px 32px;
+}
+
+nav.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  font-size: 13px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 16px;
+}
+nav.toc h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+nav.toc ol li { margin: 5px 0; counter-increment: toc; }
+nav.toc ol li::before { content: counter(toc) ". "; color: var(--ink-muted); margin-right: 4px; }
+nav.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+nav.toc a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+nav.toc ul { list-style: none; padding-left: 14px; margin: 3px 0; font-size: 12px; }
+nav.toc ul li::before { content: "→ "; color: var(--border); }
+
+main { min-width: 0; }
+
+header.hero {
+  border-bottom: 3px double var(--primary);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+header.hero .eyebrow {
+  color: var(--accent);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+header.hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+header.hero .subtitle {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+header.hero .byline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+header.hero .byline strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+header.hero .meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 14px;
+}
+header.hero .meta span strong { color: var(--ink-soft); }
+header.hero .meta code {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 11px;
+  background: var(--bg-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 44px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 700;
+}
+h2 .num { color: var(--primary); font-weight: 600; margin-right: 8px; }
+h3 { font-size: 19px; margin: 28px 0 10px; color: var(--primary); font-weight: 600; }
+h4 { font-size: 16px; margin: 20px 0 8px; color: var(--ink); font-weight: 600; }
+
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+ul li, ol li { margin: 4px 0; }
+ul li::marker { color: var(--primary); }
+
+strong { color: var(--accent); font-weight: 600; }
+em { color: var(--ink-soft); }
+
+a { color: var(--primary); }
+a:hover { color: var(--accent); }
+
+code:not(.hljs) {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.86em;
+  background: var(--bg-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+
+pre {
+  background: #fafaf6;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 0;
+  overflow-x: auto;
+  border-radius: 4px;
+  margin: 14px 0;
+}
+pre code, pre code.hljs {
+  background: transparent !important;
+  display: block;
+  padding: 14px 18px !important;
+  font-size: 13px;
+  line-height: 1.55;
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+  color: var(--ink);
+}
+pre.diagram {
+  background: #f9f6ed;
+  border-left: 4px solid var(--accent);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.callout {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 4px solid;
+  font-size: 15px;
+}
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.callout-info { background: var(--info-bg); border-left-color: var(--primary); }
+.callout-info .callout-title { color: var(--primary); }
+.callout-warn { background: var(--warn-bg); border-left-color: var(--warn); }
+.callout-warn .callout-title { color: var(--warn); }
+.callout-good { background: var(--good-bg); border-left-color: var(--good); }
+.callout-good .callout-title { color: var(--good); }
+.callout-bad { background: var(--bad-bg); border-left-color: var(--bad); }
+.callout-bad .callout-title { color: var(--bad); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+thead { background: var(--primary); color: white; }
+th, td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+th { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; }
+tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+
+details.qa, details {
+  background: white;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 0;
+}
+details summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+  list-style: none;
+  user-select: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "▸ ";
+  margin-right: 4px;
+  display: inline-block;
+  transition: transform 0.15s;
+}
+details[open] summary::before { transform: rotate(90deg); }
+details[open] summary { border-bottom: 1px solid var(--border-soft); }
+details > :not(summary) { padding: 10px 14px; }
+details p:first-of-type { margin-top: 8px; }
+
+mjx-container[display="true"] { margin: 12px 0 !important; }
+
+footer.aris-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--border); }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+  nav.toc {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+    padding-right: 0;
+    padding-bottom: 14px;
+  }
+  header.hero h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+}
+@media print {
+  nav.toc { display: none; }
+  .layout { grid-template-columns: 1fr; padding: 0; }
+  body { background: white; }
+  header.hero { border-bottom-color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+<li><a href="#tldr">TL;DR</a>
+</li>
+<li><a href="#html-排版哪里都能读">HTML 排版哪里都能读</a>
+</li>
+<li><a href="#这套-workflow-是怎么工作的">这套 workflow 是怎么工作的</a>
+</li>
+<li><a href="#aris-的-跨模型对抗审查-协议">ARIS 的 &quot;跨模型对抗审查&quot; 协议</a>
+</li>
+<li><a href="#教程分类">教程分类</a>
+</li>
+<li><a href="#怎么贡献">怎么贡献</a>
+</li>
+<li><a href="#license">License</a>
+</li>
+</ol>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">About · Chinese ML/LLM/Agent Interview Cheat Sheets</div>
+  <h1>ARIS-in-AI-Offer · 关于</h1>
+  <p class="subtitle">希望大家秋招的时候轻松一点 🌱</p>
+  <p class="byline">By <strong>Ruofeng Yang (杨若峰), Shanghai Jiao Tong University</strong></p>
+  <div class="meta">
+    <span><strong>Source:</strong> <code>docs/about.md</code></span>
+    <span><strong>SHA256:</strong> <code>7ad55b31c4cc</code></span>
+    <span><strong>Rendered:</strong> 2026-05-19 12:43 UTC</span>
+    
+  </div>
+</header>
+
+<h1 id="aris-in-ai-offer--about">ARIS-in-AI-Offer — About</h1>
+<blockquote><p>希望大家秋招的时候轻松一点 🌱</p></blockquote>
+<h2 id="tldr">TL;DR</h2>
+<p>这是一个 <strong>中文 ML / LLM / 多模态 / 生成式 / Agent 面试 cheat sheet 合集</strong>，目标读者是准备 2026 年 AI 秋招的同学（国内 LLM 实验室 / 大厂 AI 岗位 / 海外 ML internship）。每篇 cheat sheet 包含：</p>
+<ul><li><strong>公式推导</strong>（从数学第一性原理走完整链路，不是只给结论）</li><li><strong>从零开始的 PyTorch 代码</strong>（每段都过 cross-model codex review，确保能跑）</li><li><strong>25 高频面试题</strong>（L1 必会 / L2 进阶 / L3 顶级 lab，每题展开标准答案 + 容易踩的坑）</li></ul>
+<p>所有教程通过 <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"><strong>ARIS — Auto Research in Sleep</strong></a> 的 <code>/interview-cheatsheet</code> + <code>/render-html</code> workflow <strong>自动生成 + 跨模型审查</strong>。</p>
+<h2 id="html-排版哪里都能读">HTML 排版哪里都能读</h2>
+<p>地铁上掏手机、咖啡馆开 iPad、图书馆开笔记本——同一个 HTML 链接打开都能读：</p>
+<blockquote><p>🧮 <strong>MathJax</strong> 渲染所有 LaTeX 公式（不是截图 — 可缩放、可复制、可选中）</p>
+<p>💻 <strong>highlight.js</strong> 给 PyTorch 代码上色</p>
+<p>📐 <strong>响应式排版</strong> 自动适配窗口宽度</p>
+<p>📑 <strong>Sticky TOC</strong> 长文里随时跳转章节</p>
+<p>💾 <strong>单文件 HTML</strong>，下载就能离线读，不依赖任何后端</p></blockquote>
+<h2 id="这套-workflow-是怎么工作的">这套 workflow 是怎么工作的</h2>
+<pre class="diagram"><code>                  ┌─────────────────────────────┐
+                  │ /interview-cheatsheet skill │
+                  └──────────────┬──────────────┘
+                                 │
+                                 ▼
+        ┌──────────────────────────────────────────────┐
+        │  Step 1: Plan 12-14 sections                 │
+        │  Step 2: Draft 600-1500 lines Chinese MD     │
+        │  Step 3: Cross-model codex review (10 checks)│
+        │    ┌────────────────────────────────┐        │
+        │    │ codex gpt-5.5 xhigh fresh thread        │
+        │    │ • formula correctness                   │
+        │    │ • code runnability                      │
+        │    │ • citation accuracy                     │
+        │    │ • personal info redaction               │
+        │    │ • style discipline                      │
+        │    └────────────────────────────────┘        │
+        │  Step 4: Fix loop (no hard cap)              │
+        │  Step 5: /render-html → academic template    │
+        │  Step 6: Render review (13 checks)           │
+        │  Step 7: Write .review.json audit trail      │
+        └──────────────────────────────────────────────┘
+                                 │
+                                 ▼
+                ┌──────────────────────────────┐
+                │  Single-file HTML (~80KB)    │
+                │  ━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+                │  ✓ MathJax (live)            │
+                │  ✓ highlight.js (live)       │
+                │  ✓ Sticky TOC                │
+                │  ✓ Responsive layout         │
+                │  ✓ Offline-readable          │
+                └──────────────────────────────┘</code></pre>
+<h2 id="aris-的-跨模型对抗审查-协议">ARIS 的 "跨模型对抗审查" 协议</h2>
+<p>ARIS 的核心方法论：<strong>executor 和 reviewer 必须不同模型家族</strong>（这里是 Claude × GPT-5.5 xhigh × Gemini）—— LLM 不能自己审自己。这套协议直接复用到面试 cheat sheet 生成：</p>
+<div class="callout callout-info"><div class="callout-title">Tip</div><p><strong>每篇里的每个公式 / 代码 / 引用都过了独立审查</strong></p>
+<p>完整审计 trail 见每篇旁边的 <code>.review.json</code> —— 包含 reviewer thread ID、抓到的真实 bug、应用的修复。</p></div>
+<p>具体案例（来自仓库 audit trail）：</p>
+<ul><li><strong>VLM 教程</strong>：M-RoPE <code>mrope_section=[16,24,24]</code> 单位被纠正（half-dim pair 不是 dim count）；BLIP-2 stage 数 3 → 2；Qwen2-VL vision tower 攻击 DFN-derived 非自训练</li><li><strong>MoE 教程</strong>：Q20 Mixtral 8×7B 算术从「7×8+2.3≈47B」改成 shared 2.4B + 8×4.8B FFN ≈ 40.8B（路由增长到 46.7B）；§4.4 router gradient 补齐 softmax/renorm 完整 Jacobian；8×H100 80G = 640GB ≠ 671B FP8 修正</li><li><strong>Agent Foundations 教程</strong>：跑了 9 轮 codex review，抓到 30+ 个真错（ReAct Fever 数字、SWE-bench Verified OpenAI attribution、MCP 2025-11-25 DCR demoted to MAY、A2A v1.0 SCREAMING_SNAKE_CASE、Anthropic Tool Use GA 2024-05-30 等）</li></ul>
+<h2 id="教程分类">教程分类</h2>
+<table><thead><tr><th>Category</th><th>Topics</th></tr></thead><tbody><tr><td>🧠 General / 基础</td><td>Attention</td></tr><tr><td>🎯 Post-Training &amp; Reasoning</td><td>RLHF / DPO / GRPO / PPO · Reasoning Models (o1 / R1)</td></tr><tr><td>🏛️ LLM Architecture &amp; Systems</td><td>MoE (DeepSeek-V3) · Long Context (RoPE / YaRN / MLA) · KV Cache + Speculative Decoding · Quantization (GPTQ / AWQ / FP8 / NVFP4) · Distributed Training (FSDP2 / ZeRO / TP / PP / EP)</td></tr><tr><td>🌊 Generative Models — Theory &amp; Tokenizers</td><td>Flow Matching · Diffusion Foundations · VAE / VQ-VAE / VQ-GAN / FSQ</td></tr><tr><td>🎨 Generation Systems</td><td>Image Gen (SD3 / FLUX / ControlNet) · Video Gen (Sora / Hunyuan-Video / Wan) · 3D Gen (NeRF / 3DGS / SDS)</td></tr><tr><td>👁️ Multimodal</td><td>VLM (CLIP / LLaVA / Qwen-VL)</td></tr><tr><td>🤖 Agents</td><td>Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld) · [更多在路上]</td></tr></tbody></table>
+<h2 id="怎么贡献">怎么贡献</h2>
+<p>读 <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a>（<a href="../CONTRIBUTING_CN.md">中文</a>）。</p>
+<p>一句话总结：用 ARIS 的 <code>/interview-cheatsheet</code> 跑出来 → PR 三个文件（MD / HTML / review.json） → 更新两个 README → 等 merge。社区可以一起把这份资料持续维护下去。</p>
+<h2 id="license">License</h2>
+<p>MIT — 用、改、传、二开都行。秋招加油 💪</p>
+
+<footer class="aris-footer">
+  Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
+  source path <code>docs/about.md</code> ·
+  SHA256 <code>7ad55b31c4cc</code> ·
+  generated at 2026-05-19 12:43 UTC.
+  This is a generated view — edit the source Markdown, then re-render.
+</footer>
+</main>
+
+</div>
+</body>
+</html>
