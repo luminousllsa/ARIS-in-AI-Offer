@@ -5,10 +5,22 @@
 # ARIS in 秋招
 
 > 希望大家秋招的时候轻松一点 🌱
+>
+> 📖 **English version**: [README_EN.md](README_EN.md)
 
 中文 ML / LLM / 多模态 / 生成式面试 cheat sheet 合集，由 **[ARIS — Auto Research in Sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)** 的 `/render-html` workflow 自动生成。
 
-每篇都是一份长文 + 公式 + 从零开始的 PyTorch 代码 + 25 高频面试题（L1 必会 · L2 进阶 · L3 顶级 lab）；HTML 渲染为 academic-newspaper 排版，sticky TOC + MathJax + 代码高亮，**手机和 iPad 上读都不糊**。
+每篇都是一份长文 + 公式 + 从零开始的 PyTorch 代码 + 25 高频面试题（L1 必会 · L2 进阶 · L3 顶级 lab）。
+
+### 📱 HTML 格式哪里都能读，清清楚楚
+
+地铁上掏手机、咖啡馆开 iPad、图书馆开笔记本——同一个 HTML 链接打开都能读：
+
+- 🧮 **MathJax** 渲染所有 LaTeX 公式（**不是截图**，可缩放、可复制、可选中）
+- 💻 **highlight.js** 给 PyTorch 代码高亮上色
+- 📐 **响应式排版** 自动适配窗口宽度，不糊不溢出
+- 📑 **Sticky TOC** 长文里随时跳转章节
+- 💾 **单文件 HTML**，下载就能离线读，不依赖任何后端
 
 ---
 
