@@ -56,17 +56,17 @@
 
 | Topic | HTML | MD |
 |---|---|---|
-| RLHF / DPO / GRPO / PPO | 🚧 | — |
+| **RLHF / DPO / GRPO / PPO** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial.html) | [MD](docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md) |
 | **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
 
 ### 🏛️ LLM Architecture & Systems
 
 | Topic | HTML | MD |
 |---|---|---|
-| MoE (DeepSeek-V3 / Mixtral / Llama 4) | 🚧 | — |
+| **MoE (DeepSeek-V3 / Mixtral / Llama 4)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/moe_tutorial.html) | [MD](docs/tutorials/moe_tutorial.md) |
 | **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/long_context_rope_yarn_mla_tutorial.html) | [MD](docs/tutorials/long_context_rope_yarn_mla_tutorial.md) |
 | **KV Cache + Speculative Decoding (Medusa / EAGLE / MLA)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kv_cache_speculative_decoding_tutorial.html) | [MD](docs/tutorials/kv_cache_speculative_decoding_tutorial.md) |
-| Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant) | 🚧 | — |
+| **Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/quantization_tutorial.html) | [MD](docs/tutorials/quantization_tutorial.md) |
 | **Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/distributed_training_tutorial.html) | [MD](docs/tutorials/distributed_training_tutorial.md) |
 
 ### 🌊 Generative Models — 理论 & Tokenizers
@@ -75,7 +75,7 @@
 |---|---|---|
 | **Flow Matching Quick Reference** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
 | **Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) | [MD](docs/tutorials/diffusion_foundations_tutorial.md) |
-| VAE / VQ-VAE / VQ-GAN / FSQ | 🚧 | — |
+| **VAE / VQ-VAE / VQ-GAN / FSQ** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vae_vqvae_vqgan_tutorial.html) | [MD](docs/tutorials/vae_vqvae_vqgan_tutorial.md) |
 
 ### 🎨 Generation Systems — 图像 / 视频 / 3D
 
@@ -91,7 +91,7 @@
 |---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> 🚧 表示还在路上（剩 4 篇：RLHF · MoE · Quantization · VAE/VQ，主对话顺序生成中）。
+> ✅ **15 篇齐了** —— 第一波全部就位（2026-05）。后续如果有新方向（Diffusion Post-Training、Flow-OPD、Audio Gen、新 SOTA 方法等）会逐步加；欢迎 PR。
 
 ---
 
