@@ -64,17 +64,17 @@
 | Topic | HTML | MD |
 |---|---|---|
 | MoE (DeepSeek-V3 / Mixtral / Llama 4) | 🚧 | — |
-| Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM) | 🚧 | — |
-| KV Cache + Speculative Decoding (Medusa / EAGLE / MLA) | 🚧 | — |
+| **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/long_context_rope_yarn_mla_tutorial.html) | [MD](docs/tutorials/long_context_rope_yarn_mla_tutorial.md) |
+| **KV Cache + Speculative Decoding (Medusa / EAGLE / MLA)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kv_cache_speculative_decoding_tutorial.html) | [MD](docs/tutorials/kv_cache_speculative_decoding_tutorial.md) |
 | Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant) | 🚧 | — |
-| Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP) | 🚧 | — |
+| **Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/distributed_training_tutorial.html) | [MD](docs/tutorials/distributed_training_tutorial.md) |
 
 ### 🌊 Generative Models — 理论 & Tokenizers
 
 | Topic | HTML | MD |
 |---|---|---|
 | **Flow Matching Quick Reference** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
-| Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG) | 🚧 | — |
+| **Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) | [MD](docs/tutorials/diffusion_foundations_tutorial.md) |
 | VAE / VQ-VAE / VQ-GAN / FSQ | 🚧 | — |
 
 ### 🎨 Generation Systems — 图像 / 视频 / 3D
@@ -82,16 +82,16 @@
 | Topic | HTML | MD |
 |---|---|---|
 | Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet) | 🚧 | — |
-| Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen) | 🚧 | — |
+| **Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial.html) | [MD](docs/tutorials/video_generation_tutorial.md) |
 | 3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis) | 🚧 | — |
 
 ### 👁️ Multimodal
 
 | Topic | HTML | MD |
 |---|---|---|
-| VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL) | 🚧 | — |
+| **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
-> 🚧 表示正在跑（13 篇 background agent 进行中，跑完会逐个填入）。
+> 🚧 表示正在跑（剩 7 篇 background agent 进行中：RLHF · Reasoning · MoE · Quantization · VAE/VQ · Image Gen · 3D Gen，跑完会逐个填入）。
 
 ---
 
@@ -102,7 +102,7 @@
 1. **Plan** — 12-14 节（TL;DR · 直觉 · 公式 · 代码 · 变体 · 复杂度 · 25 高频题）
 2. **Draft** — ~600-1000 行中文 + 真能跑的 PyTorch
 3. **Cross-model review** — 跨模型 codex GPT-5.5 xhigh 审 10 项（公式正确性 / 代码可运行 / 引用真实 / 表格 pipe 转义 / callout 风格 / 个人信息泄漏…）
-4. **Fix 循环 ≤ 3 轮**
+4. **Fix 循环**（trajectory-based，FAIL 集在收敛就继续，同一问题反复出现或 ~6 轮没收敛就停）
 5. **`/render-html`** 渲染 + 13 项渲染审查（信息保真 / TOC / 公式 / 代码高亮 / 安全 / 隐私…）
 6. **`.review.json`** 完整审计 trail
 
