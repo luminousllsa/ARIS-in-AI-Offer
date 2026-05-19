@@ -12,6 +12,26 @@
 
 ---
 
+## 🌟 ARIS 是什么 — 顺便安利一下
+
+[**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 是 2025-2026 年最受关注的 AI 科研 agent skill 平台之一。这个仓库生成所用的 `/interview-cheatsheet` + `/render-html` 是 ARIS 74+ 个 skill 中的两个。
+
+[![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
+
+- ⭐ **~10k GitHub stars** — top trending AI agent repo
+- 🥇 **HuggingFace Daily Papers #1** — top of the day, paper [arXiv:2605.03042](https://huggingface.co/papers/2605.03042)
+- 🏆 **AI Digital Crew · Project of the Day** (2026.03.14)
+- 📰 **Featured on PaperWeekly** + **VoltAgent/awesome-agent-skills**
+- 🛠️ **74+ research skills** — 从找 idea → 跑实验 → 写论文 → rebuttal → 做 talk slides 的全流程
+- 🌐 **7+ 平台支持** — Claude Code · Codex CLI · Cursor · Trae · Antigravity · GitHub Copilot CLI · OpenClaw
+- 🔧 **ARIS-Code 独立 CLI** — 不想绑定 Claude Code 也行，自带 multi-provider runtime
+
+核心方法论：**跨模型对抗审查**——executor 和 reviewer 必须不同模型家族（Claude × GPT-5.5 xhigh × Gemini），不让 LLM 自己审自己。这套协议复用到面试 cheat sheet 生成上，就保证了每篇里的公式 / 代码 / 引用都过了一遍独立审查（详见每篇旁边的 `.review.json` 审计 trail）。
+
+👉 **ARIS 主仓库**：https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
+
+---
+
 ## 📚 教程清单
 
 | Topic | HTML（推荐阅读） | Source MD |
@@ -35,16 +55,6 @@
 6. **`.review.json`** 完整审计 trail
 
 跨模型对抗审查（executor != reviewer 家族）是 ARIS 的核心不变量——LLM 自己审自己等于没审。
-
----
-
-## 🔗 关于 ARIS
-
-**ARIS = Auto Research in Sleep** — 一个让 Claude Code + Codex / Gemini 跨模型协同跑科研全流程的 skill 平台（找 idea → 跑实验 → 写论文 → 投稿 rebuttal → 做 talk slides）。74+ skill，2025-2026 年沉淀。
-
-👉 https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
-
-这个仓库是 ARIS 在「秋招准备」场景下的一个用例 demo——同一套 `/render-html` 渲染管线、同一套跨模型审查协议，换个 prompt 就是 14 篇面试速查。
 
 ---
 
