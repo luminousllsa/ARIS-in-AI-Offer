@@ -34,12 +34,52 @@
 
 ## 📚 教程清单
 
+### 🧠 General / 基础
+
 | Topic | HTML（推荐阅读） | Source MD |
 |---|---|---|
-| Attention 面试 Cheat Sheet | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial.html) | [MD](docs/tutorials/attention_tutorial.md) |
-| Flow Matching Quick Reference | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
+| **Attention 面试 Cheat Sheet** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial.html) | [MD](docs/tutorials/attention_tutorial.md) |
 
-> 🚧 **更多在路上** —— RLHF/DPO/GRPO · Reasoning Models (o1/R1) · MoE (DeepSeek-V3) · KV Cache + Speculative Decoding · Long Context (RoPE/YaRN/MLA) · Quantization (GPTQ/AWQ/FP8/NVFP4) · Distributed Training (FSDP2/ZeRO/TP/PP/EP) · Diffusion Foundations · VLM (CLIP/LLaVA/Qwen-VL) · VAE/VQ-VAE/VQ-GAN/FSQ · Image Gen (SD3/FLUX/ControlNet) · Video Gen (Sora/Hunyuan-Video/Wan) · 3D Gen (NeRF/3DGS/SDS) ... 还有 13 篇正在跑。
+### 🎯 Post-Training & Reasoning
+
+| Topic | HTML | MD |
+|---|---|---|
+| RLHF / DPO / GRPO / PPO | 🚧 | — |
+| Reasoning Models (o1 / R1 / Test-Time Compute / PRM) | 🚧 | — |
+
+### 🏛️ LLM Architecture & Systems
+
+| Topic | HTML | MD |
+|---|---|---|
+| MoE (DeepSeek-V3 / Mixtral / Llama 4) | 🚧 | — |
+| Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM) | 🚧 | — |
+| KV Cache + Speculative Decoding (Medusa / EAGLE / MLA) | 🚧 | — |
+| Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant) | 🚧 | — |
+| Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP) | 🚧 | — |
+
+### 🌊 Generative Models — 理论 & Tokenizers
+
+| Topic | HTML | MD |
+|---|---|---|
+| **Flow Matching Quick Reference** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
+| Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG) | 🚧 | — |
+| VAE / VQ-VAE / VQ-GAN / FSQ | 🚧 | — |
+
+### 🎨 Generation Systems — 图像 / 视频 / 3D
+
+| Topic | HTML | MD |
+|---|---|---|
+| Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet) | 🚧 | — |
+| Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen) | 🚧 | — |
+| 3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis) | 🚧 | — |
+
+### 👁️ Multimodal
+
+| Topic | HTML | MD |
+|---|---|---|
+| VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL) | 🚧 | — |
+
+> 🚧 表示正在跑（13 篇 background agent 进行中，跑完会逐个填入）。
 
 ---
 
