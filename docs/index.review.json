@@ -1,0 +1,27 @@
+{
+  "skill": "render-html",
+  "source": "docs/about.md",
+  "output": "docs/index.html",
+  "purpose": "GitHub Pages landing page (https://wanshuiyin.github.io/ARIS-in-AI-Offer/)",
+  "author": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "render_review": {
+    "verdict": "PASS",
+    "rounds": [
+      {
+        "run": 1,
+        "verdict": "PASS with 1 WARN",
+        "thread_id": "019e4048-701e-71f3-9d25-b23eeeef289c",
+        "summary": "12/13 checks pass; 1 warning on double H1 (hero h1 + content h1 both rendered)",
+        "warnings": [
+          "double H1: hero <h1> from template + content <h1> from MD source — semantic but not blocking"
+        ],
+        "fixes_applied": [
+          "Removed the source-level `# ARIS-in-AI-Offer — About` heading (kept the leading blockquote intro); re-rendered. Hero h1 from template is now the sole H1."
+        ]
+      }
+    ]
+  },
+  "summary": "ARIS-in-AI-Offer landing page (docs/index.html): rendered via tools/render_html.py from docs/about.md; codex 13-check render review passed with 1 cosmetic WARN, fixed in 1 round.",
+  "rendered_at": "2026-05-19"
+}

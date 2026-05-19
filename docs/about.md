@@ -1,5 +1,3 @@
-# ARIS-in-AI-Offer — About
-
 > 希望大家秋招的时候轻松一点 🌱
 
 ## TL;DR
