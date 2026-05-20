@@ -46,61 +46,67 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 
 ## 📚 Tutorial Index
 
+> 🌐 **Bilingual editions**: every cheat sheet ships with both a Chinese (default) and an English HTML — filenames are `*_tutorial.html` (CN) and `*_tutorial_en.html` (EN). HTML columns below link to both.
+
 ### 🧠 General / Foundations
 
-| Topic | HTML (recommended) | Source MD |
-|---|---|---|
-| **Attention Interview Cheat Sheet** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial.html) | [MD](docs/tutorials/attention_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **Attention Interview Cheat Sheet** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial_en.html) | [MD](docs/tutorials/attention_tutorial.md) |
 
 ### 🎯 Post-Training & Reasoning
 
-| Topic | HTML | MD |
-|---|---|---|
-| **RLHF / DPO / GRPO / PPO** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial.html) | [MD](docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md) |
-| **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **RLHF / DPO / GRPO / PPO** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.html) | [MD](docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md) |
+| **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial_en.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
+| **KL Divergence in RLHF (k1/k2/k3 · placement gradient bias)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial_en.html) | [MD](docs/tutorials/kl_divergence_rlhf_tutorial.md) |
+| **LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/llm_opd_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/llm_opd_tutorial_en.html) | [MD](docs/tutorials/llm_opd_tutorial.md) |
 
 ### 🏛️ LLM Architecture & Systems
 
-| Topic | HTML | MD |
-|---|---|---|
-| **MoE (DeepSeek-V3 / Mixtral / Llama 4)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/moe_tutorial.html) | [MD](docs/tutorials/moe_tutorial.md) |
-| **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/long_context_rope_yarn_mla_tutorial.html) | [MD](docs/tutorials/long_context_rope_yarn_mla_tutorial.md) |
-| **KV Cache + Speculative Decoding (Medusa / EAGLE / MLA)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kv_cache_speculative_decoding_tutorial.html) | [MD](docs/tutorials/kv_cache_speculative_decoding_tutorial.md) |
-| **Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/quantization_tutorial.html) | [MD](docs/tutorials/quantization_tutorial.md) |
-| **Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/distributed_training_tutorial.html) | [MD](docs/tutorials/distributed_training_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **MoE (DeepSeek-V3 / Mixtral / Llama 4)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/moe_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/moe_tutorial_en.html) | [MD](docs/tutorials/moe_tutorial.md) |
+| **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/long_context_rope_yarn_mla_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/long_context_rope_yarn_mla_tutorial_en.html) | [MD](docs/tutorials/long_context_rope_yarn_mla_tutorial.md) |
+| **KV Cache + Speculative Decoding (Medusa / EAGLE / MLA)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kv_cache_speculative_decoding_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kv_cache_speculative_decoding_tutorial_en.html) | [MD](docs/tutorials/kv_cache_speculative_decoding_tutorial.md) |
+| **Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/quantization_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/quantization_tutorial_en.html) | [MD](docs/tutorials/quantization_tutorial.md) |
+| **Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/distributed_training_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/distributed_training_tutorial_en.html) | [MD](docs/tutorials/distributed_training_tutorial.md) |
 
 ### 🌊 Generative Models — Theory & Tokenizers
 
-| Topic | HTML | MD |
-|---|---|---|
-| **Flow Matching Quick Reference** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
-| **Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) | [MD](docs/tutorials/diffusion_foundations_tutorial.md) |
-| **VAE / VQ-VAE / VQ-GAN / FSQ** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vae_vqvae_vqgan_tutorial.html) | [MD](docs/tutorials/vae_vqvae_vqgan_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **Flow Matching Quick Reference** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/flow_matching_tutorial_en.html) | [MD](docs/tutorials/flow_matching_tutorial.md) |
+| **Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial_en.html) | [MD](docs/tutorials/diffusion_foundations_tutorial.md) |
+| **VAE / VQ-VAE / VQ-GAN / FSQ** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vae_vqvae_vqgan_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vae_vqvae_vqgan_tutorial_en.html) | [MD](docs/tutorials/vae_vqvae_vqgan_tutorial.md) |
 
-### 🎨 Generation Systems — Image / Video / 3D
+### 🎨 Generation Systems — Image / Video / 3D / Diffusion Post-Training
 
-| Topic | HTML | MD |
-|---|---|---|
-| **Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/image_generation_systems_tutorial.html) | [MD](docs/tutorials/image_generation_systems_tutorial.md) |
-| **Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial.html) | [MD](docs/tutorials/video_generation_tutorial.md) |
-| **3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/3d_generation_tutorial.html) | [MD](docs/tutorials/3d_generation_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **Image Gen Systems (LDM / SD / SDXL / SD3 / FLUX / ControlNet)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/image_generation_systems_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/image_generation_systems_tutorial_en.html) | [MD](docs/tutorials/image_generation_systems_tutorial.md) |
+| **Video Gen (Sora / Hunyuan-Video / Kling / Wan / Movie Gen)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/video_generation_tutorial_en.html) | [MD](docs/tutorials/video_generation_tutorial.md) |
+| **3D Gen (NeRF / Instant-NGP / 3DGS / SDS / Trellis)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/3d_generation_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/3d_generation_tutorial_en.html) | [MD](docs/tutorials/3d_generation_tutorial.md) |
+| **Diffusion Post-Training (DDPO / DPOK / DRaFT / AlignProp / Diffusion-DPO / Flow-GRPO)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_post_training_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_post_training_tutorial_en.html) | [MD](docs/tutorials/diffusion_post_training_tutorial.md) |
+| **Diffusion / Flow Distillation (CM / iCT / sCM / CTM / LCM / DMD/DMD2 / ADD/LADD)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_distillation_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_distillation_tutorial_en.html) | [MD](docs/tutorials/diffusion_distillation_tutorial.md) |
 
 ### 👁️ Multimodal
 
-| Topic | HTML | MD |
-|---|---|---|
-| **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/vlm_multimodal_tutorial_en.html) | [MD](docs/tutorials/vlm_multimodal_tutorial.md) |
 
 ### 🤖 Agents
 
-| Topic | HTML | MD |
-|---|---|---|
-| **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
-| **Agentic RL (AgentTuning / ToolRL / RAGEN / WebRL / SWE-RL / GRPO for tool use)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agentic_rl_tutorial.html) | [MD](docs/tutorials/agentic_rl_tutorial.md) |
-| **Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MoA / Debate / MemGPT / LATS)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/multi_agent_long_horizon_tutorial.html) | [MD](docs/tutorials/multi_agent_long_horizon_tutorial.md) |
-| **Self-Evolving Agents (Ctx2Skill / Native Evolution / A²RD / Voyager / Reflexion / STaR)** | [📄 HTML](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/self_evolving_agents_tutorial.html) | [MD](docs/tutorials/self_evolving_agents_tutorial.md) |
+| Topic | HTML 中文 | HTML EN | MD |
+|---|---|---|---|
+| **Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agent_foundations_tutorial_en.html) | [MD](docs/tutorials/agent_foundations_tutorial.md) |
+| **Agentic RL (AgentTuning / ToolRL / RAGEN / WebRL / SWE-RL / GRPO for tool use)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agentic_rl_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/agentic_rl_tutorial_en.html) | [MD](docs/tutorials/agentic_rl_tutorial.md) |
+| **Multi-Agent & Long-Horizon (CAMEL / AutoGen / MetaGPT / MoA / Debate / MemGPT / LATS)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/multi_agent_long_horizon_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/multi_agent_long_horizon_tutorial_en.html) | [MD](docs/tutorials/multi_agent_long_horizon_tutorial.md) |
+| **Self-Evolving Agents (Ctx2Skill / Native Evolution / A²RD / Voyager / Reflexion / STaR)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/self_evolving_agents_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/self_evolving_agents_tutorial_en.html) | [MD](docs/tutorials/self_evolving_agents_tutorial.md) |
 
-> 🎉 **19 tutorials live** (2026-05) spanning all six buckets (General / Post-Training / Architecture / Generative / Multimodal / Agents). Diffusion Post-Training / Flow-OPD / Audio Gen / further SOTA updates will be added over time — **PRs welcome** (see [CONTRIBUTING](CONTRIBUTING.md)).
+> 🎉 **23 tutorials live (bilingual)** (2026-05) — each ships with both Chinese and English HTML. Seven buckets: General · Post-Training · Architecture · Generative · Multimodal · Agents · Diffusion Post-Training. This round adds 4 new sheets: KL Divergence in RLHF, LLM On-Policy Distillation, Diffusion Post-Training, Diffusion Distillation. More (Flow-OPD / Audio Gen / further SOTA updates) coming — **PRs welcome** (see [CONTRIBUTING](CONTRIBUTING.md)).
 
 ---
 

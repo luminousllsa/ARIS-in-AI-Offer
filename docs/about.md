@@ -81,12 +81,14 @@ ARIS 的核心方法论：**executor 和 reviewer 必须不同模型家族**（�
 | Category | Topics |
 |---|---|
 | 🧠 General / 基础 | Attention |
-| 🎯 Post-Training & Reasoning | RLHF / DPO / GRPO / PPO · Reasoning Models (o1 / R1) |
+| 🎯 Post-Training & Reasoning | RLHF / DPO / GRPO / PPO · Reasoning Models (o1 / R1) · KL Divergence in RLHF (k1/k2/k3 · placement gradient bias) · LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker) |
 | 🏛️ LLM Architecture & Systems | MoE (DeepSeek-V3) · Long Context (RoPE / YaRN / MLA) · KV Cache + Speculative Decoding · Quantization (GPTQ / AWQ / FP8 / NVFP4) · Distributed Training (FSDP2 / ZeRO / TP / PP / EP) |
 | 🌊 Generative Models — Theory & Tokenizers | Flow Matching · Diffusion Foundations · VAE / VQ-VAE / VQ-GAN / FSQ |
-| 🎨 Generation Systems | Image Gen (SD3 / FLUX / ControlNet) · Video Gen (Sora / Hunyuan-Video / Wan) · 3D Gen (NeRF / 3DGS / SDS) |
+| 🎨 Generation Systems | Image Gen (SD3 / FLUX / ControlNet) · Video Gen (Sora / Hunyuan-Video / Wan) · 3D Gen (NeRF / 3DGS / SDS) · Diffusion Post-Training (DDPO / DPOK / Diffusion-DPO / Flow-GRPO) · Diffusion / Flow Distillation (CM / sCM / LCM / DMD / DMD2 / ADD) |
 | 👁️ Multimodal | VLM (CLIP / LLaVA / Qwen-VL) |
-| 🤖 Agents | Agent Foundations (ReAct / MCP / A2A / SWE-bench / GAIA / OSWorld) · [更多在路上] |
+| 🤖 Agents | Agent Foundations (ReAct / MCP / A2A) · Agentic RL (AgentTuning / ToolRL / RAGEN / WebRL) · Multi-Agent & Long-Horizon (CAMEL / AutoGen / MoA / MemGPT / LATS) · Self-Evolving Agents (Ctx2Skill / Voyager / Reflexion / STaR) |
+
+> 🌐 **双语版本**：23 篇 cheat sheet 每篇都有中文 + 英文 HTML 两个版本（文件名 `*_tutorial.html` / `*_tutorial_en.html`）。
 
 ## 怎么贡献
 
