@@ -2,7 +2,7 @@
   <img src="assets/aris_logo.svg" alt="ARIS — Auto Research in Sleep" width="640">
 </p>
 
-# ARIS in 秋招 (AI Offer Tutorials)
+# ARIS-in-AI-Offer (ARIS in 秋招)
 
 > Hoping to make your **秋招 (qiūzhāo, Chinese AI campus recruiting season)** a little easier 🌱
 >

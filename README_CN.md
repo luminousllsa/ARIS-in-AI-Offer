@@ -2,7 +2,7 @@
   <img src="assets/aris_logo.svg" alt="ARIS — Auto Research in Sleep" width="640">
 </p>
 
-# ARIS in 秋招
+# ARIS-in-AI-Offer (ARIS in 秋招)
 
 > 希望大家秋招的时候轻松一点 🌱
 >
