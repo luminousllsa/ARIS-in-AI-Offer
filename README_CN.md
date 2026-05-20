@@ -135,6 +135,12 @@
 
 ---
 
+## 🚧 即将推出
+
+- 🌐 **ARIS-Homepage** *(TODO)* —— 给秋招同学**自动生成个人主页**（学术主页 / 作品集），由跟这些 cheat sheet 同一套 `/render-html` workflow 驱动。输入 CV + 项目列表 + 论文 bibliography，输出单文件 HTML，随处可部署，MathJax + 响应式排版，发布前跨模型审一遍事实性 claim（论文 venue / 时间 / 模型名）。**适合**：博士 candidate 做学术主页 / 实习候选人做作品集 / 想要不打 Hugo & Jekyll & Webflow 直接出一个像样个人站的人。**想参与 API 设计的话来 [issue](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/new) 一起讨论。**
+
+---
+
 ## 🤝 欢迎贡献
 
 一个人的力量有限，希望靠大家一起把这套教程做得更完善。

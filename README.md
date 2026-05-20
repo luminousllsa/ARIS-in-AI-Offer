@@ -135,6 +135,12 @@ Cross-model adversarial review (executor ≠ reviewer family) is ARIS's core inv
 
 ---
 
+## 🚧 Coming features
+
+- 🌐 **ARIS-Homepage** *(TODO)* — auto-generate a personal portfolio / academic homepage for 秋招 from your CV + project list + paper bibliography, powered by the same `/render-html` workflow that produces these cheat sheets. Single-file HTML, deploy-anywhere, MathJax + responsive layout, cross-model review on factual claims (paper venues, dates, model names) before publish. Designed for: PhD candidates putting together an academic homepage, intern candidates building a portfolio, anyone who wants to ship a polished personal site without fighting Hugo / Jekyll / Webflow. **Open an [issue](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/new) if you'd like to shape the API.**
+
+---
+
 ## 🤝 Contributing
 
 One person can only cover so much. The hope is that many hands make this collection more complete.
