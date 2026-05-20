@@ -19,7 +19,7 @@
 1. **安装 ARIS**（skill 源码在 `skills/`；canonical 来源是 [ARIS 主仓库](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)）。Claude Code 用户：`bash <(curl -s https://raw.githubusercontent.com/wanshuiyin/Auto-claude-code-research-in-sleep/main/tools/install_aris.sh)`
 2. **在本仓库目录里调** `/interview-cheatsheet "<TOPIC>"`。skill 自动跑跨模型 codex review gate + render-html。
 3. **自己 review** 生成的 `.md` / `.html` / `.review.json` 再 push。
-4. **开 PR**：三个文件都带上（MD 源 / HTML 渲染 / review JSON），README.md / README_EN.md 对应分类下加一行。
+4. **开 PR**：三个文件都带上（MD 源 / HTML 渲染 / review JSON），README.md / README_CN.md 对应分类下加一行。
 
 不想用 ARIS 手写也行 —— 照着现有教程的结构写（例如 `docs/tutorials/attention_tutorial.md`），跑 `tools/render_html.py` 渲染就行。
 
@@ -41,7 +41,7 @@
 ## PR 流程
 
 1. 改动要文档化（带上 `.review.json` 让 reviewer 看你的 audit trail）
-2. 加新教程要 **同时** 更新 `README.md` 和 `README_EN.md`，按分类放（General / Post-Training & Reasoning / LLM Architecture & Systems / Generative Models — Theory & Tokenizers / Generation Systems / Multimodal / Agents）
+2. 加新教程要 **同时** 更新 `README.md` 和 `README_CN.md`，按分类放（General / Post-Training & Reasoning / LLM Architecture & Systems / Generative Models — Theory & Tokenizers / Generation Systems / Multimodal / Agents）
 3. PR 聚焦单一主题 —— 一篇教程一个 PR
 4. Commit 信息清晰 —— 规范是 `docs(tutorials): add <Topic> cheat sheet (rendered via /render-html)`
 
@@ -51,7 +51,7 @@
 - [ ] `.html` 是用 `tools/render_html.py` 重新渲染的
 - [ ] `.review.json` 包含跨模型 codex audit trail（math/code review verdict + render review verdict + thread IDs）
 - [ ] byline 之外没个人信息
-- [ ] `README.md` + `README_EN.md` 都更新了
+- [ ] `README.md` + `README_CN.md` 都更新了
 - [ ] 引用真实可验证（不能 hallucinate 作者 / 年份 / venue）
 
 ## 坦白说
