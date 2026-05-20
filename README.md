@@ -137,6 +137,16 @@ Full contribution guide: [**CONTRIBUTING.md**](CONTRIBUTING.md) ([English](CONTR
 
 ---
 
+## 💬 Community
+
+**Shared community with the main [ARIS repo](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)** — the same WeChat group covers ARIS skill workflows + this tutorial collection. Join to discuss interview prep, request new cheat-sheet topics, or share corrections / contributions:
+
+<p align="center">
+  <img src="assets/wechat_group.jpg" alt="WeChat Group QR Code (shared with ARIS main repo)" width="300">
+</p>
+
+---
+
 ## License
 
 [MIT](LICENSE) — use, modify, share, fork freely. Hope this helps your job search. 💪

@@ -137,6 +137,16 @@
 
 ---
 
+## 💬 社区
+
+**与 [ARIS 主仓](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 共享一个社区** —— 同一个微信群既讨论 ARIS skill workflow，也讨论这份秋招 cheat sheet 合集。进群可以讨论面试准备、提新的 cheat sheet 主题需求、或反馈勘误 / 贡献：
+
+<p align="center">
+  <img src="assets/wechat_group.jpg" alt="WeChat 群二维码（与 ARIS 主仓共享）" width="300">
+</p>
+
+---
+
 ## License
 
 [MIT](LICENSE) — 用、改、传、二开都行。希望对正在准备秋招的你有帮助。加油 💪
