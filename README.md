@@ -12,6 +12,12 @@ A curated collection of Chinese ML / LLM / Multimodal / Generative-Model intervi
 
 Each cheat sheet is a long-form Chinese tutorial with: formula derivations · from-scratch PyTorch code · 25 high-frequency interview questions (L1 essentials · L2 advanced · L3 top-tier lab).
 
+<p align="center">
+  <img src="assets/preview_strip.jpg" alt="ARIS-in-AI-Offer preview — Foundations + Interview Q&A + From-Scratch Code, three columns from a representative cheat sheet" width="100%">
+</p>
+
+> 📖 **Preview** (above): one snapshot per pillar, taken from the [Diffusion Foundations cheat sheet](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) — ① **Foundations** (formula derivations + intuition + TL;DR), ② **Interview Q&A** (25 high-frequency questions stratified L1/L2/L3), ③ **From-Scratch Code** (runnable PyTorch, including CFG training + DDIM sampling). Every cheat sheet in this collection follows the same three-pillar structure.
+
 ### 📱 HTML reads cleanly everywhere
 
 Phone on the subway, iPad at a café, laptop in the library — same HTML link opens equally well:
@@ -53,6 +59,7 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 | Topic | HTML 中文 | HTML EN | MD |
 |---|---|---|---|
 | **Attention Interview Cheat Sheet** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/attention_tutorial_en.html) | [MD](docs/tutorials/attention_tutorial.md) |
+| **KL Divergence in RLHF (k1/k2/k3 · placement gradient bias)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial_en.html) | [MD](docs/tutorials/kl_divergence_rlhf_tutorial.md) |
 
 ### 🎯 Post-Training & Reasoning
 
@@ -60,7 +67,6 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 |---|---|---|---|
 | **RLHF / DPO / GRPO / PPO** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.html) | [MD](docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md) |
 | **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/reasoning_models_tutorial_en.html) | [MD](docs/tutorials/reasoning_models_tutorial.md) |
-| **KL Divergence in RLHF (k1/k2/k3 · placement gradient bias)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/kl_divergence_rlhf_tutorial_en.html) | [MD](docs/tutorials/kl_divergence_rlhf_tutorial.md) |
 | **LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker)** | [📄 CN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/llm_opd_tutorial.html) | [📄 EN](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/llm_opd_tutorial_en.html) | [MD](docs/tutorials/llm_opd_tutorial.md) |
 
 ### 🏛️ LLM Architecture & Systems

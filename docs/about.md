@@ -80,8 +80,8 @@ ARIS 的核心方法论：**executor 和 reviewer 必须不同模型家族**（�
 
 | Category | Topics |
 |---|---|
-| 🧠 General / 基础 | Attention |
-| 🎯 Post-Training & Reasoning | RLHF / DPO / GRPO / PPO · Reasoning Models (o1 / R1) · KL Divergence in RLHF (k1/k2/k3 · placement gradient bias) · LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker) |
+| 🧠 General / 基础 | Attention · KL Divergence in RLHF (k1/k2/k3 · placement gradient bias) |
+| 🎯 Post-Training & Reasoning | RLHF / DPO / GRPO / PPO · Reasoning Models (o1 / R1) · LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker) |
 | 🏛️ LLM Architecture & Systems | MoE (DeepSeek-V3) · Long Context (RoPE / YaRN / MLA) · KV Cache + Speculative Decoding · Quantization (GPTQ / AWQ / FP8 / NVFP4) · Distributed Training (FSDP2 / ZeRO / TP / PP / EP) |
 | 🌊 Generative Models — Theory & Tokenizers | Flow Matching · Diffusion Foundations · VAE / VQ-VAE / VQ-GAN / FSQ |
 | 🎨 Generation Systems | Image Gen (SD3 / FLUX / ControlNet) · Video Gen (Sora / Hunyuan-Video / Wan) · 3D Gen (NeRF / 3DGS / SDS) · Diffusion Post-Training (DDPO / DPOK / Diffusion-DPO / Flow-GRPO) · Diffusion / Flow Distillation (CM / sCM / LCM / DMD / DMD2 / ADD) |
