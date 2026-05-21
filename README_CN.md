@@ -163,6 +163,23 @@
 
 ---
 
+## 📖 引用 ARIS
+
+如果这份合集——或里面任何一篇 cheat sheet——对你的面试准备 / 科研 / 论文有帮助，欢迎引用底层 ARIS 方法论论文：
+
+```bibtex
+@article{yang2026aris,
+  title={ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration},
+  author={Yang, Ruofeng and Li, Yongcan and Li, Shuai},
+  journal={arXiv preprint arXiv:2605.03042},
+  year={2026}
+}
+```
+
+本仓库每一篇教程都由 ARIS 的 `/interview-cheatsheet` + `/render-html` workflow 跑跨模型对抗审查（Claude × GPT-5.5 xhigh × Gemini）端到端生成。引用是为了支持 workflow 背后的方法论，不只是这份合集本身。
+
+---
+
 ## License
 
 [MIT](LICENSE) — 用、改、传、二开都行。希望对正在准备秋招的你有帮助。加油 💪

@@ -163,6 +163,23 @@ Full contribution guide: [**CONTRIBUTING.md**](CONTRIBUTING.md) ([English](CONTR
 
 ---
 
+## 📖 Citing ARIS
+
+If this collection — or any cheat sheet here — helped you in your interview prep / research / paper, please consider citing the underlying ARIS methodology paper:
+
+```bibtex
+@article{yang2026aris,
+  title={ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration},
+  author={Yang, Ruofeng and Li, Yongcan and Li, Shuai},
+  journal={arXiv preprint arXiv:2605.03042},
+  year={2026}
+}
+```
+
+Every tutorial in this repo was generated end-to-end by the ARIS `/interview-cheatsheet` + `/render-html` workflow with cross-model adversarial review (Claude × GPT-5.5 xhigh × Gemini). The citation supports the methodology behind the workflow, not just this collection.
+
+---
+
 ## License
 
 [MIT](LICENSE) — use, modify, share, fork freely. Hope this helps your job search. 💪
