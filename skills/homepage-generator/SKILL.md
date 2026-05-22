@@ -254,7 +254,7 @@ cv.docx ──────► │ Step 1: textutil → cv.txt │
 - `tools/templates/homepage-theory-minimal.html` — Theory-Minimal template (shell + placeholders)
 - `tools/templates/homepage-active-researcher.html` — Active-Researcher template (TBD in v1.1)
 
-**Python deps**: `pyyaml`, `bibtexparser` (one-line `pip install`). The stdlib-only constraint of `render_html.py` does not extend here — homepage is more complex than cheat sheets and one `pip install` is acceptable. `doctor` command checks dependencies on first run.
+**Python deps**: `pyyaml` only (one `pip install pyyaml`, or `pip install pyyaml --break-system-packages` on macOS systems hit by PEP 668). BibTeX is parsed by a bundled stdlib parser in `tools/aris_homepage.py` — no `bibtexparser` dependency. `doctor` reports availability on first run.
 
 ## Output ownership (privacy + drift detection)
 
