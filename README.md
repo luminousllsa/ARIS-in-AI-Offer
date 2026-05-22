@@ -118,6 +118,14 @@ Core methodology: **cross-model adversarial review** — executor and reviewer m
 
 > 🎉 **23 tutorials live (bilingual)** (2026-05) — each ships with both Chinese and English HTML. Seven buckets: General · Post-Training · Architecture · Generative · Multimodal · Agents · Diffusion Post-Training. This round adds 4 new sheets: KL Divergence in RLHF, LLM On-Policy Distillation, Diffusion Post-Training, Diffusion Distillation. More (Flow-OPD / Audio Gen / further SOTA updates) coming — **PRs welcome** (see [CONTRIBUTING](CONTRIBUTING.md)).
 
+### 🦾 Embodied AI / 具身智能
+
+> 🌟 **Community contribution** by [@WinstonJQ](https://github.com/WinstonJQ) — hosted externally on a separate repo, generously shared with the community. If it helps your interview prep, please ⭐ the source repo to thank the author 🙏
+
+| Topic | HTML 中文 | Source |
+|---|---|---|
+| **具身智能高频面试题库** (VLA / 模仿学习 / RL / 世界模型 / 工程落地 / 腿足控制 / 3D 感知 / LeetCode·系统设计 — 413 题，8 卷) | [📄 CN (online)](https://winstonjq.github.io/embodied-interview-qa/) | [@WinstonJQ/embodied-interview-qa](https://github.com/WinstonJQ/embodied-interview-qa) |
+
 ---
 
 ## 🤖 How These Are Generated

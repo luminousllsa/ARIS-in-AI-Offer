@@ -118,6 +118,14 @@
 
 > 🎉 **23 篇 cheat sheet 全部就位**（2026-05），每篇都有中文 + 英文双语版本，覆盖 General / Post-Training / Architecture / Generative / Multimodal / Agents / Diffusion 后训练 七大类。本轮新增 4 篇：KL Divergence in RLHF、LLM On-Policy Distillation、Diffusion Post-Training、Diffusion Distillation。后续 Flow-OPD / Audio Gen / 更新 SOTA 等会逐步加 —— **PR 欢迎**（详见 [CONTRIBUTING](CONTRIBUTING.md)）。
 
+### 🦾 Embodied AI / 具身智能
+
+> 🌟 **社区贡献** by [@WinstonJQ](https://github.com/WinstonJQ) —— 这是社区独立维护的一份题库，托管在他自己的仓库，慷慨开源给大家。如果对你秋招有帮助，请去 ⭐ 一下原仓库，给作者一点鼓励 🙏
+
+| Topic | HTML 中文 | Source |
+|---|---|---|
+| **具身智能高频面试题库** (VLA / 模仿学习 / RL / 世界模型 / 工程落地 / 腿足控制 / 3D 感知 / LeetCode·系统设计 — 413 题，8 卷) | [📄 中 (在线)](https://winstonjq.github.io/embodied-interview-qa/) | [@WinstonJQ/embodied-interview-qa](https://github.com/WinstonJQ/embodied-interview-qa) |
+
 ---
 
 ## 🤖 这些教程是怎么生成的
