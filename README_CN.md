@@ -143,9 +143,29 @@
 
 ---
 
-## 🚧 即将推出
+## 🌐 ARIS-Homepage —— fact-checked 学术主页生成器
 
-- 🌐 **ARIS-Homepage** *(TODO)* —— 给秋招同学**自动生成个人主页**（学术主页 / 作品集），由跟这些 cheat sheet 同一套 `/render-html` workflow 驱动。输入 CV + 项目列表 + 论文 bibliography，输出单文件 HTML，随处可部署，MathJax + 响应式排版，发布前跨模型审一遍事实性 claim（论文 venue / 时间 / 模型名）。**适合**：博士 candidate 做学术主页 / 实习候选人做作品集 / 想要不打 Hugo & Jekyll & Webflow 直接出一个像样个人站的人。**想参与 API 设计的话来 [issue](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/new) 一起讨论。**
+> **唯一一个发布前 fact-check 你 CV 的个人主页生成器。**
+
+本仓库新增的 skill：`/homepage-generator` 把你的 CV（`.docx` / `.pdf` / `.txt`）变成一个 polished 单文件学术主页。跨模型 fact-check 对 DBLP / arXiv 审核——错 venue / 错年份 / 错作者 / 编造奖项都硬阻断 ship，除非你显式 override。
+
+- **Live demo**：https://wanshuiyin.github.io/ —— 这就是用这个 skill 跑 CV + 维护者之前 manual 主页生成的。
+- **Skill 契约**：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)
+- **完整 schema**：[`skills/homepage-generator/PROFILE_SCHEMA.md`](skills/homepage-generator/PROFILE_SCHEMA.md)
+- **实现**：[`tools/aris_homepage.py`](tools/aris_homepage.py)（纯 stdlib Python，只需 `pip install pyyaml`）
+
+**快速开始**：
+
+```bash
+aris-homepage init --from-cv ./cv.pdf --out ./site
+cd ./site
+# 调用方 agent 读 .aris-homepage/EXTRACTION_HANDOFF.md，填 extraction.json
+aris-homepage finalize
+$EDITOR profile.yml             # 调整编辑选择
+aris-homepage render --persona theory-minimal
+```
+
+输出：`index.html` + `audit-report.md`。HTML 扔 GitHub Pages、S3、学校 `~user/public_html/`、邮箱附件都行——零 build server。**最小运行时只要 Python + 调用方 LLM agent**；Codex MCP 可选（增强 adversarial 跨模型 review），Gemini 可选（多模态视觉 critique）。
 
 ---
 

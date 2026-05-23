@@ -582,6 +582,7 @@ def build_section_chunks(profile: dict, bib: dict, bio_md: str, news_md: str,
         "PUBLICATIONS_SECTION_HTML": build_publications_section(profile, bib, persona),
         "AWARDS_SECTION_HTML": build_awards_section(profile),
         "TALKS_SECTION_HTML": build_talks_section(profile),
+        "PROFESSIONAL_SERVICES_SECTION_HTML": build_professional_services_section(profile),
         "TEACHING_SECTION_HTML": build_teaching_section(profile),
         "AUDIT_LINK_HTML": f" · <a href=\"{DEFAULT_FILES['audit_report']}\">audit</a>",
     }
@@ -752,28 +753,63 @@ def build_publications_section(profile: dict, bib: dict, persona: str) -> str:
         venue = render_venue(entry)
         link_html_parts = []
         plinks = m.get("links", {}) or {}
-        for label, key in [("abs", "arxiv"), ("pdf", "pdf"),
-                           ("code", "code"), ("project", "project")]:
+        # Known link types in canonical display order.
+        # User flagged "abs" as too cryptic when the link is just the paper — use "Paper" / "arXiv".
+        known_link_order = [
+            ("paper", "Paper"),
+            ("arxiv", "arXiv"),
+            ("pdf", "PDF"),
+            ("openreview", "OpenReview"),
+            ("project", "Project"),
+            ("code", "Code"),
+            ("slides", "Slides"),
+            ("talk_slides", "Talk Slides"),
+            ("html_intro", "Intro"),
+            ("html", "HTML"),
+            ("video", "Video"),
+            ("poster", "Poster"),
+            ("paperweekly", "PaperWeekly"),
+            ("bibtex", "BibTeX"),
+        ]
+        seen_link_keys: set[str] = set()
+        for key, label in known_link_order:
             url = plinks.get(key)
             if url:
                 link_html_parts.append(f'<a href="{esc(url)}" rel="noopener">[{label}]</a>')
-        award = m.get("award")
-        award_html = f'<span class="pub-badge">{esc(award)}</span>' if award else ""
+                seen_link_keys.add(key)
+        # Custom/unknown keys keep their key name as label
+        for key, url in plinks.items():
+            if key in seen_link_keys or not url:
+                continue
+            link_html_parts.append(f'<a href="{esc(url)}" rel="noopener">[{esc(key)}]</a>')
+        # Awards/badges — support both singular `award: str` (back-compat) and plural `awards: [str]`
+        award_items: list[str] = []
+        if m.get("awards"):
+            award_items = [str(a) for a in m["awards"] if a]
+        elif m.get("award"):
+            award_items = [str(m["award"])]
+        award_html = "".join(f'<span class="pub-badge">{esc(a)}</span>' for a in award_items)
         links_html = (f'<div class="pub-links">{"".join(link_html_parts)}{award_html}</div>'
-                      if link_html_parts or award else "")
+                      if link_html_parts or award_items else "")
+        description = m.get("description", "")
+        description_html = (f'<div class="pub-description">{md_inline(description)}</div>'
+                            if description else "")
         content_html = (f'<div class="pub-title">{title}</div>'
                         f'<div class="pub-authors">{authors_str}</div>'
                         f'<div class="pub-venue">{venue}</div>'
                         f'{links_html}')
-        # 2-column layout when thumbnail provided (mirrors his manual homepage)
+        # 2-column layout when thumbnail provided. Description renders FULL-WIDTH
+        # below the thumb+content row via CSS grid-template-areas — matches the
+        # DFS-GRPO single-column treatment but kept inside the 2-col grid.
         thumb = m.get("thumbnail")
         if thumb:
             thumb_html = (f'<div class="pub-thumb-wrap">'
                           f'<img class="pub-thumb" src="{esc(thumb)}" alt="" loading="lazy">'
                           f'</div>')
             return (f'<div class="pub-item pub-item-with-thumb{spotlight_cls}">'
-                    f'{thumb_html}<div class="pub-content">{content_html}</div></div>')
-        return f'<div class="pub-item{spotlight_cls}">{content_html}</div>'
+                    f'{thumb_html}<div class="pub-content">{content_html}</div>'
+                    f'{description_html}</div>')
+        return f'<div class="pub-item{spotlight_cls}">{content_html}{description_html}</div>'
 
     for group in groups:
         if group["group"]:
@@ -811,6 +847,10 @@ def render_authors(author_field: str, user_name_tokens: list[str],
     has_co_first = bool(co_first_set)
     for a in authors:
         a_norm = a.strip()
+        # BibTeX convention: `and others` → render as `et al.`
+        if a_norm.lower() in ("others", "et al.", "et al"):
+            out.append('<em>et al.</em>')
+            continue
         a_tokens = {t.lower() for t in re.findall(r"\w+", a_norm)}
         is_user = bool(user_name_tokens) and all(t in a_tokens for t in user_name_tokens)
         marker = "*" if has_co_first and a_norm.lower() in co_first_set else ""
@@ -825,7 +865,10 @@ def render_authors(author_field: str, user_name_tokens: list[str],
 
 
 def render_venue(entry: dict) -> str:
-    venue = entry.get("booktitle") or entry.get("journal") or entry.get("venue") or ""
+    """Render BibTeX venue string. Falls back through booktitle → journal → howpublished.
+    The howpublished fallback is essential for @misc preprint entries."""
+    venue = (entry.get("booktitle") or entry.get("journal")
+             or entry.get("howpublished") or entry.get("venue") or "")
     year = entry.get("year") or ""
     parts = [esc(v) for v in [venue, str(year)] if v]
     return ", ".join(parts) if parts else "—"
@@ -907,17 +950,6 @@ def build_featured_projects_section(profile: dict) -> str:
         elevator = md_inline(fp.get("elevator", "")) if fp.get("elevator") else ""
         logo = fp.get("logo")
 
-        # Hero: logo + name + tagline + subtitle
-        logo_html = (f'<img class="fp-logo" src="{esc(logo)}" alt="" '
-                     f'loading="lazy">' if logo else "")
-        hero_parts = [f'<h2 class="fp-name">{name}</h2>']
-        if tagline:
-            hero_parts.append(f'<div class="fp-tagline">{tagline}</div>')
-        if subtitle:
-            hero_parts.append(f'<div class="fp-subtitle">{subtitle}</div>')
-        hero = (f'<div class="fp-hero">{logo_html}'
-                f'<div class="fp-hero-body">{"".join(hero_parts)}</div></div>')
-
         # Stats — accept either list of strings or list of dicts
         stats = fp.get("stats", []) or []
         stat_items = []
@@ -934,7 +966,7 @@ def build_featured_projects_section(profile: dict) -> str:
         stats_html = (f'<ul class="fp-stats">{"".join(stat_items)}</ul>'
                       if stat_items else "")
 
-        # Primary links — render in a fixed-ish order (repo / paper / arxiv / talk / others)
+        # Primary links
         links = fp.get("links", {}) or {}
         primary_link_order = [
             ("repo", "GitHub"), ("paper", "Paper"), ("arxiv", "arXiv"),
@@ -947,7 +979,6 @@ def build_featured_projects_section(profile: dict) -> str:
             url = links.get(key)
             if url:
                 link_chunks.append(f'<a href="{esc(url)}" rel="noopener">{label}</a>')
-        # Catch any remaining custom links
         for key, url in links.items():
             if key in {k for k, _ in primary_link_order}:
                 continue
@@ -956,10 +987,9 @@ def build_featured_projects_section(profile: dict) -> str:
         links_html = (f'<nav class="fp-links">{" · ".join(link_chunks)}</nav>'
                       if link_chunks else "")
 
-        # Elevator paragraph
         elevator_html = f'<p class="fp-elevator">{elevator}</p>' if elevator else ""
 
-        # Sub-projects strip
+        # Sub-projects
         subprojects = fp.get("subprojects", []) or []
         sub_items = []
         for sp in subprojects:
@@ -975,9 +1005,39 @@ def build_featured_projects_section(profile: dict) -> str:
                     f'<ul class="fp-subprojects">{"".join(sub_items)}</ul>'
                     if sub_items else "")
 
-        cards.append(f'<section class="featured-project" id="fp-{esc(fp.get("id", "x"))}">'
-                     f'{hero}{stats_html}{links_html}{elevator_html}{sub_html}'
-                     f'</section>')
+        # Open problems (CV's research-direction prompts)
+        open_problems = fp.get("open_problems", []) or []
+        op_items = []
+        for op in open_problems:
+            op_items.append(f'<li>{md_inline(str(op))}</li>')
+        op_html = (f'<div class="fp-op-label">Open problems explored in this line of work:</div>'
+                   f'<ol class="fp-open-problems">{"".join(op_items)}</ol>'
+                   if op_items else "")
+
+        # Assemble text-column content (everything except the logo image)
+        title_block_parts = [f'<h2 class="fp-name">{name}</h2>']
+        if tagline:
+            title_block_parts.append(f'<div class="fp-tagline">{tagline}</div>')
+        if subtitle:
+            title_block_parts.append(f'<div class="fp-subtitle">{subtitle}</div>')
+        title_block = "".join(title_block_parts)
+
+        text_col = (f'{title_block}{stats_html}{links_html}'
+                    f'{elevator_html}{sub_html}{op_html}')
+
+        # Float-right image (user-requested: 2-col only until image ends, then 1-col continues)
+        if logo:
+            logo_html = (f'<img class="fp-logo-float" src="{esc(logo)}" '
+                         f'alt="ARIS workflow diagram" loading="lazy">')
+            cards.append(
+                f'<section class="featured-project" id="fp-{esc(fp.get("id", "x"))}">'
+                f'{logo_html}{text_col}</section>'
+            )
+        else:
+            cards.append(
+                f'<section class="featured-project" id="fp-{esc(fp.get("id", "x"))}">'
+                f'{text_col}</section>'
+            )
 
     return "\n".join(cards)
 
@@ -1053,6 +1113,28 @@ def build_teaching_section(profile: dict) -> str:
                     f'<span class="award-meta">{meta}</span></div>')
     return (f'<section class="awards"><h2>Teaching</h2>\n' +
             "\n".join(rows) + "\n</section>")
+
+
+def build_professional_services_section(profile: dict) -> str:
+    """Render 'Professional Services' section (Conference Reviewer list etc).
+
+    Schema:
+        professional_services:
+          preamble: "Conference Reviewer for:"
+          items: ["AAMAS 2022", "NeurIPS 2024, 2025", ...]
+    """
+    ps = profile.get("professional_services") or {}
+    items = ps.get("items") or []
+    if not items:
+        return ""
+    preamble = ps.get("preamble", "")
+    parts = []
+    if preamble:
+        parts.append(f'<p class="ps-preamble">{md_inline(preamble)}</p>')
+    item_html = "".join(f'<div class="award-item">{md_inline(str(item))}</div>' for item in items)
+    parts.append(item_html)
+    return (f'<section class="awards"><h2>Professional Services</h2>\n' +
+            "\n".join(parts) + "\n</section>")
 
 
 def build_research_experiences_section(profile: dict) -> str:
@@ -1213,16 +1295,23 @@ def run_fact_check(profile: dict, bib: dict, *, override_all: bool = False,
             "key": key, "detail": f"verified by DBLP ({_hit_url(hit)})",
         })
 
-    # Award badge sanity: claims like "Best Paper" / "Spotlight" / "Oral" need a URL
+    # Award badge sanity: claims like "Best Paper" / "Spotlight" / "Oral" need a URL.
+    # Supports both `award` (singular, back-compat) and `awards` (plural list, v2+).
     for key, m in meta.items():
-        award = (m or {}).get("award")
-        if not award:
-            continue
-        award_lower = award.lower()
+        m = m or {}
+        award_pool: list[str] = []
+        if m.get("awards"):
+            award_pool = [str(a) for a in m["awards"] if a]
+        elif m.get("award"):
+            award_pool = [str(m["award"])]
         flag_terms = ("best paper", "spotlight", "oral", "outstanding")
-        if any(t in award_lower for t in flag_terms):
-            links = (m or {}).get("links", {}) or {}
-            if not (links.get("arxiv") or links.get("pdf") or links.get("project")):
+        links = m.get("links", {}) or {}
+        has_verifier = bool(
+            links.get("arxiv") or links.get("paper") or links.get("pdf")
+            or links.get("project") or links.get("openreview")
+        )
+        for award in award_pool:
+            if any(t in award.lower() for t in flag_terms) and not has_verifier:
                 result.failed.append({
                     "kind": "award_unverifiable", "key": key,
                     "detail": f"Award '{award}' claimed but no verifiable URL.",
