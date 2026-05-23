@@ -16,6 +16,8 @@
 
 每篇都是一份长文 + 公式 + 从零开始的 PyTorch 代码 + 25 高频面试题（L1 必会 · L2 进阶 · L3 顶级 lab）。
 
+> 🌐 **本仓库另一个 feature** —— [**ARIS-Homepage**](#-aris-homepage--fact-checked-学术主页生成器)：用同一套单文件 HTML workflow 把 CV 变成 fact-checked 学术主页。[**Live demo 在 wanshuiyin.github.io →**](https://wanshuiyin.github.io/)
+
 <p align="center">
   <img src="assets/preview_strip.jpg" alt="ARIS-in-AI-Offer 预览 — 基础知识 + 面试题 + 实际代码，截自一篇代表性 cheat sheet" width="100%">
 </p>
@@ -149,12 +151,59 @@
 
 本仓库新增的 skill：`/homepage-generator` 把你的 CV（`.docx` / `.pdf` / `.txt`）变成一个 polished 单文件学术主页。跨模型 fact-check 对 DBLP / arXiv 审核——错 venue / 错年份 / 错作者 / 编造奖项都硬阻断 ship，除非你显式 override。
 
-- **Live demo**：https://wanshuiyin.github.io/ —— 这就是用这个 skill 跑 CV + 维护者之前 manual 主页生成的。
+### Live demo · 渲染出来长这样
+
+Live demo：**https://wanshuiyin.github.io/** —— 这就是用这个 skill 跑 CV + 维护者之前 manual 主页（作 editorial reference）生成的。三个 section 截图：
+
+<p align="center">
+  <img src="assets/homepage-showcase/hero.png" width="78%" alt="头部 + Bio + Research —— 240px 头像，双语 H1，多行联系方式，单段 bio + research interests + education">
+  <br>
+  <em>头部 · 双语 H1 · 多行联系方式 · bio · research interests · education</em>
+</p>
+
+<p align="center">
+  <img src="assets/homepage-showcase/aris-featured.png" width="78%" alt="ARIS Featured project section — 项目名、credibility 徽章、link 集合、hero SVG 右浮动、子项目、open problems、然后 News 配 star-history badge">
+  <br>
+  <em>ARIS Featured section —— hero SVG 右浮动，文字绕开图片，图片底部之后文字占满全宽继续写 sub-projects + open problems。下面 News 嵌 star-history 动态图。</em>
+</p>
+
+<p align="center">
+  <img src="assets/homepage-showcase/publications.png" width="78%" alt="Publications — 5 个 topic group (MoE/Pretraining / SFT / Post-Training / Sampling / RL Theory)、每篇论文带缩略图、全员蓝色左侧 border、spotlight 加粗到 4px、industry-internship 论文 (DFS-GRPO Meituan, Contrastive 3D Tencent) 配蓝色描述框">
+  <br>
+  <em>Publications —— 5 个 topic group · 每篇带缩略图 · 全员蓝色左侧 border · spotlight 加粗 · 工业实习论文（DFS-GRPO 美团、Contrastive 3D 腾讯）配蓝色描述框</em>
+</p>
+
+### 工作流程
+
+```mermaid
+flowchart LR
+    CV["📄 CV<br/>.docx / .pdf / .txt"] --> Init["aris-homepage init<br/>--from-cv"]
+    MH["🌐 Manual<br/>主页 URL<br/>(编辑参考)"] -.可选.-> Agent
+    AD["🖼 素材<br/>文件夹<br/>(视觉)"] -.可选.-> Agent
+
+    Init --> Handoff["📋 EXTRACTION_HANDOFF.md"]
+    Handoff --> Agent["🤖 调用方 LLM agent<br/>填 extraction.json"]
+    Agent --> Finalize["aris-homepage finalize"]
+    Finalize --> Sources["✋ 可编辑源文件：<br/>profile.yml · publications.bib<br/>bio.md · news.md"]
+
+    Sources --> Render["aris-homepage render<br/>--persona theory-minimal"]
+    Render --> DBLP{"🔍 Layer-1: DBLP/arXiv<br/>fact-check (默认)"}
+    DBLP -->|PASS / WARN| HTML["📄 index.html<br/>+ audit-report.md"]
+    DBLP -->|BLOCKED| Fix{"修 还是<br/>--override-all？"}
+    Fix -->|修| Sources
+    Fix -->|override| HTML
+
+    HTML -.可选.-> CodexL2["🤝 Layer-2: Codex MCP<br/>对抗式 review"]
+    HTML -.可选.-> GeminiL2["👁 Layer-2: Gemini<br/>视觉 critique"]
+    HTML --> Ship["🚀 部署：<br/>GitHub Pages · S3 · 任意"]
+```
+
 - **Skill 契约**：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)
 - **完整 schema**：[`skills/homepage-generator/PROFILE_SCHEMA.md`](skills/homepage-generator/PROFILE_SCHEMA.md)
 - **实现**：[`tools/aris_homepage.py`](tools/aris_homepage.py)（纯 stdlib Python，只需 `pip install pyyaml`）
+- **模板**：[`tools/templates/homepage-theory-minimal.html`](tools/templates/homepage-theory-minimal.html)
 
-**快速开始**：
+### 快速开始
 
 ```bash
 aris-homepage init --from-cv ./cv.pdf --out ./site
