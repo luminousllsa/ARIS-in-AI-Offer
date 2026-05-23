@@ -24,6 +24,12 @@
 
 > 📖 **预览**（上图）：每个 pillar 一张截图，全部来自 [Diffusion Foundations 教程](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) —— ① **基础知识点**（公式推导 + 直觉 + TL;DR），② **面试题**（25 高频题分层 L1/L2/L3），③ **实际代码**（可跑的 PyTorch，含 CFG 训练 + DDIM 采样）。这个三柱结构在本仓库每篇 cheat sheet 里都一样。
 
+<p align="center">
+  <img src="assets/homepage_preview_strip.jpg" alt="ARIS-Homepage 预览 —— Header & Bio、ARIS Featured section (hero SVG 右浮动)、Publications (topic group + 缩略图)" width="100%">
+</p>
+
+> 🌐 **ARIS-Homepage 预览**（上图）：同一套 `/render-html` workflow，把 CV 变成 fact-checked 学术主页。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。详情 + 流程图见 [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-学术主页生成器)。
+
 ### 📱 HTML 格式哪里都能读，清清楚楚
 
 地铁上掏手机、咖啡馆开 iPad、图书馆开笔记本——同一个 HTML 链接打开都能读：
@@ -151,51 +157,74 @@
 
 本仓库新增的 skill：`/homepage-generator` 把你的 CV（`.docx` / `.pdf` / `.txt`）变成一个 polished 单文件学术主页。跨模型 fact-check 对 DBLP / arXiv 审核——错 venue / 错年份 / 错作者 / 编造奖项都硬阻断 ship，除非你显式 override。
 
-### Live demo · 渲染出来长这样
-
-Live demo：**https://wanshuiyin.github.io/** —— 这就是用这个 skill 跑 CV + 维护者之前 manual 主页（作 editorial reference）生成的。三个 section 截图：
-
-<p align="center">
-  <img src="assets/homepage-showcase/hero.png" width="78%" alt="头部 + Bio + Research —— 240px 头像，双语 H1，多行联系方式，单段 bio + research interests + education">
-  <br>
-  <em>头部 · 双语 H1 · 多行联系方式 · bio · research interests · education</em>
-</p>
-
-<p align="center">
-  <img src="assets/homepage-showcase/aris-featured.png" width="78%" alt="ARIS Featured project section — 项目名、credibility 徽章、link 集合、hero SVG 右浮动、子项目、open problems、然后 News 配 star-history badge">
-  <br>
-  <em>ARIS Featured section —— hero SVG 右浮动，文字绕开图片，图片底部之后文字占满全宽继续写 sub-projects + open problems。下面 News 嵌 star-history 动态图。</em>
-</p>
-
-<p align="center">
-  <img src="assets/homepage-showcase/publications.png" width="78%" alt="Publications — 5 个 topic group (MoE/Pretraining / SFT / Post-Training / Sampling / RL Theory)、每篇论文带缩略图、全员蓝色左侧 border、spotlight 加粗到 4px、industry-internship 论文 (DFS-GRPO Meituan, Contrastive 3D Tencent) 配蓝色描述框">
-  <br>
-  <em>Publications —— 5 个 topic group · 每篇带缩略图 · 全员蓝色左侧 border · spotlight 加粗 · 工业实习论文（DFS-GRPO 美团、Contrastive 3D 腾讯）配蓝色描述框</em>
-</p>
+**Live demo**：[wanshuiyin.github.io](https://wanshuiyin.github.io/) —— 这就是用这个 skill 跑 CV + 维护者之前 manual 主页（作 editorial reference）生成的。预览 strip 在 README 顶部。
 
 ### 工作流程
 
-```mermaid
-flowchart LR
-    CV["📄 CV<br/>.docx / .pdf / .txt"] --> Init["aris-homepage init<br/>--from-cv"]
-    MH["🌐 Manual<br/>主页 URL<br/>(编辑参考)"] -.可选.-> Agent
-    AD["🖼 素材<br/>文件夹<br/>(视觉)"] -.可选.-> Agent
+```
+                       ARIS-Homepage Pipeline
 
-    Init --> Handoff["📋 EXTRACTION_HANDOFF.md"]
-    Handoff --> Agent["🤖 调用方 LLM agent<br/>填 extraction.json"]
-    Agent --> Finalize["aris-homepage finalize"]
-    Finalize --> Sources["✋ 可编辑源文件：<br/>profile.yml · publications.bib<br/>bio.md · news.md"]
+   📄 CV (.docx/.pdf/.txt)    🌐 Manual Homepage URL    🖼 素材目录
+   事实源                     编辑源（可选）            视觉源（可选）
+         │                            │                      │
+         ▼                            │                      │
+   ┌──────────┐                       │                      │
+   │ init     │                       │                      │
+   │ CV→text  │                       │                      │
+   └─────┬────┘                       │                      │
+         ▼                            ▼                      ▼
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ 🤖 调用方 LLM agent 读 EXTRACTION_HANDOFF.md + 可选 manual      │
+   │    homepage URL + 素材目录作 context                             │
+   │ → 写 .aris-homepage/extraction.json                             │
+   └─────────────────────────┬───────────────────────────────────────┘
+                             ▼
+                       ┌──────────┐
+                       │ finalize │
+                       └─────┬────┘
+                             ▼
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ ✋ 可编辑源文件（事实在这，IDE 里改）：                          │
+   │   profile.yml · publications.bib · bio.md · news.md             │
+   │   EXTRACTION_REVIEW.md（审 LLM 不确定的抽取项）                 │
+   └─────────────────────────┬───────────────────────────────────────┘
+                             ▼
+                  ┌────────────────────────┐
+                  │ render                 │
+                  │   --persona            │
+                  │     theory-minimal     │
+                  └───────────┬────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+        ┌──────────┐    ┌──────────┐    ┌──────────────┐
+        │ Layer-1  │    │ Layer-2  │    │ Layer-2      │
+        │ DBLP /   │    │ Codex MCP│    │ Gemini       │
+        │ arXiv    │    │ 对抗 rev │    │ 视觉 critique│
+        │ 事实审   │    │（可选）  │    │（可选）      │
+        │（默认）  │    │          │    │              │
+        └─────┬────┘    └──────────┘    └──────────────┘
+              │
+              ▼
+        ┌──────────────┐
+        │ index.html + │
+        │ audit-report │ ──▶ 🚀 部署：GitHub Pages · S3 · 邮箱 · 任意
+        │   .md        │
+        └──────────────┘
 
-    Sources --> Render["aris-homepage render<br/>--persona theory-minimal"]
-    Render --> DBLP{"🔍 Layer-1: DBLP/arXiv<br/>fact-check (默认)"}
-    DBLP -->|PASS / WARN| HTML["📄 index.html<br/>+ audit-report.md"]
-    DBLP -->|BLOCKED| Fix{"修 还是<br/>--override-all？"}
-    Fix -->|修| Sources
-    Fix -->|override| HTML
+   典型流程（7 步，~5 分钟）：
+     1. aris-homepage init --from-cv ./cv.pdf --out ./site
+     2.（调用方 agent）读 .aris-homepage/EXTRACTION_HANDOFF.md
+        → 填 .aris-homepage/extraction.json
+     3. aris-homepage finalize
+     4. $EDITOR profile.yml publications.bib bio.md news.md
+     5. aris-homepage check --strict        # 只做 fact-check
+     6. aris-homepage render --persona theory-minimal
+     7. 看 audit-report.md；修了 → 重 render 或 --override-all
 
-    HTML -.可选.-> CodexL2["🤝 Layer-2: Codex MCP<br/>对抗式 review"]
-    HTML -.可选.-> GeminiL2["👁 Layer-2: Gemini<br/>视觉 critique"]
-    HTML --> Ship["🚀 部署：<br/>GitHub Pages · S3 · 任意"]
+   最小运行时：Python + 调用方 LLM agent
+   Codex MCP 可选（跨模型对抗 review）
+   Gemini 可选（多模态视觉 critique）
 ```
 
 - **Skill 契约**：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)
