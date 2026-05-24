@@ -44,31 +44,11 @@
 
 ## 📢 最新动态
 
-- **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1：`--from-repos`** — 逗号分隔 `owner/repo` 列表通过 `gh` CLI 抓快照（GraphQL metadata + REST README 截 20KB）。每 repo 的 `{stars, forks, topics, primary_language, 最近 8 个 releases, latest commit, README 摘要}` 写到 `.aris-homepage/github_repos.json`，调用方 LLM agent 把时间线 merge 进主页 News + `featured_projects[].github`。默认拒绝 private repo，要 `--include-private` 才放。Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99)（[cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)）。
-- **2026-05-23** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🌐 **ARIS-Homepage v1 上线** — 把 CV 变成 fact-checked 学术主页。DBLP / arXiv 真审 venue/年份/作者/奖项，硬阻断 ship。单文件 HTML 输出；Codex MCP 可选对抗 review；Gemini 可选视觉 critique。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。Skill 契约：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)。v9→v17 跨模型迭代（[b818c1d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b818c1d) · [1e039f8](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/1e039f8) · [a270f77](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/a270f77)）。
+- **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1：`--from-repos`** — 用户选定 `owner/repo` 列表通过 `gh` CLI 抓快照，调用方 LLM agent 把 repo 时间线 merge 进主页 News + `featured_projects[].github`。默认拒绝 private repo。Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99)（[cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)）。
+- **2026-05-23** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🌐 **ARIS-Homepage v1 上线** — CV → fact-checked 学术主页（DBLP / arXiv 审 venue/年份/作者，错的硬阻断 ship）。单文件 HTML；Codex / Gemini review 可选。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。Skill：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)（[b818c1d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b818c1d)）。
 - **2026-05-22** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🦾 **社区贡献 feature：具身智能高频面试题库** by [@WinstonJQ](https://github.com/WinstonJQ) —— 413 题 8 卷（VLA / 模仿学习 / RL / 世界模型 / 工程落地 / 腿足控制 / 3D 感知 / 系统设计），外部托管，从 Tutorial Index 新增的 "🦾 Embodied AI" 分类里链接过去（[b1ebb6f](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b1ebb6f)）。
 - **2026-05** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 📚 **4 篇新双语 cheat sheet**：KL Divergence in RLHF（k1/k2/k3 · placement gradient bias）、LLM On-Policy Distillation（MiniLLM / GKD / Qwen3 / Tinker）、Diffusion Post-Training（DDPO / DPOK / DRaFT / AlignProp / Diffusion-DPO / Flow-GRPO）、Diffusion / Flow Distillation（CM / iCT / sCM / CTM / LCM / DMD/DMD2 / ADD/LADD）。总数：**23 篇 first-party cheat sheet**。
 - **2026-05** — ![DOCS](https://img.shields.io/badge/DOCS-blue?style=flat-square) 📖 **README 重构** —— 预览图 banner、ARIS 战绩前置（badges + 10K-star credibility paragraph）、与 [ARIS 主仓](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)共享微信群二维码。
-
----
-
-## 🌟 ARIS 是什么 — 顺便安利一下
-
-[**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 是 2025-2026 年最受关注的 AI 科研 agent skill 平台之一。这个仓库生成所用的 `/interview-cheatsheet` + `/render-html` 是 ARIS 74+ 个 skill 中的两个。
-
-[![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
-
-- ⭐ **~10k GitHub stars** — top trending AI agent repo
-- 🥇 **HuggingFace Daily Papers #1** — top of the day, paper [arXiv:2605.03042](https://huggingface.co/papers/2605.03042)
-- 🏆 **AI Digital Crew · Project of the Day** (2026.03.14)
-- 📰 **Featured on PaperWeekly** + **VoltAgent/awesome-agent-skills**
-- 🛠️ **74+ research skills** — 从找 idea → 跑实验 → 写论文 → rebuttal → 做 talk slides 的全流程
-- 🌐 **7+ 平台支持** — Claude Code · Codex CLI · Cursor · Trae · Antigravity · GitHub Copilot CLI · OpenClaw
-- 🔧 **ARIS-Code 独立 CLI** — 不想绑定 Claude Code 也行，自带 multi-provider runtime
-
-核心方法论：**跨模型对抗审查**——executor 和 reviewer 必须不同模型家族（Claude × GPT-5.5 xhigh × Gemini），不让 LLM 自己审自己。这套协议复用到面试 cheat sheet 生成上，就保证了每篇里的公式 / 代码 / 引用都过了一遍独立审查（详见每篇旁边的 `.review.json` 审计 trail）。
-
-👉 **ARIS 主仓库**：https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 
 ---
 
@@ -276,6 +256,26 @@ aris-homepage render --persona theory-minimal
 <p align="center">
   <img src="assets/wechat_group.jpg" alt="WeChat 群二维码（与 ARIS 主仓共享）" width="300">
 </p>
+
+---
+
+## 🌟 ARIS 是什么 — 顺便安利一下
+
+[**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 是 2025-2026 年最受关注的 AI 科研 agent skill 平台之一。这个仓库生成所用的 `/interview-cheatsheet` + `/render-html` 是 ARIS 74+ 个 skill 中的两个。
+
+[![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
+
+- ⭐ **~10k GitHub stars** — top trending AI agent repo
+- 🥇 **HuggingFace Daily Papers #1** — top of the day, paper [arXiv:2605.03042](https://huggingface.co/papers/2605.03042)
+- 🏆 **AI Digital Crew · Project of the Day** (2026.03.14)
+- 📰 **Featured on PaperWeekly** + **VoltAgent/awesome-agent-skills**
+- 🛠️ **74+ research skills** — 从找 idea → 跑实验 → 写论文 → rebuttal → 做 talk slides 的全流程
+- 🌐 **7+ 平台支持** — Claude Code · Codex CLI · Cursor · Trae · Antigravity · GitHub Copilot CLI · OpenClaw
+- 🔧 **ARIS-Code 独立 CLI** — 不想绑定 Claude Code 也行，自带 multi-provider runtime
+
+核心方法论：**跨模型对抗审查**——executor 和 reviewer 必须不同模型家族（Claude × GPT-5.5 xhigh × Gemini），不让 LLM 自己审自己。这套协议复用到面试 cheat sheet 生成上，就保证了每篇里的公式 / 代码 / 引用都过了一遍独立审查（详见每篇旁边的 `.review.json` 审计 trail）。
+
+👉 **ARIS 主仓库**：https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 
 ---
 

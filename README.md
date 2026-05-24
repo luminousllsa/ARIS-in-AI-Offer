@@ -44,31 +44,11 @@ Phone on the subway, iPad at a café, laptop in the library — same HTML link o
 
 ## 📢 What's New
 
-- **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1: `--from-repos`** — comma-separated `owner/repo` list snapshotted via `gh` CLI (GraphQL metadata + REST README, ≤20KB excerpt). Writes per-repo `{stars, forks, topics, primary_language, 8 latest releases, latest commit, README excerpt}` to `.aris-homepage/github_repos.json`; calling LLM agent merges timelines into homepage News + `featured_projects[].github`. Private repos skipped by default; `--include-private` opt-in. Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99) ([cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)).
-- **2026-05-23** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🌐 **ARIS-Homepage v1 shipped** — turn a CV into a fact-checked academic homepage. DBLP / arXiv audit blocks ship on wrong venue / year / author / fabricated awards. Single-file HTML output; Codex MCP optional adversarial review; Gemini optional visual critique. Live demo: [wanshuiyin.github.io](https://wanshuiyin.github.io/). Skill contract: [`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md). Full v9→v17 design iteration via cross-model review ([b818c1d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b818c1d) · [1e039f8](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/1e039f8) · [a270f77](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/a270f77)).
+- **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1: `--from-repos`** — snapshot user-selected `owner/repo` list via `gh` CLI; LLM agent merges repo timelines into homepage News + `featured_projects[].github`. Private repos skipped by default. Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99) ([cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)).
+- **2026-05-23** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🌐 **ARIS-Homepage v1 shipped** — CV → fact-checked academic homepage (DBLP / arXiv audit blocks wrong venue / year / author). Single-file HTML; Codex / Gemini reviews optional. Live demo: [wanshuiyin.github.io](https://wanshuiyin.github.io/). Skill: [`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md) ([b818c1d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b818c1d)).
 - **2026-05-22** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🦾 **Featured community contribution: 具身智能高频面试题库** by [@WinstonJQ](https://github.com/WinstonJQ) — 413 questions across 8 卷 (VLA / 模仿学习 / RL / 世界模型 / 工程落地 / 腿足控制 / 3D 感知 / 系统设计). Hosted externally; linked from the new "🦾 Embodied AI" category in the Tutorial Index ([b1ebb6f](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b1ebb6f)).
 - **2026-05** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 📚 **4 new bilingual cheat sheets**: KL Divergence in RLHF (k1/k2/k3 · placement gradient bias), LLM On-Policy Distillation (MiniLLM / GKD / Qwen3 / Tinker), Diffusion Post-Training (DDPO / DPOK / DRaFT / AlignProp / Diffusion-DPO / Flow-GRPO), Diffusion / Flow Distillation (CM / iCT / sCM / CTM / LCM / DMD/DMD2 / ADD/LADD). Total now: **23 first-party cheat sheets**.
 - **2026-05** — ![DOCS](https://img.shields.io/badge/DOCS-blue?style=flat-square) 📖 **README restructure** — preview-strip banner, ARIS credentials at top (badges + 10K-star foundation paragraph), shared WeChat community QR with the [main ARIS repo](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep).
-
----
-
-## 🌟 What is ARIS — A Quick Pitch
-
-[**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) is one of the most-watched AI research agent skill platforms of 2025-2026. The `/interview-cheatsheet` + `/render-html` skills that produced this repo are 2 out of ARIS's 74+ skills.
-
-[![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
-
-- ⭐ **~10k GitHub stars** — top-trending AI agent repo
-- 🥇 **HuggingFace Daily Papers #1** — top of the day, paper [arXiv:2605.03042](https://huggingface.co/papers/2605.03042)
-- 🏆 **AI Digital Crew · Project of the Day** (2026.03.14)
-- 📰 **Featured on PaperWeekly** + **VoltAgent/awesome-agent-skills**
-- 🛠️ **74+ research skills** — full lifecycle from idea exploration → experiments → papers → rebuttals → talk slides
-- 🌐 **7+ platforms supported** — Claude Code · Codex CLI · Cursor · Trae · Antigravity · GitHub Copilot CLI · OpenClaw
-- 🔧 **ARIS-Code standalone CLI** — multi-provider runtime, no Claude Code dependency required
-
-Core methodology: **cross-model adversarial review** — executor and reviewer must come from different model families (Claude × GPT-5.5 xhigh × Gemini), so no LLM ever judges its own output. This protocol carries directly into interview cheat sheet generation: every formula, code block, and citation in every tutorial passes an independent audit (see each `.review.json` audit trail).
-
-👉 **ARIS main repo**: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 
 ---
 
@@ -277,6 +257,26 @@ Full contribution guide: [**CONTRIBUTING.md**](CONTRIBUTING.md) ([English](CONTR
 <p align="center">
   <img src="assets/wechat_group.jpg" alt="WeChat Group QR Code (shared with ARIS main repo)" width="300">
 </p>
+
+---
+
+## 🌟 What is ARIS — A Quick Pitch
+
+[**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) is one of the most-watched AI research agent skill platforms of 2025-2026. The `/interview-cheatsheet` + `/render-html` skills that produced this repo are 2 out of ARIS's 74+ skills.
+
+[![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
+
+- ⭐ **~10k GitHub stars** — top-trending AI agent repo
+- 🥇 **HuggingFace Daily Papers #1** — top of the day, paper [arXiv:2605.03042](https://huggingface.co/papers/2605.03042)
+- 🏆 **AI Digital Crew · Project of the Day** (2026.03.14)
+- 📰 **Featured on PaperWeekly** + **VoltAgent/awesome-agent-skills**
+- 🛠️ **74+ research skills** — full lifecycle from idea exploration → experiments → papers → rebuttals → talk slides
+- 🌐 **7+ platforms supported** — Claude Code · Codex CLI · Cursor · Trae · Antigravity · GitHub Copilot CLI · OpenClaw
+- 🔧 **ARIS-Code standalone CLI** — multi-provider runtime, no Claude Code dependency required
+
+Core methodology: **cross-model adversarial review** — executor and reviewer must come from different model families (Claude × GPT-5.5 xhigh × Gemini), so no LLM ever judges its own output. This protocol carries directly into interview cheat sheet generation: every formula, code block, and citation in every tutorial passes an independent audit (see each `.review.json` audit trail).
+
+👉 **ARIS main repo**: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 
 ---
 
