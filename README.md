@@ -30,6 +30,14 @@ Each cheat sheet is a long-form Chinese tutorial with: formula derivations · fr
 
 > 🌐 **ARIS-Homepage preview** (above): same `/render-html` workflow turning a CV into a fact-checked academic homepage. Live demo at [wanshuiyin.github.io](https://wanshuiyin.github.io/). Details + pipeline diagram in the [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-academic-homepage-from-cv).
 
+### 📚 Jump to a topic
+
+23 first-party cheat sheets across 7 categories + 1 community-contributed category — pick a domain:
+
+[🧠 General / Foundations](#-general--foundations) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — Theory & Tokenizers](#-generative-models--theory--tokenizers) · [🎨 Generation Systems (Image / Video / 3D / Diffusion Post-Training)](#-generation-systems--image--video--3d--diffusion-post-training) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
+
+Or browse the full [📚 Tutorial Index ↓](#-tutorial-index).
+
 ### 📱 HTML reads cleanly everywhere
 
 Phone on the subway, iPad at a café, laptop in the library — same HTML link opens equally well:

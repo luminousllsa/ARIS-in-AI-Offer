@@ -30,6 +30,14 @@
 
 > 🌐 **ARIS-Homepage 预览**（上图）：同一套 `/render-html` workflow，把 CV 变成 fact-checked 学术主页。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。详情 + 流程图见 [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-学术主页生成器)。
 
+### 📚 按方向直达
+
+23 篇 first-party cheat sheet，7 大方向 + 1 个社区贡献方向，挑你想看的：
+
+[🧠 General / 基础](#-general--基础) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — 理论 & Tokenizers](#-generative-models--理论--tokenizers) · [🎨 Generation Systems（图像 / 视频 / 3D / Diffusion 后训练）](#-generation-systems--图像--视频--3d--diffusion-后训练) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
+
+或浏览完整 [📚 教程清单 ↓](#-教程清单)。
+
 ### 📱 HTML 格式哪里都能读，清清楚楚
 
 地铁上掏手机、咖啡馆开 iPad、图书馆开笔记本——同一个 HTML 链接打开都能读：
