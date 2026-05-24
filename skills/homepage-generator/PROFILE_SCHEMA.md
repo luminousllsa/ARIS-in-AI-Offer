@@ -131,7 +131,22 @@ featured_projects:
     open_problems:                      # optional — renders as numbered list under "Open problems explored in this line of work"
       - "Problem 1 statement — what it is, why it matters, why it's open."
       - "Problem 2 statement."
+    github:                             # (v1.1) snapshot populated by `init --from-repos`
+      repo: "owner/repo"                #   provenance: which repo this snapshot is from
+      snapshot_at: "2026-05-24T10:00:00Z"
+      stars: 128
+      forks: 9
+      primary_language: "Python"
+      topics: ["academic-homepage", "llm-agent"]
+      created_at: "2026-05-01T00:00:00Z"
+      pushed_at: "2026-05-23T00:00:00Z"
+      latest_release:
+        tag: "v1.0"
+        date: "2026-05-23T00:00:00Z"
+        url: "https://github.com/owner/repo/releases/tag/v1.0"
 ```
+
+> **Note on `github:` subobject** (v1.1): populated by `aris-homepage init --from-repos owner/repo,...`. Written to `.aris-homepage/github_repos.json` first; calling LLM agent then maps it into `featured_projects[*].github` during the extraction step. Renderer does NOT auto-fetch — what's in profile.yml is what gets rendered (provenance lives in `snapshot_at`).
 
 **Visual treatment**: the logo image floats right; text content (stats / links / elevator / sub-projects / open_problems) wraps around it, then continues full-width below the image. Use for ONE flagship project; the renderer supports multiple but visual weight stacks.
 

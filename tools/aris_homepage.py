@@ -342,8 +342,150 @@ def cmd_init(args: argparse.Namespace) -> int:
     txt_path.parent.mkdir(parents=True, exist_ok=True)
     txt_path.write_text(cv_txt, encoding="utf-8")
 
-    print_extraction_handoff(txt_path, out_dir)
+    # Optional: fetch GitHub repo snapshots for additional context (v1.1).
+    # See issue #2: user wants to merge repo timelines into homepage news + projects.
+    repos_path = None
+    if getattr(args, "from_repos", None):
+        repo_specs = [r.strip() for r in args.from_repos.split(",") if r.strip()]
+        repos_data = fetch_github_repos(repo_specs,
+                                         include_private=getattr(args, "include_private", False))
+        if repos_data:
+            repos_path = out_dir / ".aris-homepage" / "github_repos.json"
+            repos_path.write_text(json.dumps(repos_data, indent=2, ensure_ascii=False),
+                                   encoding="utf-8")
+            print(f"✓ {len(repos_data)} GitHub repo snapshots → {repos_path}")
+
+    print_extraction_handoff(txt_path, out_dir, repos_path=repos_path)
     return 0
+
+
+def fetch_github_repos(repos: list[str], *, include_private: bool = False) -> list[dict]:
+    """Fetch repo snapshot via `gh` CLI for each `owner/repo` spec.
+
+    Returns a list of dicts (one per successfully fetched repo) with shape:
+        {repo, snapshot_at, url, homepage_url, description, stars, forks,
+         primary_language, topics, is_archived, created_at, pushed_at,
+         releases: [{tag, name, date, url, description}], latest_commit,
+         readme_excerpt}
+
+    Private repos are skipped by default — pass include_private=True to override.
+    """
+    if not shutil.which("gh"):
+        die("`gh` CLI not installed. Install via `brew install gh` or see https://cli.github.com/")
+    auth = subprocess.run(["gh", "auth", "status"], capture_output=True, text=True)
+    if auth.returncode != 0:
+        die("`gh` CLI not authenticated. Run: `gh auth login`")
+
+    gql = """query($owner:String!, $name:String!) {
+        repository(owner:$owner, name:$name) {
+            nameWithOwner description url homepageUrl
+            isPrivate isArchived
+            stargazerCount forkCount
+            createdAt pushedAt
+            primaryLanguage { name }
+            repositoryTopics(first: 10) { nodes { topic { name } } }
+            releases(first: 8, orderBy: {field: CREATED_AT, direction: DESC}) {
+                nodes { name tagName publishedAt url description }
+            }
+            defaultBranchRef {
+                name
+                target {
+                    ... on Commit {
+                        latest: history(first: 1) {
+                            nodes { committedDate messageHeadline url oid }
+                        }
+                    }
+                }
+            }
+        }
+    }"""
+    results: list[dict] = []
+    for spec in repos:
+        if "/" not in spec:
+            print(f"  ⚠ invalid repo spec '{spec}' (need owner/repo); skipping", file=sys.stderr)
+            continue
+        owner, name = spec.split("/", 1)
+        try:
+            r = subprocess.run(
+                ["gh", "api", "graphql",
+                 "-f", f"owner={owner}", "-f", f"name={name}",
+                 "-f", f"query={gql}"],
+                capture_output=True, text=True, check=True,
+            )
+            data = json.loads(r.stdout).get("data", {}).get("repository")
+        except subprocess.CalledProcessError as e:
+            print(f"  ⚠ gh api failed for {spec}: {(e.stderr or '')[:200]}", file=sys.stderr)
+            continue
+        except json.JSONDecodeError:
+            print(f"  ⚠ malformed JSON from gh for {spec}", file=sys.stderr)
+            continue
+        if not data:
+            print(f"  ⚠ repo not found or no access: {spec}", file=sys.stderr)
+            continue
+        if data.get("isPrivate") and not include_private:
+            print(f"  ⚠ skipping PRIVATE repo {spec} (use --include-private to override)",
+                  file=sys.stderr)
+            continue
+
+        # README — separate REST call, truncated to 20KB
+        readme_text = ""
+        try:
+            rm = subprocess.run(
+                ["gh", "api", f"/repos/{owner}/{name}/readme",
+                 "-H", "Accept: application/vnd.github.raw"],
+                capture_output=True, text=True, check=False,
+            )
+            if rm.returncode == 0:
+                readme_text = rm.stdout[:20000]
+        except Exception:
+            pass
+
+        topics = [n["topic"]["name"]
+                  for n in (data.get("repositoryTopics") or {}).get("nodes", [])]
+        commits = (((data.get("defaultBranchRef") or {})
+                    .get("target") or {})
+                   .get("latest", {}).get("nodes", []))
+        latest_commit = commits[0] if commits else None
+
+        snap = {
+            "repo": data["nameWithOwner"],
+            "snapshot_at": datetime.now(timezone.utc).isoformat(),
+            "url": data["url"],
+            "homepage_url": data.get("homepageUrl"),
+            "description": data.get("description"),
+            "stars": data.get("stargazerCount", 0),
+            "forks": data.get("forkCount", 0),
+            "primary_language": (data.get("primaryLanguage") or {}).get("name"),
+            "topics": topics,
+            "is_archived": data.get("isArchived", False),
+            "is_private": data.get("isPrivate", False),
+            "created_at": data.get("createdAt"),
+            "pushed_at": data.get("pushedAt"),
+            "releases": [
+                {
+                    "tag": rel["tagName"],
+                    "name": rel.get("name"),
+                    "date": rel["publishedAt"],
+                    "url": rel["url"],
+                    "description": (rel.get("description") or "")[:500],
+                }
+                for rel in (data.get("releases") or {}).get("nodes", [])[:8]
+            ],
+            "latest_commit": (
+                {
+                    "date": latest_commit["committedDate"],
+                    "message": latest_commit["messageHeadline"],
+                    "url": latest_commit["url"],
+                    "sha": latest_commit["oid"][:7],
+                } if latest_commit else None
+            ),
+            "readme_excerpt": readme_text,
+        }
+        results.append(snap)
+        rel_count = len(snap["releases"])
+        print(f"  ✓ {spec} — {snap['stars']} ★ · {rel_count} releases · "
+              f"{snap['primary_language'] or '—'}")
+    return results
 
 
 def extract_text_from_cv(path: Path) -> str:
@@ -371,26 +513,58 @@ def extract_text_from_cv(path: Path) -> str:
     die(f"Unsupported CV format: {suffix}. Use .txt, .docx, or .pdf.")
 
 
-def print_extraction_handoff(txt_path: Path, out_dir: Path) -> None:
+def print_extraction_handoff(txt_path: Path, out_dir: Path,
+                              repos_path: Path | None = None) -> None:
     """Emit instructions for the calling LLM agent to do extraction.
 
     This script does NOT call an LLM — the calling agent (Claude/Gemini)
-    reads cv.txt, fills the JSON-schema-constrained output, and writes
-    .aris-homepage/extraction.json. A follow-up `aris-homepage finalize`
-    command (or this script re-invoked with --consume) ingests that JSON
-    and writes profile.yml + publications.bib + bio.md + news.md.
+    reads cv.txt + optional github_repos.json, fills the JSON-schema-constrained
+    output, and writes .aris-homepage/extraction.json. A follow-up
+    `aris-homepage finalize` ingests that JSON and writes the editable sources.
     """
     handoff_path = out_dir / ".aris-homepage" / "EXTRACTION_HANDOFF.md"
     schema_path = out_dir / ".aris-homepage" / "extraction.schema.json"
     schema_path.write_text(json.dumps(EXTRACTION_SCHEMA, indent=2), encoding="utf-8")
+
+    repos_block = ""
+    if repos_path is not None and repos_path.exists():
+        repos_block = f"""
+
+## Optional source: GitHub repo snapshots (v1.1)
+
+A snapshot of user-selected GitHub repos has been written to:
+  {repos_path.relative_to(out_dir)}
+
+It contains per-repo: description / stars / forks / topics / primary_language /
+created_at / pushed_at / up to 8 releases / latest commit / README excerpt
+(truncated 20KB).
+
+### How to use github_repos.json in extraction
+
+- Surface each repo as a `featured_projects[]` entry (or extend an existing one)
+  with a new `github:` subobject carrying the snapshot data (stars, forks,
+  primary_language, topics, created_at, pushed_at, releases summary, latest_commit).
+- Merge each repo's **timeline** into `news_md` with these rules:
+  * Take at most 2 events per repo (releases highest priority, then created_at).
+  * Cap total github-derived news at 6 across all repos.
+  * If a CV news entry already mentions a release / project on the same
+    date OR same YYYY-MM with overlapping title — DEDUP: keep the CV's
+    human phrasing and append the release URL; do not list both.
+  * stars/forks go to project stats, NOT into news.
+- Use README excerpt to verify the project description matches the CV's claim
+  (catches misrepresentation).
+- Mark anything you cannot confirm from `github_repos.json` as `uncertain[]`.
+"""
+
     handoff_path.write_text(f"""# ARIS Homepage — Extraction Handoff
 
 The CV has been converted to plain text at:
   {txt_path.relative_to(out_dir)}
-
+{repos_block}
 ## Next step (LLM agent task)
 
-Read the CV text and emit JSON conforming to the schema at:
+Read the CV text{' + the github_repos.json snapshot' if repos_block else ''} and
+emit JSON conforming to the schema at:
   {schema_path.relative_to(out_dir)}
 
 Write the JSON output to:
@@ -417,7 +591,7 @@ Then run:
 >   with a note. These will become checklist items in EXTRACTION_REVIEW.md.
 > - Do NOT invent claims. If the CV doesn't say something, leave the field null/empty.
 > - Identify the CV owner. Their name goes in profile.identity.name + name_native (if bilingual).
->
+{('> - If github_repos.json exists, merge its timeline into news_md following the rules in the section above.' + chr(10)) if repos_block else ''}>
 > After writing the JSON, instruct the user to run `aris-homepage finalize`.
 """, encoding="utf-8")
     print(f"✓ CV text extracted to: {txt_path}")
@@ -1596,6 +1770,11 @@ def main() -> int:
     p_init = sub.add_parser("init", help="extract CV to text, emit extraction handoff")
     p_init.add_argument("--from-cv", required=True, help=".docx / .pdf / .txt CV path")
     p_init.add_argument("--out", default=".", help="output directory (default: cwd)")
+    p_init.add_argument("--from-repos",
+                         help="optional: comma-separated owner/repo list to snapshot via gh CLI "
+                              "(e.g. wanshuiyin/ARIS-in-AI-Offer,wanshuiyin/Auto-claude-code-research-in-sleep)")
+    p_init.add_argument("--include-private", action="store_true",
+                         help="allow private repos in --from-repos snapshots (default: skip)")
     g = p_init.add_mutually_exclusive_group()
     g.add_argument("--force", action="store_true", help="overwrite existing profile.yml")
     g.add_argument("--merge", action="store_true", help="fill only missing fields (v1.1)")

@@ -1,7 +1,7 @@
 ---
 name: homepage-generator
 description: "Generate a fact-checked academic personal homepage from a CV, optionally augmented by an existing manual homepage and an assets directory. Produces editable structured source files (profile.yml + publications.bib + bio.md + news.md) and a single-file HTML page. Uses Codex MCP for independent factual review against DBLP / arXiv. Optionally uses Gemini multimodal for screenshot critique when available. Use when the user says '做个学术主页', '从CV生成主页', 'aris-homepage', 'generate academic homepage from CV', 'PhD homepage', 'GitHub Pages personal site', or wants a fact-checked academic site."
-argument-hint: init --from-cv <cv.docx|cv.pdf|cv.txt> [--manual-homepage <url>] [--assets-dir <path>] [--out <dir>] [--force|--merge] | finalize | render --persona theory-minimal [--out <html>] [--override-all] [--no-audit] [--offline] | check [--strict] | doctor
+argument-hint: init --from-cv <cv.docx|cv.pdf|cv.txt> [--from-repos owner/repo,...] [--include-private] [--manual-homepage <url>] [--assets-dir <path>] [--out <dir>] [--force|--merge] | finalize | render --persona theory-minimal [--out <html>] [--override-all] [--no-audit] [--offline] | check [--strict] | doctor
 allowed-tools: Bash(*), Read, Write, Edit, WebFetch, mcp__codex__codex
 ---
 
@@ -51,6 +51,7 @@ The `init` CLI only handles the CV → text conversion. The other two inputs are
 | Input | How to supply | Purpose |
 |---|---|---|
 | **CV** | `--from-cv cv.docx/pdf/txt` on the CLI | The **factual** source — identity, education, jobs, publications, awards |
+| **GitHub repos** (v1.1) | `--from-repos owner/repo,owner/repo2` on the CLI | The **project-evidence** source — stars / releases / topics / README per repo; merged into News + featured projects (issue #2) |
 | **Manual homepage** | Provide URL in the prompt; the agent uses WebFetch | The **editorial** source — section ordering, topic groupings, tone, link priorities, photo URL |
 | **Assets directory** | Provide path in the prompt; the agent inspects + copies into `assets/` | The **visual** source — headshot, paper thumbnails, project logos |
 
@@ -63,12 +64,17 @@ The `init` CLI only handles the CV → text conversion. The other two inputs are
 ## Commands
 
 ```bash
-aris-homepage init --from-cv <file> [--out DIR] [--force|--merge]
+aris-homepage init --from-cv <file> [--from-repos owner/repo,...] [--include-private] [--out DIR] [--force|--merge]
   # Step 1. Extract CV to plain text (via textutil / python-docx / pdftotext).
-  # Step 2. Emit .aris-homepage/EXTRACTION_HANDOFF.md describing what the calling
-  #         LLM agent should write to .aris-homepage/extraction.json.
-  # --force: backup *.bak-TIMESTAMP and overwrite; --merge: fill-only (v1.1)
-  # NOTE: --manual-homepage and --assets-dir flags coming in v1.1; for now,
+  # Step 1b. (v1.1) If --from-repos given, snapshot each repo via `gh` CLI
+  #          (GraphQL metadata + REST README, truncated 20KB) →
+  #          .aris-homepage/github_repos.json. Private repos skipped unless
+  #          --include-private.
+  # Step 2.  Emit .aris-homepage/EXTRACTION_HANDOFF.md describing what the calling
+  #          LLM agent should write to .aris-homepage/extraction.json
+  #          (handoff doc auto-includes guidance on github_repos.json if present).
+  # --force: backup *.bak-TIMESTAMP and overwrite; --merge: fill-only (v1.2)
+  # NOTE: --manual-homepage and --assets-dir flags coming in v1.2; for now,
   #       the calling agent handles those sources via prompt context.
 
 aris-homepage finalize [--out DIR]
