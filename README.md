@@ -8,6 +8,12 @@
 >
 > 📖 **中文版 (Chinese version)**: [README_CN.md](README_CN.md)
 
+**📚 Jump to a topic** — 23 first-party cheat sheets across 7 categories + 1 community-contributed category:
+
+[🧠 General / Foundations](#-general--foundations) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — Theory & Tokenizers](#-generative-models--theory--tokenizers) · [🎨 Generation Systems (Image / Video / 3D / Diffusion Post-Training)](#-generation-systems--image--video--3d--diffusion-post-training) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
+
+Or browse the full [📚 Tutorial Index ↓](#-tutorial-index) · jump to [🌐 ARIS-Homepage ↓](#-aris-homepage--fact-checked-academic-homepage-from-cv).
+
 [![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=ARIS%20Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
 
 > 🏆 **Built on a battle-tested foundation** — the [**ARIS main repo**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) has ~10k GitHub stars, was HuggingFace Daily Papers #1, won AI Digital Crew Project of the Day, and ships 74+ research skills across 7+ platforms. This isn't a vaporware preview — **every cheat sheet here is the production output** of the same `/interview-cheatsheet` + `/render-html` workflow used in academic-research production.
@@ -29,14 +35,6 @@ Each cheat sheet is a long-form Chinese tutorial with: formula derivations · fr
 </p>
 
 > 🌐 **ARIS-Homepage preview** (above): same `/render-html` workflow turning a CV into a fact-checked academic homepage. Live demo at [wanshuiyin.github.io](https://wanshuiyin.github.io/). Details + pipeline diagram in the [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-academic-homepage-from-cv).
-
-### 📚 Jump to a topic
-
-23 first-party cheat sheets across 7 categories + 1 community-contributed category — pick a domain:
-
-[🧠 General / Foundations](#-general--foundations) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — Theory & Tokenizers](#-generative-models--theory--tokenizers) · [🎨 Generation Systems (Image / Video / 3D / Diffusion Post-Training)](#-generation-systems--image--video--3d--diffusion-post-training) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
-
-Or browse the full [📚 Tutorial Index ↓](#-tutorial-index).
 
 ### 📱 HTML reads cleanly everywhere
 

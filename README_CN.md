@@ -8,6 +8,12 @@
 >
 > 📖 **English version (default)**: [README.md](README.md)
 
+**📚 按方向直达** —— 23 篇 first-party cheat sheet，7 大方向 + 1 个社区贡献方向：
+
+[🧠 General / 基础](#-general--基础) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — 理论 & Tokenizers](#-generative-models--理论--tokenizers) · [🎨 Generation Systems（图像 / 视频 / 3D / Diffusion 后训练）](#-generation-systems--图像--视频--3d--diffusion-后训练) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
+
+或浏览完整 [📚 教程清单 ↓](#-教程清单) · 跳到 [🌐 ARIS-Homepage ↓](#-aris-homepage--fact-checked-学术主页生成器)。
+
 [![Stars](https://img.shields.io/github/stars/wanshuiyin/Auto-claude-code-research-in-sleep?style=flat&logo=github&logoColor=white&color=gold&label=ARIS%20Stars)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/stargazers) · [![arXiv](https://img.shields.io/badge/arXiv-2605.03042-b31b1b?style=flat&logo=arxiv)](https://huggingface.co/papers/2605.03042) · [![HF Daily #1](https://img.shields.io/badge/HF%20Daily%20Papers-%231-yellow?style=flat)](https://huggingface.co/papers/2605.03042) · [![PaperWeekly](https://img.shields.io/badge/Featured%20on-PaperWeekly-red?style=flat)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) · [![awesome-agent-skills](https://img.shields.io/badge/Featured%20in-awesome--agent--skills-blue?style=flat&logo=github)](https://github.com/VoltAgent/awesome-agent-skills) · [![Project of the Day](https://img.shields.io/badge/AI%20Digital%20Crew-Project%20of%20the%20Day-orange?style=flat)](https://aidigitalcrew.com)
 
 > 🏆 **建立在已经验证的方法论上** —— [**ARIS 主仓**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 拿了 ~10k GitHub stars，HuggingFace Daily Papers #1，AI Digital Crew Project of the Day，74+ 个 research skill 跑在 7+ 平台上。这里不是 vaporware preview —— **每一篇 cheat sheet 都是同一个 `/interview-cheatsheet` + `/render-html` workflow 的产出**，跟科研生产里用的是同一套。
@@ -29,14 +35,6 @@
 </p>
 
 > 🌐 **ARIS-Homepage 预览**（上图）：同一套 `/render-html` workflow，把 CV 变成 fact-checked 学术主页。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。详情 + 流程图见 [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-学术主页生成器)。
-
-### 📚 按方向直达
-
-23 篇 first-party cheat sheet，7 大方向 + 1 个社区贡献方向，挑你想看的：
-
-[🧠 General / 基础](#-general--基础) · [🎯 Post-Training & Reasoning](#-post-training--reasoning) · [🏛️ LLM Architecture & Systems](#-llm-architecture--systems) · [🌊 Generative Models — 理论 & Tokenizers](#-generative-models--理论--tokenizers) · [🎨 Generation Systems（图像 / 视频 / 3D / Diffusion 后训练）](#-generation-systems--图像--视频--3d--diffusion-后训练) · [👁️ Multimodal](#-multimodal) · [🤖 Agents](#-agents) · [🦾 Embodied AI / 具身智能](#-embodied-ai--具身智能)
-
-或浏览完整 [📚 教程清单 ↓](#-教程清单)。
 
 ### 📱 HTML 格式哪里都能读，清清楚楚
 
