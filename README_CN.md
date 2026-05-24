@@ -42,6 +42,16 @@
 
 ---
 
+## 📢 最新动态
+
+- **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1：`--from-repos`** — 逗号分隔 `owner/repo` 列表通过 `gh` CLI 抓快照（GraphQL metadata + REST README 截 20KB）。每 repo 的 `{stars, forks, topics, primary_language, 最近 8 个 releases, latest commit, README 摘要}` 写到 `.aris-homepage/github_repos.json`，调用方 LLM agent 把时间线 merge 进主页 News + `featured_projects[].github`。默认拒绝 private repo，要 `--include-private` 才放。Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99)（[cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)）。
+- **2026-05-23** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🌐 **ARIS-Homepage v1 上线** — 把 CV 变成 fact-checked 学术主页。DBLP / arXiv 真审 venue/年份/作者/奖项，硬阻断 ship。单文件 HTML 输出；Codex MCP 可选对抗 review；Gemini 可选视觉 critique。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。Skill 契约：[`skills/homepage-generator/SKILL.md`](skills/homepage-generator/SKILL.md)。v9→v17 跨模型迭代（[b818c1d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b818c1d) · [1e039f8](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/1e039f8) · [a270f77](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/a270f77)）。
+- **2026-05-22** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🦾 **社区贡献 feature：具身智能高频面试题库** by [@WinstonJQ](https://github.com/WinstonJQ) —— 413 题 8 卷（VLA / 模仿学习 / RL / 世界模型 / 工程落地 / 腿足控制 / 3D 感知 / 系统设计），外部托管，从 Tutorial Index 新增的 "🦾 Embodied AI" 分类里链接过去（[b1ebb6f](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b1ebb6f)）。
+- **2026-05** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 📚 **4 篇新双语 cheat sheet**：KL Divergence in RLHF（k1/k2/k3 · placement gradient bias）、LLM On-Policy Distillation（MiniLLM / GKD / Qwen3 / Tinker）、Diffusion Post-Training（DDPO / DPOK / DRaFT / AlignProp / Diffusion-DPO / Flow-GRPO）、Diffusion / Flow Distillation（CM / iCT / sCM / CTM / LCM / DMD/DMD2 / ADD/LADD）。总数：**23 篇 first-party cheat sheet**。
+- **2026-05** — ![DOCS](https://img.shields.io/badge/DOCS-blue?style=flat-square) 📖 **README 重构** —— 预览图 banner、ARIS 战绩前置（badges + 10K-star credibility paragraph）、与 [ARIS 主仓](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)共享微信群二维码。
+
+---
+
 ## 🌟 ARIS 是什么 — 顺便安利一下
 
 [**ARIS — Auto Research in Sleep**](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 是 2025-2026 年最受关注的 AI 科研 agent skill 平台之一。这个仓库生成所用的 `/interview-cheatsheet` + `/render-html` 是 ARIS 74+ 个 skill 中的两个。
