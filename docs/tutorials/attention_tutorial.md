@@ -810,3 +810,14 @@ FP16 下直接手写 naive attention 不做 fp32 accumulation。
 ```
 
 代码经独立 reviewer 静态检查 + PyTorch 实跑 sanity check，与 `nn.MultiheadAttention` diff = 0。
+
+---
+
+## 📜 Runnable Code
+
+本 tutorial 的核心概念在 [`docs/tutorials/code/`](code/) 里有最小可跑的 PyTorch 实现：
+
+- [`mha.py`](code/mha.py) — 标准 Multi-Head Self-Attention + causal mask + 跟 `nn.MultiheadAttention` 数值对齐验证
+- [`axial_attention.py`](code/axial_attention.py) — H/W 轴向 attention + 复杂度对比表 + 感受野隔离测试
+
+每个脚本默认 CPU 几秒跑完，自带 `assert` sanity check。完整说明见 [`code/README.md`](code/README.md)。

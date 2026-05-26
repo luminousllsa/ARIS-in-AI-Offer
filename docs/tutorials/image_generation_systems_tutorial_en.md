@@ -1446,3 +1446,14 @@ Common pitfall: just listing tool names; can't estimate memory; doesn't know the
 ### One-sentence summary
 
 This cheat sheet covers latent diffusion mathematics (VAE + DDPM/RF + CFG) through mainstream architecture evolution (SD 1.x → SDXL → SD3 → FLUX), conditioning systems (ControlNet / T2I-Adapter / IP-Adapter / InstantID), personalization (DreamBooth / Textual Inversion / LoRA / Custom Diffusion), editing (SDEdit / InstructPix2Pix / Prompt-to-Prompt), distillation (LCM / ADD / DMD), and evaluation (FID / CLIP-Score / ImageReward / HPSv2). 25 questions are split L1/L2/L3; L3 emphasizes the production-lab viewpoint (zero-conv chain-rule derivation, size conditioning training effect, MM-DiT information flow, LoRA Q/K/V choice, SDXL + LCM-LoRA + ControlNet + IP-Adapter co-deployment trade-offs).
+
+---
+
+## 📜 Runnable Code
+
+Minimal runnable PyTorch implementations of the MM-DiT / latent diffusion components in this tutorial live in [`docs/tutorials/code/`](code/):
+
+- [`mmdit_block.py`](code/mmdit_block.py) — double-stream MMDiT block: text + image independent Q/K/V, concat along the seq dim and run one joint attention, per-stream FFN, AdaLN-Zero gated modulation
+- [`toy_mmdit_t2i_pipeline.py`](code/toy_mmdit_t2i_pipeline.py) — end-to-end toy T2I pipeline: toy text encoder + 8× 16-channel VAE + 4-layer MMDiT + FlowMatchEuler scheduler + norm-preserving true CFG
+
+Each script runs on CPU in seconds with built-in `assert` sanity checks (shape parity, AdaLN-Zero identity verification, CFG scale=1 equivalence test). Full overview in [`code/README.md`](code/README.md).

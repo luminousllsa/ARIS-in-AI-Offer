@@ -535,3 +535,13 @@ if __name__ == "__main__":
 - **Loss weighting**: SD3 implicitly reweights via logit-normal $t$; EDM uses explicit SNR weighting
 
 **Flow Matching Quick Reference** · Main references: Lipman et al. 2023 (Flow Matching), Liu et al. 2022 (Rectified Flow), Esser et al. 2024 (SD3 / MM-DiT)
+
+---
+
+## 📜 Runnable Code
+
+Minimal runnable PyTorch implementations of this tutorial's core concepts live in [`docs/tutorials/code/`](code/):
+
+- [`flow_matching.py`](code/flow_matching.py) — Rectified Flow on 2D toy moons: train to regress `(x_1 - x_0)` velocity + Euler ODE sampling + trajectory viz
+
+Runs on CPU in ~30 seconds (matplotlib optional) with built-in sanity checks. Full overview in [`code/README.md`](code/README.md).

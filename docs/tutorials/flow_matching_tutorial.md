@@ -535,3 +535,13 @@ if __name__ == "__main__":
 - **Loss weighting**：SD3 用 logit-normal $t$ 已隐式 reweighting；EDM 显式 SNR weighting
 
 **Flow Matching Quick Reference** · 主要参考：Lipman et al. 2023 (Flow Matching), Liu et al. 2022 (Rectified Flow), Esser et al. 2024 (SD3 / MM-DiT)
+
+---
+
+## 📜 Runnable Code
+
+本 tutorial 的核心概念在 [`docs/tutorials/code/`](code/) 里有最小可跑的 PyTorch 实现：
+
+- [`flow_matching.py`](code/flow_matching.py) — Rectified Flow on 2D toy moons：训练 `(x_1 - x_0)` velocity + Euler ODE 采样 + 轨迹可视化
+
+CPU 30 秒左右跑完（matplotlib 可选），自带 sanity 检查。完整说明见 [`code/README.md`](code/README.md)。

@@ -810,3 +810,14 @@ Actual sanity-check output (PyTorch 2.x, single-machine GPU):
 ```
 
 Code passed independent reviewer static check + PyTorch sanity-check run, diff vs `nn.MultiheadAttention` = 0.
+
+---
+
+## 📜 Runnable Code
+
+Minimal runnable PyTorch implementations of this tutorial's core concepts live in [`docs/tutorials/code/`](code/):
+
+- [`mha.py`](code/mha.py) — standard Multi-Head Self-Attention + causal mask + numerical parity check against `nn.MultiheadAttention`
+- [`axial_attention.py`](code/axial_attention.py) — H/W factorized axial attention + complexity comparison table + receptive-field isolation test
+
+Each script runs on CPU in seconds with built-in `assert` sanity checks. Full overview in [`code/README.md`](code/README.md).

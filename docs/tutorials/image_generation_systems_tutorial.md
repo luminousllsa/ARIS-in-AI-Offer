@@ -1446,3 +1446,14 @@ text K/V (frozen)  ──┘──► attended_out → 加到 image latent resid
 ### 一句话总结
 
 本 cheat sheet 覆盖从 latent diffusion 数学（VAE + DDPM/RF + CFG）到主流架构演进（SD 1.x → SDXL → SD3 → FLUX）、conditioning 体系（ControlNet / T2I-Adapter / IP-Adapter / InstantID）、个性化微调（DreamBooth / Textual Inversion / LoRA / Custom Diffusion）、编辑（SDEdit / InstructPix2Pix / Prompt-to-Prompt）、蒸馏（LCM / ADD / DMD）与评测（FID / CLIP-Score / ImageReward / HPSv2）。25 题按 L1/L2/L3 分布，L3 题强调 production lab 视角（零卷积 chain rule 推导、size conditioning 训练效果、MM-DiT 信息流、LoRA Q/K/V 选择、SDXL + LCM-LoRA + ControlNet + IP-Adapter 同栈部署 trade-off）。
+
+---
+
+## 📜 Runnable Code
+
+本 tutorial 涉及的 MM-DiT / latent diffusion 组件在 [`docs/tutorials/code/`](code/) 里有最小可跑的 PyTorch 实现：
+
+- [`mmdit_block.py`](code/mmdit_block.py) — 双流 MMDiT block：text + image 独立 Q/K/V、沿 seq 维 concat 跑一次 joint attention、per-stream FFN、AdaLN-Zero gated modulation
+- [`toy_mmdit_t2i_pipeline.py`](code/toy_mmdit_t2i_pipeline.py) — 端到端 toy T2I pipeline：toy text encoder + 8× 16-channel VAE + 4-layer MMDiT + FlowMatchEuler scheduler + norm-preserving true CFG
+
+每个脚本默认 CPU 几秒跑完，自带 `assert` sanity check（shape 对齐、AdaLN-Zero identity 验证、CFG scale=1 等价测试）。完整说明见 [`code/README.md`](code/README.md)。

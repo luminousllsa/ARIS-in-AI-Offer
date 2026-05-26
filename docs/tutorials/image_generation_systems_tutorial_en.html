@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +7,8 @@
 
 <meta name="generator" content="ARIS render-html (academic, v1)">
 <meta name="aris:source-path" content="docs/tutorials/image_generation_systems_tutorial_en.md">
-<meta name="aris:source-sha256" content="ef1c753cbe28e852ebfe465a39ec257bc3cadab4915b843627143ce1a7056b13">
-<meta name="aris:generated-at" content="2026-05-19 18:51 UTC">
+<meta name="aris:source-sha256" content="b2253581ba198fd353cb3714c3dc26e0f5aa3bd77e50f1693fcad96bb5cb733b">
+<meta name="aris:generated-at" content="2026-05-26 11:27 UTC">
 
 <!-- MathJax 3 -->
 <script>
@@ -421,6 +421,8 @@ footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--
 <li><a href="#one-sentence-summary">One-sentence summary</a></li>
 </ul>
 </li>
+<li><a href="#runnable-code">📜 Runnable Code</a>
+</li>
 </ol>
 </nav>
 
@@ -432,8 +434,8 @@ footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--
   
   <div class="meta">
     <span><strong>Source:</strong> <code>docs/tutorials/image_generation_systems_tutorial_en.md</code></span>
-    <span><strong>SHA256:</strong> <code>ef1c753cbe28</code></span>
-    <span><strong>Rendered:</strong> 2026-05-19 18:51 UTC</span>
+    <span><strong>SHA256:</strong> <code>b2253581ba19</code></span>
+    <span><strong>Rendered:</strong> 2026-05-26 11:27 UTC</span>
     
   </div>
 </header>
@@ -1166,12 +1168,17 @@ text K/V (frozen)  ──┘──► attended_out → added to image latent res
 <ul><li>DDPM — Ho, Jain, Abbeel 2020 NeurIPS</li><li>LDM / Stable Diffusion — Rombach, Blattmann et al. 2022 CVPR</li><li>Classifier-Free Guidance — Ho &amp; Salimans 2022 (workshop / arXiv)</li><li>DiT — Peebles &amp; Xie 2023 ICCV</li><li>U-ViT — Bao, Nie et al. 2023 CVPR</li><li>LoRA — Hu, Shen et al. 2022 ICLR</li><li>DreamBooth — Ruiz, Li et al. 2023 CVPR</li><li>Textual Inversion — Gal, Alaluf et al. 2023 ICLR</li><li>Custom Diffusion — Kumari, Zhang et al. 2023 CVPR</li><li>HyperDreamBooth — Ruiz, Li et al. 2024 CVPR</li><li>ControlNet — Zhang, Rao, Agrawala 2023 ICCV</li><li>T2I-Adapter — Mou, Wang et al. 2024 AAAI</li><li>IP-Adapter — Ye, Zhang et al. 2023 (arXiv 2308.06721)</li><li>InstantID — Wang, Bai et al. 2024 (arXiv 2401.07519)</li><li>PuLID — Guo, Wu et al. 2024 NeurIPS</li><li>PhotoMaker — Li, Cao et al. 2024 CVPR</li><li>SDEdit — Meng, He et al. 2022 ICLR</li><li>InstructPix2Pix — Brooks, Holynski, Efros 2023 CVPR</li><li>Prompt-to-Prompt — Hertz, Mokady et al. 2023 ICLR</li><li>SDXL — Podell, English et al. 2024 ICLR</li><li>SD3 — Esser, Kulal et al. 2024 ICML</li><li>FLUX.1 — Black Forest Labs 2024 (technical report)</li><li>PixArt-α / Σ — Chen, Yu et al. 2024 ICLR / ECCV</li><li>Hunyuan-DiT — Zhimin Li, Jianwei Zhang et al. 2024 (arXiv 2405.08748)</li><li>Imagen — Saharia, Chan et al. 2022 NeurIPS</li><li>ADD / SDXL-Turbo — Sauer, Lorenz et al. 2024 ECCV (arXiv 2311.17042)</li><li>LCM — Luo, Tan et al. 2023 (arXiv 2310.04378)</li><li>LCM-LoRA — Luo, Tan et al. 2023 (arXiv 2311.05556)</li><li>DMD — Yin, Gharbi et al. 2024 CVPR</li><li>ImageReward — Xu, Liu et al. 2023 NeurIPS</li><li>HPSv2 — Wu, Hao et al. 2023 (arXiv 2306.09341)</li><li>PickScore / Pick-a-Pic — Kirstain, Polyak et al. 2023 NeurIPS</li><li>FID — Heusel, Ramsauer et al. 2017 NeurIPS</li></ul>
 <h3 id="one-sentence-summary">One-sentence summary</h3>
 <p>This cheat sheet covers latent diffusion mathematics (VAE + DDPM/RF + CFG) through mainstream architecture evolution (SD 1.x → SDXL → SD3 → FLUX), conditioning systems (ControlNet / T2I-Adapter / IP-Adapter / InstantID), personalization (DreamBooth / Textual Inversion / LoRA / Custom Diffusion), editing (SDEdit / InstructPix2Pix / Prompt-to-Prompt), distillation (LCM / ADD / DMD), and evaluation (FID / CLIP-Score / ImageReward / HPSv2). 25 questions are split L1/L2/L3; L3 emphasizes the production-lab viewpoint (zero-conv chain-rule derivation, size conditioning training effect, MM-DiT information flow, LoRA Q/K/V choice, SDXL + LCM-LoRA + ControlNet + IP-Adapter co-deployment trade-offs).</p>
+<hr />
+<h2 id="runnable-code">📜 Runnable Code</h2>
+<p>Minimal runnable PyTorch implementations of the MM-DiT / latent diffusion components in this tutorial live in <a href="code/"><code>docs/tutorials/code/</code></a>:</p>
+<ul><li><a href="code/mmdit_block.py"><code>mmdit_block.py</code></a> — double-stream MMDiT block: text + image independent Q/K/V, concat along the seq dim and run one joint attention, per-stream FFN, AdaLN-Zero gated modulation</li><li><a href="code/toy_mmdit_t2i_pipeline.py"><code>toy_mmdit_t2i_pipeline.py</code></a> — end-to-end toy T2I pipeline: toy text encoder + 8× 16-channel VAE + 4-layer MMDiT + FlowMatchEuler scheduler + norm-preserving true CFG</li></ul>
+<p>Each script runs on CPU in seconds with built-in <code>assert</code> sanity checks (shape parity, AdaLN-Zero identity verification, CFG scale=1 equivalence test). Full overview in <a href="code/README.md"><code>code/README.md</code></a>.</p>
 
 <footer class="aris-footer">
   Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
   source path <code>docs/tutorials/image_generation_systems_tutorial_en.md</code> ·
-  SHA256 <code>ef1c753cbe28</code> ·
-  generated at 2026-05-19 18:51 UTC.
+  SHA256 <code>b2253581ba19</code> ·
+  generated at 2026-05-26 11:27 UTC.
   This is a generated view — edit the source Markdown, then re-render.
 </footer>
 </main>
