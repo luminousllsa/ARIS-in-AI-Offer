@@ -51,3 +51,4 @@ diffusion / transformer library。
 All in-code documentation (docstrings, comments) is in English so the
 code stays accessible to non-Chinese-reading contributors. This README
 itself is bilingual for consistency with the rest of `docs/tutorials/`.
+
