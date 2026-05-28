@@ -36,6 +36,14 @@
 
 > 🌐 **ARIS-Homepage 预览**（上图）：同一套 `/render-html` workflow，把 CV 变成 fact-checked 学术主页。Live demo：[wanshuiyin.github.io](https://wanshuiyin.github.io/)。详情 + 流程图见 [ARIS-Homepage section ↓](#-aris-homepage--fact-checked-学术主页生成器)。
 
+<p align="center">
+  <a href="https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/continuous_dlm_2026h1_survey.html">
+    <img src="assets/blog_continuous_dlm_preview_strip.jpg" alt="Continuous DLM 综述 blog 预览 —— 引言 + 训练 pipeline + 推理结果，3 panel 取自长文综述" width="100%" />
+  </a>
+</p>
+
+> 📝 **长文 blog 预览**（上图）：同一套 `/render-html` workflow 产出技术综述。*Continuous DLM 综述*（2026 上半年 6 篇）—— 作者 **杨若峰 (Ruofeng Yang)**（上海交大），通过 ARIS 跨模型工作流端到端撰写（Claude Opus 4.7 + Codex GPT-5.5 xhigh + Gemini auto-gemini-3）。[**📖 阅读完整 blog ↗**](https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/continuous_dlm_2026h1_survey.html)。
+
 ### 📱 HTML 格式哪里都能读，清清楚楚
 
 地铁上掏手机、咖啡馆开 iPad、图书馆开笔记本——同一个 HTML 链接打开都能读：
@@ -50,14 +58,7 @@
 
 ## 📢 最新动态
 
-- **2026-05-28** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 📝 **首篇 blog 上线：*Continuous DLM 综述*（2026 上半年 6 篇）** —— 长篇双语技术综述，作者 **杨若峰 (Ruofeng Yang)**（上海交大），通过 `ARIS-in-AI-Offer` 工作流端到端撰写（Claude Opus 4.7 整合 Codex GPT-5.5 xhigh + Gemini auto-gemini-3 跨模型讨论）。覆盖：离散 DLM 已有问题、ELF "已知未知" 连续空间核心想法、Flow-Matching 家族 5 paper 同期对比、ELF 训练 pipeline、架构/参数量/shape 最详细一节、推理代码+时间网格+Tab 6/7 全数字、去噪轨迹定性效果、与字节 Cola-DLM 的 Field Landscape 对比、Q&A、引用资源。文件在 [`docs/blogs/continuous_dlm_2026h1_survey.html`](docs/blogs/continuous_dlm_2026h1_survey.html)（1.7 MB 自包含单文件，无 build）—— 展示 [`render-html`](skills/render-html/SKILL.md) 工具链能产出的 long-form 分析风格。**Live**：[wanshuiyin.github.io/.../continuous_dlm_2026h1_survey](https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/continuous_dlm_2026h1_survey.html)。
-
-<p align="center">
-  <a href="https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/continuous_dlm_2026h1_survey.html">
-    <img src="assets/blog_continuous_dlm_preview_strip.jpg" alt="Continuous DLM 综述 blog 预览（3 panel: hero + 中段 + 后段）" width="100%" />
-  </a>
-</p>
-
+- **2026-05-28** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 📝 **首篇 blog 上线：*Continuous DLM 综述*（2026 上半年 6 篇）** —— 长篇双语技术综述，作者 **杨若峰 (Ruofeng Yang)**（上海交大），通过 `ARIS-in-AI-Offer` 工作流端到端撰写（Claude Opus 4.7 整合 Codex GPT-5.5 xhigh + Gemini auto-gemini-3 跨模型讨论）。覆盖：离散 DLM 已有问题、ELF "已知未知" 连续空间核心想法、Flow-Matching 家族 5 paper 同期对比、ELF 训练 pipeline、架构/参数量/shape 最详细一节、推理代码+时间网格+Tab 6/7 全数字、去噪轨迹定性效果、与字节 Cola-DLM 的 Field Landscape 对比、Q&A、引用资源。文件在 [`docs/blogs/continuous_dlm_2026h1_survey.html`](docs/blogs/continuous_dlm_2026h1_survey.html)（1.7 MB 自包含单文件，无 build）—— 展示 [`render-html`](skills/render-html/SKILL.md) 工具链能产出的 long-form 分析风格。**预览图 + Live 链接见 README 顶部**。（[8475a2d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/8475a2d)）
 - **2026-05-28** — ![POLISH](https://img.shields.io/badge/POLISH-blue?style=flat-square) ⚡ **`render-html` P0 polish + 23 个 tutorial 全量 regenerate** —— academic 模板加了 7 个交互特性：print degradation 修复（PDF 导出不再丢 `<details>` 内容）、TOC 侧栏 scrollspy（当前 section 跟随滚动高亮）、figure lightbox（原生 `<dialog>` + focus trap + Esc）、长代码自动折叠（`<pre>` ≥30 行包成 `<details class="code-card">`，可用 ` ```python {collapsed}` / `{open}` fence flag 单块 override）、论文引用 popover（新增 `[[key]]` MD 语法 + `--papers <papers.json>` sidecar）、eyebrow 风格清理（marketing 大写 → 正文衬线灰）、`--blog-mode` 基础设施（opt-in `aris-blog` body class）。XSS 加固：`json_for_script()` 把 `<` / `>` / `&` / U+2028 等 escape 成 `\\uXXXX`，paper title 含 `</script>` 不会 break out。23 对双语 tutorial（共 46 个 HTML）全量 regenerate 吃到新模板，源 MD 没动。Codex GPT-5.5 xhigh 4 轮审（设计 ×2 → 代码 ×1 → spot-check ×1）。试试：滚动 [`attention_tutorial.html`](docs/tutorials/attention_tutorial.html) 看左侧 TOC 跟随高亮（[b79c57d](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/b79c57d)、[8793f40](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/8793f40)）。
 - **2026-05-26** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐍 **5 个可跑的 PyTorch 教学脚本** —— [`docs/tutorials/code/`](docs/tutorials/code/) 是仓库第一批 runnable-code 贡献：[`mha.py`](docs/tutorials/code/mha.py)（MHA + causal mask）、[`axial_attention.py`](docs/tutorials/code/axial_attention.py)（H/W axial + 复杂度表）、[`flow_matching.py`](docs/tutorials/code/flow_matching.py)（2D moons 上的 Rectified Flow）、[`mmdit_block.py`](docs/tutorials/code/mmdit_block.py)（双流 MMDiT block）、[`toy_mmdit_t2i_pipeline.py`](docs/tutorials/code/toy_mmdit_t2i_pipeline.py)（端到端 toy T2I pipeline）。纯 PyTorch，CPU 几秒到几十秒跑完，每个脚本自带 `assert` sanity check（shape 对齐、必要时跟 `nn.MultiheadAttention` 数值校准）。配合 [`attention_tutorial.md`](docs/tutorials/attention_tutorial.md) / [`flow_matching_tutorial.md`](docs/tutorials/flow_matching_tutorial.md) / [`image_generation_systems_tutorial.md`](docs/tutorials/image_generation_systems_tutorial.md) 阅读（[f63f468](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/f63f468)）。
 - **2026-05-24** — ![NEW](https://img.shields.io/badge/NEW-red?style=flat-square) 🐙 **ARIS-Homepage v1.1：`--from-repos`** — 用户选定 `owner/repo` 列表通过 `gh` CLI 抓快照，调用方 LLM agent 把 repo 时间线 merge 进主页 News + `featured_projects[].github`。默认拒绝 private repo。Closes [#2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/issues/2) by [@Yafei-Liu99](https://github.com/Yafei-Liu99)（[cdcf9a2](https://github.com/wanshuiyin/ARIS-in-AI-Offer/commit/cdcf9a2)）。
