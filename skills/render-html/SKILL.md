@@ -285,6 +285,7 @@ For deck / poster / Xiaohongshu card / tweet card / data report style outputs, p
 
 - **Do not auto-render every Markdown file.** Only artifacts on the whitelist above. File proliferation is the main anti-pattern.
 - **Do not hand-edit the generated HTML.** Edit the source, then re-render. The embedded SHA256 in the HTML meta tells you if the source has changed since render.
+- **Keep headings TOC-clean (authoring rule).** `render_toc()` renders each heading's raw text verbatim into the sidebar TOC, so whatever is in a heading shows up there literally. Do not put citation marks (`[8]`), footnote refs, or `(a)`/`(b)`/`(c)` sequence labels in headings — keep those in the body. (ARIS tutorials use `## §N Title` / `### N.M Title`, which render cleanly.)
 - **academic-template HTML is a reviewed artifact**, not raw output. Cross-model Codex review (fresh thread) gates the academic deliverables — the same way `/proof-checker`, `/paper-claim-audit`, `/citation-audit`, `/kill-argument` gate their respective products. `--no-review` exists for fast iteration but should not be the way you ship.
 - **The reviewer audits rendering, not research.** Claim truthfulness is owned upstream by `/paper-claim-audit`, `/result-to-claim`, `/research-review`. The HTML reviewer asks: "did the renderer faithfully + safely convert this source?" — nothing more.
 - **CDN dependency is opt-out, not opt-in.** Most users have internet; `--offline` is for air-gapped runs / archival.
