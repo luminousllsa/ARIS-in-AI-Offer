@@ -1,7 +1,7 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/3d_generation_tutorial.md",
-  "source_sha256": "beab28036da8f28744b8d64815a669d0fce44c978bd869145e41b15860659ccc",
+  "source_sha256": "279221f16647dd2f61d80d5aa546d6e6da41c209574392cdc36b776944a0f65d",
   "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/3d_generation_tutorial.html",
   "topic": "3D Generation (NeRF / Instant-NGP / 3DGS / SDS / DreamFusion / Trellis)",
@@ -9,7 +9,7 @@
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "reviewer": "codex gpt-5.5 xhigh, fresh thread per round",
   "math_code_review": {
-    "verdict": "FAIL",
+    "verdict": "PASS",
     "rounds": [
       {
         "run": "1-3",
@@ -34,6 +34,15 @@
           "[WARN] Mip-NeRF IPE scalar/vector notation conflated",
           "[WARN] Instant-NGP hash primes: π_1=1 listed as '大质数'"
         ]
+      },
+      {
+        "run": "B2-fix-verify",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 fix-verify)",
+        "thread_id": "019e7cad-2374-77b1-b653-2a484f59aaef",
+        "verdict": "PASS",
+        "note": "Round-1 (TensoRF O(N^3) baseline; Dynamic 3DGS persistent; CLAY=VAE+latent-DiT; InstantMesh ~10s; EG3D triplane sum; IPE scalar/vector; Instant-NGP pi_1 not prime) + Round-2 (Q19 InstantMesh ~10s; densify_and_prune explicit original_n) verified PASS.",
+        "issues": []
       }
     ]
   },
@@ -52,5 +61,5 @@
   "summary": "3D Gen tutorial passed both math/code review (subagent rounds 1-3) and render review (main-session DIY). 64KB MD, 94KB HTML.",
   "rendered_at": "2026-05-19",
   "notes": "Subagent was killed before writing review.json (codex MCP concurrency issue). HTML was already rendered. Render review backfilled from main session with thread 019e3f3d (PASS 13/13).",
-  "thread_id": "019e7c8b-6eb5-7543-b1b1-356adb27b065"
+  "thread_id": "019e7cad-2374-77b1-b653-2a484f59aaef"
 }

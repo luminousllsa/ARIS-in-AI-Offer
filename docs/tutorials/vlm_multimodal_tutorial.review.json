@@ -1,13 +1,13 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/vlm_multimodal_tutorial.md",
-  "source_sha256_prefix": "f9cc9510bdd53549",
+  "source_sha256_prefix": "247c88185218c0dd",
   "output": "docs/tutorials/vlm_multimodal_tutorial.html",
   "topic": "VLM / Multimodal (CLIP / ViT / LLaVA / Qwen-VL / DeepSeek-VL)",
   "effort": "max",
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "math_code_review": {
-    "verdict": "FAIL",
+    "verdict": "WARN",
     "reviewer": "codex gpt-5.5 xhigh, fresh thread per run (never codex-reply)",
     "rounds": [
       {
@@ -46,6 +46,17 @@
           "§0 TL;DR: 'lightweight MLP projector' attributed to LLaVA-1.0 — LLaVA-1.0 uses a single linear W; the 2-layer MLP is LLaVA-1.5",
           "§12.1 BLIP-2 Q-Former Stage-1 mischaracterized as LLM-prefix captioning — Stage-1 is representation learning (ITC+ITM+ITG); LLM connects in Stage-2"
         ]
+      },
+      {
+        "run": "B2-fix-verify",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 fix-verify)",
+        "thread_id": "019e7cac-ff9d-7690-9614-64fb007070da",
+        "verdict": "WARN",
+        "note": "Round-1 (M-RoPE base 1e6; Molmo=CLIP not SigLIP; LLaVA-1.0 linear not MLP; BLIP-2 Stage-1 repr-learning; CLIP loss~2.25) + Round-2 (projector label 1.0/1.5; AnyRes formula (1+nm)*576) verified. WARN: §7.5 '576-2880 token' range can read as a cap (cosmetic, separate section, not the corrected false-cap).",
+        "issues": [
+          "§7.5 trade-off table '大（576–2880 token）' reads as upper bound; optional polish to '典型范围；AnyRes 高分辨率可达 4032+'"
+        ]
       }
     ],
     "note": "After 3 review rounds all flagged issues received targeted fixes; per the 3-round-FAIL stop rule, no 4th review was run. Each round's issues were addressed by direct edits in source MD before stopping."
@@ -80,6 +91,6 @@
   },
   "summary": "3-round math/code review (FAIL → FAIL → FAIL, each round's blocking issues fixed in place; stopped per 3-round rule); 1-round render review PASS on all 13 checks. Length is 1446 lines vs target 1000 (+44.6%, warn-only).",
   "rendered_at": "2026-05-19",
-  "source_sha256": "f9cc9510bdd535499bcf756290f8ccf31a6785c97df3fa1dabb9e9c1bf74541f",
-  "thread_id": "019e7c8b-3529-7a11-9c7c-5ed67df6fc62"
+  "source_sha256": "247c88185218c0dd9a9c3462177f7c310a5cd8c1972c9669575dd11f136c3914",
+  "thread_id": "019e7cac-ff9d-7690-9614-64fb007070da"
 }

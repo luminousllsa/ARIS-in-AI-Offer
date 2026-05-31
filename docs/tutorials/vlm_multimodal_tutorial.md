@@ -8,7 +8,7 @@
 
 3. **SigLIP 用 sigmoid 替 softmax**：Zhai et al. 2023 (ICCV) 把 N×N 相似度矩阵的每一项独立做 binary CE，**摆脱 batch-wise softmax 归一化**，因此对 batch size 不再线性敏感，单机能用 32k+ batch 训；引入 learnable bias $b$ 修正初期 negative dominance。**SigLIP-2 (Google 2025)** 加入 caption + self-distillation + dense local objectives 并扩展多语言。
 
-4. **LLaVA = projector + 2-stage train**：Liu et al. 2023 (NeurIPS) 用一个 **轻量 MLP projector** 把 frozen CLIP 视觉特征投到 LLM token 空间。**Stage 1** 只训 projector 做 feature alignment（caption 数据），**Stage 2** 解冻 LLM 做 visual instruction tuning（GPT-4 生成的 158K instructions）。
+4. **LLaVA = projector + 2-stage train**：Liu et al. 2023 (NeurIPS) 用一个 **单层线性投影矩阵 $W$** 把 frozen CLIP 视觉特征投到 LLM token 空间（**2 层 MLP projector 是 LLaVA-1.5 的升级**）。**Stage 1** 只训 projector 做 feature alignment（caption 数据），**Stage 2** 解冻 LLM 做 visual instruction tuning（GPT-4 生成的 158K instructions）。
 
 5. **Q-Former vs Projector 是 BLIP-2 的核心 trade-off**：Li et al. 2023 (ICML) 用 32 个 learnable query token 在 frozen image encoder 上做 **cross-attention**，把任意分辨率/数量的 patch 压成固定 32 token——计算预算稳定但**信息有损 + 训练复杂**。LLaVA 的 MLP 简单但 token 数随分辨率二次增长。
 
@@ -402,7 +402,7 @@ Gadre et al. 2023 (NeurIPS) 设计了 "data filtering benchmark"：固定 (model
 | SigLIP-2 | from scratch | sigmoid + caption + distill | — | WebLI 10B | 84%+ |
 | MetaCLIP | from scratch | softmax InfoNCE | — | 重新构造 LAION-grade | 79.2% (H/14) |
 
-> 💡 **2024–2025 趋势** — SigLIP 系列在 zero-shot ImageNet 和下游 retrieval 上已经稳定超过 CLIP；典型开放权重 VLM 用 SigLIP-So400M 的是 **PaliGemma / LLaVA-OneVision / Molmo**。**InternVL 系列用自家的 InternViT；Qwen2-VL 用自训 ViT；LLaVA-1.5/1.6 仍用 CLIP ViT-L/14**——并非"切到 SigLIP"是行业共识。
+> 💡 **2024–2025 趋势** — SigLIP 系列在 zero-shot ImageNet 和下游 retrieval 上已经稳定超过 CLIP；典型开放权重 VLM 用 SigLIP-So400M 的是 **PaliGemma / LLaVA-OneVision**。**Molmo/PixMo 主模型仍用 OpenAI CLIP ViT-L/14@336（SigLIP 只出现在其论文 ablation）；InternVL 系列用自家的 InternViT；Qwen2-VL 用自训 ViT；LLaVA-1.5/1.6 仍用 CLIP ViT-L/14**——并非"切到 SigLIP"是行业共识。
 
 ## §6 LLaVA：projector + 2-stage 训练
 
@@ -413,7 +413,7 @@ LLaVA（Liu et al. 2023 NeurIPS）的核心是三件套：
 ```
 Image ──► CLIP ViT-L/14 ──► visual features  z_v ∈ R^{N × d_v}
                                   │
-                                  │  W ∈ R^{d_v × d_LLM}   ← MLP projector
+                                  │  W ∈ R^{d_v × d_LLM}   ← projector（1.0 单层线性 / 1.5 2 层 MLP）
                                   ↓
                             H_v ∈ R^{N × d_LLM}
                                   │
@@ -524,7 +524,7 @@ class LLaVA(nn.Module):
 | --- | --- | --- |
 | LLaVA-1.0 | 2023.04 | 单层 Linear projector；CLIP ViT-L/14@224²，视觉 token = 256（$16\times 16$） |
 | LLaVA-1.5 | 2023.10 | 2-layer MLP；分辨率升到 336²，视觉 token = 576（$24\times 24$）；加入 OCR / GQA / VQAv2 等学术数据 |
-| LLaVA-1.6 / NeXT | 2024.01 | **AnyRes**：把图切成 $2\times 2 / 2\times 3 / \dots$ tile 各编码再拼，支持任意 aspect ratio；token 数最多 2880 |
+| LLaVA-1.6 / NeXT | 2024.01 | **AnyRes**：把图切成 $2\times 2 / 2\times 3 / \dots$ tile 各编码再拼，支持任意 aspect ratio；token 数 $(1{+}n{\cdot}m)\cdot 576$（2×2→2880，2×3→4032） |
 | LLaVA-OneVision | 2024.08 | 单 / 多图 / 视频统一；引入 SI（single image）+ OV（onevision）数据 mix |
 | LLaVA-NeXT-Video | 2024.04 | 视频版，把多帧 visual feature 序列化喂入 |
 
@@ -766,7 +766,7 @@ DeepSeek-VL (Lu et al. 2024) 用**双 vision encoder**：
 ```python
 import torch
 
-def build_mrope_cos_sin(positions, head_dim, mrope_section=(16, 24, 24), base=10000.0):
+def build_mrope_cos_sin(positions, head_dim, mrope_section=(16, 24, 24), base=1000000.0):
     """
     Build cos/sin tensors for Qwen2-VL style M-RoPE.
 
@@ -865,7 +865,7 @@ LongVA (Zhang et al. 2024) 等利用 long-context LLM (200K+ token) 直接吃**�
 目的：让视觉特征"对齐"到 LLM token 空间附近。
 - **数据**：image-caption pair（CC3M, LAION-558K, ShareGPT4V）
 - **训练**：只解冻 projector（LLaVA）/ Q-Former (BLIP-2)，**vision tower + LLM 冻结**
-- **Loss**：next-token prediction（用 LLM 把 visual feature 作 prefix，生成 caption）
+- **Loss**：LLaVA 用 next-token prediction（用 LLM 把 visual feature 作 prefix，生成 caption）；**BLIP-2 此处不接 LLM**——Q-Former 的 Stage 1 是表征学习，在 frozen image encoder 上联合优化 ITC + ITM + ITG，frozen LLM 要到 Stage 2（generative learning）才接入
 
 ### 12.2　Stage 2：Visual Instruction Tuning
 
@@ -1412,7 +1412,7 @@ $$\frac{\partial \mathcal{L}}{\partial S_{ij}} = \frac{1}{N}\cdot \frac{-y_{ij}}
 [ViT] patch_embed: (2, 3, 224, 224) -> (2, 196, 768)  ✓
 [ViT] forward + CLS: (2, 3, 224, 224) -> head out (2, 1000)  ✓
 
-[CLIP] N=8, D=512, init logit_scale=ln(1/0.07): loss ≈ 2.08 ≈ log(N) (random embeddings → near-uniform softmax)  ✓
+[CLIP] N=8, D=512, init logit_scale=ln(1/0.07)→1/τ≈14.285: loss ≈ 2.25 (略高于 log(N)=2.08；loss≈log N 仅在 1/τ 极小时成立)  ✓
 [CLIP] forward + backward: gradients along i→t 与 t→i path 对称 ✓
 
 [SigLIP] N=8, D=512, b=0:  loss = sum_{ij} log(1+e^0) / N = 64 * log 2 / 8 ≈ 5.545  ✓

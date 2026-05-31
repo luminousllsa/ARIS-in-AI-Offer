@@ -1,13 +1,13 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/distributed_training_tutorial.md",
-  "source_sha256_prefix": "86087779b70e3bca",
+  "source_sha256_prefix": "9fca080f5e600043",
   "output": "docs/tutorials/distributed_training_tutorial.html",
   "topic": "Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP / CP / DualPipe / TorchTitan / Llama 3)",
   "effort": "max",
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "math_code_review": {
-    "verdict": "FAIL",
+    "verdict": "PASS",
     "reviewer": "codex gpt-5.5 xhigh, fresh thread per run",
     "rounds": [
       {
@@ -81,6 +81,15 @@
           "§9.5 one_f_one_b_schedule pseudocode non-runnable: activation/grad_out never defined (return values discarded -> NameError)",
           "§13.2 & Q25: DeepSeek-V3 described as 'fp8 GEMM + bf16 accumulation' — wrong; FP8 GEMM accumulation is promoted to FP32 on CUDA cores (DeepSeek-V3 report §3.3.2)"
         ]
+      },
+      {
+        "run": "B2-fix-verify",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 fix-verify)",
+        "thread_id": "019e7cad-0387-7e03-b931-7fd25046017a",
+        "verdict": "PASS",
+        "note": "Round-1 (DeepSeek-V3 FP32 accumulation not bf16; 1F1B pseudocode assigns recv; §8.2 2x col/row comm) + Round-2 (§8.2 ASCII TP-only all-reduce; DualPipe bubble softened to approaches-0 non-strict) all verified PASS.",
+        "issues": []
       }
     ]
   },
@@ -109,6 +118,6 @@
   "lines_md": 1587,
   "bytes_html": 88974,
   "toc_entries": 78,
-  "source_sha256": "86087779b70e3bcaf4b22536bdf96eae5fd0d9e07675f4b9c61122ce67ee0af7",
-  "thread_id": "019e7c8e-dc2b-7c11-bf8f-8d52b243a95b"
+  "source_sha256": "9fca080f5e600043ddd52586fa501f8c9d13acf3bb876f66cae5a17cbffadd6b",
+  "thread_id": "019e7cad-0387-7e03-b931-7fd25046017a"
 }

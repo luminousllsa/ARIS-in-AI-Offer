@@ -73,6 +73,8 @@ $$\langle R_m \mathbf{q}, R_n \mathbf{k} \rangle = \mathbf{q}^\top R_m^\top R_n 
 
 ### 2.4 from-scratch RoPE 代码
 
+> 📝 **说明** — 后续所有 Python 代码块共享本块的 import 前导（`import torch` 等）；单独复制运行某个后续块时需自行补上 `import torch`。
+
 ```python
 import torch
 
@@ -399,7 +401,7 @@ $$\min_{\{\lambda_i\}} \mathrm{PPL}\!\left(M; \theta'_i = \theta_i / \lambda_i\r
 
 ## §8 ABF 与 NoPE — 两种"非主流"扩展
 
-### 8.1 ABF — Adjusted Base Frequency (Xiong et al. 2023, Meta)
+### 8.1 ABF — Adjusted Base Frequency (Xiong et al., "Effective Long-Context Scaling of Foundation Models", arXiv:2309.16039, NAACL 2024, Meta)
 
 最朴素的"换底"——直接把 RoPE 底从 10000 改大（如 500000）。等价于全维度同步 NTK-aware 缩放，但不用考虑 ramp。
 
@@ -698,7 +700,7 @@ def streaming_decode(model, input_ids, max_new_tokens,
     return torch.cat(generated, dim=-1)
 ```
 
-> ⚠️ **直接裁剪 *RoPE 之后* 的 K cache 是错的** — 一个常见 bug：把 HF 默认的 K cache（已 RoPE）直接按上面的方式裁剪 + 用逻辑位置 id 喂新 token，会得到自相矛盾的相对位置（cache 中的 K 用原始绝对位置旋转过，但新 query 用逻辑位置旋转）。**正确做法**：保留未旋转的 K（`W_K @ h`，未乘 cos/sin），每步根据当前逻辑位置重新做 RoPE；或者用作者 repo 提供的 `enable_streaming_llm()` patch，它修改了 attention layer 以接受 "position-shift" 形式的旋转。
+> ⚠️ **直接裁剪 RoPE 之后的 K cache 是错的** — 一个常见 bug：把 HF 默认的 K cache（已 RoPE）直接按上面的方式裁剪 + 用逻辑位置 id 喂新 token，会得到自相矛盾的相对位置（cache 中的 K 用原始绝对位置旋转过，但新 query 用逻辑位置旋转）。**正确做法**：保留未旋转的 K（`W_K @ h`，未乘 cos/sin），每步根据当前逻辑位置重新做 RoPE；或者用作者 repo 提供的 `enable_streaming_llm()` patch，它修改了 attention layer 以接受 "position-shift" 形式的旋转。
 
 > ⚠️ **StreamingLLM 不增加模型有效上下文** — 它让模型可以**永久流式生成**而不爆显存，但实际能看到的还是 sink + window 范围内的 token。中间被丢弃的内容**真的看不到了**。要长上下文检索能力还是得依赖 YaRN / LongRoPE / SSM 等真正的上下文扩展。
 
@@ -790,7 +792,7 @@ $$\mathrm{Diff} = \mathrm{softmax}(Q_1 K_1^\top / \sqrt{d}) - \lambda \cdot \mat
 | Sliding Window | $O(W \cdot N_h d_h)$ | $O(L \cdot W)$ |
 | Streaming (S+W) | $O((S+W) \cdot N_h d_h)$ | $O((S+W)^2)$ |
 | Ring (P GPU) | $O(L \cdot N_h d_h / P)$ per GPU | $O(L^2 / P)$ per GPU |
-| MLA | $O(L \cdot (d_c + d_h^R))$ | + 投影开销 |
+| MLA | $O(L \cdot N_h (d_c + d_h^R))$ | + 投影开销 |
 
 ## §13 综合对比与选型决策树
 
@@ -1206,4 +1208,4 @@ Q: Attention 算不动 (L^2 太大)?
 | 128K-2M | LongRoPE + fine-tune | MLA + Ring/CP |
 | 流式生成 | StreamingLLM (sink + window) | 任何，cache 常数大小 |
 
-**Long Context Quick Reference** · 主要参考：Su et al. 2021/2024 (RoPE/RoFormer, Neurocomputing), Chen et al. 2023 (PI, arXiv:2306.15595, Meta), bloc97 / jquesnelle 2023 (NTK-aware, LocalLLaMA community), Peng et al. 2023 (YaRN, arXiv:2309.00071), Ding et al. 2024 (LongRoPE, ICML 2024, Microsoft), DeepSeek-AI 2024 (DeepSeek-V2, arXiv:2405.04434), Jiang et al. 2023 (Mistral 7B, arXiv:2310.06825), Xiao et al. 2024 (StreamingLLM, ICLR 2024), Nelson F. Liu et al. 2023 (Lost in the Middle, arXiv:2307.03172, TACL), Hao Liu et al. 2023 (Ring Attention, arXiv:2310.01889), Dao et al. 2022-2024 (FlashAttention 1/2/3)
+**Long Context Quick Reference** · 主要参考：Su et al. 2021/2024 (RoPE/RoFormer, Neurocomputing), Chen et al. 2023 (PI, arXiv:2306.15595, Meta), bloc97 / jquesnelle 2023 (NTK-aware, LocalLLaMA community), Peng et al. 2023 (YaRN, arXiv:2309.00071), Ding et al. 2024 (LongRoPE, ICML 2024, Microsoft), DeepSeek-AI 2024 (DeepSeek-V2, arXiv:2405.04434), Jiang et al. 2023 (Mistral 7B, arXiv:2310.06825), Xiao et al. 2024 (StreamingLLM, ICLR 2024), Nelson F. Liu et al. (Lost in the Middle, arXiv:2307.03172, arXiv 2023 / TACL 2024), Hao Liu et al. 2023 (Ring Attention, arXiv:2310.01889), Dao et al. 2022-2024 (FlashAttention 1/2/3)

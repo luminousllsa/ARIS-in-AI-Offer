@@ -14,9 +14,9 @@
 
 6. **VSD** (Wang 2023 NeurIPS, ProlificDreamer)：把 3D 参数 $\theta$ 视为 random variable $\mu(\theta)$，**最小化的是渲染加噪图像分布**之间的 KL：$\mathbb{E}_t\big[D_\text{KL}\big(q_\mu^t(x_t|y)\,\|\,p_\phi^t(x_t|y)\big)\big]$。梯度形式为 **relative score** $\nabla_\theta \approx (\epsilon_\phi(x_t;y,t) - \epsilon_\psi(x_t;y,t,\pi))\,\partial x/\partial\theta$，其中 $\epsilon_\psi$ 是 LoRA 微调的辅助 score。CFG 可从 100 降至 7.5。
 
-7. **Single-image / Few-view 3D**：Zero-1-to-3 (Liu 2023 ICCV) 用 viewpoint conditioned diffusion；SyncDreamer / MVDream 学多视图联合一致性；TripoSR / InstantMesh / Stable Fast 3D 把 image-to-mesh 推到 ≤3 秒。
+7. **Single-image / Few-view 3D**：Zero-1-to-3 (Liu 2023 ICCV) 用 viewpoint conditioned diffusion；SyncDreamer / MVDream 学多视图联合一致性；TripoSR / InstantMesh / Stable Fast 3D 把 image-to-mesh 推到秒级（TripoSR ~0.5 秒、InstantMesh ~10 秒）。
 
-8. **3D Foundation Models (2024-25 开源)**：**Trellis** (Microsoft 2024) 用 structured latent + flow matching；**Hunyuan3D-2** (Tencent 2025) shape→texture 两阶段；**CLAY** (Zhang 2024 SIGGRAPH) 大尺度 latent diffusion + 3DShape2VecSet。
+8. **3D Foundation Models (2024-25 开源)**：**Trellis** (Microsoft 2024) 用 structured latent + flow matching；**Hunyuan3D-2** (Tencent 2025) shape→texture 两阶段；**CLAY** (Zhang 2024 SIGGRAPH, arXiv:2406.13897) 大尺度 latent diffusion = 多分辨率 VAE + latent DiT。
 
 9. **Embodied AI 关键应用**：Sim2Real 资产生成、NeRF/3DGS 作为可微 simulator、language-conditioned 3D affordance。**面试常见交叉**：NeRF SLAM、Gaussian-Splat scene editing、3D 物理一致性。
 
@@ -159,7 +159,7 @@ def volume_render(sigma: torch.Tensor, color: torch.Tensor, t_vals: torch.Tensor
 
 vanilla NeRF 在低分辨率 / 缩放下走样严重（同一像素对应不同尺度的 cone，但 NeRF 当作 ray 处理）。
 
-- **Mip-NeRF** (Barron 2021 ICCV)：把 ray 视为 cone（视锥），用 **Integrated Positional Encoding (IPE)**——对 cone 段内的 PE 做闭式 Gaussian 期望 $\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\mu,\Sigma)}[\gamma(\mathbf{x})]$。对频率 $\omega = 2^k\pi$ 而言，$\mathbb{E}[\sin\omega x] = \sin(\omega\mu)\,e^{-\frac{1}{2}\omega^\top\Sigma\,\omega}$；**高频系数被 cone 协方差 $\Sigma$ 通过 $e^{-\frac{1}{2}\omega^\top\Sigma\omega}$ 自动衰减**，自然实现 multi-scale。
+- **Mip-NeRF** (Barron 2021 ICCV)：把 ray 视为 cone（视锥），用 **Integrated Positional Encoding (IPE)**——对 cone 段内的 PE 做闭式 Gaussian 期望 $\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\mu,\Sigma)}[\gamma(\mathbf{x})]$。对频率向量 $\boldsymbol{\omega} = 2^k\pi\,\mathbf{e}$ 而言，$\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\boldsymbol{\mu},\Sigma)}[\sin(\boldsymbol{\omega}^\top\mathbf{x})] = \sin(\boldsymbol{\omega}^\top\boldsymbol{\mu})\,e^{-\frac{1}{2}\boldsymbol{\omega}^\top\Sigma\,\boldsymbol{\omega}}$（标量情形即 $e^{-\frac{1}{2}\omega^2\sigma^2}$）；**高频系数被 cone 协方差 $\Sigma$ 通过 $e^{-\frac{1}{2}\boldsymbol{\omega}^\top\Sigma\boldsymbol{\omega}}$ 自动衰减**，自然实现 multi-scale。
 - **Mip-NeRF 360** (Barron 2022 CVPR)：unbounded scene 用 contraction $f(x) = (2 - 1/\|x\|)\,x/\|x\|$ for $\|x\| > 1$，把无穷远压缩到 ball；加 distortion / proposal MLP 损失。
 
 ### 2.8　NeuS / VolSDF：体渲染 + SDF（导出 mesh 的关键）
@@ -189,7 +189,7 @@ NeRF (vanilla) 训练一个场景要 1-2 天。**Instant-NGP** (Müller 2022 SIG
 
 $$\text{hash}(\mathbf{x}) = \bigg(\bigoplus_{i=1}^{d} x_i \cdot \pi_i\bigg) \bmod T$$
 
-$\pi_i$ 是大质数（$\pi_1 = 1, \pi_2 = 2654435761, \pi_3 = 805459861$）。 $\oplus$ 是 XOR。这是一种 **spatial hash**：常用于物理仿真的 BVH。
+$\pi_i$ 是互质的大常数（论文取 $\pi_1 = 1, \pi_2 = 2654435761, \pi_3 = 805459861$——注意 $\pi_1 = 1$ 并非质数，是论文有意设的，使第一维直接映射不打散）。 $\oplus$ 是 XOR。这是一种 **spatial hash**：常用于物理仿真的 BVH。
 
 ### 3.3　Hash collision 怎么消歧？（**L3 高频追问**）
 
@@ -213,7 +213,7 @@ $\pi_i$ 是大质数（$\pi_1 = 1, \pi_2 = 2654435761, \pi_3 = 805459861$）。 
 
 ### 3.5　Plenoxels / TensoRF（同期的 explicit 派）
 
-**Plenoxels** (Fridovich-Keil 2022 CVPR)：纯 voxel 网格 + 球谐 SH 系数 + density，**完全没 MLP**，直接梯度下降到 voxel；速度类似 Instant-NGP 但显存大。**TensoRF** (Chen 2022 ECCV)：把 4D tensor field 用 **VM / CP 分解** 压缩，参数量从 $O(N^4)$ 降到 $O(N)$ 或 $O(N^2)$。
+**Plenoxels** (Fridovich-Keil 2022 CVPR)：纯 voxel 网格 + 球谐 SH 系数 + density，**完全没 MLP**，直接梯度下降到 voxel；速度类似 Instant-NGP 但显存大。**TensoRF** (Chen 2022 ECCV)：把 3D grid field 用 **VM / CP 分解** 压缩，参数量从 $O(N^3)$ 降到 CP 的 $O(N)$ 或 VM 的 $O(N^2)$。
 
 ## §4 3D Gaussian Splatting：显式可微光栅化（**当前主力**）
 
@@ -385,13 +385,18 @@ def densify_and_prune(gaussians, grad_thresh=2e-4, scale_thresh=0.01,
     grad_norm  = gaussians.xyz_grad_accum / gaussians.denom.clamp(min=1)      # [N]
     mean_scale = gaussians.scales.exp().max(dim=-1).values                    # [N]
 
-    # CLONE：高梯度 + 小 scale —— 复制一份并沿梯度方向偏移；原始保留
+    # ⚠️ 先在原始 N 个 Gaussian 上把 clone / split 两个 mask 都算出来，
+    #    再做任何 append/删除——否则 clone_at append 之后数组变长，原 N 长度的
+    #    split_mask 会与新数组错位（mask-length mismatch / 作用到错误对象）。
     clone_mask = (grad_norm > grad_thresh) & (mean_scale <= scale_thresh)     # [N]
+    split_mask = (grad_norm > grad_thresh) & (mean_scale >  scale_thresh)     # [N]
+
+    # CLONE：高梯度 + 小 scale —— 复制一份并沿梯度方向偏移；原始保留（append 到末尾）
     gaussians.clone_at(clone_mask, offset=gaussians.grad_dir[clone_mask])
 
     # SPLIT：高梯度 + 大 scale —— 拆成 2 个子高斯（scale ÷ 1.6），并在末尾删除原始
-    split_mask = (grad_norm > grad_thresh) & (mean_scale >  scale_thresh)     # [N]
-    gaussians.split_at(split_mask, n=2, scale_div=1.6)
+    # split_at 显式只作用于原始 N 个：传 original_n，不依赖 append 后的数组长度隐式对齐
+    gaussians.split_at(split_mask, n=2, scale_div=1.6, original_n=split_mask.shape[0])
 
     # PRUNE：低 opacity / 屏幕过大 / 已被 split 标记
     # ⚠️ 注意：clone 增加的新 Gaussian 已 append 到末尾，长度变了；这里的 mask 仅作用于原 N 个
@@ -412,7 +417,7 @@ def densify_and_prune(gaussians, grad_thresh=2e-4, scale_thresh=0.01,
 
 ### 4.7　动态 4DGS
 
-**Dynamic 3DGS** (Luiten 2024 3DV) 每帧独立 Gaussian + 物理 prior 连接；**4DGS** (Wu 2024 CVPR / Yang 2024 ICLR) 把 $\mu(t), \Sigma(t)$ 写成时间函数（MLP 或 spline）；**SC-GS** (Huang 2024) 用 sparse control points 驱动密集 Gaussian（类似 LBS）。
+**Dynamic 3DGS** (Luiten 2024 3DV, arXiv:2308.09713) 用一组**持续存在的 Gaussian**：颜色 / 不透明度 / 大小跨帧保持不变，只让位置 $\mu(t)$ 与旋转随时间运动，并用 **local-rigidity** 正则约束邻域刚性；**4DGS** (Wu 2024 CVPR / Yang 2024 ICLR) 把 $\mu(t), \Sigma(t)$ 写成时间函数（MLP 或 spline）；**SC-GS** (Huang 2024) 用 sparse control points 驱动密集 Gaussian（类似 LBS）。
 
 ## §5 Mesh 提取：Marching Cubes / DMTet
 
@@ -612,7 +617,7 @@ $$\boxed{\;\nabla_\theta \mathcal{L}_\text{VSD} \;=\; \mathbb{E}_{t,\epsilon}\Bi
 | **One-2-3-45** (Liu 2023 NeurIPS) | 单图 | mesh | 45 秒 | Zero-1-to-3 → SparseNeuS |
 | **One-2-3-45++** (Liu 2024) | 单图 | mesh | 60 秒 | 多视图 + SDF |
 | **TripoSR** (Tochilkin 2024, Stability+Tripo) | 单图 | NeRF/mesh | 0.5-2 秒 | LRM (Large Reconstruction Model) 风格 transformer |
-| **InstantMesh** (Xu 2024) | 单图 | mesh | 3 秒 | Zero-1-to-3++ 多视图 → sparse-view recon transformer |
+| **InstantMesh** (Xu 2024, arXiv:2404.07191) | 单图 | mesh | ~10 秒 | Zero-1-to-3++ 多视图 → sparse-view recon transformer |
 | **Stable Fast 3D** (SF3D, Stability 2024) | 单图 | textured mesh | ~0.5 秒 | TripoSR 后继；加 illumination disentangle + UV unwrap |
 
 **LRM (Hong et al. 2023 arXiv → ICLR 2024) 设定**：把图当 token + Plucker ray embedding，transformer 输出 NeRF triplane。这是 TripoSR / InstantMesh 的母模型。
@@ -620,7 +625,7 @@ $$\boxed{\;\nabla_\theta \mathcal{L}_\text{VSD} \;=\; \mathbb{E}_{t,\epsilon}\Bi
 ### 7.3　LRM Triplane 表示（**面试高频**）
 
 - **Triplane** (Chan 2022 EG3D)：3 个轴对齐 2D 平面（XY, YZ, XZ），共 $3 \times C \times N \times N$ 维
-- 查询 3D 点 $(x, y, z)$：在每个平面双线性插值 → concat → 小 MLP → $(\sigma, \mathbf{c})$
+- 查询 3D 点 $(x, y, z)$：在每个平面双线性插值 → **三个平面特征逐元素相加**（EG3D 是 sum，不是 concat）→ 小 MLP → $(\sigma, \mathbf{c})$
 - 优点：比 voxel grid 显存少（$O(N^2)$ vs $O(N^3)$），比 hash grid 更 dense 适合 transformer 输出
 - LRM / TripoSR / InstantMesh 都让 transformer 直接 regress triplane tokens
 
@@ -651,9 +656,9 @@ $$\boxed{\;\nabla_\theta \mathcal{L}_\text{VSD} \;=\; \mathbb{E}_{t,\epsilon}\Bi
   - 高质量 PBR texture（实战可用于游戏 / VR 资产）
 - **开源**：HuggingFace 上完整权重 + 推理代码
 
-### 8.3　CLAY (Zhang 2024 SIGGRAPH)
+### 8.3　CLAY (Zhang 2024 SIGGRAPH, arXiv:2406.13897)
 
-- **3DShape2VecSet** latent diffusion：把 mesh 表示为 vector set + cross-attention DiT
+- **多分辨率 VAE + latent DiT**：3D shape VAE 把 mesh 编码到 neural field latent，再在 latent 上跑 DiT diffusion（区别于 3DShape2VecSet，Zhang et al. 2023, arXiv:2301.11445，那是一个单独的 vector-set 表示工作）
 - 大规模训练（Objaverse-XL + 内部清洗集）
 - 输出 SDF → marching cubes → mesh
 - 加 PBR texture stage（类似 Hunyuan3D-2）
@@ -666,11 +671,11 @@ $$\boxed{\;\nabla_\theta \mathcal{L}_\text{VSD} \;=\; \mathbb{E}_{t,\epsilon}\Bi
 | --- | --- | --- | --- | --- |
 | **Trellis** | Structured Latent (SLAT) + 多 decoder | Rectified Flow | Objaverse-XL 子集 | ✅ |
 | **Hunyuan3D-2** | SDF latent (Shape DiT) + UV texture diff | Diffusion | 内部大规模集 | ✅ |
-| **CLAY** | 3DShape2VecSet | Diffusion | Objaverse-XL + 内部 | 部分 |
+| **CLAY** | 多分辨率 VAE latent (latent DiT) | Diffusion | Objaverse-XL + 内部 | 部分 |
 | **Rodin** | Triplane | Diffusion | 商业内部 | ❌ |
 | **TripoSR / SF3D** | NeRF/mesh feedforward | 无 prior，纯 regression | Objaverse 类 | ✅ |
 
-> 💡 **架构选择直觉** — 大 scene / general object 用 **Trellis 风格 SLAT**（保留空间结构）；高质量 single mesh 用 **CLAY 风格 vector set**（紧凑、global attention）；快速推理用 **LRM/TripoSR feedforward**（不做 diffusion，直接 regress）。
+> 💡 **架构选择直觉** — 大 scene / general object 用 **Trellis 风格 SLAT**（保留空间结构）；高质量 single mesh 用 **CLAY 风格 latent DiT**（多分辨率 VAE latent，global attention）；快速推理用 **LRM/TripoSR feedforward**（不做 diffusion，直接 regress）。
 
 ## §9 复杂度 / 资源对比
 
@@ -1043,7 +1048,7 @@ $$\boxed{\;\nabla_\theta \mathcal{L}_\text{VSD} \;=\; \mathbb{E}_{t,\epsilon}\Bi
 
 - Transformer 把图像 token + Plucker ray embedding → regress triplane tokens
 
-- 推理 feedforward（无 SDS / 无 iterative 优化），**0.5-3 秒** 出 3D
+- 推理 feedforward（无 SDS / 无 iterative 优化），**秒级出 3D**（TripoSR ~0.5 秒、InstantMesh ~10 秒）
 
 - TripoSR (Stability+Tripo 2024) / InstantMesh (Xu 2024) / SF3D (2024) 都属此族
 
