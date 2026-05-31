@@ -8,7 +8,7 @@
 
 3. **NTK-aware (bloc97 2023)**: change the base; new base $b' = b \cdot s^{d/(d-2)}$. **Low-frequency dimensions are heavily compressed while high-frequency dimensions are almost unchanged**, so zero-shot extrapolation is better than PI.
 
-4. **YaRN (Peng 2023)**: NTK-by-parts (segment-wise frequency handling) + temperature scaling (the fitted formula $\sqrt{1/t} \approx 0.1\ln s + 1$, i.e., $t \approx 1/(0.1\ln s + 1)^2$) + attention scale. The three components respectively solve: handle high/low frequencies separately, sharpen the softmax, and compensate for post-extrapolation attention entropy inflation.
+4. **YaRN (Peng 2023)**: NTK-by-parts (segment-wise frequency handling) + temperature scaling (the fitted formula $\sqrt{1/t} \approx 0.1\ln s + 1$, i.e., $t \approx 1/(0.1\ln s + 1)^2$) + attention scale. The three components respectively solve: handle high/low frequencies separately, dilute the softmax, and compensate for post-extrapolation attention entropy inflation.
 
 5. **LongRoPE (Ding 2024 ICML)**: evolutionary search for an independent scaling factor $\lambda_i$ per dimension, plus a short-context "rescue", pushing context to 2M tokens.
 
@@ -72,6 +72,8 @@ This **geometric-progression frequency distribution** matches Vaswani 2017 sinus
 > 💡 **Wavelength vs training context** — the wavelength of dimension $i$ is $\lambda_i = 2\pi b^{2i/d}$. When $\lambda_i$ **exceeds the training length** $L$, that dimension has not seen a complete period during training — this is the key observation behind NTK-by-parts: phase interpolation on low-frequency dimensions is risky (extrapolation enters unseen regions), while high-frequency dimensions are safe.
 
 ### 2.4 RoPE code from scratch
+
+> 📝 **Note** — all subsequent Python code blocks share this block's import preamble (`import torch`, etc.); when copying and running a later block in isolation, add `import torch` yourself.
 
 ```python
 import torch
@@ -392,7 +394,7 @@ Evolutionary algorithm (CMA-ES or similar) maintains a population, iterating to 
 | Method | Scaling granularity | Fine-tune requirement | Max context |
 | --- | --- | --- | --- |
 | PI | All dimensions same $1/s$ | yes (≥ 1000 steps) | 32K |
-| NTK-aware | Gradient (single param $\alpha$) | no (zero-shot) | 16K |
+| NTK-aware | Gradual (single param $\alpha$) | no (zero-shot) | 16K |
 | YaRN | Three-band ramp (fixed $\alpha, \beta$) | yes (≈ 400 steps) | 128K |
 | LongRoPE | **Per-dim independent** | yes (≈ 400 steps) | **2M** |
 
@@ -400,7 +402,7 @@ Evolutionary algorithm (CMA-ES or similar) maintains a population, iterating to 
 
 ## §8 ABF and NoPE — Two "Non-Mainstream" Extensions
 
-### 8.1 ABF — Adjusted Base Frequency (Xiong et al. 2023, Meta)
+### 8.1 ABF — Adjusted Base Frequency (Xiong et al., "Effective Long-Context Scaling of Foundation Models", arXiv:2309.16039, NAACL 2024, Meta)
 
 The most naive "base change" — simply change the RoPE base from 10000 to something larger (e.g., 500000). Equivalent to uniform NTK-aware scaling across all dimensions, but without considering the ramp.
 
@@ -699,7 +701,7 @@ def streaming_decode(model, input_ids, max_new_tokens,
     return torch.cat(generated, dim=-1)
 ```
 
-> ⚠️ **Directly trimming the *post-RoPE* K cache is wrong** — a common bug: directly trim HF's default K cache (already RoPE-applied) as above and feed new tokens with logical position ids, and you get a self-contradictory relative position (cache K is rotated with original absolute positions, but the new query is rotated with logical positions). **Correct approach**: keep the unrotated K (`W_K @ h`, not multiplied by cos/sin) and re-apply RoPE each step by current logical position; or use the author repo's `enable_streaming_llm()` patch, which modifies the attention layer to accept "position-shift" form rotation.
+> ⚠️ **Directly trimming the post-RoPE K cache is wrong** — a common bug: directly trim HF's default K cache (already RoPE-applied) as above and feed new tokens with logical position ids, and you get a self-contradictory relative position (cache K is rotated with original absolute positions, but the new query is rotated with logical positions). **Correct approach**: keep the unrotated K (`W_K @ h`, not multiplied by cos/sin) and re-apply RoPE each step by current logical position; or use the author repo's `enable_streaming_llm()` patch, which modifies the attention layer to accept "position-shift" form rotation.
 
 > ⚠️ **StreamingLLM does not increase the model's effective context** — it allows the model to **stream forever** without blowing memory, but what it actually sees is still the tokens within sink + window range. The discarded middle content **really is invisible**. For long-context retrieval, you still need YaRN / LongRoPE / SSM or actual context extension.
 
@@ -791,7 +793,7 @@ Note: SWA / Streaming and GQA / MLA are **orthogonal** — multiplying them toge
 | Sliding Window | $O(W \cdot N_h d_h)$ | $O(L \cdot W)$ |
 | Streaming (S+W) | $O((S+W) \cdot N_h d_h)$ | $O((S+W)^2)$ |
 | Ring (P GPU) | $O(L \cdot N_h d_h / P)$ per GPU | $O(L^2 / P)$ per GPU |
-| MLA | $O(L \cdot (d_c + d_h^R))$ | + projection overhead |
+| MLA | $O(L \cdot N_h (d_c + d_h^R))$ | + projection overhead |
 
 ## §13 Overall Comparison and Selection Decision Tree
 
@@ -1178,7 +1180,7 @@ Pitfalls:
 ### A.1 RoPE engineering implementation points
 
 - **Pairing consistency**: even-odd interleaved vs front/back half must be consistent with the cache precomputation
-- **Half-dim attention**: cos/sin cache shape is $[L, d/2]$; when applying, broadcast to $[L, d]$ or multiply on the two halves separately
+- **Half-dim note**: cos/sin cache shape is $[L, d/2]$; when applying, broadcast to $[L, d]$ or multiply on the two halves separately
 - **dtype handling**: compute cos/sin in fp32 then cast to dtype, avoiding rotation angle cumulative error in fp16/bf16
 - **For YaRN**: the cos/sin cache has already been multiplied by $1/\sqrt{t}$; do not scale again inside attention
 - **For MLA**: the RoPE part and non-RoPE part of query / key must be concatenated (typically RoPE last); attention scale uses $\sqrt{d_h + d_h^R}$, not $\sqrt{d_h}$
@@ -1208,4 +1210,4 @@ Pitfalls:
 | 128K-2M | LongRoPE + fine-tune | MLA + Ring/CP |
 | Streaming generation | StreamingLLM (sink + window) | Any; cache is constant size |
 
-**Long Context Quick Reference** · Main references: Su et al. 2021/2024 (RoPE/RoFormer, Neurocomputing), Chen et al. 2023 (PI, arXiv:2306.15595, Meta), bloc97 / jquesnelle 2023 (NTK-aware, LocalLLaMA community), Peng et al. 2023 (YaRN, arXiv:2309.00071), Ding et al. 2024 (LongRoPE, ICML 2024, Microsoft), DeepSeek-AI 2024 (DeepSeek-V2, arXiv:2405.04434), Jiang et al. 2023 (Mistral 7B, arXiv:2310.06825), Xiao et al. 2024 (StreamingLLM, ICLR 2024), Nelson F. Liu et al. 2023 (Lost in the Middle, arXiv:2307.03172, TACL), Hao Liu et al. 2023 (Ring Attention, arXiv:2310.01889), Dao et al. 2022-2024 (FlashAttention 1/2/3)
+**Long Context Quick Reference** · Main references: Su et al. 2021/2024 (RoPE/RoFormer, Neurocomputing), Chen et al. 2023 (PI, arXiv:2306.15595, Meta), bloc97 / jquesnelle 2023 (NTK-aware, LocalLLaMA community), Peng et al. 2023 (YaRN, arXiv:2309.00071), Ding et al. 2024 (LongRoPE, ICML 2024, Microsoft), DeepSeek-AI 2024 (DeepSeek-V2, arXiv:2405.04434), Jiang et al. 2023 (Mistral 7B, arXiv:2310.06825), Xiao et al. 2024 (StreamingLLM, ICLR 2024), Nelson F. Liu et al. (Lost in the Middle, arXiv:2307.03172, arXiv 2023 / TACL 2024), Hao Liu et al. 2023 (Ring Attention, arXiv:2310.01889), Dao et al. 2022-2024 (FlashAttention 1/2/3)

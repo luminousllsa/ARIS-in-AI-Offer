@@ -1219,7 +1219,7 @@ Not knowing the loop structure of self-evolving; or treating WebRL as pure SFT.
 <summary>Q14. Why is self-rewarding LM more risky on agents than on alignment?</summary>
 
 - Alignment tasks have an "objective preference distribution"; LLM judges correlate reasonably with human eval
-- Agent tasks have **objective ground truth** (test pass / task success) — the judge itself can be wrong (mistaking correct for wrong)
+- Agent tasks have **objective ground truth** (test pass / task success) — the judge itself can be wrong (misjudging which answers are right vs wrong)
 - Iterative drift: each round reinforces "self-evaluated as correct" trajectories → drifts from ground truth
 - Exploration degeneration: self-eval prefers known patterns → suppresses new-tool exploration
 - Mainstream practice: agent RL prefers rule-based ground truth; self-rewarding only as open-ended task fallback
@@ -1423,7 +1423,7 @@ Listing only PPO without considering agent rollout infra; or not knowing the cur
 - May be RLHF on screenshot trajectories (pair-wise preference + task-success outcome mixture)
 - Possibly critic-free (echoing open-source trends like DeepSeek-R1 GRPO)
 - May use VLM-as-judge for screenshot understanding
-- Curriculum likely simple → complex
+- Curriculum may be simple → complex
 
 **In interviews, strictly distinguish "public capability" from "speculated internals"**: saying "Anthropic uses GRPO + screenshot RM" is wrong (no evidence); saying "I speculate it may use critic-free RL because Anthropic tends toward GRPO/RLHF-style in other scenarios" is the honest framing. This ability to distinguish is a plus in advanced interviews.
 

@@ -661,7 +661,7 @@ Reward hacking is the central pain point of RL post-training: the model finds bl
 2. **Early stopping by KL budget**: stop when $\text{KL}(\pi || \pi_\text{ref}) > K_\text{target}$.
 3. **Reward model ensemble** (Coste 2024 ICLR *Reward Model Ensembles Help Mitigate Overoptimization*): take min or mean - std of multiple RMs.
 4. **Reward shaping**: decompose reward into multiple terms (helpfulness + length + diversity), capping each individually.
-5. **Offline + online mix**: first DPO / KTO to get to ~70 points, then PPO + strong RM for the last mile.
+5. **Offline + online mix**: first DPO / KTO to get to 70 points, then PPO + strong RM for the last mile.
 6. **Composite reward**: weighted combination of rule-based + RM-based, the rule part cannot be hacked.
 
 ### 8.2　Gao 2023 scaling law
@@ -1121,3 +1121,5 @@ Organized by section, all verified by codex (gpt-5.5 xhigh) reviewer for correct
 - Xu et al. 2023 arXiv 2312.16682 *Some things are more CRINGE than others: Iterative Preference Optimization with the Pairwise Cringe Loss*
 - Yuan et al. 2024 ICML *Self-Rewarding Language Models*
 - Pal et al. 2024 arXiv 2402.13228 *Smaug: Fixing Failure Modes of Preference Optimisation with DPO-Positive*
+
+Code frameworks: TRL (HuggingFace), OpenRLHF, verl (ByteDance Seed), Axolotl, LLaMA-Factory, SimplePO. **verl is the current mainstream GRPO/RLOO/DAPO implementation**; most DeepSeek-line work reproduces on verl.

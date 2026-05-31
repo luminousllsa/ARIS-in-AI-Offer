@@ -1163,7 +1163,7 @@ Just writing the formula without explaining the motivation of $f$; not knowing t
 Objective: $\max_\pi \mathbb{E}_{y\sim\pi}[r(x,y)] - \beta\,\text{KL}(\pi\|\pi_\text{ref})$.
 
 1. Lagrangian: $\sum_y \pi r - \beta\sum_y\pi\log(\pi/\pi_\text{ref}) - \mu(\sum_y\pi - 1)$
-2. Differentiate w.r.t. $\pi(y) = 0$: $r - \beta(\log(\pi/\pi_\text{ref}) + 1) - \mu = 0$
+2. Differentiate w.r.t. $\pi(y)$ and set $= 0$: $r - \beta(\log(\pi/\pi_\text{ref}) + 1) - \mu = 0$
 3. Rearrange: $\log(\pi/\pi_\text{ref}) = (r - \mu - \beta)/\beta$
 4. Exponentiate: $\pi(y) = \pi_\text{ref}(y)\exp((r - \mu - \beta)/\beta)$
 5. Use $\sum_y\pi = 1$ to solve for $\mu$: $e^{(\mu+\beta)/\beta} = \sum_y\pi_\text{ref}\exp(r/\beta) = Z$

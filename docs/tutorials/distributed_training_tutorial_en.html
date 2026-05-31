@@ -7,8 +7,8 @@
 
 <meta name="generator" content="ARIS render-html (academic, v1)">
 <meta name="aris:source-path" content="docs/tutorials/distributed_training_tutorial_en.md">
-<meta name="aris:source-sha256" content="9ee6b9a3603bcd089bca124fa44f3bdb41d7b5604595f3a506cb9ff601bcd999">
-<meta name="aris:generated-at" content="2026-05-31 05:07 UTC">
+<meta name="aris:source-sha256" content="d77696a976be35a41d404ade3705509a81a2f588885557d88414715c5231ccf9">
+<meta name="aris:generated-at" content="2026-05-31 06:48 UTC">
 
 <!-- MathJax 3 -->
 <script>
@@ -659,8 +659,8 @@ body.aris-blog .aris-focus-toggle { display: inline-block; }
   
   <div class="meta">
     <span><strong>Source:</strong> <code>docs/tutorials/distributed_training_tutorial_en.md</code></span>
-    <span><strong>SHA256:</strong> <code>9ee6b9a3603b</code></span>
-    <span><strong>Rendered:</strong> 2026-05-31 05:07 UTC</span>
+    <span><strong>SHA256:</strong> <code>d77696a976be</code></span>
+    <span><strong>Rendered:</strong> 2026-05-31 06:48 UTC</span>
     
   </div>
 </header>
@@ -914,7 +914,7 @@ forward (qwZ):    weight_shard (fp16) ──quant──&gt; shard (int8)
                                         ──dequant──&gt; full (fp16) ──compute</code></pre>
 <p>Cost: do block-wise quantization / dequantization before and after each all-gather (typical block size 2048-4096 elements with per-block scale). Block-quant is much more precise than per-tensor quant, with &lt; 1% effect on training loss.</p>
 <h3 id="62-hpz-hierarchical-partition">6.2 hpZ: Hierarchical Partition</h3>
-<p>Observation: <strong>all-gather during backward is more expensive than during forward</strong> (deeper layers backprop first). <code>hpZ</code> <strong>replicates weight within a node</strong> (all NVLink), and shards across nodes:</p>
+<p>Observation: <strong>all-gather during backward is more expensive than during forward</strong> (deeper layers backprop first). <code>hpZ</code> <strong>replicates weight within a node</strong> (all NVLink), and does not shard across nodes:</p>
 <ul><li>Intra-node: 8 GPUs each hold the full weight (hpZ = intra-node DDP)</li><li>Inter-node: weight is sharded (still ZeRO-3 mode)</li></ul>
 <p>Backward's weight all-gather only goes intra-node (NVLink, cheap), not across IB. Cost: per-node memory grows 8× — but model states are already sharded across 1024 GPUs, so 8× is still much less than DDP.</p>
 <h3 id="63-qgz-quantized-gradient-reduce">6.3 qgZ: Quantized Gradient reduce</h3>
@@ -1031,7 +1031,7 @@ class TPTransformerMLP(nn.Module):
 <pre><code>TP-only:          [B, L, D]                       [B, L, D]
                   full replica                    full replica
                   ↓                                ↑
-                  LayerNorm  → split → Attention → all-gather → LayerNorm
+                  LayerNorm  → split → Attention → all-reduce → LayerNorm
                                        (TP)       
 
 TP + SP:          [B, L/T, D]                      [B, L/T, D]
@@ -1041,7 +1041,7 @@ TP + SP:          [B, L/T, D]                      [B, L/T, D]
                                           (TP)</code></pre>
 <p><strong>Key operation changes</strong>:</p>
 <ul><li>TP-only: forward inside attention/MLP requires broadcast / no-op at entry, all-reduce at exit</li><li>TP + SP: at entry <strong>all-gather</strong> (assemble the SP-sharded $L$ back to full length), at exit <strong>reduce-scatter</strong> (reduce the full length back to $L$ shard)</li></ul>
-<p>Communication volume: each transformer block under TP+SP needs 1× all-gather + 1× reduce-scatter (replacing pure-TP's 1× all-reduce); these have equal volume, so total is unchanged from pure TP. <strong>$\boxed{\text{Same total communication as pure TP}}$</strong> — but LayerNorm / Dropout activations drop from $BLD$ to $BLD/T$.</p>
+<p>Communication volume: a standard Megatron decoder block has <strong>two</strong> col/row-parallel pairs (attention + MLP), so each transformer block under TP+SP needs 2× all-gather + 2× reduce-scatter in forward (replacing pure-TP forward's 2× all-reduce), and forward + backward together match the 4× all-reduce equivalent of §7. Within each pair, an all-gather + reduce-scatter has the same volume as one all-reduce, so the total is identical to pure TP. <strong>$\boxed{\text{Same total communication as pure TP}}$</strong> — but LayerNorm / Dropout activations drop from $BLD$ to $BLD/T$.</p>
 <div class="callout callout-info"><div class="callout-title">Why SP has the same traffic as pure TP</div><p>because $\text{all-reduce} = \text{reduce-scatter} + \text{all-gather}$, pure TP's tail 1× all-reduce $= $ SP-mode 1× reduce-scatter + the following 1× all-gather (at next block's entry). <strong>Communication is redistributed; total is unchanged, but activation memory is saved</strong>.</p></div>
 <h3 id="83-how-much-activation-memory-does-sp-save-l3-question">8.3 How much activation memory does SP save (L3 question)</h3>
 <p>Let the <strong>non-sharded</strong> single transformer block total activation memory be $A = A_\text{in} + A_\text{out}$, where:</p>
@@ -1106,7 +1106,7 @@ Interleaved (P=4, V=2, L=8):
     &quot;&quot;&quot;
     # ===== Warm-up: stage_rank runs (P-1-stage_rank) forwards
     for i in range(num_warmup_microbatches):
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
@@ -1114,18 +1114,18 @@ Interleaved (P=4, V=2, L=8):
     num_microbatches_remaining = M - num_warmup_microbatches
     for i in range(num_microbatches_remaining):
         # forward
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
         # backward (the one previously forwarded, now arriving)
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)
 
     # ===== Cool-down: remaining backwards
     for i in range(num_warmup_microbatches):
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)</code></pre>
 <h3 id="96-pp-communication-characteristics">9.6 PP communication characteristics</h3>
@@ -1152,7 +1152,7 @@ Rank 1: Q[L/C:2L/C], K[L/C:2L/C], V[L/C:2L/C]
 <h3 id="111-basic-moe-structure">11.1 Basic MoE structure</h3>
 <p>Mixture-of-Experts replaces a single FFN with $E$ expert FFNs + a gate / router:</p>
 <p>$$y = \sum_{e=1}^E G_e(x) \cdot \text{Expert}_e(x), \quad G \in \mathbb{R}^E, \quad \sum_e G_e = 1$$</p>
-<p>In practice, use <strong>top-K routing</strong>: only pick the top $K$ experts (typically $K = 1, 2$), with other experts not computed. <strong>Compute is independent of expert count $E$; only depends on $K$</strong> — this is what lets MoE scale parameters.</p>
+<p>In practice, use <strong>top-K routing</strong>: only pick the top $K$ experts by largest gate output $G$ (typically $K = 1, 2$), with other experts not computed. <strong>Compute is independent of expert count $E$; only depends on $K$</strong> — this is what lets MoE scale parameters.</p>
 <h3 id="112-expert-parallel-experts-across-gpus">11.2 Expert Parallel: experts across GPUs</h3>
 <table><thead><tr><th>Mode</th><th>Experts per GPU</th><th>Communication</th></tr></thead><tbody><tr><td>Not parallel (replicate)</td><td>$E$</td><td>0</td></tr><tr><td>TP-style expert split</td><td>shard each expert, all GPUs compute each expert</td><td>many all-reduces</td></tr><tr><td><strong>EP</strong>: each GPU holds $E/N$ experts</td><td>$E/N$</td><td><strong>all-to-all</strong> dispatch + combine</td></tr></tbody></table>
 <p>EP forward:</p>
@@ -1266,7 +1266,7 @@ y = checkpoint(block_forward, x, use_reentrant=False)</code></pre>
 <ul><li><strong>Short-context phase (8K)</strong>: TP=8 × CP=1 × PP=16 × DP=128 = 16384</li><li><strong>Long-context phase (128K)</strong>: TP=8 × CP=16 × PP=16 × DP=8 = 16384</li></ul></li><li>Training precision: <strong>BF16</strong> (paper Table reports BF16 MFU); FP8 is used for inference quantization, <strong>not for 405B training</strong></li><li><strong>54 days, 466 interruptions</strong> (419 unexpected + 47 planned/maintenance), 78% of unexpected ones from hardware causes</li><li>Effective training time &gt; 90%</li></ul>
 <h3 id="132-deepseek-v3-training-topology-public">13.2 DeepSeek-V3 training topology (public)</h3>
 <p>DeepSeek 2024 (<a href="https://arxiv.org/abs/2412.19437">2412.19437</a>):</p>
-<ul><li>2048 H800 GPUs</li><li>Parallelism: TP=1 (<strong>no TP</strong>! offset by ZeRO + EP + PP) × PP=16 × EP=64 (across 8 nodes) × ZeRO-1 DP</li><li><strong>DualPipe</strong> bidirectional pipeline (see next section) + all-to-all overlap</li><li>fp8 GEMM + bf16 accumulation</li></ul>
+<ul><li>2048 H800 GPUs</li><li>Parallelism: TP=1 (<strong>no TP</strong>! offset by ZeRO + EP + PP) × PP=16 × EP=64 (across 8 nodes) × ZeRO-1 DP</li><li><strong>DualPipe</strong> bidirectional pipeline (see next section) + all-to-all overlap</li><li>fp8 GEMM + FP32 accumulation (promoted on CUDA cores)</li></ul>
 <div class="callout callout-info"><div class="callout-title">Why DeepSeek-V3 doesn&#x27;t use TP</div><p>V3 uses MLA (multi-head latent attention) + many MoE experts; TP-on-head returns are small (the latent attention head dim is already small); and EP's all-to-all overlap with DualPipe hides communication completely. The combination <strong>PP × EP × ZeRO</strong> is enough to fit 671B parameters.</p></div>
 <h2 id="14-dualpipe--the-2024-pipeline-frontier">§14 DualPipe — the 2024 pipeline frontier</h2>
 <p>DeepSeek 2024's <strong>DualPipe</strong> algorithm, published in the V3 paper and an independent repo (arXiv 2412.19437 + github.com/deepseek-ai/DualPipe).</p>
@@ -1283,7 +1283,7 @@ Reverse-direction micro-batch: ...[F4&#x27;][F3&#x27;][F2&#x27;][F1&#x27;]
 Stage 0: simultaneously processes forward&#x27;s F + reverse&#x27;s F&#x27; + corresponding B  ← compute / comms fully overlap</code></pre>
 <p>More precisely: DualPipe designs a <strong>bidirectional schedule</strong> in which every GPU at every time has two micro-batches in overlapped forward / backward execution; expert-parallel all-to-all communication is also hidden in the gaps of the two micro-batch streams.</p>
 <h3 id="142-dualpipe-vs-vanilla-1f1b-properties">14.2 DualPipe vs vanilla 1F1B properties</h3>
-<table><thead><tr><th>Dimension</th><th>1F1B</th><th>Interleaved 1F1B</th><th>DualPipe</th></tr></thead><tbody><tr><td>Bubble</td><td>$(P-1)/(M+P-1)$</td><td>$(P-1)/(VM+P-1)$</td><td><strong>ideally 0</strong> (warm-up / cool-down complementary)</td></tr><tr><td>Activation memory</td><td>$P$ × per stage</td><td>$V \cdot P$ ×</td><td>$\approx 2 \times P$</td></tr><tr><td>Communication overlap</td><td>partial</td><td>same as 1F1B</td><td><strong>near-100% all-to-all overlap</strong></td></tr><tr><td>Implementation complexity</td><td>medium</td><td>high</td><td>very high (needs forward &amp; reverse scheduling)</td></tr></tbody></table>
+<table><thead><tr><th>Dimension</th><th>1F1B</th><th>Interleaved 1F1B</th><th>DualPipe</th></tr></thead><tbody><tr><td>Bubble</td><td>$(P-1)/(M+P-1)$</td><td>$(P-1)/(VM+P-1)$</td><td><strong>approaches 0 / greatly reduced</strong> (warm-up / cool-down complementary; not a strict zero-bubble schedule)</td></tr><tr><td>Activation memory</td><td>$P$ × per stage</td><td>$V \cdot P$ ×</td><td>$\approx 2 \times P$</td></tr><tr><td>Communication overlap</td><td>partial</td><td>same as 1F1B</td><td><strong>near-100% all-to-all overlap</strong></td></tr><tr><td>Implementation complexity</td><td>medium</td><td>high</td><td>very high (needs forward &amp; reverse scheduling)</td></tr></tbody></table>
 <h3 id="143-dualpipe-costs">14.3 DualPipe costs</h3>
 <ul><li><strong>Massive code complexity</strong>: a stage simultaneously runs forward (direction 1) + forward (direction 2) + backward; CUDA stream management is very hard</li><li><strong>2× activation memory</strong>: both directions must store activations, $\approx 2\times$ over 1F1B</li><li><strong>Stages must be balanced</strong>: any stuck stage blocks both directions</li></ul>
 <p>DeepSeek uses DualPipe because EP all-to-all traffic is so heavy it must be hidden. <strong>For ordinary training, vanilla 1F1B is sufficient</strong>.</p>
@@ -1505,7 +1505,7 @@ future.result()                 # wait if needed</code></pre>
 <details>
 
 <summary>Q24. Core improvement of DualPipe over 1F1B?</summary>
-<ul><li><strong>Bidirectional pipeline</strong>: one group of micro-batches goes stage 0 → P, another P → 0</li><li>Meeting in the middle, they exactly fill 1F1B's warm-up / cool-down bubble</li><li><strong>Theoretical bubble = 0</strong> (ideal case, two sides complementary)</li><li>Key gain: <strong>all-to-all comms fully overlap</strong> (important for EP)</li><li>Cost: activation memory × 2 (both directions store activations); extremely complex implementation</li><li>DeepSeek-V3 December 2024 (arXiv 2412.19437) + github.com/deepseek-ai/DualPipe</li></ul>
+<ul><li><strong>Bidirectional pipeline</strong>: one group of micro-batches goes stage 0 → P, another P → 0</li><li>Meeting in the middle, they exactly fill 1F1B's warm-up / cool-down bubble</li><li><strong>Bubble greatly reduced, approaches 0</strong> (ideally the two sides are complementary, but DeepSeek-V3 Table 2 gives a non-zero bubble expression — it is not a strict zero-bubble schedule)</li><li>Key gain: <strong>all-to-all comms fully overlap</strong> (important for EP)</li><li>Cost: activation memory × 2 (both directions store activations); extremely complex implementation</li><li>DeepSeek-V3 December 2024 (arXiv 2412.19437) + github.com/deepseek-ai/DualPipe</li></ul>
 <p>Footgun: saying "DualPipe is a new way to shard PP" — it's a new schedule; or forgetting the 2× activation cost.</p>
 </details>
 <details>
@@ -1514,7 +1514,7 @@ future.result()                 # wait if needed</code></pre>
 <ul><li><strong>5 orthogonal dimensions</strong>: DP / FSDP × TP × PP × CP × EP</li><li>World size $W = D \times T \times P \times C \times E$</li><li><p>Rules of thumb:</p>
 <ul><li>TP=8 (must fit in one NVLink domain)</li><li>PP=8-32 (OK across nodes via IB; bubble controlled via $M \geq 4P$)</li><li>CP depends on context length (Llama 3 uses CP=16 at 128K; 1M may need CP=64+)</li><li>EP depends on MoE expert count (DeepSeek-V3 uses EP=64)</li><li>FSDP / DP uses the remaining world size</li></ul></li><li><p><strong>Llama 3 405B</strong> (16K GPUs constant, CP up means DP down):</p>
 <ul><li>8K context: TP=8 × CP=1 × PP=16 × DP=128</li><li>128K context: TP=8 × CP=16 × PP=16 × DP=8</li></ul></li><li><strong>DeepSeek-V3 671B</strong>: TP=1 + PP=16 × EP=64 × ZeRO-1 DP=2, 2048 H800s total</li><li><p><strong>Key engineering points</strong>:</p>
-<ul><li>Place communication primitives on the right topology (TP on NVLink, PP / DP on IB)</li><li>DualPipe / Interleaved 1F1B to compress PP bubble</li><li>FlashAttention v3 + SP / CP to compress activations</li><li>fp8 GEMM (H100 / B100) + bf16 accumulation to lift throughput</li></ul></li></ul>
+<ul><li>Place communication primitives on the right topology (TP on NVLink, PP / DP on IB)</li><li>DualPipe / Interleaved 1F1B to compress PP bubble</li><li>FlashAttention v3 + SP / CP to compress activations</li><li>fp8 GEMM (H100 / B100) + FP32 accumulation (promoted on CUDA cores) to lift throughput</li></ul></li></ul>
 <p>Footgun: reversing the dimension order; forgetting TP must be intra-node; thinking DeepSeek uses TP (V3 actually has TP=1).</p>
 </details>
 <h2 id="a-appendix-complete-4d-wrap-code-skeleton">§A Appendix: complete 4D wrap code skeleton</h2>
@@ -1615,8 +1615,8 @@ def train_step_4d(pp_stage, schedule, optimizer, batch):
 <footer class="aris-footer">
   Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
   source path <code>docs/tutorials/distributed_training_tutorial_en.md</code> ·
-  SHA256 <code>9ee6b9a3603b</code> ·
-  generated at 2026-05-31 05:07 UTC.
+  SHA256 <code>d77696a976be</code> ·
+  generated at 2026-05-31 06:48 UTC.
   This is a generated view — edit the source Markdown, then re-render.
 </footer>
 </main>

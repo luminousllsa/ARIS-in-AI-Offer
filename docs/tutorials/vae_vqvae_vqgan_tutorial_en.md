@@ -778,7 +778,7 @@ $$\mathcal{L}_\text{FSQ} = \|x - \hat{x}\|^2 \quad \text{(plus optional perceptu
 ```python
 class FSQ(nn.Module):
     """ Finite Scalar Quantization (Mentzer et al., ICLR 2024)
-        levels: tuple, number of quantization levels per dim (must be all odd or all even, odd guarantees 0 included)
+        levels: tuple, number of quantization levels per dim (odd or even both work; odd guarantees 0 is included in the grid)
         eps:    bounding safety margin, avoiding round jumping out of grid after tanh """
 
     def __init__(self, levels=(8, 5, 5, 5)):

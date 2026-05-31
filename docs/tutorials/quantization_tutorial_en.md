@@ -72,7 +72,7 @@ Rounding error $\epsilon = x - \hat{x}$ is approximately uniform over $[-s/2, s/
 
 $$\mathrm{SNR} = 10 \log_{10} \frac{\sigma^2}{s^2/12} = 10 \log_{10}(12) + 20 \log_{10}\frac{\sigma}{s}$$
 
-When INT8 is applied to $\mathcal{N}(0, 1)$ with $\beta = 3\sigma$ truncation, each bit reduction lowers SNR by ~6 dB (each bit increase doubles the quant step → SNR decreases by $20\log_{10} 2 \approx 6$ dB). But for LLMs the actual measure is PPL / task metrics, far more complex than SNR.
+When INT8 is applied to $\mathcal{N}(0, 1)$ with $\beta = 3\sigma$ truncation, each bit reduction lowers SNR by ~6 dB (removing a bit doubles the quant step → SNR decreases by $20\log_{10} 2 \approx 6$ dB). But for LLMs the actual measure is PPL / task metrics, far more complex than SNR.
 
 ### 2.3 Granularity
 
