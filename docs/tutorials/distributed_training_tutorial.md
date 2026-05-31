@@ -589,7 +589,7 @@ TP 把 attention / MLP 的中间 activation 切了（沿 head / hidden 维），
 TP-only:          [B, L, D]                       [B, L, D]
                   全副本                          全副本
                   ↓                                ↑
-                  LayerNorm  → split → Attention → all-gather → LayerNorm
+                  LayerNorm  → split → Attention → all-reduce → LayerNorm
                                        (TP)       
 
 TP + SP:          [B, L/T, D]                      [B, L/T, D]
@@ -604,7 +604,7 @@ TP + SP:          [B, L/T, D]                      [B, L/T, D]
 - TP-only: forward 内 attention/MLP 入口处需要 broadcast / 退化为 no-op，出口 all-reduce
 - TP + SP: 入口处 **all-gather**（把 SP 切的 L 维拼回全长），出口 **reduce-scatter**（把全长 reduce 再切回 L 维）
 
-通信量：每个 transformer block 在 TP+SP 下需要 1× all-gather + 1× reduce-scatter（替换纯 TP 的 1× all-reduce），二者通信量等价，总量与纯 TP 一致。**$\boxed{\text{通信量与纯 TP 完全相同}}$**——但 LayerNorm / Dropout 的 activation 从 $BLD$ 降到 $BLD/T$。
+通信量：标准 Megatron decoder block 有 attention + MLP **两对** col/row-parallel，所以每个 transformer block 在 TP+SP 下 forward 需要 2× all-gather + 2× reduce-scatter（替换纯 TP forward 的 2× all-reduce），forward + backward 合起来对应 §7 的 4× all-reduce 等价量。每对里 all-gather + reduce-scatter 与一次 all-reduce 通信量等价，总量与纯 TP 一致。**$\boxed{\text{通信量与纯 TP 完全相同}}$**——但 LayerNorm / Dropout 的 activation 从 $BLD$ 降到 $BLD/T$。
 
 > 💡 **SP 通信量为什么和纯 TP 一样** — 因为 $\text{all-reduce} = \text{reduce-scatter} + \text{all-gather}$，纯 TP 末端 1× all-reduce $= $ SP 模式下 1× reduce-scatter + 后续 1× all-gather（next block 入口）。**通信被重新分布，总量不变，但 activation 显存省下来了**。
 
@@ -721,7 +721,7 @@ def one_f_one_b_schedule(P, M, stage_rank, num_warmup_microbatches):
     """
     # ===== Warm-up: stage_rank 走 (P-1-stage_rank) 个 forward
     for i in range(num_warmup_microbatches):
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
@@ -729,18 +729,18 @@ def one_f_one_b_schedule(P, M, stage_rank, num_warmup_microbatches):
     num_microbatches_remaining = M - num_warmup_microbatches
     for i in range(num_microbatches_remaining):
         # forward
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
         # backward (前面 forward 过、现在到的)
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)
 
     # ===== Cool-down: 剩余 backward
     for i in range(num_warmup_microbatches):
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)
 ```
@@ -971,7 +971,7 @@ DeepSeek 2024 报告 ([2412.19437](https://arxiv.org/abs/2412.19437))：
 - 2048 H800 GPUs
 - Parallelism: TP=1（**无 TP**！靠 ZeRO + EP + PP 弥补） × PP=16 × EP=64（跨 8 节点） × ZeRO-1 DP
 - **DualPipe** 双向流水（详见下节）+ all-to-all overlap
-- fp8 GEMM + bf16 accumulation
+- fp8 GEMM + FP32 accumulation (promoted on CUDA cores)
 
 > 💡 **DeepSeek-V3 为什么不用 TP** — V3 用了 MLA (multi-head latent attention) + 大量 MoE expert，TP 切 head 收益小（latent attention head 维已经很小）；而 EP 的 all-to-all overlap 配合 DualPipe 把通信全藏起来。整体 **PP × EP × ZeRO** 已够装下 671B 参数。
 
@@ -1001,7 +1001,7 @@ Stage 0: 同时 process Forward 的 F + Reverse 的 F' + 对应 B  ← 计算 / 
 
 | 维度 | 1F1B | Interleaved 1F1B | DualPipe |
 |---|---|---|---|
-| Bubble | $(P-1)/(M+P-1)$ | $(P-1)/(VM+P-1)$ | **理想 0** (warm-up / cool-down 互补) |
+| Bubble | $(P-1)/(M+P-1)$ | $(P-1)/(VM+P-1)$ | **接近 0**（warm-up / cool-down 互补，非严格零） |
 | Activation memory | $P$ × per stage | $V \cdot P$ × | $\approx 2 \times P$ |
 | 通信 overlap | 部分 | 同 1F1B | **几乎 100% all-to-all overlap** |
 | 实现复杂度 | 中 | 高 | 极高（需 forward & reverse 调度） |
@@ -1433,7 +1433,7 @@ DCP（Distributed Checkpoint）配合 FSDP2 的 sharded state dict，**单 check
 
 - **双向流水线**：一组 micro-batch 从 stage 0 → P，另一组从 P → 0
 - 两组在中间相遇时刚好填满 1F1B 的 warm-up / cool-down bubble
-- **理论 bubble = 0**（理想下两侧互补）
+- **bubble 大幅降低、接近 0**（理想下两侧互补，但 DeepSeek-V3 Table 2 给的是非零 bubble 表达式，并非严格零-bubble 调度）
 - 关键收益：**all-to-all 通信完全 overlap**（EP 重要）
 - 代价：activation memory $\times 2$（两个方向都要存）；实现极复杂
 - DeepSeek-V3 December 2024 报告 (arXiv 2412.19437) + github.com/deepseek-ai/DualPipe
@@ -1462,7 +1462,7 @@ DCP（Distributed Checkpoint）配合 FSDP2 的 sharded state dict，**单 check
   - 通信原语按拓扑放（TP 走 NVLink，PP / DP 走 IB）
   - DualPipe / Interleaved 1F1B 压 PP bubble
   - FlashAttention v3 + SP / CP 压 activation
-  - fp8 GEMM（H100 / B100）+ bf16 accumulation 提 throughput
+  - fp8 GEMM（H100 / B100）+ FP32 accumulation (promoted on CUDA cores) 提 throughput
 
 陷阱：把维度顺序搞反；忘了 TP 必须节点内；以为 DeepSeek 用了 TP（V3 实际 TP=1）。
 

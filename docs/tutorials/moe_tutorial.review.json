@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/moe_tutorial.md",
+  "source_sha256": "e860589270ed447981c868a7e0f0ba51ac8917a8908580825403af8205baf3b1",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/moe_tutorial.html",
   "topic": "MoE (Mixture-of-Experts) — DeepSeek-V3 / Mixtral / Llama 4 / Qwen-MoE",
   "effort": "max",

@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/vlm_multimodal_tutorial_en.md",
+  "source_sha256": "6472f6d9202d3190c9d00f0c1433ad10b099f9c07bdbaa1e59cf94b71c4f4a85",
+  "output": "docs/tutorials/vlm_multimodal_tutorial_en.html",
+  "zh_source": "docs/tutorials/vlm_multimodal_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cc2-b79a-7332-9e0d-6328adb9b39e",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cc2-b79a-7332-9e0d-6328adb9b39e",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh, thread 019e7cc2-b79a-7332-9e0d-6328adb9b39e) audited the English edition /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/vlm_multimodal_tutorial_en.md and its rendered /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/vlm_multimodal_tutorial_en.html against the Chinese source of truth /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/vlm_multimodal_tutorial.md. Verdict: PASS, zero issues. Both markdown files share an identical 1446-line structure, enabling a line-by-line / section-by-section comparison. Codex confirmed all four fidelity dimens"
+  },
+  "rendered_at": "2026-05-31"
+}

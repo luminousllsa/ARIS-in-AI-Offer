@@ -423,7 +423,7 @@ Cost: do block-wise quantization / dequantization before and after each all-gath
 
 ### 6.2 hpZ: Hierarchical Partition
 
-Observation: **all-gather during backward is more expensive than during forward** (deeper layers backprop first). `hpZ` **replicates weight within a node** (all NVLink), and shards across nodes:
+Observation: **all-gather during backward is more expensive than during forward** (deeper layers backprop first). `hpZ` **replicates weight within a node** (all NVLink), and does not shard across nodes:
 
 - Intra-node: 8 GPUs each hold the full weight (hpZ = intra-node DDP)
 - Inter-node: weight is sharded (still ZeRO-3 mode)
@@ -589,7 +589,7 @@ Shard the non-TP activations along $L$ (sequence) across TP ranks too.
 TP-only:          [B, L, D]                       [B, L, D]
                   full replica                    full replica
                   ↓                                ↑
-                  LayerNorm  → split → Attention → all-gather → LayerNorm
+                  LayerNorm  → split → Attention → all-reduce → LayerNorm
                                        (TP)       
 
 TP + SP:          [B, L/T, D]                      [B, L/T, D]
@@ -604,7 +604,7 @@ TP + SP:          [B, L/T, D]                      [B, L/T, D]
 - TP-only: forward inside attention/MLP requires broadcast / no-op at entry, all-reduce at exit
 - TP + SP: at entry **all-gather** (assemble the SP-sharded $L$ back to full length), at exit **reduce-scatter** (reduce the full length back to $L$ shard)
 
-Communication volume: each transformer block under TP+SP needs 1× all-gather + 1× reduce-scatter (replacing pure-TP's 1× all-reduce); these have equal volume, so total is unchanged from pure TP. **$\boxed{\text{Same total communication as pure TP}}$** — but LayerNorm / Dropout activations drop from $BLD$ to $BLD/T$.
+Communication volume: a standard Megatron decoder block has **two** col/row-parallel pairs (attention + MLP), so each transformer block under TP+SP needs 2× all-gather + 2× reduce-scatter in forward (replacing pure-TP forward's 2× all-reduce), and forward + backward together match the 4× all-reduce equivalent of §7. Within each pair, an all-gather + reduce-scatter has the same volume as one all-reduce, so the total is identical to pure TP. **$\boxed{\text{Same total communication as pure TP}}$** — but LayerNorm / Dropout activations drop from $BLD$ to $BLD/T$.
 
 > 💡 **Why SP has the same traffic as pure TP** — because $\text{all-reduce} = \text{reduce-scatter} + \text{all-gather}$, pure TP's tail 1× all-reduce $= $ SP-mode 1× reduce-scatter + the following 1× all-gather (at next block's entry). **Communication is redistributed; total is unchanged, but activation memory is saved**.
 
@@ -721,7 +721,7 @@ def one_f_one_b_schedule(P, M, stage_rank, num_warmup_microbatches):
     """
     # ===== Warm-up: stage_rank runs (P-1-stage_rank) forwards
     for i in range(num_warmup_microbatches):
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
@@ -729,18 +729,18 @@ def one_f_one_b_schedule(P, M, stage_rank, num_warmup_microbatches):
     num_microbatches_remaining = M - num_warmup_microbatches
     for i in range(num_microbatches_remaining):
         # forward
-        recv_activation_from_prev_stage()
+        activation = recv_activation_from_prev_stage()
         out = forward(model, activation)
         send_activation_to_next_stage(out)
 
         # backward (the one previously forwarded, now arriving)
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)
 
     # ===== Cool-down: remaining backwards
     for i in range(num_warmup_microbatches):
-        recv_grad_from_next_stage()
+        grad_out = recv_grad_from_next_stage()
         grad_in = backward(model, grad_out)
         send_grad_to_prev_stage(grad_in)
 ```
@@ -800,7 +800,7 @@ Mixture-of-Experts replaces a single FFN with $E$ expert FFNs + a gate / router:
 
 $$y = \sum_{e=1}^E G_e(x) \cdot \text{Expert}_e(x), \quad G \in \mathbb{R}^E, \quad \sum_e G_e = 1$$
 
-In practice, use **top-K routing**: only pick the top $K$ experts (typically $K = 1, 2$), with other experts not computed. **Compute is independent of expert count $E$; only depends on $K$** — this is what lets MoE scale parameters.
+In practice, use **top-K routing**: only pick the top $K$ experts by largest gate output $G$ (typically $K = 1, 2$), with other experts not computed. **Compute is independent of expert count $E$; only depends on $K$** — this is what lets MoE scale parameters.
 
 ### 11.2 Expert Parallel: experts across GPUs
 
@@ -971,7 +971,7 @@ DeepSeek 2024 ([2412.19437](https://arxiv.org/abs/2412.19437)):
 - 2048 H800 GPUs
 - Parallelism: TP=1 (**no TP**! offset by ZeRO + EP + PP) × PP=16 × EP=64 (across 8 nodes) × ZeRO-1 DP
 - **DualPipe** bidirectional pipeline (see next section) + all-to-all overlap
-- fp8 GEMM + bf16 accumulation
+- fp8 GEMM + FP32 accumulation (promoted on CUDA cores)
 
 > 💡 **Why DeepSeek-V3 doesn't use TP** — V3 uses MLA (multi-head latent attention) + many MoE experts; TP-on-head returns are small (the latent attention head dim is already small); and EP's all-to-all overlap with DualPipe hides communication completely. The combination **PP × EP × ZeRO** is enough to fit 671B parameters.
 
@@ -1001,7 +1001,7 @@ More precisely: DualPipe designs a **bidirectional schedule** in which every GPU
 
 | Dimension | 1F1B | Interleaved 1F1B | DualPipe |
 |---|---|---|---|
-| Bubble | $(P-1)/(M+P-1)$ | $(P-1)/(VM+P-1)$ | **ideally 0** (warm-up / cool-down complementary) |
+| Bubble | $(P-1)/(M+P-1)$ | $(P-1)/(VM+P-1)$ | **approaches 0 / greatly reduced** (warm-up / cool-down complementary; not a strict zero-bubble schedule) |
 | Activation memory | $P$ × per stage | $V \cdot P$ × | $\approx 2 \times P$ |
 | Communication overlap | partial | same as 1F1B | **near-100% all-to-all overlap** |
 | Implementation complexity | medium | high | very high (needs forward & reverse scheduling) |
@@ -1433,7 +1433,7 @@ Footgun: saying "SP reduces activation by $T$×" — imprecise, only for the TP-
 
 - **Bidirectional pipeline**: one group of micro-batches goes stage 0 → P, another P → 0
 - Meeting in the middle, they exactly fill 1F1B's warm-up / cool-down bubble
-- **Theoretical bubble = 0** (ideal case, two sides complementary)
+- **Bubble greatly reduced, approaches 0** (ideally the two sides are complementary, but DeepSeek-V3 Table 2 gives a non-zero bubble expression — it is not a strict zero-bubble schedule)
 - Key gain: **all-to-all comms fully overlap** (important for EP)
 - Cost: activation memory × 2 (both directions store activations); extremely complex implementation
 - DeepSeek-V3 December 2024 (arXiv 2412.19437) + github.com/deepseek-ai/DualPipe
@@ -1462,7 +1462,7 @@ Footgun: saying "DualPipe is a new way to shard PP" — it's a new schedule; or 
   - Place communication primitives on the right topology (TP on NVLink, PP / DP on IB)
   - DualPipe / Interleaved 1F1B to compress PP bubble
   - FlashAttention v3 + SP / CP to compress activations
-  - fp8 GEMM (H100 / B100) + bf16 accumulation to lift throughput
+  - fp8 GEMM (H100 / B100) + FP32 accumulation (promoted on CUDA cores) to lift throughput
 
 Footgun: reversing the dimension order; forgetting TP must be intra-node; thinking DeepSeek uses TP (V3 actually has TP=1).
 

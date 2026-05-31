@@ -47,6 +47,7 @@ from pathlib import Path
 # severity: 0 = ok, 1 = warn (catalogued), 2 = hard (breaks a shippable claim)
 OK = "OK"
 HTML_STALE = "HTML_STALE"
+HTML_TAMPERED = "HTML_TAMPERED"           # served HTML != a fresh re-render of its source (hand-edited body)
 HTML_HASH_MISSING = "HTML_HASH_MISSING"   # managed HTML lacks aris:source-sha256 (can't prove freshness)
 SOURCE_MISSING = "SOURCE_MISSING"
 JSON_UNPARSEABLE = "JSON_UNPARSEABLE"
@@ -56,6 +57,7 @@ SIDECAR_META_MISSING = "SIDECAR_META_MISSING"  # sidecar present but records no 
 NO_THREAD_ID = "NO_THREAD_ID"             # shippable + fresh, but no codex thread id recorded
 NO_SIDECAR = "NO_SIDECAR"                 # managed HTML (has aris:source meta) but no .review.json
 UNMANAGED = "UNMANAGED"                   # HTML with no aris:source meta (not a render_html.py product)
+EXEMPT = "EXEMPT"                         # an UNMANAGED artifact explicitly allowlisted (e.g. a hand-authored blog)
 
 SEVERITY = {
     OK: 0,
@@ -65,7 +67,9 @@ SEVERITY = {
     HTML_HASH_MISSING: 1,
     NO_SIDECAR: 1,
     UNMANAGED: 1,
+    EXEMPT: 0,
     HTML_STALE: 2,
+    HTML_TAMPERED: 2,
     SOURCE_MISSING: 2,
     JSON_UNPARSEABLE: 2,
     REVIEW_INCOMPLETE: 2,
@@ -76,6 +80,32 @@ SEVERITY = {
 # "PASS"/"WARN" ship; anything leading with FAIL/DEFERRED/ERROR/BLOCKED/REVIEW
 # (or no verdict at all) is treated as not-cleanly-reviewed.
 SHIPPABLE_TOKENS = {"PASS", "WARN"}
+
+# Limitations (this is a STRUCTURAL gate, not cryptographic attestation):
+#  - The structural pass checks the HTML's recorded source hash against the current
+#    source, but not the HTML body. Pass --reproduce to additionally re-render each
+#    managed HTML from its source (using the committed render manifest flags) and diff
+#    modulo the generation timestamp — this catches a hand-edited HTML body whose
+#    source/meta were left untouched. CI runs --mode strict --reproduce.
+#  - Sidecars are self-attesting: a PR editing both an artifact and its .review.json
+#    can satisfy the checks. The backstop is human PR review + thread_ids that trace
+#    to real Codex runs.
+#  - TCB: --reproduce re-renders with the working-tree render_html.py + tools/templates/
+#    + the render manifest, so those three are TRUSTED. A malicious change to any of them
+#    could inject content and a matching HTML that still reproduces. CI re-runs on changes
+#    to them (paths filter), but the real backstop is human review — treat renderer /
+#    template / manifest edits as high-trust.
+#
+# Artifacts intentionally OUTSIDE the audited render pipeline (hand-authored, not
+# a render_html.py product). An exemption can ONLY downgrade an UNMANAGED artifact
+# to EXEMPT — it can NEVER mask a hard failure of a *managed* artifact (a broken
+# tutorial still fails). Keep this list short, explicit, and reasoned; the report
+# prints every exemption so it is never a silent bypass.
+EXEMPTIONS = {
+    "docs/blogs/continuous_dlm_2026h1_survey.html":
+        "hand-authored long-form HTML, intentionally outside the audited /render-html "
+        "pipeline (README states this); not a render_html.py product.",
+}
 
 META_RE = re.compile(
     r'<meta\s+name="(aris:[a-z0-9:_-]+)"\s+content="([^"]*)"\s*/?>',
@@ -202,6 +232,76 @@ def hash_matches(recorded: str, current_full: str) -> bool:
 
 # --- core classification ----------------------------------------------------
 
+# The ONLY non-deterministic bytes in a render_html.py output are the UTC generation
+# timestamp, emitted in exactly three template-generated spots. Normalize ONLY those
+# spots (not a global timestamp strip) so a same-format timestamp appearing in body
+# content can't be used to hide a tamper.
+_TS = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC"
+_TS_PATTERNS = [
+    re.compile(r'(name="aris:generated-at" content=")' + _TS),
+    re.compile(r'(Rendered:</strong>\s*)' + _TS),
+    re.compile(r'(generated at\s+)' + _TS),
+]
+
+
+def _normalize(text: str) -> str:
+    for rx in _TS_PATTERNS:
+        text = rx.sub(r"\1<TS>", text)
+    return text
+
+
+def load_render_manifest(root: Path):
+    """Return the render manifest dict, or None if missing/unparseable. None is FATAL
+    for --reproduce: we must never silently fall back to an empty manifest, which would
+    skip every artifact (fail-open)."""
+    p = root / "tools" / "tutorials_render_manifest.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def reproduce_check(html_path: Path, root: Path, manifest: dict) -> tuple[bool, str]:
+    """Re-render the artifact from its source Markdown using the committed manifest
+    flags and compare (modulo timestamp) to the committed HTML. A mismatch means the
+    served HTML does not match what its source renders to — i.e. the HTML was
+    hand-edited. Artifacts absent from the manifest are skipped (ok=True)."""
+    import subprocess
+    import tempfile
+    rel = html_path.relative_to(root).as_posix()
+    entry = manifest.get(rel)
+    if not entry:
+        # Fail closed: a managed render product (this is only called on structurally-OK
+        # artifacts, which by definition have aris:source meta) MUST be in the manifest,
+        # else its body can't be re-derived and a tamper could hide by deleting the entry.
+        return False, "managed render product is absent from the render manifest — cannot verify (fail closed)"
+    md = root / entry.get("md", "")
+    if not md.is_file():
+        return False, f"manifest source {entry.get('md')!r} missing"
+    render = root / "tools" / "render_html.py"
+    with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tf:
+        tmp = Path(tf.name)
+    try:
+        cmd = [sys.executable, str(render), str(md), "--template", "academic",
+               "--out", str(tmp), "--lang", entry.get("lang", "zh-CN")]
+        for flag, key in (("--title", "title"), ("--eyebrow", "eyebrow"),
+                          ("--subtitle", "subtitle"), ("--author", "author")):
+            if entry.get(key):
+                cmd += [flag, entry[key]]
+        if entry.get("blog_mode"):
+            cmd += ["--blog-mode"]
+        res = subprocess.run(cmd, capture_output=True, text=True, cwd=str(root))
+        if res.returncode != 0:
+            return False, f"re-render failed: {res.stderr.strip()[:160]}"
+        committed = _normalize(html_path.read_text(encoding="utf-8", errors="replace"))
+        fresh = _normalize(tmp.read_text(encoding="utf-8", errors="replace"))
+        if committed == fresh:
+            return True, "HTML matches a fresh re-render of its source"
+        return False, "served HTML does NOT match a fresh re-render of its source — hand-edited?"
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 def classify(html_path: Path, root: Path) -> Record:
     rel_html = html_path.relative_to(root).as_posix()
     text = html_path.read_text(encoding="utf-8", errors="replace")
@@ -211,6 +311,15 @@ def classify(html_path: Path, root: Path) -> Record:
     html_embedded_hash = meta.get("aris:source-sha256", "")
 
     if not src_rel:
+        # An UNMANAGED artifact may be explicitly allowlisted (e.g. a hand-authored
+        # blog). Exemption applies ONLY here — it can never reach a managed artifact's
+        # hard failure below, so it cannot be used to hide a broken tutorial.
+        # Governance guard: never honour an exemption for a render-product location
+        # (docs/tutorials/*). Tutorials must ALWAYS be reviewed; refusing to exempt
+        # them closes the "strip a tutorial's aris:source meta, then allowlist it" hole.
+        if rel_html in EXEMPTIONS and not rel_html.startswith("docs/tutorials/"):
+            return Record(html=rel_html, status=EXEMPT,
+                          detail=f"exempt — {EXEMPTIONS[rel_html]}")
         return Record(html=rel_html, status=UNMANAGED,
                       detail="no aris:source-path meta — not a render_html.py product "
                              "(hand-authored HTML; outside the audited render pipeline)")
@@ -302,13 +411,10 @@ def classify(html_path: Path, root: Path) -> Record:
 
 
 def default_targets(root: Path) -> list[Path]:
-    targets: list[Path] = []
-    targets += sorted((root / "docs" / "tutorials").glob("*.html"))
-    targets += sorted((root / "docs" / "blogs").glob("*.html"))
-    idx = root / "docs" / "index.html"
-    if idx.is_file():
-        targets.append(idx)
-    return targets
+    # Scan EVERY shippable HTML under docs/ recursively, so a new docs/ subdir can't
+    # silently escape the gate. Per-artifact exemptions handle intentional exceptions.
+    docs = root / "docs"
+    return sorted(docs.rglob("*.html")) if docs.is_dir() else []
 
 
 def main() -> int:
@@ -316,6 +422,9 @@ def main() -> int:
     ap.add_argument("--mode", choices=["bootstrap", "strict"], default="bootstrap",
                     help="bootstrap (default): only hard breakage fails. strict: any non-OK fails.")
     ap.add_argument("--json", action="store_true", help="emit a machine-readable JSON report")
+    ap.add_argument("--reproduce", action="store_true",
+                    help="also re-render each managed HTML from its source and diff (modulo timestamp) "
+                         "to catch a hand-edited HTML body whose source/meta were left untouched")
     ap.add_argument("paths", nargs="*", help="explicit HTML files to check (default: docs/tutorials, docs/blogs, docs/index.html)")
     args = ap.parse_args()
 
@@ -326,6 +435,20 @@ def main() -> int:
         targets = default_targets(root)
 
     records = [classify(p, root) for p in targets if p.is_file()]
+
+    if args.reproduce:
+        manifest = load_render_manifest(root)
+        if manifest is None:
+            print("ERROR: --reproduce requires tools/tutorials_render_manifest.json "
+                  "(missing or unparseable) — refusing to run fail-open.", file=sys.stderr)
+            return 2
+        for r in records:
+            if r.status != OK:
+                continue  # seal only structurally-OK render products; EXEMPT/structural-fail skip
+            ok, detail = reproduce_check(root / r.html, root, manifest)
+            if not ok:
+                r.status = HTML_TAMPERED
+                r.detail = detail
 
     # group by status
     by_status: dict[str, list[Record]] = {}
@@ -369,7 +492,9 @@ def main() -> int:
 
     if not args.json:
         ok_n = len(by_status.get(OK, []))
-        print(f"summary: {ok_n} OK · {len(warn)} WARN · {len(hard)} FAIL  "
+        exempt_n = len(by_status.get(EXEMPT, []))
+        exempt_str = f" · {exempt_n} EXEMPT" if exempt_n else ""
+        print(f"summary: {ok_n} OK · {len(warn)} WARN · {len(hard)} FAIL{exempt_str}  "
               f"→ {'PASS' if not failing else 'BLOCK'} (mode={args.mode})")
         if args.mode == "bootstrap" and warn:
             print("  (bootstrap: WARN items are catalogued, not blocking — clear them, then switch to --mode strict)")

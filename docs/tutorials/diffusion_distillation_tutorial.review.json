@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/diffusion_distillation_tutorial.md",
+  "source_sha256": "cdf8cbf0098fd69e5a36cbd5b787d6415815106fdc3159de14661b50323e5b7c",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-20); not a new codex review",
   "output": "docs/tutorials/diffusion_distillation_tutorial.html",
   "topic": "Diffusion / Flow Distillation (few-step inference) — CM/iCT/sCM/CTM/LCM/LCM-LoRA/TCD/rCM, DMD/DMD2, ADD/LADD/Lightning, Rectified Flow/InstaFlow, Guidance/Progressive distillation",
   "effort": "max",

@@ -1,13 +1,13 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/distributed_training_tutorial.md",
-  "source_sha256_prefix": "86087779b70e",
+  "source_sha256_prefix": "9fca080f5e600043",
   "output": "docs/tutorials/distributed_training_tutorial.html",
   "topic": "Distributed Training (DDP / FSDP2 / ZeRO / TP / PP / EP / SP / CP / DualPipe / TorchTitan / Llama 3)",
   "effort": "max",
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "math_code_review": {
-    "verdict": "FAIL_AT_ROUND_3_FIXED_POST_HOC",
+    "verdict": "PASS",
     "reviewer": "codex gpt-5.5 xhigh, fresh thread per run",
     "rounds": [
       {
@@ -67,6 +67,29 @@
           "Split Llama 3 topology into two phases: short context (8K) uses TP=8 x CP=1 x PP=16 x DP=128 = 16384; long context (128K) uses TP=8 x CP=16 x PP=16 x DP=8 = 16384. Reflected in §13.1, Q18, Q25."
         ],
         "note": "SKILL.md gates math/code review at 3 rounds. Round-3 reviewer caught one residual arithmetic inconsistency which was fixed via direct edit. No 4th review round was run; render-stage review (independent gate) was run on the post-fix file and passed."
+      },
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8e-dc2b-7c11-bf8f-8d52b243a95b",
+        "verdict": "FAIL",
+        "scope": "math/code re-review (prior FAIL_AT_ROUND_3 patched without re-review)",
+        "summary": "Fresh Codex re-review: prior post-hoc patch confirmed correct, but 3 residual defects remain.",
+        "issues": [
+          "§8.2 TP+SP per-block comm count understates by 2x (a Megatron decoder block has TWO col/row pairs: attention + MLP)",
+          "§9.5 one_f_one_b_schedule pseudocode non-runnable: activation/grad_out never defined (return values discarded -> NameError)",
+          "§13.2 & Q25: DeepSeek-V3 described as 'fp8 GEMM + bf16 accumulation' — wrong; FP8 GEMM accumulation is promoted to FP32 on CUDA cores (DeepSeek-V3 report §3.3.2)"
+        ]
+      },
+      {
+        "run": "B2-fix-verify",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 fix-verify)",
+        "thread_id": "019e7cad-0387-7e03-b931-7fd25046017a",
+        "verdict": "PASS",
+        "note": "Round-1 (DeepSeek-V3 FP32 accumulation not bf16; 1F1B pseudocode assigns recv; §8.2 2x col/row comm) + Round-2 (§8.2 ASCII TP-only all-reduce; DualPipe bubble softened to approaches-0 non-strict) all verified PASS.",
+        "issues": []
       }
     ]
   },
@@ -94,5 +117,7 @@
   "rendered_at": "2026-05-19",
   "lines_md": 1587,
   "bytes_html": 88974,
-  "toc_entries": 78
+  "toc_entries": 78,
+  "source_sha256": "9fca080f5e600043ddd52586fa501f8c9d13acf3bb876f66cae5a17cbffadd6b",
+  "thread_id": "019e7cad-0387-7e03-b931-7fd25046017a"
 }

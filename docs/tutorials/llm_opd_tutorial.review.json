@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/llm_opd_tutorial.md",
+  "source_sha256": "621b0792bede0b06654b0341b652bb5055eeac2b24c258e58c2f63ace770bed7",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-20); not a new codex review",
   "output": "docs/tutorials/llm_opd_tutorial.html",
   "topic": "LLM On-Policy Distillation (OPD) — MiniLLM, GKD, Qwen3, Thinking Machines, Tinker, vOPD, OPD+GRPO",
   "effort": "max",

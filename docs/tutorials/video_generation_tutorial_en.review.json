@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/video_generation_tutorial_en.md",
+  "source_sha256": "4fa0ce035daf77d9b135b7c0d4e328c1f5977598cc414e89c98dcf067ed9f3a0",
+  "output": "docs/tutorials/video_generation_tutorial_en.html",
+  "zh_source": "docs/tutorials/video_generation_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cc1-f92a-7312-9de3-44764573b644",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cc1-f92a-7312-9de3-44764573b644",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh, thread 019e7cc1-f92a-7312-9de3-44764573b644) ran a translation-fidelity audit of the English edition against the cross-model-verified Chinese source of truth. Files compared (all confirmed present): /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/video_generation_tutorial.md (ZH source, 1189 lines), docs/tutorials/video_generation_tutorial_en.md (EN translation, 1190 lines), docs/tutorials/video_generation_tutorial_en.html (EN rendered, 1691 lines). Verdict: PASS with zero issues. The EN Markdown is a complete section-by-section faithful translation"
+  },
+  "rendered_at": "2026-05-31"
+}

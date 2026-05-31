@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/kv_cache_speculative_decoding_tutorial_en.md",
+  "source_sha256": "3357e2dd8dc0b865cf18f49e60842241679e7af6c296d7d80820b6f6c1ebc292",
+  "output": "docs/tutorials/kv_cache_speculative_decoding_tutorial_en.html",
+  "zh_source": "docs/tutorials/kv_cache_speculative_decoding_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cbc-9afc-7a80-8874-5d6450af5bc5",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cbc-9afc-7a80-8874-5d6450af5bc5",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model translation-fidelity audit of the English KV-cache / speculative-decoding tutorial against the cross-model-verified Chinese source of truth. A fresh GPT-5.5 xhigh Codex auditor (thread 019e7cbc-9afc-7a80-8874-5d6450af5bc5, sandbox read-only, approval never, model not overridden) read all three files at /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/: kv_cache_speculative_decoding_tutorial.md (ZH source), kv_cache_speculative_decoding_tutorial_en.md (EN under audit), and kv_cache_speculative_decoding_tutorial_en.html (rendered EN). Verdict: PASS with zero issues. The aud"
+  },
+  "rendered_at": "2026-05-31"
+}

@@ -1,0 +1,24 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/distributed_training_tutorial_en.md",
+  "source_sha256": "d77696a976be35a41d404ade3705509a81a2f588885557d88414715c5231ccf9",
+  "output": "docs/tutorials/distributed_training_tutorial_en.html",
+  "zh_source": "docs/tutorials/distributed_training_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7d10-278b-7683-a9a0-ef21591e0049",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7d10-278b-7683-a9a0-ef21591e0049",
+    "phase": "B3 re-verify (post fix)",
+    "date": "2026-05-31",
+    "issues": [
+      "Codex raw verdict was FAIL, but it is a task-framing artifact: the flagged EN lines 429 ('Inter-node: weight is sharded') and 1359 ('sharded across nodes') are EXACT translations of ZH lines 429 ('跨节点：weight 切片（依旧 ZeRO-3 模式）') and 1359 ('跨节点仍切'). The EN faithfully mirrors the ZH; this is not an EN translation defect.",
+      "Both targeted fixes LANDED and are faithful: (a1) §6.2 hpZ EN line 426 now says 'does not shard across nodes' matching ZH '跨节点不切'; (a2) §11.1 top-K restored 'by largest gate output G' (Codex-confirmed in both .md and .html).",
+      "PRE-EXISTING (present identically in BOTH ZH and EN, NOT a translation issue): §6.2 has an internal wording tension — heading says 'does not shard across nodes' (跨节点不切) while the immediately following bullet and Q19 say 'inter-node: sharded' (跨节点切片/跨节点仍切). Both are technically defensible (backward all-gather replicates within-node vs ZeRO-3 storage shards across-node) but read as contradictory. Any clarification must be made in ZH first, then re-propagated to EN to keep parity. Out of scope for this translation-fidelity verify.",
+      "All other fidelity dimensions clean: numbers, formulas, code blocks, tensor/shapes, citations, model names all match ZH; no dropped section/caveat; no new EN-only claim; consistent terminology; EN HTML render faithfully reflects EN markdown (Codex-confirmed)."
+    ],
+    "summary": "Cross-model translation-fidelity verify of docs/tutorials/distributed_training_tutorial_en.md (+.html) against ZH source of truth docs/tutorials/distributed_training_tutorial.md. Both targeted fixes LANDED and are FAITHFUL to ZH; on the strict translation-fidelity question the EN PASSES. I am reporting WARN (not Codex's raw FAIL) because Codex's FAIL rests on a task-framing artifact, not a real EN translation defect, plus one genuine pre-existing wording tension that lives identically in BOTH editions.\n\nFIX (a1) §6.2 hpZ — LANDED & FAITHFUL. EN line 426 now reads 'replicates weight within a no"
+  },
+  "rendered_at": "2026-05-31"
+}

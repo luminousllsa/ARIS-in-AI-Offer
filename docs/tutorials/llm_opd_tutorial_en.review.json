@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/llm_opd_tutorial_en.md",
+  "source_sha256": "70c85782439f0b5a5c6c9b6dff2637a7911ad95b525b9969d90ba883502953d8",
+  "output": "docs/tutorials/llm_opd_tutorial_en.html",
+  "zh_source": "docs/tutorials/llm_opd_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cbc-bff0-7462-8756-22914c22a8cc",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cbc-bff0-7462-8756-22914c22a8cc",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent cross-model translation-fidelity audit of docs/tutorials/llm_opd_tutorial_en.md (English) against the cross-model-verified source-of-truth docs/tutorials/llm_opd_tutorial.md (Chinese), plus the rendered docs/tutorials/llm_opd_tutorial_en.html. A fresh GPT-5.5 xhigh Codex auditor (read-only, thread 019e7cbc-bff0-7462-8756-22914c22a8cc) verified all four axes and returned PASS with zero issues: (a) numeric/factual fidelity — every number, formula, code block, tensor shape, citation (author/year/venue), and model name in the EN matches the ZH; (b) completeness — no section, clai"
+  },
+  "rendered_at": "2026-05-31"
+}

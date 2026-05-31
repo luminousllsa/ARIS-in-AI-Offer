@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/diffusion_foundations_tutorial_en.md",
+  "source_sha256": "5f3b3e8403e8abdc6cbd6ec2c8d893bc9c2919733358f4837062708d53549727",
+  "output": "docs/tutorials/diffusion_foundations_tutorial_en.html",
+  "zh_source": "docs/tutorials/diffusion_foundations_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cb8-42eb-7ee2-abab-ed4f29f774c0",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cb8-42eb-7ee2-abab-ed4f29f774c0",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent cross-model translation-fidelity audit (Codex, GPT-5.5 xhigh, thread 019e7cb8-42eb-7ee2-abab-ed4f29f774c0, read-only sandbox) of the English edition /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/diffusion_foundations_tutorial_en.md against the cross-model-verified Chinese source of truth /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/diffusion_foundations_tutorial.md, plus the rendered /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/diffusion_foundations_tutorial_en.html. VERDICT: PASS, zero issues. Both .md files are 1481 lines and align section-by-section."
+  },
+  "rendered_at": "2026-05-31"
+}

@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md",
+  "source_sha256": "67ea410d68e2504164d7d17556f41bf5c4535ebf520c2790b433851a034a78ad",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.html",
   "topic": "RLHF / DPO / GRPO / PPO (post-training alignment)",
   "effort": "max",

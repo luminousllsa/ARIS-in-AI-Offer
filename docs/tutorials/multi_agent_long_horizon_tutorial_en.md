@@ -215,7 +215,7 @@ from collections import Counter
 
 def extract_answer(response: str) -> str:
     """Extract the final answer from an LLM response. Production needs more robust parsing (\\boxed{}, LaTeX, units)."""
-    m = re.search(r"(?:final answer|answer)[:]\s*(.+?)(?:\n|$)", response, re.IGNORECASE)
+    m = re.search(r"(?:final answer|答案)[:：]\s*(.+?)(?:\n|$)", response, re.IGNORECASE)
     if m:
         return m.group(1).strip()
     # Fallback: take the last line.

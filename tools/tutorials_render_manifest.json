@@ -268,5 +268,10 @@
     "md": "docs/tutorials/vlm_multimodal_tutorial_en.md",
     "title": "Vlm Multimodal Tutorial En",
     "lang": "en"
+  },
+  "docs/index.html": {
+    "md": "docs/about.md",
+    "title": "About",
+    "lang": "zh-CN"
   }
 }

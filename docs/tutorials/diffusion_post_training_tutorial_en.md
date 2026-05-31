@@ -1161,7 +1161,7 @@ Only able to write the final formula but cannot trace the derivation chain; or n
 <details>
 <summary>Q22. Is AlignProp's $\mathcal{O}(K)$ memory truly unavoidable for $K$-step backprop?</summary>
 
-**In theory** yes, but expensive in practice:
+**In theory** it can be bypassed, but it is very expensive in practice:
 
 1. **Gradient checkpointing**: trade activation storage for recompute. Each forward step does not store activations; on backward, redo forward to compute gradient.
    - Memory: from $\mathcal{O}(K \cdot M)$ down to $\mathcal{O}(\sqrt{K} \cdot M)$ + $\mathcal{O}(K \cdot \text{state})$.

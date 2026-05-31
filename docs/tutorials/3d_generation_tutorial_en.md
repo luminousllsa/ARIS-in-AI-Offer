@@ -14,9 +14,9 @@
 
 6. **VSD** (Wang 2023 NeurIPS, ProlificDreamer): treats the 3D parameters $\theta$ as a random variable $\mu(\theta)$ and **minimizes the KL between the noised rendered image distributions**: $\mathbb{E}_t\big[D_\text{KL}\big(q_\mu^t(x_t|y)\,\|\,p_\phi^t(x_t|y)\big)\big]$. The gradient form is a **relative score** $\nabla_\theta \approx (\epsilon_\phi(x_t;y,t) - \epsilon_\psi(x_t;y,t,\pi))\,\partial x/\partial\theta$, where $\epsilon_\psi$ is a LoRA-finetuned auxiliary score. CFG can drop from 100 to 7.5.
 
-7. **Single-image / Few-view 3D**: Zero-1-to-3 (Liu 2023 ICCV) uses viewpoint-conditioned diffusion; SyncDreamer / MVDream learn joint multi-view consistency; TripoSR / InstantMesh / Stable Fast 3D push image-to-mesh to ≤3 seconds.
+7. **Single-image / Few-view 3D**: Zero-1-to-3 (Liu 2023 ICCV) uses viewpoint-conditioned diffusion; SyncDreamer / MVDream learn joint multi-view consistency; TripoSR / InstantMesh / Stable Fast 3D push image-to-mesh to the seconds regime (TripoSR ~0.5 s, InstantMesh ~10 s).
 
-8. **3D Foundation Models (2024-25 open source)**: **Trellis** (Microsoft 2024) uses structured latent + flow matching; **Hunyuan3D-2** (Tencent 2025) is shape→texture two-stage; **CLAY** (Zhang 2024 SIGGRAPH) uses large-scale latent diffusion + 3DShape2VecSet.
+8. **3D Foundation Models (2024-25 open source)**: **Trellis** (Microsoft 2024) uses structured latent + flow matching; **Hunyuan3D-2** (Tencent 2025) is shape→texture two-stage; **CLAY** (Zhang 2024 SIGGRAPH, arXiv:2406.13897) is large-scale latent diffusion = multi-resolution VAE + latent DiT.
 
 9. **Embodied AI key applications**: Sim2Real asset generation, NeRF/3DGS as differentiable simulators, language-conditioned 3D affordance. **Common interview crossovers**: NeRF SLAM, Gaussian-Splat scene editing, 3D physics consistency.
 
@@ -159,7 +159,7 @@ def volume_render(sigma: torch.Tensor, color: torch.Tensor, t_vals: torch.Tensor
 
 Vanilla NeRF aliases badly at low resolution / when zoomed (the same pixel corresponds to cones of different scales, but NeRF treats them as rays).
 
-- **Mip-NeRF** (Barron 2021 ICCV): treats the ray as a cone (view frustum), uses **Integrated Positional Encoding (IPE)** — closed-form Gaussian expectation of PE over the cone segment $\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\mu,\Sigma)}[\gamma(\mathbf{x})]$. For frequency $\omega = 2^k\pi$, $\mathbb{E}[\sin\omega x] = \sin(\omega\mu)\,e^{-\frac{1}{2}\omega^\top\Sigma\,\omega}$; **high-frequency coefficients are automatically attenuated by the cone covariance $\Sigma$ via $e^{-\frac{1}{2}\omega^\top\Sigma\omega}$**, naturally achieving multi-scale behavior.
+- **Mip-NeRF** (Barron 2021 ICCV): treats the ray as a cone (view frustum), uses **Integrated Positional Encoding (IPE)** — closed-form Gaussian expectation of PE over the cone segment $\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\mu,\Sigma)}[\gamma(\mathbf{x})]$. For frequency vector $\boldsymbol{\omega} = 2^k\pi\,\mathbf{e}$, $\mathbb{E}_{\mathbf{x}\sim\mathcal{N}(\boldsymbol{\mu},\Sigma)}[\sin(\boldsymbol{\omega}^\top\mathbf{x})] = \sin(\boldsymbol{\omega}^\top\boldsymbol{\mu})\,e^{-\frac{1}{2}\boldsymbol{\omega}^\top\Sigma\,\boldsymbol{\omega}}$ (the scalar case is $e^{-\frac{1}{2}\omega^2\sigma^2}$); **high-frequency coefficients are automatically attenuated by the cone covariance $\Sigma$ via $e^{-\frac{1}{2}\boldsymbol{\omega}^\top\Sigma\boldsymbol{\omega}}$**, naturally achieving multi-scale behavior.
 - **Mip-NeRF 360** (Barron 2022 CVPR): for unbounded scenes, applies contraction $f(x) = (2 - 1/\|x\|)\,x/\|x\|$ for $\|x\| > 1$, squashing infinity into a ball; adds distortion / proposal MLP losses.
 
 ### 2.8　NeuS / VolSDF: volume rendering + SDF (key to mesh extraction)
@@ -189,7 +189,7 @@ Replace "dense grid vs big MLP" with "**sparse hash grid + tiny MLP**".
 
 $$\text{hash}(\mathbf{x}) = \bigg(\bigoplus_{i=1}^{d} x_i \cdot \pi_i\bigg) \bmod T$$
 
-$\pi_i$ are large primes ($\pi_1 = 1, \pi_2 = 2654435761, \pi_3 = 805459861$). $\oplus$ is XOR. This is a **spatial hash**, commonly used in physics-simulation BVHs.
+$\pi_i$ are large coprime constants ($\pi_1 = 1, \pi_2 = 2654435761, \pi_3 = 805459861$ — note $\pi_1 = 1$ is not prime; it is set deliberately in the paper so that the first dimension maps directly without scrambling). $\oplus$ is XOR. This is a **spatial hash**, commonly used in physics-simulation BVHs.
 
 ### 3.3　How are hash collisions disambiguated? (**L3 high-frequency follow-up**)
 
@@ -213,7 +213,7 @@ Parameters: hash table $\theta_\text{hash} \in \mathbb{R}^{L \times T \times F}$
 
 ### 3.5　Plenoxels / TensoRF (contemporary explicit methods)
 
-**Plenoxels** (Fridovich-Keil 2022 CVPR): pure voxel grid + spherical harmonics SH coefficients + density, **no MLP at all**, directly gradient-descend on voxels; speed similar to Instant-NGP but heavy on VRAM. **TensoRF** (Chen 2022 ECCV): compresses the 4D tensor field via **VM / CP decomposition**, reducing parameters from $O(N^4)$ to $O(N)$ or $O(N^2)$.
+**Plenoxels** (Fridovich-Keil 2022 CVPR): pure voxel grid + spherical harmonics SH coefficients + density, **no MLP at all**, directly gradient-descend on voxels; speed similar to Instant-NGP but heavy on VRAM. **TensoRF** (Chen 2022 ECCV): compresses the 3D grid field via **VM / CP decomposition**, reducing parameters from $O(N^3)$ to $O(N)$ for CP or $O(N^2)$ for VM.
 
 ## §4 3D Gaussian Splatting: explicit differentiable rasterization (**current workhorse**)
 
@@ -385,13 +385,19 @@ def densify_and_prune(gaussians, grad_thresh=2e-4, scale_thresh=0.01,
     grad_norm  = gaussians.xyz_grad_accum / gaussians.denom.clamp(min=1)      # [N]
     mean_scale = gaussians.scales.exp().max(dim=-1).values                    # [N]
 
-    # CLONE: high gradient + small scale — duplicate and offset along the gradient; keep original
+    # ⚠️ Compute BOTH the clone / split masks on the original N Gaussians first,
+    #    before any append/delete — otherwise once clone_at appends and the array
+    #    grows, the N-length split_mask is misaligned with the new array
+    #    (mask-length mismatch / acting on the wrong objects).
     clone_mask = (grad_norm > grad_thresh) & (mean_scale <= scale_thresh)     # [N]
+    split_mask = (grad_norm > grad_thresh) & (mean_scale >  scale_thresh)     # [N]
+
+    # CLONE: high gradient + small scale — duplicate and offset along the gradient; keep original (append at the end)
     gaussians.clone_at(clone_mask, offset=gaussians.grad_dir[clone_mask])
 
     # SPLIT: high gradient + large scale — split into 2 children (scale ÷ 1.6), remove original at the end
-    split_mask = (grad_norm > grad_thresh) & (mean_scale >  scale_thresh)     # [N]
-    gaussians.split_at(split_mask, n=2, scale_div=1.6)
+    # split_at applies explicitly to the original N only: pass original_n, do not rely on implicit alignment with the post-append array length
+    gaussians.split_at(split_mask, n=2, scale_div=1.6, original_n=split_mask.shape[0])
 
     # PRUNE: low opacity / too large on screen / already marked by split
     # ⚠️ Note: new Gaussians from clone are appended to the end; length has changed. The mask only applies to the original N.
@@ -412,7 +418,7 @@ def densify_and_prune(gaussians, grad_thresh=2e-4, scale_thresh=0.01,
 
 ### 4.7　Dynamic 4DGS
 
-**Dynamic 3DGS** (Luiten 2024 3DV) uses independent per-frame Gaussians + physics prior to link them; **4DGS** (Wu 2024 CVPR / Yang 2024 ICLR) writes $\mu(t), \Sigma(t)$ as functions of time (MLP or spline); **SC-GS** (Huang 2024) drives dense Gaussians from sparse control points (analogous to LBS).
+**Dynamic 3DGS** (Luiten 2024 3DV, arXiv:2308.09713) uses a set of **persistent Gaussians**: color / opacity / size stay fixed across frames, only the position $\mu(t)$ and rotation move over time, with a **local-rigidity** regularizer constraining neighborhood rigidity; **4DGS** (Wu 2024 CVPR / Yang 2024 ICLR) writes $\mu(t), \Sigma(t)$ as functions of time (MLP or spline); **SC-GS** (Huang 2024) drives dense Gaussians from sparse control points (analogous to LBS).
 
 ## §5 Mesh extraction: Marching Cubes / DMTet
 
@@ -612,7 +618,7 @@ A more practical setting: **given one image, generate 3D**.
 | **One-2-3-45** (Liu 2023 NeurIPS) | Single image | mesh | 45 s | Zero-1-to-3 → SparseNeuS |
 | **One-2-3-45++** (Liu 2024) | Single image | mesh | 60 s | Multi-view + SDF |
 | **TripoSR** (Tochilkin 2024, Stability+Tripo) | Single image | NeRF/mesh | 0.5-2 s | LRM-style (Large Reconstruction Model) transformer |
-| **InstantMesh** (Xu 2024) | Single image | mesh | 3 s | Zero-1-to-3++ multi-view → sparse-view recon transformer |
+| **InstantMesh** (Xu 2024, arXiv:2404.07191) | Single image | mesh | ~10 s | Zero-1-to-3++ multi-view → sparse-view recon transformer |
 | **Stable Fast 3D** (SF3D, Stability 2024) | Single image | textured mesh | ~0.5 s | TripoSR successor; adds illumination disentangle + UV unwrap |
 
 **LRM (Hong et al. 2023 arXiv → ICLR 2024) setting**: treat the image as tokens + Plucker ray embedding, transformer outputs a NeRF triplane. This is the parent model of TripoSR / InstantMesh.
@@ -620,7 +626,7 @@ A more practical setting: **given one image, generate 3D**.
 ### 7.3　LRM Triplane representation (**high-frequency interview topic**)
 
 - **Triplane** (Chan 2022 EG3D): 3 axis-aligned 2D planes (XY, YZ, XZ), total $3 \times C \times N \times N$ dim
-- Query 3D point $(x, y, z)$: bilinearly interpolate on each plane → concat → small MLP → $(\sigma, \mathbf{c})$
+- Query 3D point $(x, y, z)$: bilinearly interpolate on each plane → **element-wise sum of the three plane features** (EG3D uses sum, not concat) → small MLP → $(\sigma, \mathbf{c})$
 - Advantages: less VRAM than a voxel grid ($O(N^2)$ vs $O(N^3)$), denser than a hash grid making it suitable as transformer output
 - LRM / TripoSR / InstantMesh all let the transformer directly regress triplane tokens
 
@@ -651,9 +657,9 @@ A more practical setting: **given one image, generate 3D**.
   - High-quality PBR texture (production-ready for game / VR assets)
 - **Open source**: complete weights + inference code on HuggingFace
 
-### 8.3　CLAY (Zhang 2024 SIGGRAPH)
+### 8.3　CLAY (Zhang 2024 SIGGRAPH, arXiv:2406.13897)
 
-- **3DShape2VecSet** latent diffusion: represent the mesh as a vector set + cross-attention DiT
+- **Multi-resolution VAE + latent DiT**: a 3D shape VAE encodes the mesh into a neural-field latent, then a DiT diffusion runs on that latent (distinct from 3DShape2VecSet, Zhang et al. 2023, arXiv:2301.11445, which is a separate vector-set representation work)
 - Large-scale training (Objaverse-XL + internal curated set)
 - Output SDF → marching cubes → mesh
 - Adds a PBR texture stage (similar to Hunyuan3D-2)
@@ -666,11 +672,11 @@ A more practical setting: **given one image, generate 3D**.
 | --- | --- | --- | --- | --- |
 | **Trellis** | Structured Latent (SLAT) + multi decoders | Rectified Flow | Objaverse-XL subset | ✅ |
 | **Hunyuan3D-2** | SDF latent (Shape DiT) + UV texture diff | Diffusion | Internal large-scale set | ✅ |
-| **CLAY** | 3DShape2VecSet | Diffusion | Objaverse-XL + internal | Partial |
+| **CLAY** | Multi-resolution VAE latent (latent DiT) | Diffusion | Objaverse-XL + internal | Partial |
 | **Rodin** | Triplane | Diffusion | Commercial internal | ❌ |
 | **TripoSR / SF3D** | NeRF/mesh feedforward | No prior, pure regression | Objaverse-class | ✅ |
 
-> 💡 **Architecture-choice intuition** — large scenes / general objects use **Trellis-style SLAT** (preserves spatial structure); high-quality single meshes use **CLAY-style vector set** (compact, global attention); fast inference uses **LRM/TripoSR feedforward** (no diffusion, direct regression).
+> 💡 **Architecture-choice intuition** — large scenes / general objects use **Trellis-style SLAT** (preserves spatial structure); high-quality single meshes use **CLAY-style latent DiT** (multi-resolution VAE latent, global attention); fast inference uses **LRM/TripoSR feedforward** (no diffusion, direct regression).
 
 ## §9 Complexity / resource comparison
 
@@ -1043,7 +1049,7 @@ Saying "use SDF" without explaining how NeuS plugs SDF into NeRF volume renderin
 
 - Transformer maps image tokens + Plucker ray embeddings → regress triplane tokens
 
-- Inference is feedforward (no SDS / no iterative optimization), **0.5-3 seconds** to a 3D output
+- Inference is feedforward (no SDS / no iterative optimization), **seconds to a 3D output** (TripoSR ~0.5 s, InstantMesh ~10 s)
 
 - TripoSR (Stability+Tripo 2024) / InstantMesh (Xu 2024) / SF3D (2024) all belong to this family
 

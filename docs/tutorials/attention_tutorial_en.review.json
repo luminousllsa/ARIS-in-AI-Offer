@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/attention_tutorial_en.md",
+  "source_sha256": "52fb9664c6793bc81ab2abdec83fbd0978574b6e370057af74ae62525bacf33a",
+  "output": "docs/tutorials/attention_tutorial_en.html",
+  "zh_source": "docs/tutorials/attention_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cb8-2bb5-7c42-89dd-25fac6b02d99",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cb8-2bb5-7c42-89dd-25fac6b02d99",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model translation-fidelity audit (Codex GPT-5.5 xhigh, read-only, fresh thread). Codex independently read the Chinese source of truth (docs/tutorials/attention_tutorial.md), the English translation (docs/tutorials/attention_tutorial_en.md), and the rendered English HTML (docs/tutorials/attention_tutorial_en.html), then compared EN against ZH across all five fidelity axes: (a) numbers/formulas/code/tensor shapes, (b) citations (author/year/venue) and model names, (c) completeness (no dropped section/claim/caveat, no new hallucinated claim), (d) terminology consistency, and (e) HTML "
+  },
+  "rendered_at": "2026-05-31"
+}

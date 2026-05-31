@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/quantization_tutorial.md",
+  "source_sha256": "f04948e0f203c2972cb16b925ae326b7e46f34e691c037df51dbabe54f88a301",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/quantization_tutorial.html",
   "topic": "Quantization (GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant / QuaRot / SpinQuant)",
   "effort": "max",

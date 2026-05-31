@@ -333,7 +333,7 @@ $$\boxed{\;A_i = \frac{r_i - \text{mean}(\mathbf{r})}{\text{std}(\mathbf{r}) + \
 > ✅ **GRPO's key insight** — Why is group-relative more useful than a critic?
 
 - **Same prompt, same source**: $G$ completions share prompt difficulty; differences come entirely from policy output; mean automatically subtracts prompt-specific baseline, equivalent to a control variate
-- **No value network needed**: directly saves half memory + doubles compute; the critic on long-CoT is hard to learn anyway (sparse reward + long episodes)
+- **No value network needed**: directly saves half memory + saves a model's worth of compute; the critic on long-CoT is hard to learn anyway (sparse reward + long episodes)
 - **Stability comes from group size $G$**: larger $G$ → lower advantage estimation variance; DeepSeek-R1 uses $G \approx 16$
 
 ### 5.3　GRPO advantage computation code

@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/kl_divergence_rlhf_tutorial.md",
+  "source_sha256": "f0b8b5e62023c40790eecc3c8e2e1afdf9fceea26ffa5b9859d0d4382cb7ea4a",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-20); not a new codex review",
   "output": "docs/tutorials/kl_divergence_rlhf_tutorial.html",
   "topic": "KL Divergence in RLHF — Schulman k1/k2/k3, PPO/GRPO/DPO/RLOO KL, forward vs reverse, Rethinking KL + Comedy of Estimators",
   "effort": "max",

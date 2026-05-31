@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/long_context_rope_yarn_mla_tutorial_en.md",
+  "source_sha256": "f80832985b1a590971f76dd90a49245ace59e3f95d56132aca12551bfc9ef315",
+  "output": "docs/tutorials/long_context_rope_yarn_mla_tutorial_en.html",
+  "zh_source": "docs/tutorials/long_context_rope_yarn_mla_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7d10-371c-76b1-b15c-d47177f8d083",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7d10-371c-76b1-b15c-d47177f8d083",
+    "phase": "B3 re-verify (post fix)",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh) cross-model translation-fidelity verify of the EN edition + HTML render against the ZH source of truth for the long-context RoPE/YaRN/MLA tutorial. Verdict: PASS. All four specified fixes confirmed landed in the EN Markdown and reflected in the HTML render: (1) §2.4 shared-import caveat note restored; (2) §0 TL;DR says \"dilute the softmax\" (not \"sharpen\"); (3) §7.4 table cell says \"Gradual\" (not \"Gradient\"); (4) §A.1 says \"Half-dim note\" (not \"Half-dim attention\"). Codex further confirmed the EN is otherwise faithful to the ZH: numbers, formulas, code bl"
+  },
+  "rendered_at": "2026-05-31"
+}

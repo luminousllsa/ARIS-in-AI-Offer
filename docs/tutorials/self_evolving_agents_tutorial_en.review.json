@@ -1,0 +1,25 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/self_evolving_agents_tutorial_en.md",
+  "source_sha256": "65f5baf62206b2506086becf7b79fc11d4a8dc9ff113bb5f2ae933595131abb5",
+  "output": "docs/tutorials/self_evolving_agents_tutorial_en.html",
+  "zh_source": "docs/tutorials/self_evolving_agents_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7cc0-7f42-7840-b42f-0a1d1293f8eb",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7cc0-7f42-7840-b42f-0a1d1293f8eb",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [
+      "WARN (not FAIL) - Codex flagged that several Python code-block comments/docstrings were translated to English (e.g. §5.4 '# (1) Challenger 出 batch' -> '# (1) Challenger produces a batch'; §6.4 'teacher 生成 C_sft 个候选 K' -> 'teacher generates C_sft candidate Ks'; §7.5, §10.1, Appendix A similar). Verified: executable code, variable names, shapes, and the numeric defaults C_sft=3 / C_rft=8 are byte-identical; only natural-language comments were translated, which is correct translation behavior.",
+      "WARN (not FAIL) - §6.2 outcome-reward display equation: the LaTeX math body R_evolve(K)=Success(T_E|K)-Success(T_E|empty) is byte-identical; only the \\underbrace{}_{\\text{...}} description labels were translated (有 K 时下游成功率 -> downstream success rate with K; 无 K baseline -> no-K baseline). No formula/number change.",
+      "WARN (not FAIL) - §6.1 core-architecture ASCII diagram: load-bearing tokens pi_theta(K|E) and pi_task(a_t|o_t,K,Task) are identical; the only delta is the parenthetical caption (推理时 task-free + rf) -> (task-free + reward-free at inference) wrapping onto a second line inside the ASCII box because English is longer. Cosmetic, not structural corruption.",
+      "WARN (not FAIL) - §3.2 skill-schema fenced block: placeholder/comment prose translated (<什么 task 该用这个 skill> -> <which task should use this skill>; - 已知陷阱 + 修复方式 -> - Known pitfalls + fixes). Schema fields and structure unchanged.",
+      "PASS-level confirmation (no action) - Parity independently verified: citation years 2024 x8 / 2025 x5 / 2026 x13, model names Claude x4 / GPT-4 x8 / GPT-4.1 x3 / GPT-4.5 x1 / GPT-5.1 x2 / GPT-5.2 x1 / GPT-5.5 x1 / Gemini-2.5-Pro x1 / Qwen3 x5, arXiv refs x17, et al. x2 all match ZH exactly. EN HTML renders headings/code/tables/math faithfully per Codex. No dropped section/claim/caveat, no new hallucinated claim."
+    ],
+    "summary": "Fresh cross-model Codex (GPT-5.5 xhigh) translation-fidelity audit of docs/tutorials/self_evolving_agents_tutorial_en.md against the Chinese source-of-truth docs/tutorials/self_evolving_agents_tutorial.md plus the rendered docs/tutorials/self_evolving_agents_tutorial_en.html. Codex's raw verdict was FAIL (threadId 019e7cc0-7f42-7840-b42f-0a1d1293f8eb), but on direct inspection every one of its 8 issues is a benign translated code-comment or translated LaTeX descriptive label, NOT a factual divergence — so under the task's own rubric these are WARN-class, not FAIL-class. Codex's own summary con"
+  },
+  "rendered_at": "2026-05-31"
+}
