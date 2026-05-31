@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/3d_generation_tutorial_en.md",
+  "source_sha256": "61199ba076c02a156b46f844ce6c980c133a645ef3f604ac233f6206f2122297",
+  "output": "docs/tutorials/3d_generation_tutorial_en.html",
+  "zh_source": "docs/tutorials/3d_generation_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cb8-279e-74f0-98df-bc161408fce2",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cb8-279e-74f0-98df-bc161408fce2",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model Codex audit (GPT-5.5 xhigh, read-only) verified that docs/tutorials/3d_generation_tutorial_en.md is a FAITHFUL translation of the cross-model-verified Chinese source docs/tutorials/3d_generation_tutorial.md, and that the rendered docs/tutorials/3d_generation_tutorial_en.html is faithful to the EN markdown. Verdict: PASS, zero issues. Codex confirmed: (a) all formulas/equations, code-block logic, tensor/array shapes, numeric constants, citation years/venues, and model names align between EN and ZH; (b) no section, claim, or caveat was dropped and no new claim was introduced in"
+  },
+  "rendered_at": "2026-05-31"
+}

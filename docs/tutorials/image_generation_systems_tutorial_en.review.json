@@ -1,0 +1,23 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/image_generation_systems_tutorial_en.md",
+  "source_sha256": "b2253581ba198fd353cb3714c3dc26e0f5aa3bd77e50f1693fcad96bb5cb733b",
+  "output": "docs/tutorials/image_generation_systems_tutorial_en.html",
+  "zh_source": "docs/tutorials/image_generation_systems_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7cbc-2422-77d3-b43d-0675de6f69a1",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7cbc-2422-77d3-b43d-0675de6f69a1",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [
+      "WARN (HTML chrome, non-technical): docs/tutorials/image_generation_systems_tutorial_en.html ~line 1467 — renderer-injected Chinese code-collapse UI labels '收起代码 / 展开代码 / 行' appear in the English HTML view (not present in and not derived from the EN markdown content); cosmetic localization gap, no impact on technical content.",
+      "WARN (HTML chrome, non-technical): docs/tutorials/image_generation_systems_tutorial_en.html ~line 1693 — renderer-injected Chinese Focus-mode hint 'Focus 模式：↑ / ↓ 切换小节，Esc 退出' appears in the English HTML view; cosmetic localization gap only.",
+      "NO FAIL-LEVEL ISSUES: Codex confirmed every number, formula/equation, code block, tensor shape, citation (author/year/venue), and model/architecture name in the EN .md matches the ZH source of truth; no ZH section/claim/caveat dropped; no new hallucinated EN claim; terminology consistent; HTML structure/math/code/tables/links render faithfully to the EN markdown."
+    ],
+    "summary": "Fresh cross-model translation-fidelity audit (Codex GPT-5.5 xhigh, read-only, detect-only) of the English edition /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/image_generation_systems_tutorial_en.md against the Chinese source of truth /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/image_generation_systems_tutorial.md (both 1459 lines) plus the rendered HTML /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/image_generation_systems_tutorial_en.html. Verdict: WARN. The EN markdown is a FAITHFUL and COMPLETE translation of the ZH — all numbers, mathematical formulas/equations, co"
+  },
+  "rendered_at": "2026-05-31"
+}

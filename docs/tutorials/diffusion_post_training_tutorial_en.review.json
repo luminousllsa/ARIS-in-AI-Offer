@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/diffusion_post_training_tutorial_en.md",
+  "source_sha256": "4acda0876d2900c44973128db77327d336b1cbe5b701c5ec486c11faf51016e9",
+  "output": "docs/tutorials/diffusion_post_training_tutorial_en.html",
+  "zh_source": "docs/tutorials/diffusion_post_training_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7d10-3701-78a1-9d47-95af2d5a4049",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7d10-3701-78a1-9d47-95af2d5a4049",
+    "phase": "B3 re-verify (post fix)",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh) cross-model TRANSLATION-FIDELITY verify returned PASS. Files audited (all absolute under /Users/yangruofeng/Desktop/ARIS-in-秋招): docs/tutorials/diffusion_post_training_tutorial.md (ZH source of truth), docs/tutorials/diffusion_post_training_tutorial_en.md (just-fixed EN edition), docs/tutorials/diffusion_post_training_tutorial_en.html (EN HTML render). (a) The Q22 AlignProp O(K) memory fix LANDED with correct polarity in BOTH the EN .md and EN .html: in theory the O(K) memory CAN be bypassed but is expensive/impractical in practice — matching the ZH 理论上可"
+  },
+  "rendered_at": "2026-05-31"
+}

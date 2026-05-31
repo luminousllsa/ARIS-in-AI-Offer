@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/diffusion_distillation_tutorial_en.md",
+  "source_sha256": "cceb6c61f1f5be01eacd4f25cf2ef79067c1093da76e75e4a92df0a3e3c84877",
+  "output": "docs/tutorials/diffusion_distillation_tutorial_en.html",
+  "zh_source": "docs/tutorials/diffusion_distillation_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cb8-304b-7a41-9555-4f8c6954668a",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cb8-304b-7a41-9555-4f8c6954668a",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model translation-fidelity audit by Codex (GPT-5.5 xhigh, thread 019e7cb8-304b-7a41-9555-4f8c6954668a, read-only/detect-only) of the English tutorial docs/tutorials/diffusion_distillation_tutorial_en.md against the cross-model-verified Chinese source of truth docs/tutorials/diffusion_distillation_tutorial.md and the rendered docs/tutorials/diffusion_distillation_tutorial_en.html. Verdict: PASS, zero issues. Both MD files are 1672 lines (line-aligned translation). (a) Numeric/factual fidelity: every number, equation/LaTeX, code block (variable names, hyperparameters, tensor shapes),"
+  },
+  "rendered_at": "2026-05-31"
+}

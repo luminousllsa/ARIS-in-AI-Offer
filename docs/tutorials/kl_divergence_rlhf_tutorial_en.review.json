@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/kl_divergence_rlhf_tutorial_en.md",
+  "source_sha256": "07a3ec40fe0c44778b0360c00fd85a4123675fdc2b791fc540dbab4f0b2179de",
+  "output": "docs/tutorials/kl_divergence_rlhf_tutorial_en.html",
+  "zh_source": "docs/tutorials/kl_divergence_rlhf_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cca-fec3-74e2-ae92-c2b6481a5b63",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cca-fec3-74e2-ae92-c2b6481a5b63",
+    "phase": "B3 fix-verify",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model VERIFY (Codex GPT-5.5 xhigh, read-only, detect-only) confirms the EN fidelity fix. The previously-flagged §9 / Level-2 Q13 divergence is fixed: the EN now correctly says differentiate w.r.t. π(y) and set = 0, with the equation matching ZH (r - β(log(π/π_ref)+1) - μ = 0). The full closed-form derivation (Lagrangian, ∂/∂π=0 step, log rearrangement, exp form, Z normalization, final π* ∝ π_ref·exp(r/β)) is consistent EN-vs-ZH. The EN .html reflects the same correction. No new divergence introduced around §9/Q13. Verdict: PASS, no issues. Files: /Users/yangruofeng/Desktop/ARIS-in-"
+  },
+  "rendered_at": "2026-05-31"
+}

@@ -1,0 +1,21 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/flow_matching_tutorial_en.md",
+  "source_sha256": "30fb19ce90837b396223edc71b7d1276adb53fa6ab8b488e27d89a9507b577e7",
+  "output": "docs/tutorials/flow_matching_tutorial_en.html",
+  "zh_source": "docs/tutorials/flow_matching_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7cba-cd9b-75b0-84d0-afe1223e47c4",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7cba-cd9b-75b0-84d0-afe1223e47c4",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [
+      "WARN (wording, not a fidelity failure): docs/tutorials/flow_matching_tutorial_en.md line ~104 — ZH '（InstaFlow 等）' means 'InstaFlow and similar methods / etc.'; EN renders it as '(InstaFlow et al.)', which risks being misread as an author-style citation. No formula/number/technical-claim change."
+    ],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh) translation-fidelity audit of the EN edition /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/flow_matching_tutorial_en.md against the ZH source of truth /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/flow_matching_tutorial.md (plus the rendered /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/flow_matching_tutorial_en.html). Verdict: WARN. The translation is faithful overall — sections are complete, and all numbers, formulas, tensor shapes, model names, and primary citations in the EN match the ZH; code-block logic is consistent; and the H"
+  },
+  "rendered_at": "2026-05-31"
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/quantization_tutorial_en.md",
+  "source_sha256": "75722c1b91c79f67a6c0d7df40469fbc1938f574601a6e4b02f9a3b9c1f9cb65",
+  "output": "docs/tutorials/quantization_tutorial_en.html",
+  "zh_source": "docs/tutorials/quantization_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "PASS",
+  "thread_id": "019e7cca-f8a7-70a1-a107-22e0968d150d",
+  "translation_fidelity_review": {
+    "verdict": "PASS",
+    "thread_id": "019e7cca-f8a7-70a1-a107-22e0968d150d",
+    "phase": "B3 fix-verify",
+    "date": "2026-05-31",
+    "issues": [],
+    "summary": "Fresh cross-model VERIFY confirmed. A fresh GPT-5.5 xhigh Codex thread (read-only, detect-only) independently read /Users/yangruofeng/Desktop/ARIS-in-秋招/docs/tutorials/quantization_tutorial_en.md, .../quantization_tutorial_en.html, and the canonical ZH .../quantization_tutorial.md, and returned verdict PASS with no issues. The previously-flagged direction reversal at the '每减 1 bit SNR 降约 6 dB' passage is now FIXED: the EN states the correct direction matching ZH — removing a bit DOUBLES the quant step -> SNR decreases by 20*log10(2) ~= 6 dB. ZH: '每减 1 bit SNR 降约 6 dB（每 bit 增加 1 倍量化 step → SNR "
+  },
+  "rendered_at": "2026-05-31"
+}

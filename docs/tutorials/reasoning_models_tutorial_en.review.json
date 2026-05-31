@@ -1,0 +1,23 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/reasoning_models_tutorial_en.md",
+  "source_sha256": "b715479af7c02b90154fee431938f4086e3a5f9542b4a4f2bb99e5a9e579b2bd",
+  "output": "docs/tutorials/reasoning_models_tutorial_en.html",
+  "zh_source": "docs/tutorials/reasoning_models_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7d10-30e0-71b1-b71f-2e835965b44e",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7d10-30e0-71b1-b71f-2e835965b44e",
+    "phase": "B3 re-verify (post fix)",
+    "date": "2026-05-31",
+    "issues": [
+      "Codex raw verdict was FAIL on a single issue: EN HTML (docs/tutorials/reasoning_models_tutorial_en.html lines 819/821) splits the GRPO algorithm ordered list into two <ol> blocks around the boxed advantage equation, with no start=\"4\" on the second, so EN-md numbered steps 4 and 5 render in a browser as \"1.\" and \"2.\"",
+      "ADJUDICATION: that same <ol>-split-without-start=\"4\" defect is present IDENTICALLY in the canonical, cross-model-verified ZH HTML (docs/tutorials/reasoning_models_tutorial.html lines 819/821). The EN HTML therefore matches the verified ZH render structure exactly — it is shared-renderer parity, not an EN-vs-ZH fidelity divergence, and is cosmetic (render-only, not numeric/factual). Downgraded FAIL -> WARN per task severity rules.",
+      "OPTIONAL cleanup (applies to BOTH editions, not a translation-fidelity blocker): the markdown->HTML renderer should emit start=\"4\" on the second GRPO <ol> (or keep the list unbroken) so algorithm steps 4-5 number correctly; fixing only EN would create a real ZH/EN divergence, so fix both editions together or neither."
+    ],
+    "summary": "Fresh cross-model (Codex GPT-5.5 xhigh, read-only) translation-fidelity verify of the EN reasoning-models tutorial against its cross-model-verified ZH source-of-truth. ADJUDICATED VERDICT: WARN (translation fidelity PASSES; one shared cosmetic render quirk). The §5.2 GRPO compute fix LANDED correctly: ZH line 336 \"无需 value network：直接省一半显存 + 一倍计算\" and EN line 336 \"No value network needed: directly saves half memory + saves a model's worth of compute\" both state that removing the critic/value-network SAVES compute — no \"doubles compute\" residue anywhere. EN is otherwise faithful to ZH on every c"
+  },
+  "rendered_at": "2026-05-31"
+}

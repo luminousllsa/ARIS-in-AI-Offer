@@ -1,0 +1,21 @@
+{
+  "skill": "interview-cheatsheet (EN translation-fidelity)",
+  "source": "docs/tutorials/agent_foundations_tutorial_en.md",
+  "source_sha256": "1b1053abea299e0de1f646724a1d612f24612034b2b2b9a32a988d1cf8da8728",
+  "output": "docs/tutorials/agent_foundations_tutorial_en.html",
+  "zh_source": "docs/tutorials/agent_foundations_tutorial.md",
+  "reviewer": "codex gpt-5.5 xhigh, fresh thread",
+  "verdict": "WARN",
+  "thread_id": "019e7cb8-284c-7bd3-9c1f-38f9d5ac862d",
+  "translation_fidelity_review": {
+    "verdict": "WARN",
+    "thread_id": "019e7cb8-284c-7bd3-9c1f-38f9d5ac862d",
+    "phase": "B3 translation-fidelity review",
+    "date": "2026-05-31",
+    "issues": [
+      "MINOR (cosmetic markup, not numeric): §5.2 Toolformer, line 354. ZH splits the inline math as `$L_i^{-}$ = $\\min$(...)` (two math spans around a plain-text `=`); EN merges it into one math span `$L_i^{-} = \\min$(...)`. Mathematical content is identical (same symbol, same \\min, same operands). Verified: agent_foundations_tutorial.md:354 vs agent_foundations_tutorial_en.md:354. Notably the ZH's own line 844 already uses the merged form `$L_i^{-} = \\min$`, so the EN is internally consistent with the ZH. The threshold formula on line 357 ($$L_i^{-} - L_i^{+} \\ge \\tau_f$$) matches verbatim in both files. No numeric/factual divergence, no hallucinated claim."
+    ],
+    "summary": "Fresh independent Codex (GPT-5.5 xhigh, thread 019e7cb8-284c-7bd3-9c1f-38f9d5ac862d) audited the English edition (docs/tutorials/agent_foundations_tutorial_en.md + .html) against the cross-model-verified Chinese source of truth (docs/tutorials/agent_foundations_tutorial.md) for translation fidelity only. Verdict: WARN. The EN markdown is substantively faithful to the ZH: section order, tables, code blocks, citations (author/year/venue), model names, dates, benchmark numbers, and formulas all match in meaning; no section/claim/caveat was dropped and no new claim/number/citation was introduced. "
+  },
+  "rendered_at": "2026-05-31"
+}
