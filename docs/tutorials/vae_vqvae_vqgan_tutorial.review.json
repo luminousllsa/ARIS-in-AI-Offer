@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/vae_vqvae_vqgan_tutorial.md",
+  "source_sha256": "826ba28b7bb7ff38ca137ceebd48b0f4395a58dfb4081bb9f874234f2a61899c",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/vae_vqvae_vqgan_tutorial.html",
   "topic": "VAE / VQ-VAE / VQ-GAN / FSQ (latent variable models + discrete tokenizers)",
   "effort": "max",

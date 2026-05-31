@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/diffusion_post_training_tutorial.md",
+  "source_sha256": "95b47c84420904cb38b68b156d25372d305084281e28fec71d19c405801efef8",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-20); not a new codex review",
   "output": "docs/tutorials/diffusion_post_training_tutorial.html",
   "topic": "Diffusion / Flow Post-Training — DDPO / DPOK / DRaFT / AlignProp / ReFL / Diffusion-DPO / D3PO / SPO / Diffusion-KTO / MaPO / Flow-GRPO",
   "effort": "max",

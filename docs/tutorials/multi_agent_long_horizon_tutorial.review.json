@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/multi_agent_long_horizon_tutorial.md",
+  "source_sha256": "b0be93d29409b81e5bf5e3e896e8ee3b9ae84d0c1a17e72e5ca46476f1d5c065",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/multi_agent_long_horizon_tutorial.html",
   "topic": "Multi-Agent & Long-Horizon Agents (CAMEL / AutoGen / MetaGPT / MoA / Debate / MemGPT / LATS / SWE-Agent)",
   "effort": "max",

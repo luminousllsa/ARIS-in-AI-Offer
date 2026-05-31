@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/self_evolving_agents_tutorial.md",
+  "source_sha256": "b863a1d3abfdb3512a3e5907947e3bb9281a00ddf4546199218fb469c965296e",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/self_evolving_agents_tutorial.html",
   "topic": "Self-Evolving Agents — Ctx2Skill / Native Evolution / A²RD / Voyager / Reflexion / STaR",
   "effort": "max",

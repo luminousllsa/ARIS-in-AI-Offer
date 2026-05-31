@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/3d_generation_tutorial.md",
+  "source_sha256": "beab28036da8f28744b8d64815a669d0fce44c978bd869145e41b15860659ccc",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/3d_generation_tutorial.html",
   "topic": "3D Generation (NeRF / Instant-NGP / 3DGS / SDS / DreamFusion / Trellis)",
   "effort": "max",

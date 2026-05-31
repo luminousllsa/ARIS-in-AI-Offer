@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/reasoning_models_tutorial.md",
+  "source_sha256": "549e2f7e241c94ec0b8f2203727ae759afe568daa1c62d507051768725890e63",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/reasoning_models_tutorial.html",
   "topic": "Reasoning Models (o1 / R1 / Test-Time Compute / PRM / GRPO)",
   "effort": "max",

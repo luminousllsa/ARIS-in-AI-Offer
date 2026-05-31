@@ -1,6 +1,8 @@
 {
   "skill": "interview-cheatsheet",
   "source": "docs/tutorials/agentic_rl_tutorial.md",
+  "source_sha256": "d3d476658bea0760566d2cc9d6eaf72ceaab67d8c81d3eeaa4442473092e8e6e",
+  "source_sha256_backfilled": "added 2026-05-31 post-hoc; source git-verified unchanged since review (2026-05-19); not a new codex review",
   "output": "docs/tutorials/agentic_rl_tutorial.html",
   "topic": "Agentic RL — RL for LLM agents (AgentTuning / ToolRL / RAGEN / WebRL / SWE-RL / CodeRL / VPT / OpenVLA / Self-Rewarding LM / HER)",
   "effort": "max",
