@@ -40,33 +40,19 @@ allowed-tools: Bash(*), Read, Write, mcp__codex__codex
 
 ## Tool Location
 
-Arch C self-contained: the canonical implementation lives at `skills/render-html/scripts/render_html.py` (this SKILL's own `scripts/` subdirectory), together with its templates at `skills/render-html/scripts/templates/{academic,dashboard}.html`. The helper is new — no legacy `tools/` shim exists.
-
-Resolve `$RENDER_HTML` with the hybrid chain (Layer 0 prefers the self-contained location for the owning SKILL; Layers 1-3 are the shared-runtime chain documented in [`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2, **Policy A — skill-local gate**):
+In **this repo (ARIS-in-AI-Offer)** the renderer lives at `tools/render_html.py`, with its templates at `tools/templates/{academic,dashboard}.html`. It is pure stdlib — no install step, no `scripts/` subdirectory. Resolve `$RENDER_HTML` from the repo root:
 
 ```bash
-# Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
-RENDER_HTML=""
-if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/render_html.py" ]; then
-  RENDER_HTML="$CLAUDE_SKILL_DIR/scripts/render_html.py"
-fi
-# Layers 1-3: shared-runtime chain (non-CC hosts + manual installs).
-if [ -z "$RENDER_HTML" ]; then
-  cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
-  if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
-      ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
-  fi
-  RENDER_HTML=".aris/skills/render-html/scripts/render_html.py"
-  [ -f "$RENDER_HTML" ] || RENDER_HTML="skills/render-html/scripts/render_html.py"
-  [ -f "$RENDER_HTML" ] || { [ -n "${ARIS_REPO:-}" ] && RENDER_HTML="$ARIS_REPO/skills/render-html/scripts/render_html.py"; }
-  [ -f "$RENDER_HTML" ] || RENDER_HTML=""
-fi
-[ -z "$RENDER_HTML" ] && {
-  echo "ERROR: render_html.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-3: .aris/skills/render-html/scripts/, skills/render-html/scripts/, \$ARIS_REPO/skills/render-html/scripts/)." >&2
-  echo "       /render-html cannot produce HTML output. Fix: rerun bash tools/install_aris.sh, or copy from \$ARIS_REPO/skills/render-html/scripts/." >&2
+# Run from the ARIS-in-AI-Offer repo root (where tools/ lives).
+RENDER_HTML="tools/render_html.py"
+[ -f "$RENDER_HTML" ] || RENDER_HTML="$(git rev-parse --show-toplevel 2>/dev/null)/tools/render_html.py"
+[ -f "$RENDER_HTML" ] || {
+  echo "ERROR: tools/render_html.py not found — run from the ARIS-in-AI-Offer repo root." >&2
   exit 1
 }
 ```
+
+> **Vendoring note.** If you copy this skill into a self-contained `skills/render-html/scripts/` layout (the upstream ARIS convention), move `render_html.py` + `templates/` there and repoint `$RENDER_HTML` accordingly. In *this* repo the single source of truth is `tools/` — do not introduce a second copy.
 
 ## Invocation
 
@@ -225,7 +211,7 @@ Verdict rules:
 **Save outputs**:
 
 1. Write the JSON verdict to `<out_path>.review.json` (sibling to the HTML).
-2. Save the raw codex trace to `.aris/traces/render-html/<YYYY-MM-DD>_run<NN>/review.{txt,json}` per `shared-references/review-tracing.md`.
+2. Save the raw codex trace to `.aris/traces/render-html/<YYYY-MM-DD>_run<NN>/review.{txt,json}` (a per-run forensic copy of the reviewer's JSON verdict + prose).
 3. Print a one-line summary to the user: `verdict, N blocking, N warnings, trace: <path>`.
 
 **If `verdict == FAIL`**: the HTML is **NOT** a delivered review-passed view. Tell the user the blocking issues, point them at the source (fix MD or template, not the HTML), and re-render. Do not silently overwrite or mark as complete.
@@ -282,7 +268,7 @@ Phase 2 will be guarded by a `— html: true` flag in each affected skill, defau
 
 ## Customizing the templates
 
-The two templates live at `skills/render-html/scripts/templates/{academic,dashboard}.html`. Each is a single self-contained HTML file with inline CSS using `{{PLACEHOLDER}}` substitution. To customize:
+The two templates live at `tools/templates/{academic,dashboard}.html`. Each is a single self-contained HTML file with inline CSS using `{{PLACEHOLDER}}` substitution. To customize:
 
 1. Copy one of the templates to a new name, e.g., `my_brand.html`.
 2. Edit the CSS variables in `:root { ... }` to change colors, the font stack, or layout dimensions.
@@ -299,6 +285,7 @@ For deck / poster / Xiaohongshu card / tweet card / data report style outputs, p
 
 - **Do not auto-render every Markdown file.** Only artifacts on the whitelist above. File proliferation is the main anti-pattern.
 - **Do not hand-edit the generated HTML.** Edit the source, then re-render. The embedded SHA256 in the HTML meta tells you if the source has changed since render.
+- **Keep headings TOC-clean (authoring rule).** `render_toc()` renders each heading's raw text verbatim into the sidebar TOC, so whatever is in a heading shows up there literally. Do not put citation marks (`[8]`), footnote refs, or `(a)`/`(b)`/`(c)` sequence labels in headings — keep those in the body. (ARIS tutorials use `## §N Title` / `### N.M Title`, which render cleanly.)
 - **academic-template HTML is a reviewed artifact**, not raw output. Cross-model Codex review (fresh thread) gates the academic deliverables — the same way `/proof-checker`, `/paper-claim-audit`, `/citation-audit`, `/kill-argument` gate their respective products. `--no-review` exists for fast iteration but should not be the way you ship.
 - **The reviewer audits rendering, not research.** Claim truthfulness is owned upstream by `/paper-claim-audit`, `/result-to-claim`, `/research-review`. The HTML reviewer asks: "did the renderer faithfully + safely convert this source?" — nothing more.
 - **CDN dependency is opt-out, not opt-in.** Most users have internet; `--offline` is for air-gapped runs / archival.

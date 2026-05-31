@@ -1,0 +1,272 @@
+{
+  "docs/tutorials/3d_generation_tutorial.html": {
+    "md": "docs/tutorials/3d_generation_tutorial.md",
+    "title": "3D Generation 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · 3D Generation / NeRF / Gaussian Splatting",
+    "subtitle": "NeRF / Instant-NGP / 3DGS / SDS / DreamFusion / Trellis + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/3d_generation_tutorial_en.html": {
+    "md": "docs/tutorials/3d_generation_tutorial_en.md",
+    "title": "3D Generation Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/agent_foundations_tutorial.html": {
+    "md": "docs/tutorials/agent_foundations_tutorial.md",
+    "title": "Agent Foundations 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · LLM Agent Foundations",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/agent_foundations_tutorial_en.html": {
+    "md": "docs/tutorials/agent_foundations_tutorial_en.md",
+    "title": "Agent Foundations Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/agentic_rl_tutorial.html": {
+    "md": "docs/tutorials/agentic_rl_tutorial.md",
+    "title": "Agentic RL 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Agentic RL",
+    "subtitle": "RL for LLM Agents · AgentTuning · ToolRL · GRPO for tool use · RAGEN · WebRL · SWE-RL + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/agentic_rl_tutorial_en.html": {
+    "md": "docs/tutorials/agentic_rl_tutorial_en.md",
+    "title": "Agentic Rl Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/attention_tutorial.html": {
+    "md": "docs/tutorials/attention_tutorial.md",
+    "title": "Attention 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Attention / MHA / Cross-Attention",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/attention_tutorial_en.html": {
+    "md": "docs/tutorials/attention_tutorial_en.md",
+    "title": "Attention Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/diffusion_distillation_tutorial.html": {
+    "md": "docs/tutorials/diffusion_distillation_tutorial.md",
+    "title": "Diffusion Distillation Tutorial",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/diffusion_distillation_tutorial_en.html": {
+    "md": "docs/tutorials/diffusion_distillation_tutorial_en.md",
+    "title": "Diffusion Distillation Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/diffusion_foundations_tutorial.html": {
+    "md": "docs/tutorials/diffusion_foundations_tutorial.md",
+    "title": "Diffusion Foundations 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Diffusion Generative Modeling",
+    "subtitle": "DDPM / Score / DDIM / EDM / CFG / Consistency Models · 公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/diffusion_foundations_tutorial_en.html": {
+    "md": "docs/tutorials/diffusion_foundations_tutorial_en.md",
+    "title": "Diffusion Foundations Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/diffusion_post_training_tutorial.html": {
+    "md": "docs/tutorials/diffusion_post_training_tutorial.md",
+    "title": "Diffusion Post-Training 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Diffusion Post-Training",
+    "subtitle": "RL + Preference Optimization for Diffusion/Flow Models (DDPO/Diffusion-DPO/Flow-GRPO) + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/diffusion_post_training_tutorial_en.html": {
+    "md": "docs/tutorials/diffusion_post_training_tutorial_en.md",
+    "title": "Diffusion Post Training Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/distributed_training_tutorial.html": {
+    "md": "docs/tutorials/distributed_training_tutorial.md",
+    "title": "Distributed Training 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Distributed Training Systems",
+    "subtitle": "DDP / FSDP2 / ZeRO / TP / PP / SP / CP / EP — 公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/distributed_training_tutorial_en.html": {
+    "md": "docs/tutorials/distributed_training_tutorial_en.md",
+    "title": "Distributed Training Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/flow_matching_tutorial.html": {
+    "md": "docs/tutorials/flow_matching_tutorial.md",
+    "title": "Flow Matching Quick Reference",
+    "eyebrow": "Interview Prep · Flow Matching / Diffusion Generative Modeling",
+    "subtitle": "Conditional Flow Matching · Rectified Flow / VP / VE · 训练 + 采样 + SD3 / FLUX 实战",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/flow_matching_tutorial_en.html": {
+    "md": "docs/tutorials/flow_matching_tutorial_en.md",
+    "title": "Flow Matching Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/image_generation_systems_tutorial.html": {
+    "md": "docs/tutorials/image_generation_systems_tutorial.md",
+    "title": "Image Generation Systems 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Image Generation Systems",
+    "subtitle": "LDM / SD / SDXL / SD3 / FLUX / ControlNet / LoRA + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/image_generation_systems_tutorial_en.html": {
+    "md": "docs/tutorials/image_generation_systems_tutorial_en.md",
+    "title": "Image Generation Systems Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/kl_divergence_rlhf_tutorial.html": {
+    "md": "docs/tutorials/kl_divergence_rlhf_tutorial.md",
+    "title": "Kl Divergence Rlhf Tutorial",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/kl_divergence_rlhf_tutorial_en.html": {
+    "md": "docs/tutorials/kl_divergence_rlhf_tutorial_en.md",
+    "title": "Kl Divergence Rlhf Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/kv_cache_speculative_decoding_tutorial.html": {
+    "md": "docs/tutorials/kv_cache_speculative_decoding_tutorial.md",
+    "title": "KV Cache + Speculative Decoding 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Inference Systems / Speculative Decoding",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/kv_cache_speculative_decoding_tutorial_en.html": {
+    "md": "docs/tutorials/kv_cache_speculative_decoding_tutorial_en.md",
+    "title": "Kv Cache Speculative Decoding Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/llm_opd_tutorial.html": {
+    "md": "docs/tutorials/llm_opd_tutorial.md",
+    "title": "Llm Opd Tutorial",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/llm_opd_tutorial_en.html": {
+    "md": "docs/tutorials/llm_opd_tutorial_en.md",
+    "title": "Llm Opd Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/long_context_rope_yarn_mla_tutorial.html": {
+    "md": "docs/tutorials/long_context_rope_yarn_mla_tutorial.md",
+    "title": "Long Context: RoPE / YaRN / NTK / MLA / Sliding Window 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Long Context / Position Encoding",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/long_context_rope_yarn_mla_tutorial_en.html": {
+    "md": "docs/tutorials/long_context_rope_yarn_mla_tutorial_en.md",
+    "title": "Long Context Rope Yarn Mla Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/moe_tutorial.html": {
+    "md": "docs/tutorials/moe_tutorial.md",
+    "title": "MoE (Mixture-of-Experts) 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Mixture-of-Experts Architectures",
+    "subtitle": "DeepSeek-V3 / Mixtral / Llama 4 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/moe_tutorial_en.html": {
+    "md": "docs/tutorials/moe_tutorial_en.md",
+    "title": "Moe Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/multi_agent_long_horizon_tutorial.html": {
+    "md": "docs/tutorials/multi_agent_long_horizon_tutorial.md",
+    "title": "Multi-Agent & Long-Horizon 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Multi-Agent & Long-Horizon",
+    "subtitle": "CAMEL · AutoGen · MetaGPT · MoA · Debate · MemGPT · LATS · SWE-Agent + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/multi_agent_long_horizon_tutorial_en.html": {
+    "md": "docs/tutorials/multi_agent_long_horizon_tutorial_en.md",
+    "title": "Multi Agent Long Horizon Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/quantization_tutorial.html": {
+    "md": "docs/tutorials/quantization_tutorial.md",
+    "title": "Quantization 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Quantization for LLM Inference",
+    "subtitle": "GPTQ / AWQ / FP8 / NVFP4 / SmoothQuant + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/quantization_tutorial_en.html": {
+    "md": "docs/tutorials/quantization_tutorial_en.md",
+    "title": "Quantization Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/reasoning_models_tutorial.html": {
+    "md": "docs/tutorials/reasoning_models_tutorial.md",
+    "title": "Reasoning Models 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Reasoning Models / Test-Time Compute",
+    "subtitle": "o1 / R1 / Test-Time Compute / PRM + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/reasoning_models_tutorial_en.html": {
+    "md": "docs/tutorials/reasoning_models_tutorial_en.md",
+    "title": "Reasoning Models Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.html": {
+    "md": "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md",
+    "title": "RLHF / DPO / GRPO / PPO 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Post-Training Alignment",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.html": {
+    "md": "docs/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.md",
+    "title": "Rlhf Dpo Grpo Ppo Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/self_evolving_agents_tutorial.html": {
+    "md": "docs/tutorials/self_evolving_agents_tutorial.md",
+    "title": "Self-Evolving Agents 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Self-Evolving Agents",
+    "subtitle": "Ctx2Skill · Native Evolution · A²RD · Voyager · Reflexion · STaR + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/self_evolving_agents_tutorial_en.html": {
+    "md": "docs/tutorials/self_evolving_agents_tutorial_en.md",
+    "title": "Self Evolving Agents Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/vae_vqvae_vqgan_tutorial.html": {
+    "md": "docs/tutorials/vae_vqvae_vqgan_tutorial.md",
+    "title": "VAE / VQ-VAE / VQ-GAN / FSQ 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Latent Variable Models & Discrete Tokenizers",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/vae_vqvae_vqgan_tutorial_en.html": {
+    "md": "docs/tutorials/vae_vqvae_vqgan_tutorial_en.md",
+    "title": "Vae Vqvae Vqgan Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/video_generation_tutorial.html": {
+    "md": "docs/tutorials/video_generation_tutorial.md",
+    "title": "Video Generation 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Video Generation",
+    "subtitle": "Sora · Hunyuan · Wan · Mochi · Movie Gen · OpenSora 全栈：3D Causal VAE + Spacetime Patches + MM-DiT + 25 高频题 (L1·L2·L3)",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/video_generation_tutorial_en.html": {
+    "md": "docs/tutorials/video_generation_tutorial_en.md",
+    "title": "Video Generation Tutorial En",
+    "lang": "en"
+  },
+  "docs/tutorials/vlm_multimodal_tutorial.html": {
+    "md": "docs/tutorials/vlm_multimodal_tutorial.md",
+    "title": "VLM / Multimodal 面试 Cheat Sheet",
+    "eyebrow": "Interview Prep · Vision-Language Models",
+    "subtitle": "公式推导 + From-Scratch 代码 + 25 高频题（L1 必会 · L2 进阶 · L3 顶级 lab）",
+    "lang": "zh-CN"
+  },
+  "docs/tutorials/vlm_multimodal_tutorial_en.html": {
+    "md": "docs/tutorials/vlm_multimodal_tutorial_en.md",
+    "title": "Vlm Multimodal Tutorial En",
+    "lang": "en"
+  }
+}
