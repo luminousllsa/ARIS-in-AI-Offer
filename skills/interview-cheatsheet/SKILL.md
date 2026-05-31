@@ -128,7 +128,7 @@ Most tutorials converge in 3-5 rounds. Going to 5-6 rounds is fine if substantiv
 Call directly (do not invoke `/render-html` as a sub-skill; call its python script — gives clear control):
 
 ```bash
-python3 skills/render-html/scripts/render_html.py docs/tutorials/<slug>_tutorial.md \
+python3 tools/render_html.py docs/tutorials/<slug>_tutorial.md \
   --template academic \
   --out docs/tutorials/<slug>_tutorial.html \
   --title "<Topic> 面试 Cheat Sheet" \
@@ -138,7 +138,7 @@ python3 skills/render-html/scripts/render_html.py docs/tutorials/<slug>_tutorial
   --lang zh-CN
 ```
 
-`render_html.py` runs its own 13-check codex review automatically. If that FAILs, fix the MD (often a table-pipe or callout-list issue the math/code reviewer missed) and re-render. Note that `render_html.py` itself writes `<slug>_tutorial.review.json` for the render-stage audit.
+**Run the render-fidelity gate yourself — you (the orchestrating agent), not the script.** `render_html.py` is pure stdlib: it only writes the HTML; it does **not** call Codex and does **not** write any `.review.json`. After rendering, fire a fresh `mcp__codex__codex` thread (never `codex-reply`) auditing render fidelity + safety exactly as the *HTML Review Gate* in `skills/render-html/SKILL.md` (Step 4) specifies. If it FAILs, fix the MD (often a table-pipe or callout-list issue the math/code reviewer missed) and re-render. You then merge the render verdict into the combined `.review.json` in Step 6 — the script never produces it.
 
 ### Step 6 — Combine audit trail
 
