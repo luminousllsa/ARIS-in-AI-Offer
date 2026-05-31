@@ -56,6 +56,7 @@ SIDECAR_META_MISSING = "SIDECAR_META_MISSING"  # sidecar present but records no 
 NO_THREAD_ID = "NO_THREAD_ID"             # shippable + fresh, but no codex thread id recorded
 NO_SIDECAR = "NO_SIDECAR"                 # managed HTML (has aris:source meta) but no .review.json
 UNMANAGED = "UNMANAGED"                   # HTML with no aris:source meta (not a render_html.py product)
+EXEMPT = "EXEMPT"                         # an UNMANAGED artifact explicitly allowlisted (e.g. a hand-authored blog)
 
 SEVERITY = {
     OK: 0,
@@ -65,6 +66,7 @@ SEVERITY = {
     HTML_HASH_MISSING: 1,
     NO_SIDECAR: 1,
     UNMANAGED: 1,
+    EXEMPT: 0,
     HTML_STALE: 2,
     SOURCE_MISSING: 2,
     JSON_UNPARSEABLE: 2,
@@ -76,6 +78,26 @@ SEVERITY = {
 # "PASS"/"WARN" ship; anything leading with FAIL/DEFERRED/ERROR/BLOCKED/REVIEW
 # (or no verdict at all) is treated as not-cleanly-reviewed.
 SHIPPABLE_TOKENS = {"PASS", "WARN"}
+
+# Known limitations (this is a STRUCTURAL gate, not cryptographic attestation):
+#  - It checks the HTML's recorded source hash against the current source, but does
+#    NOT re-render and diff the HTML output, so a hand-edited HTML body whose source +
+#    meta are untouched is not caught. (Output-hash diffing is the next hardening;
+#    a plain re-render isn't byte-stable because of the embedded generation timestamp.)
+#  - Sidecars are self-attesting: a PR editing both an artifact and its .review.json
+#    can satisfy the structural checks. The backstop is human PR review + thread_ids
+#    that trace to real Codex runs.
+#
+# Artifacts intentionally OUTSIDE the audited render pipeline (hand-authored, not
+# a render_html.py product). An exemption can ONLY downgrade an UNMANAGED artifact
+# to EXEMPT — it can NEVER mask a hard failure of a *managed* artifact (a broken
+# tutorial still fails). Keep this list short, explicit, and reasoned; the report
+# prints every exemption so it is never a silent bypass.
+EXEMPTIONS = {
+    "docs/blogs/continuous_dlm_2026h1_survey.html":
+        "hand-authored long-form HTML, intentionally outside the audited /render-html "
+        "pipeline (README states this); not a render_html.py product.",
+}
 
 META_RE = re.compile(
     r'<meta\s+name="(aris:[a-z0-9:_-]+)"\s+content="([^"]*)"\s*/?>',
@@ -211,6 +233,15 @@ def classify(html_path: Path, root: Path) -> Record:
     html_embedded_hash = meta.get("aris:source-sha256", "")
 
     if not src_rel:
+        # An UNMANAGED artifact may be explicitly allowlisted (e.g. a hand-authored
+        # blog). Exemption applies ONLY here — it can never reach a managed artifact's
+        # hard failure below, so it cannot be used to hide a broken tutorial.
+        # Governance guard: never honour an exemption for a render-product location
+        # (docs/tutorials/*). Tutorials must ALWAYS be reviewed; refusing to exempt
+        # them closes the "strip a tutorial's aris:source meta, then allowlist it" hole.
+        if rel_html in EXEMPTIONS and not rel_html.startswith("docs/tutorials/"):
+            return Record(html=rel_html, status=EXEMPT,
+                          detail=f"exempt — {EXEMPTIONS[rel_html]}")
         return Record(html=rel_html, status=UNMANAGED,
                       detail="no aris:source-path meta — not a render_html.py product "
                              "(hand-authored HTML; outside the audited render pipeline)")
@@ -302,13 +333,10 @@ def classify(html_path: Path, root: Path) -> Record:
 
 
 def default_targets(root: Path) -> list[Path]:
-    targets: list[Path] = []
-    targets += sorted((root / "docs" / "tutorials").glob("*.html"))
-    targets += sorted((root / "docs" / "blogs").glob("*.html"))
-    idx = root / "docs" / "index.html"
-    if idx.is_file():
-        targets.append(idx)
-    return targets
+    # Scan EVERY shippable HTML under docs/ recursively, so a new docs/ subdir can't
+    # silently escape the gate. Per-artifact exemptions handle intentional exceptions.
+    docs = root / "docs"
+    return sorted(docs.rglob("*.html")) if docs.is_dir() else []
 
 
 def main() -> int:
@@ -369,7 +397,9 @@ def main() -> int:
 
     if not args.json:
         ok_n = len(by_status.get(OK, []))
-        print(f"summary: {ok_n} OK · {len(warn)} WARN · {len(hard)} FAIL  "
+        exempt_n = len(by_status.get(EXEMPT, []))
+        exempt_str = f" · {exempt_n} EXEMPT" if exempt_n else ""
+        print(f"summary: {ok_n} OK · {len(warn)} WARN · {len(hard)} FAIL{exempt_str}  "
               f"→ {'PASS' if not failing else 'BLOCK'} (mode={args.mode})")
         if args.mode == "bootstrap" and warn:
             print("  (bootstrap: WARN items are catalogued, not blocking — clear them, then switch to --mode strict)")
