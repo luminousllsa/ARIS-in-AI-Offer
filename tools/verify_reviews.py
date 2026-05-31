@@ -47,6 +47,7 @@ from pathlib import Path
 # severity: 0 = ok, 1 = warn (catalogued), 2 = hard (breaks a shippable claim)
 OK = "OK"
 HTML_STALE = "HTML_STALE"
+HTML_TAMPERED = "HTML_TAMPERED"           # served HTML != a fresh re-render of its source (hand-edited body)
 HTML_HASH_MISSING = "HTML_HASH_MISSING"   # managed HTML lacks aris:source-sha256 (can't prove freshness)
 SOURCE_MISSING = "SOURCE_MISSING"
 JSON_UNPARSEABLE = "JSON_UNPARSEABLE"
@@ -68,6 +69,7 @@ SEVERITY = {
     UNMANAGED: 1,
     EXEMPT: 0,
     HTML_STALE: 2,
+    HTML_TAMPERED: 2,
     SOURCE_MISSING: 2,
     JSON_UNPARSEABLE: 2,
     REVIEW_INCOMPLETE: 2,
@@ -79,14 +81,20 @@ SEVERITY = {
 # (or no verdict at all) is treated as not-cleanly-reviewed.
 SHIPPABLE_TOKENS = {"PASS", "WARN"}
 
-# Known limitations (this is a STRUCTURAL gate, not cryptographic attestation):
-#  - It checks the HTML's recorded source hash against the current source, but does
-#    NOT re-render and diff the HTML output, so a hand-edited HTML body whose source +
-#    meta are untouched is not caught. (Output-hash diffing is the next hardening;
-#    a plain re-render isn't byte-stable because of the embedded generation timestamp.)
+# Limitations (this is a STRUCTURAL gate, not cryptographic attestation):
+#  - The structural pass checks the HTML's recorded source hash against the current
+#    source, but not the HTML body. Pass --reproduce to additionally re-render each
+#    managed HTML from its source (using the committed render manifest flags) and diff
+#    modulo the generation timestamp — this catches a hand-edited HTML body whose
+#    source/meta were left untouched. CI runs --mode strict --reproduce.
 #  - Sidecars are self-attesting: a PR editing both an artifact and its .review.json
-#    can satisfy the structural checks. The backstop is human PR review + thread_ids
-#    that trace to real Codex runs.
+#    can satisfy the checks. The backstop is human PR review + thread_ids that trace
+#    to real Codex runs.
+#  - TCB: --reproduce re-renders with the working-tree render_html.py + tools/templates/
+#    + the render manifest, so those three are TRUSTED. A malicious change to any of them
+#    could inject content and a matching HTML that still reproduces. CI re-runs on changes
+#    to them (paths filter), but the real backstop is human review — treat renderer /
+#    template / manifest edits as high-trust.
 #
 # Artifacts intentionally OUTSIDE the audited render pipeline (hand-authored, not
 # a render_html.py product). An exemption can ONLY downgrade an UNMANAGED artifact
@@ -224,6 +232,76 @@ def hash_matches(recorded: str, current_full: str) -> bool:
 
 # --- core classification ----------------------------------------------------
 
+# The ONLY non-deterministic bytes in a render_html.py output are the UTC generation
+# timestamp, emitted in exactly three template-generated spots. Normalize ONLY those
+# spots (not a global timestamp strip) so a same-format timestamp appearing in body
+# content can't be used to hide a tamper.
+_TS = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC"
+_TS_PATTERNS = [
+    re.compile(r'(name="aris:generated-at" content=")' + _TS),
+    re.compile(r'(Rendered:</strong>\s*)' + _TS),
+    re.compile(r'(generated at\s+)' + _TS),
+]
+
+
+def _normalize(text: str) -> str:
+    for rx in _TS_PATTERNS:
+        text = rx.sub(r"\1<TS>", text)
+    return text
+
+
+def load_render_manifest(root: Path):
+    """Return the render manifest dict, or None if missing/unparseable. None is FATAL
+    for --reproduce: we must never silently fall back to an empty manifest, which would
+    skip every artifact (fail-open)."""
+    p = root / "tools" / "tutorials_render_manifest.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def reproduce_check(html_path: Path, root: Path, manifest: dict) -> tuple[bool, str]:
+    """Re-render the artifact from its source Markdown using the committed manifest
+    flags and compare (modulo timestamp) to the committed HTML. A mismatch means the
+    served HTML does not match what its source renders to — i.e. the HTML was
+    hand-edited. Artifacts absent from the manifest are skipped (ok=True)."""
+    import subprocess
+    import tempfile
+    rel = html_path.relative_to(root).as_posix()
+    entry = manifest.get(rel)
+    if not entry:
+        # Fail closed: a managed render product (this is only called on structurally-OK
+        # artifacts, which by definition have aris:source meta) MUST be in the manifest,
+        # else its body can't be re-derived and a tamper could hide by deleting the entry.
+        return False, "managed render product is absent from the render manifest — cannot verify (fail closed)"
+    md = root / entry.get("md", "")
+    if not md.is_file():
+        return False, f"manifest source {entry.get('md')!r} missing"
+    render = root / "tools" / "render_html.py"
+    with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tf:
+        tmp = Path(tf.name)
+    try:
+        cmd = [sys.executable, str(render), str(md), "--template", "academic",
+               "--out", str(tmp), "--lang", entry.get("lang", "zh-CN")]
+        for flag, key in (("--title", "title"), ("--eyebrow", "eyebrow"),
+                          ("--subtitle", "subtitle"), ("--author", "author")):
+            if entry.get(key):
+                cmd += [flag, entry[key]]
+        if entry.get("blog_mode"):
+            cmd += ["--blog-mode"]
+        res = subprocess.run(cmd, capture_output=True, text=True, cwd=str(root))
+        if res.returncode != 0:
+            return False, f"re-render failed: {res.stderr.strip()[:160]}"
+        committed = _normalize(html_path.read_text(encoding="utf-8", errors="replace"))
+        fresh = _normalize(tmp.read_text(encoding="utf-8", errors="replace"))
+        if committed == fresh:
+            return True, "HTML matches a fresh re-render of its source"
+        return False, "served HTML does NOT match a fresh re-render of its source — hand-edited?"
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 def classify(html_path: Path, root: Path) -> Record:
     rel_html = html_path.relative_to(root).as_posix()
     text = html_path.read_text(encoding="utf-8", errors="replace")
@@ -344,6 +422,9 @@ def main() -> int:
     ap.add_argument("--mode", choices=["bootstrap", "strict"], default="bootstrap",
                     help="bootstrap (default): only hard breakage fails. strict: any non-OK fails.")
     ap.add_argument("--json", action="store_true", help="emit a machine-readable JSON report")
+    ap.add_argument("--reproduce", action="store_true",
+                    help="also re-render each managed HTML from its source and diff (modulo timestamp) "
+                         "to catch a hand-edited HTML body whose source/meta were left untouched")
     ap.add_argument("paths", nargs="*", help="explicit HTML files to check (default: docs/tutorials, docs/blogs, docs/index.html)")
     args = ap.parse_args()
 
@@ -354,6 +435,20 @@ def main() -> int:
         targets = default_targets(root)
 
     records = [classify(p, root) for p in targets if p.is_file()]
+
+    if args.reproduce:
+        manifest = load_render_manifest(root)
+        if manifest is None:
+            print("ERROR: --reproduce requires tools/tutorials_render_manifest.json "
+                  "(missing or unparseable) — refusing to run fail-open.", file=sys.stderr)
+            return 2
+        for r in records:
+            if r.status != OK:
+                continue  # seal only structurally-OK render products; EXEMPT/structural-fail skip
+            ok, detail = reproduce_check(root / r.html, root, manifest)
+            if not ok:
+                r.status = HTML_TAMPERED
+                r.detail = detail
 
     # group by status
     by_status: dict[str, list[Record]] = {}

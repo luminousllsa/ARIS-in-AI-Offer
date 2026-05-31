@@ -11,12 +11,18 @@ on:
     paths:
       - 'docs/**'
       - 'tools/verify_reviews.py'
+      - 'tools/render_html.py'
+      - 'tools/templates/**'
+      - 'tools/tutorials_render_manifest.json'
       - '.github/workflows/review-audit.yml'
   push:
     branches: [main]
     paths:
       - 'docs/**'
       - 'tools/verify_reviews.py'
+      - 'tools/render_html.py'
+      - 'tools/templates/**'
+      - 'tools/tutorials_render_manifest.json'
       - '.github/workflows/review-audit.yml'
   workflow_dispatch:
 
@@ -35,5 +41,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify the review audit chain (strict)
-        run: python3 tools/verify_reviews.py --mode strict
+      - name: Verify the review audit chain (strict + reproduce)
+        run: python3 tools/verify_reviews.py --mode strict --reproduce
