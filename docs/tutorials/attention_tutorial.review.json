@@ -1,11 +1,11 @@
 {
   "skill": "render-html",
   "source": "docs/tutorials/attention_tutorial.md",
-  "source_sha256_prefix": "8d8d5146c1a9a924",
+  "source_sha256_prefix": "970e8a0a0538e002",
   "output": "docs/tutorials/attention_tutorial.html",
   "author": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "reviewer": "codex gpt-5.5 xhigh, fresh thread per run (never codex-reply)",
-  "verdict": "PASS",
+  "verdict": "WARN",
   "checks": {
     "information_fidelity": "pass",
     "structure": "pass",
@@ -44,8 +44,23 @@
       "thread_id": "019e3e52-83b0-7b32-9778-f81b118470c2",
       "issue": null,
       "fix": null
+    },
+    {
+      "run": "B2",
+      "date": "2026-05-31",
+      "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+      "thread_id": "019e7c8b-66fc-7ca2-bde6-c9f03aa3b224",
+      "verdict": "WARN",
+      "scope": "delta re-review (Runnable Code section added in 056c71f)",
+      "summary": "Delta of the new Runnable Code section is faithful; 2 non-breaking WARN (mha.py causal path lacks a dedicated assert; could not time 'CPU seconds' in read-only sandbox).",
+      "issues": [
+        "mha.py causal path lacks a dedicated assert that future tokens are masked (mask semantics themselves correct)",
+        "read-only sandbox could not run the scripts to time the 'CPU in seconds' claim (env limit, not a code defect)"
+      ]
     }
   ],
   "summary": "Three-round review: FAIL (table-pipe math collision) → FAIL (TL;DR list numbering reset) → PASS. 13 checks pass on run 3.",
-  "rendered_at": "2026-05-19"
+  "rendered_at": "2026-05-19",
+  "source_sha256": "970e8a0a0538e0022a8bf1ec44765f3d6a12987ed2d4c322b034e10eb1c3817e",
+  "thread_id": "019e7c8b-66fc-7ca2-bde6-c9f03aa3b224"
 }

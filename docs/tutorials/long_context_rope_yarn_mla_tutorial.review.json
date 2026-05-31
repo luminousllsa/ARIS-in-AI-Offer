@@ -8,7 +8,7 @@
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "reviewer": "codex gpt-5.5 xhigh, fresh thread per run (never codex-reply)",
   "math_code_review": {
-    "verdict": "FAIL_AT_ROUND_3_THEN_PATCHED",
+    "verdict": "FAIL",
     "note": "3-round budget reached at FAIL; final post-round-3 fixes applied without re-review per SKILL hard rule.",
     "rounds": [
       {
@@ -63,6 +63,22 @@
           "§6.4 main prose rewritten: 'Q/K 范数放大 sqrt(1/t) 倍 (t<1 时该因子 > 1)'; corrected the cos/sin formula to use sqrt(1/t) explicitly",
           "Added branch for cur_len <= sink_size in streaming_decode pseudocode"
         ]
+      },
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8b-625b-7b51-b21d-1a2cdc57bec3",
+        "verdict": "FAIL",
+        "scope": "math/code + render (prior math_code FAIL-patched, render DEFERRED)",
+        "summary": "Fresh Codex re-review FAIL: the previously-DEFERRED render check caught a broken callout, plus content/citation issues.",
+        "issues": [
+          "RENDER: StreamingLLM warning callout (MD L701 / HTML ~L1074) rendered broken — title became generic 'Warning', residual bare ** in body, mis-scoped <strong>",
+          "§12.3 MLA decode 'Time per token' O(L·(d_c+d_h^R)) missing N_h factor (reads like cache-read bandwidth, misleading)",
+          "code blocks 2/3/4/6/7 use torch without per-block import (NameError if run in isolation)",
+          "CITATION: Lost-in-the-Middle arXiv 2023 vs TACL 2024 not disambiguated",
+          "CITATION: ABF/Xiong 'Effective Long-Context Scaling', arXiv:2309.16039, NAACL 2024 — venue/year incomplete"
+        ]
       }
     ],
     "warnings_remaining": [
@@ -71,9 +87,29 @@
     ]
   },
   "render_review": {
-    "verdict": "DEFERRED",
-    "note": "render_html.py emitted output without auto-invoking an integrated render-stage codex review (the embedded check described in SKILL.md is not present in the current script). Math/code review covered the rendering-adjacent items: heading consistency, callout-list collision, table-pipe escape, personal_info_leak — all passed by round 3."
+    "verdict": "FAIL",
+    "note": "render_html.py emitted output without auto-invoking an integrated render-stage codex review (the embedded check described in SKILL.md is not present in the current script). Math/code review covered the rendering-adjacent items: heading consistency, callout-list collision, table-pipe escape, personal_info_leak — all passed by round 3.",
+    "rounds": [
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8b-625b-7b51-b21d-1a2cdc57bec3",
+        "verdict": "FAIL",
+        "scope": "math/code + render (prior math_code FAIL-patched, render DEFERRED)",
+        "summary": "Fresh Codex re-review FAIL: the previously-DEFERRED render check caught a broken callout, plus content/citation issues.",
+        "issues": [
+          "RENDER: StreamingLLM warning callout (MD L701 / HTML ~L1074) rendered broken — title became generic 'Warning', residual bare ** in body, mis-scoped <strong>",
+          "§12.3 MLA decode 'Time per token' O(L·(d_c+d_h^R)) missing N_h factor (reads like cache-read bandwidth, misleading)",
+          "code blocks 2/3/4/6/7 use torch without per-block import (NameError if run in isolation)",
+          "CITATION: Lost-in-the-Middle arXiv 2023 vs TACL 2024 not disambiguated",
+          "CITATION: ABF/Xiong 'Effective Long-Context Scaling', arXiv:2309.16039, NAACL 2024 — venue/year incomplete"
+        ]
+      }
+    ]
   },
   "summary": "Three round math/code review (FAIL/FAIL/FAIL) on a 1209-line draft of Long Context cheat sheet. Each round fixed real issues: YaRN temperature direction, KV-cache numerics, MLA imports, streaming_decode cache semantics, table structure, ABF prose. Post-round-3 fixes patched the last two issues (§6.4 wording + streaming edge case) without re-review per hard 3-round budget. Remaining warnings are cosmetic (length +9 lines, citation venue normalization).",
-  "rendered_at": "2026-05-19"
+  "rendered_at": "2026-05-19",
+  "source_sha256": "cf9958df2aff90f900727a9cd8fa0b82b5b5cb28354087aa59f52b9b62e6c24d",
+  "thread_id": "019e7c8b-625b-7b51-b21d-1a2cdc57bec3"
 }

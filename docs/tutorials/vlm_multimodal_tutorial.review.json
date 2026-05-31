@@ -7,7 +7,7 @@
   "effort": "max",
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "math_code_review": {
-    "verdict": "FAIL_AFTER_3_ROUNDS_WITH_FIXES_APPLIED",
+    "verdict": "FAIL",
     "reviewer": "codex gpt-5.5 xhigh, fresh thread per run (never codex-reply)",
     "rounds": [
       {
@@ -30,6 +30,22 @@
         "thread_id": "019e3ebc-ea73-7f31-941b-c893146e5aca",
         "issue": "(a) §8.2 Perceiver Resampler described as 'single layer cross-attention' — incorrect; Flamingo paper Sec 3.1 uses stacked depth (default ~6 layers). (b) §7.4 ⚠️ note claimed missing kdim/vdim would 'truncate image features' — wrong; PyTorch raises shape mismatch error. (c) Q7 BLIP-2 stages mislabeled as 'two-stage representation + one-stage generation' — should be 2 stage total.",
         "fix": "§8.2 rewritten: Perceiver Resampler is multi-layer (Flamingo Sec 3.1 default ~6 layers) with per-layer CrossAttn + FFN update rule. §7.4 ⚠️ note corrected: PyTorch raises shape mismatch error, does not silently truncate. Q7 + §7.5 table corrected: 2 stage total, stage 1 includes ITC + ITM + ITG."
+      },
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8b-3529-7a11-9c7c-5ed67df6fc62",
+        "verdict": "FAIL",
+        "scope": "math/code re-review (prior FAIL_AFTER_3_ROUNDS patched)",
+        "summary": "Fresh Codex re-review FAIL: 5 concrete defects remain (cross-checked vs Qwen2-VL/Molmo/BLIP-2/LLaVA sources).",
+        "issues": [
+          "§10.5 M-RoPE build_mrope_cos_sin defaults base=10000 but Qwen2-VL-7B HF rope_theta=1000000 -> wrong angles",
+          "§A.1 CLIP sanity-check loss wrong: at init_tau=0.07 expected ~2.25, not ≈log(8)=2.08 (loss≈logN only holds for very small 1/τ)",
+          "§5.4 vs §14 Q25 contradict: Molmo main model uses OpenAI CLIP ViT-L/14@336, not SigLIP-So400M (SigLIP only in ablation)",
+          "§0 TL;DR: 'lightweight MLP projector' attributed to LLaVA-1.0 — LLaVA-1.0 uses a single linear W; the 2-layer MLP is LLaVA-1.5",
+          "§12.1 BLIP-2 Q-Former Stage-1 mischaracterized as LLM-prefix captioning — Stage-1 is representation learning (ITC+ITM+ITG); LLM connects in Stage-2"
+        ]
       }
     ],
     "note": "After 3 review rounds all flagged issues received targeted fixes; per the 3-round-FAIL stop rule, no 4th review was run. Each round's issues were addressed by direct edits in source MD before stopping."
@@ -63,5 +79,7 @@
     ]
   },
   "summary": "3-round math/code review (FAIL → FAIL → FAIL, each round's blocking issues fixed in place; stopped per 3-round rule); 1-round render review PASS on all 13 checks. Length is 1446 lines vs target 1000 (+44.6%, warn-only).",
-  "rendered_at": "2026-05-19"
+  "rendered_at": "2026-05-19",
+  "source_sha256": "f9cc9510bdd535499bcf756290f8ccf31a6785c97df3fa1dabb9e9c1bf74541f",
+  "thread_id": "019e7c8b-3529-7a11-9c7c-5ed67df6fc62"
 }

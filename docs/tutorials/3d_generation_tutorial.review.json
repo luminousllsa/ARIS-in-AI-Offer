@@ -9,12 +9,31 @@
   "byline": "Ruofeng Yang (杨若峰), Shanghai Jiao Tong University",
   "reviewer": "codex gpt-5.5 xhigh, fresh thread per round",
   "math_code_review": {
-    "verdict": "PASS",
+    "verdict": "FAIL",
     "rounds": [
       {
         "run": "1-3",
         "verdict": "PASS",
         "notes": "Three rounds of cross-model codex math/code review were completed by the writing agent (subagent context). Each round caught and fixed substantive issues. Agent's per-round transcripts captured in subagent log; verdict applied to .md before render."
+      },
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8b-6eb5-7543-b1b1-356adb27b065",
+        "verdict": "FAIL",
+        "scope": "math/code re-review (replace untraceable prior round, no thread_id)",
+        "summary": "Fresh Codex re-review FAIL: core formulas clean, but 5 defects + 3 WARN imprecisions.",
+        "issues": [
+          "TensoRF complexity baseline O(N^4) wrong — should be O(N^3) -> CP O(N)/VM O(N^2)",
+          "Dynamic 3DGS (Luiten 2024) mischaracterized as per-frame independent Gaussians (actually persistent + local-rigidity, arXiv:2308.09713)",
+          "InstantMesh speed overstated 3s/≤3s — paper says 'within 10 seconds' (arXiv:2404.07191)",
+          "CLAY mis-attributed to 3DShape2VecSet — CLAY (2406.13897) is multi-res VAE + latent DiT; 3DShape2VecSet is separate (2301.11445)",
+          "§4.5 densify_and_prune: length-N split_mask passed to split_at after clone_at appended Gaussians -> possible mask-length mismatch",
+          "[WARN] EG3D triplane: features summed not concat",
+          "[WARN] Mip-NeRF IPE scalar/vector notation conflated",
+          "[WARN] Instant-NGP hash primes: π_1=1 listed as '大质数'"
+        ]
       }
     ]
   },
@@ -32,5 +51,6 @@
   },
   "summary": "3D Gen tutorial passed both math/code review (subagent rounds 1-3) and render review (main-session DIY). 64KB MD, 94KB HTML.",
   "rendered_at": "2026-05-19",
-  "notes": "Subagent was killed before writing review.json (codex MCP concurrency issue). HTML was already rendered. Render review backfilled from main session with thread 019e3f3d (PASS 13/13)."
+  "notes": "Subagent was killed before writing review.json (codex MCP concurrency issue). HTML was already rendered. Render review backfilled from main session with thread 019e3f3d (PASS 13/13).",
+  "thread_id": "019e7c8b-6eb5-7543-b1b1-356adb27b065"
 }

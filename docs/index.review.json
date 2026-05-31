@@ -19,9 +19,21 @@
         "fixes_applied": [
           "Removed the source-level `# ARIS-in-AI-Offer — About` heading (kept the leading blockquote intro); re-rendered. Hero h1 from template is now the sole H1."
         ]
+      },
+      {
+        "run": "B2",
+        "date": "2026-05-31",
+        "reviewer": "codex gpt-5.5 xhigh, fresh thread (B2 audit-chain re-review)",
+        "thread_id": "019e7c8b-2f0e-7130-9a4a-c90334d5d989",
+        "verdict": "PASS",
+        "scope": "render-fidelity + safety delta re-review (about.md changed after 05-19)",
+        "summary": "Re-audited docs/index.html vs docs/about.md: PASS, zero issues; headings/lists/table/callouts/ASCII block preserved, escapes clean, no unsafe HTML; source hash verified.",
+        "issues": []
       }
     ]
   },
   "summary": "ARIS-in-AI-Offer landing page (docs/index.html): rendered via tools/render_html.py from docs/about.md; codex 13-check render review passed with 1 cosmetic WARN, fixed in 1 round.",
-  "rendered_at": "2026-05-19"
+  "rendered_at": "2026-05-19",
+  "source_sha256": "15ccd3d65d308c4656117fca714381d163daa0631e2053409704f6c45f4617e8",
+  "thread_id": "019e7c8b-2f0e-7130-9a4a-c90334d5d989"
 }
