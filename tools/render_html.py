@@ -717,7 +717,12 @@ def render_toc(toc: list[dict]) -> str:
 
 
 def strip_frontmatter(md: str) -> str:
-    """Strip leading YAML frontmatter (--- ... ---) if present at start."""
+    """Strip leading YAML frontmatter (--- ... ---) if present at start.
+
+    Also strips a leading UTF-8 BOM so frontmatter detection still fires
+    on files saved by editors that prepend it.
+    """
+    md = md.lstrip("﻿")
     lines = md.split("\n", 1)
     if not lines or lines[0].strip() != "---":
         return md
