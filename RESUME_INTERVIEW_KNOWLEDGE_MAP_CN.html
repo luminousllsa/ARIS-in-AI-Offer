@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鞠少波秋招简历知识地图</title>
+
+<meta name="generator" content="ARIS render-html (academic, v1)">
+<meta name="aris:source-path" content="RESUME_INTERVIEW_KNOWLEDGE_MAP_CN.md">
+<meta name="aris:source-sha256" content="9b2fafef5718780db2b1fbc4871bbfeac0b5780f2b919decb90a960b8669e808">
+<meta name="aris:generated-at" content="2026-08-10 09:13 UTC">
+
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+<!-- highlight.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+
+
+<style>
+:root {
+  --bg: #fdfcf7;
+  --bg-soft: #f4f1ea;
+  --bg-code: #f8f5ec;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #6b6b6b;
+  --primary: #1a4a8c;
+  --primary-soft: #2d6cb8;
+  --accent: #b8390e;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+  --info-bg: #dbeafe;
+  --good-bg: #d1fae5;
+  --good: #065f46;
+  --bad-bg: #fee2e2;
+  --bad: #991b1b;
+  --border: #d6d0c0;
+  --border-soft: #e8e3d5;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Serif Pro", "Source Serif 4", "Crimson Pro", "Georgia", "Songti SC", "STSong", serif;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 40px 32px;
+}
+
+nav.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  font-size: 13px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 16px;
+}
+nav.toc h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+nav.toc ol li { margin: 5px 0; counter-increment: toc; }
+nav.toc ol li::before { content: counter(toc) ". "; color: var(--ink-muted); margin-right: 4px; }
+nav.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+nav.toc a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+nav.toc ul { list-style: none; padding-left: 14px; margin: 3px 0; font-size: 12px; }
+nav.toc ul li::before { content: "→ "; color: var(--border); }
+
+main { min-width: 0; }
+
+header.hero {
+  border-bottom: 3px double var(--primary);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+header.hero .eyebrow {
+  font-family: inherit;
+  color: var(--ink-muted);
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+header.hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+header.hero .subtitle {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+header.hero .byline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+header.hero .byline strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+header.hero .meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 14px;
+}
+header.hero .meta span strong { color: var(--ink-soft); }
+header.hero .meta code {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 11px;
+  background: var(--bg-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 44px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 700;
+}
+h2 .num { color: var(--primary); font-weight: 600; margin-right: 8px; }
+h3 { font-size: 19px; margin: 28px 0 10px; color: var(--primary); font-weight: 600; }
+h4 { font-size: 16px; margin: 20px 0 8px; color: var(--ink); font-weight: 600; }
+
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+ul li, ol li { margin: 4px 0; }
+ul li::marker { color: var(--primary); }
+
+strong { color: var(--accent); font-weight: 600; }
+em { color: var(--ink-soft); }
+
+a { color: var(--primary); }
+a:hover { color: var(--accent); }
+
+code:not(.hljs) {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.86em;
+  background: var(--bg-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+
+pre {
+  background: #fafaf6;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 0;
+  overflow-x: auto;
+  border-radius: 4px;
+  margin: 14px 0;
+}
+pre code, pre code.hljs {
+  background: transparent !important;
+  display: block;
+  padding: 14px 18px !important;
+  font-size: 13px;
+  line-height: 1.55;
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+  color: var(--ink);
+}
+pre.diagram {
+  background: #f9f6ed;
+  border-left: 4px solid var(--accent);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.callout {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 4px solid;
+  font-size: 15px;
+}
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.callout-info { background: var(--info-bg); border-left-color: var(--primary); }
+.callout-info .callout-title { color: var(--primary); }
+.callout-warn { background: var(--warn-bg); border-left-color: var(--warn); }
+.callout-warn .callout-title { color: var(--warn); }
+.callout-good { background: var(--good-bg); border-left-color: var(--good); }
+.callout-good .callout-title { color: var(--good); }
+.callout-bad { background: var(--bad-bg); border-left-color: var(--bad); }
+.callout-bad .callout-title { color: var(--bad); }
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table-wrap table {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+thead { background: var(--primary); color: white; }
+th, td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+th { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; }
+tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+
+details.qa, details {
+  background: white;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 0;
+}
+details summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+  list-style: none;
+  user-select: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "▸ ";
+  margin-right: 4px;
+  display: inline-block;
+  transition: transform 0.15s;
+}
+details[open] summary::before { transform: rotate(90deg); }
+details[open] summary { border-bottom: 1px solid var(--border-soft); }
+details > :not(summary) { padding: 10px 14px; }
+details p:first-of-type { margin-top: 8px; }
+
+mjx-container[display="true"] { margin: 12px 0 !important; }
+
+footer.aris-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--border); }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+  nav.toc {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+    padding-right: 0;
+    padding-bottom: 14px;
+  }
+  header.hero h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+}
+@media print {
+  nav.toc { display: none; }
+  .layout { grid-template-columns: 1fr; padding: 0; }
+  body { background: white; }
+  header.hero { border-bottom-color: var(--ink); }
+  #cite-pop, dialog.lightbox { display: none !important; }
+}
+
+/* --- P0 polish: TOC scrollspy active state ---------------------------- */
+nav.toc a.active {
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+/* --- P0 polish: Long-code auto-collapse ------------------------------- */
+details.code-card {
+  margin: 14px 0;
+  background: #fafaf6;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+}
+details.code-card > summary {
+  cursor: pointer;
+  padding: 8px 14px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-family: "JetBrains Mono", "SF Mono", monospace;
+  list-style: none;
+  user-select: none;
+}
+details.code-card > summary::-webkit-details-marker { display: none; }
+details.code-card > summary::before { content: none; }
+details.code-card > pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-left: none;
+  border-radius: 0;
+}
+@media print {
+  details.code-card { border: 1px solid #ccc; background: white; }
+  details.code-card > summary { display: none !important; }
+  details.code-card > pre { border: 1px solid #ddd; border-radius: 4px; background: white; }
+}
+
+/* --- P0 polish: Paper popover ([[ref]] popups) ------------------------ */
+[data-ref] {
+  color: var(--primary);
+  border-bottom: 1px dotted var(--primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+[data-ref]:hover { background: rgba(26, 74, 140, 0.08); }
+#cite-pop {
+  position: fixed;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 13px;
+  line-height: 1.5;
+  z-index: 1000;
+}
+#cite-pop[hidden] { display: none; }
+#cite-pop .cp-title {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+  padding-right: 24px;
+}
+#cite-pop .cp-meta {
+  color: var(--ink-muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+#cite-pop .cp-key {
+  color: var(--accent);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+#cite-pop .cp-link {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 500;
+}
+#cite-pop .cp-close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--ink-muted);
+}
+
+/* --- P0 polish: Figure lightbox (native <dialog>) --------------------- */
+dialog.lightbox {
+  border: none;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.92);
+  width: 96vw;
+  height: 96vh;
+  max-width: 96vw;
+  max-height: 96vh;
+}
+dialog.lightbox::backdrop { background: rgba(0, 0, 0, 0.92); }
+dialog.lightbox .lb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  position: relative;
+}
+dialog.lightbox img {
+  max-width: 90vw;
+  max-height: 84vh;
+  object-fit: contain;
+  cursor: zoom-out;
+}
+dialog.lightbox figcaption {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  text-align: center;
+  max-width: 700px;
+}
+dialog.lightbox .lb-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* --- P0 polish: blog/talk mode active-H2 highlight (opt-in) ----------- */
+body.aris-blog h2 { scroll-margin-top: 24px; }
+body.aris-blog h2.aris-active-h2 {
+  background: linear-gradient(to right, rgba(26, 74, 140, 0.06), transparent);
+  border-radius: 4px;
+  padding-left: 12px;
+  margin-left: -12px;
+}
+
+/* --- Focus-dim reading mode (B1) + floating toggle (B2) + ↑/↓ nav (B4) -----
+   Blog opt-in. Everything is scoped under body.aris-blog(.aris-focus-dim) so
+   the 46 non-blog tutorials are completely unaffected (no .aris-blog → button
+   hidden, dim rule never matches). While ON, dims every <main> child except
+   the current section and the intro (header.hero stays bright). F7's io2 is
+   paused while ON; the scroll listener is bound only while ON. */
+body.aris-blog.aris-focus-dim main > *:not(.aris-in-focus) {
+  opacity: 0.28;
+  transition: opacity 0.25s ease;
+}
+body.aris-blog.aris-focus-dim main > .aris-in-focus { opacity: 1; }
+.aris-focus-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1100;
+  display: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 6px 13px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+body.aris-blog .aris-focus-toggle { display: inline-block; }
+.aris-focus-toggle:hover { color: var(--primary); }
+.aris-focus-toggle.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.aris-focus-hint {
+  position: fixed;
+  bottom: 18px;
+  right: 16px;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.aris-focus-hint.show { opacity: 1; }
+@media print {
+  .aris-focus-toggle, .aris-focus-hint { display: none !important; }
+  body.aris-focus-dim main > * { opacity: 1 !important; }
+}
+</style>
+</head>
+<body class="">
+<div class="layout">
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+<li><a href="#0-面试回答的统一框架">0. 面试回答的统一框架</a>
+</li>
+<li><a href="#1-多模态大模型完整结构">1. 多模态大模型完整结构</a>
+</li>
+<li><a href="#2-transformer-与-qwen35-35a3b-moe">2. Transformer 与 Qwen3.5-35A3B MoE</a>
+</li>
+<li><a href="#3-训练目标与基本优化">3. 训练目标与基本优化</a>
+</li>
+<li><a href="#4-cpt-与-sft-的区别">4. CPT 与 SFT 的区别</a>
+</li>
+<li><a href="#5-多源多模态数据治理">5. 多源多模态数据治理</a>
+<ul>
+<li><a href="#视觉依赖性">视觉依赖性</a></li>
+<li><a href="#答案唯一性">答案唯一性</a></li>
+<li><a href="#ocrasr-泄漏">OCR/ASR 泄漏</a></li>
+<li><a href="#媒体占位符一致性">媒体—占位符一致性</a></li>
+<li><a href="#近重复污染">近重复污染</a></li>
+<li><a href="#schema-完整性">Schema 完整性</a></li>
+</ul>
+</li>
+<li><a href="#6-动态视觉-token">6. 动态视觉 Token</a>
+</li>
+<li><a href="#7-1024-张-910b-npu-分布式训练">7. 1024 张 910B NPU 分布式训练</a>
+</li>
+<li><a href="#8-loader解码与训练稳定性">8. Loader、解码与训练稳定性</a>
+</li>
+<li><a href="#9-benchmark回归与-badcase-回流">9. Benchmark、回归与 badcase 回流</a>
+</li>
+<li><a href="#10-cpt--long-cot-sft--reasoning-rl--general-rl">10. CPT → Long-CoT SFT → Reasoning RL → General RL</a>
+<ul>
+<li><a href="#cpt">CPT</a></li>
+<li><a href="#long-cot-sft">Long-CoT SFT</a></li>
+<li><a href="#reasoning-rl">Reasoning RL</a></li>
+<li><a href="#general-rl">General RL</a></li>
+</ul>
+</li>
+<li><a href="#11-条件证据压缩的问题定义">11. 条件证据压缩的问题定义</a>
+</li>
+<li><a href="#12-数据生产与质量门禁">12. 数据生产与质量门禁</a>
+</li>
+<li><a href="#13-iepr-奖励">13. IEPR 奖励</a>
+</li>
+<li><a href="#14-grpo-强化学习">14. GRPO 强化学习</a>
+</li>
+<li><a href="#15-actorjudgerewardupdate-链路">15. Actor–Judge–Reward–Update 链路</a>
+</li>
+<li><a href="#16-如何解释训练趋势">16. 如何解释训练趋势</a>
+</li>
+<li><a href="#17-两阶段拒绝采样与rft">17. 两阶段拒绝采样与RFT</a>
+</li>
+<li><a href="#18-统一-benchmark-与评测审计">18. 统一 Benchmark 与评测审计</a>
+</li>
+<li><a href="#19-视觉-token-压缩基础">19. 视觉 Token 压缩基础</a>
+</li>
+<li><a href="#20-forestprune-方法链路">20. ForestPrune 方法链路</a>
+</li>
+<li><a href="#21-opd-与蒸馏基础">21. OPD 与蒸馏基础</a>
+</li>
+<li><a href="#22-为什么直接attention蒸馏不够">22. 为什么直接Attention蒸馏不够？</a>
+</li>
+<li><a href="#23-capd-方法链路">23. CAPD 方法链路</a>
+</li>
+<li><a href="#24-capd实验设计">24. CAPD实验设计</a>
+</li>
+<li><a href="#25-one-shot-clip-retrieval">25. One-shot Clip Retrieval</a>
+</li>
+<li><a href="#26-xplaindf">26. XPlainDF</a>
+</li>
+<li><a href="#pytorch">PyTorch</a>
+</li>
+<li><a href="#transformers">Transformers</a>
+</li>
+<li><a href="#verl--open-verl">VERL / Open-VERL</a>
+</li>
+<li><a href="#vllm">vLLM</a>
+</li>
+<li><a href="#deepspeedfsdpzero-3">DeepSpeed/FSDP/ZeRO-3</a>
+</li>
+<li><a href="#spark">Spark</a>
+</li>
+<li><a href="#linuxgit">Linux/Git</a>
+</li>
+<li><a href="#可以明确强调">可以明确强调</a>
+</li>
+<li><a href="#必须谨慎">必须谨慎</a>
+</li>
+<li><a href="#第一阶段能守住douyinvl">第一阶段：能守住DouyinVL</a>
+</li>
+<li><a href="#第二阶段能守住intent-caption">第二阶段：能守住Intent Caption</a>
+</li>
+<li><a href="#第三阶段能守住论文">第三阶段：能守住论文</a>
+</li>
+<li><a href="#第四阶段模拟面试">第四阶段：模拟面试</a>
+</li>
+<li><a href="#27-多模态模型">27. 多模态模型</a>
+<ul>
+<li><a href="#q1一张图片是如何变成-llm-token-的">Q1：一张图片是如何变成 LLM token 的？</a></li>
+<li><a href="#q2动态视觉-token-为什么能节省计算">Q2：动态视觉 token 为什么能节省计算？</a></li>
+<li><a href="#q3多图视频的-position-ids-怎么构造">Q3：多图/视频的 position ids 怎么构造？</a></li>
+<li><a href="#q4media-placeholder数量与视觉特征不一致会发生什么">Q4：media placeholder数量与视觉特征不一致会发生什么？</a></li>
+<li><a href="#q5视觉-token-翻倍时attention计算量如何变化">Q5：视觉 token 翻倍时，attention计算量如何变化？</a></li>
+</ul>
+</li>
+<li><a href="#28-qwen35-moe">28. Qwen3.5 MoE</a>
+<ul>
+<li><a href="#q635b总参数为什么只有约3b激活">Q6：35B总参数为什么只有约3B激活？</a></li>
+<li><a href="#q7moe是省显存还是省计算">Q7：MoE是省显存还是省计算？</a></li>
+<li><a href="#q8top-k-router如何训练为什么会负载不均">Q8：Top-K router如何训练？为什么会负载不均？</a></li>
+<li><a href="#q9ep与fsdp切expert参数有什么本质区别">Q9：EP与FSDP切expert参数有什么本质区别？</a></li>
+<li><a href="#q10linear-attention为什么不能直接解释为标准softmax-attention-map">Q10：linear attention为什么不能直接解释为标准softmax attention map？</a></li>
+</ul>
+</li>
+<li><a href="#29-cpt与数据">29. CPT与数据</a>
+<ul>
+<li><a href="#q11cpt和sft的loss有何不同">Q11：CPT和SFT的loss有何不同？</a></li>
+<li><a href="#q121547t配方池为什么只训练约1t">Q12：1.547T配方池为什么只训练约1T？</a></li>
+<li><a href="#q13如何判断某个数据桶需要加权还是降权">Q13：如何判断某个数据桶需要加权还是降权？</a></li>
+<li><a href="#q14如何证明提升来自数据配比而不是训练随机性">Q14：如何证明提升来自数据配比，而不是训练随机性？</a></li>
+<li><a href="#q15如何监控cpt引发的通用能力遗忘">Q15：如何监控CPT引发的通用能力遗忘？</a></li>
+<li><a href="#q16为什么option-shuffle能减少位置偏置如何验证">Q16：为什么Option Shuffle能减少位置偏置？如何验证？</a></li>
+<li><a href="#q17ocr-dropout会不会伤害ocr能力">Q17：OCR Dropout会不会伤害OCR能力？</a></li>
+<li><a href="#q18如何检测trainval的同源视频泄漏">Q18：如何检测Train/Val的同源视频泄漏？</a></li>
+<li><a href="#q19200m样本如何做分布式去重和质量统计">Q19：200M样本如何做分布式去重和质量统计？</a></li>
+<li><a href="#q20为什么不能所有图片都用最高分辨率所有视频都采最多帧">Q20：为什么不能所有图片都用最高分辨率、所有视频都采最多帧？</a></li>
+</ul>
+</li>
+<li><a href="#30-分布式训练与稳定性">30. 分布式训练与稳定性</a>
+<ul>
+<li><a href="#q21为什么35b模型还要用1024卡">Q21：为什么35B模型还要用1024卡？</a></li>
+<li><a href="#q22fsdp2与zero-3有什么对应关系">Q22：FSDP2与ZeRO-3有什么对应关系？</a></li>
+<li><a href="#q23为什么选择128-way-shard--8-way-replicate">Q23：为什么选择128-way shard + 8-way replicate？</a></li>
+<li><a href="#q24all-gatherreduce-scatter分别发生在哪">Q24：all-gather、reduce-scatter分别发生在哪？</a></li>
+<li><a href="#q25为什么不用ep不用ulysses的代价是什么">Q25：为什么不用EP？不用Ulysses的代价是什么？</a></li>
+<li><a href="#q26训练hangloss-spike吞吐下降怎么排查">Q26：训练hang、loss spike、吞吐下降怎么排查？</a></li>
+<li><a href="#q27为什么一个坏视频可能挂住1024卡">Q27：为什么一个坏视频可能挂住1024卡？</a></li>
+<li><a href="#q28如何定位是loader慢还是通信慢">Q28：如何定位是Loader慢还是通信慢？</a></li>
+<li><a href="#q29超长视频如何采帧">Q29：超长视频如何采帧？</a></li>
+<li><a href="#q30checkpoint保存为什么可能造成训练抖动">Q30：Checkpoint保存为什么可能造成训练抖动？</a></li>
+</ul>
+</li>
+<li><a href="#31-judge与rl工程">31. Judge与RL工程</a>
+<ul>
+<li><a href="#q31grouped-judge为什么比逐条judge省请求">Q31：Grouped Judge为什么比逐条Judge省请求？</a></li>
+<li><a href="#q32grouped-judge的顺序偏置如何控制">Q32：Grouped Judge的顺序偏置如何控制？</a></li>
+<li><a href="#q33流式reward如何避免等待所有样本">Q33：流式Reward如何避免等待所有样本？</a></li>
+<li><a href="#q34请求缓存的key应包含哪些版本信息">Q34：请求缓存的Key应包含哪些版本信息？</a></li>
+<li><a href="#q35429为什么不能盲目拆成更多并发单请求">Q35：429为什么不能盲目拆成更多并发单请求？</a></li>
+<li><a href="#q36模型训练吞吐和外部judge-tpm为什么是两个独立瓶颈">Q36：模型训练吞吐和外部Judge TPM为什么是两个独立瓶颈？</a></li>
+</ul>
+</li>
+<li><a href="#32-intent-captiongrpo-与评测">32. Intent Caption、GRPO 与评测</a>
+<ul>
+<li><a href="#q37iepr为什么必须是多目标奖励完整回答框架是什么">Q37：IEPR为什么必须是多目标奖励？完整回答框架是什么？</a></li>
+<li><a href="#q38为什么选grpo而不是dpoppo或纯rft">Q38：为什么选GRPO而不是DPO、PPO或纯RFT？</a></li>
+<li><a href="#q39写出intent-caption使用的grpo核心目标">Q39：写出Intent Caption使用的GRPO核心目标。</a></li>
+<li><a href="#q40group内reward标准差为0怎么办">Q40：group内reward标准差为0怎么办？</a></li>
+<li><a href="#q41100-step12800条rollout应该如何防守">Q41：`100-step、12,800条rollout`应该如何防守？</a></li>
+<li><a href="#q42caption-judge与visual-judge冲突怎么办">Q42：Caption Judge与Visual Judge冲突怎么办？</a></li>
+<li><a href="#q43如何证明qa-recall提升不是因为输出变长">Q43：如何证明QA Recall提升不是因为输出变长？</a></li>
+<li><a href="#q44399个视觉样本和2692条qa的独立统计单位是什么">Q44：399个视觉样本和2,692条QA的独立统计单位是什么？</a></li>
+<li><a href="#q45evidence-alignment与recallclaim-precision有什么区别">Q45：Evidence Alignment与Recall、Claim Precision有什么区别？</a></li>
+<li><a href="#q46world-f1如何处理实体别名和开放式答案">Q46：World F1如何处理实体别名和开放式答案？</a></li>
+<li><a href="#q47如何防止intent答案泄漏和世界知识污染让benchmark虚高">Q47：如何防止Intent答案泄漏和世界知识污染让Benchmark虚高？</a></li>
+<li><a href="#q48两阶段拒绝采样为什么有selection-bias如何缓解">Q48：两阶段拒绝采样为什么有selection bias？如何缓解？</a></li>
+<li><a href="#q49为什么训练后段相较前段的趋势不是严格因果增益">Q49：为什么训练后段相较前段的趋势不是严格因果增益？</a></li>
+</ul>
+</li>
+<li><a href="#33-forestprune">33. ForestPrune</a>
+<ul>
+<li><a href="#q50为什么是forest而不是单棵tree">Q50：为什么是Forest而不是单棵Tree？</a></li>
+<li><a href="#q51候选节点和edge如何构造">Q51：候选节点和Edge如何构造？</a></li>
+<li><a href="#q52树深为什么能表示信息持续性边界是什么">Q52：树深为什么能表示信息持续性？边界是什么？</a></li>
+<li><a href="#q53roottrunkinternalleaf和tail分别是什么">Q53：Root、trunk/internal、leaf和tail分别是什么？</a></li>
+<li><a href="#q54root太多时如何处理为什么不能直接删到预算">Q54：Root太多时如何处理？为什么不能直接删到预算？</a></li>
+<li><a href="#q55pruning如何保证满足预算">Q55：Pruning如何保证满足预算？</a></li>
+<li><a href="#q56forestprune的时间和空间复杂度瓶颈是什么">Q56：ForestPrune的时间和空间复杂度瓶颈是什么？</a></li>
+<li><a href="#q57globally-optimal-pruning应如何谨慎解释">Q57：“Globally optimal pruning”应如何谨慎解释？</a></li>
+<li><a href="#q58为什么固定token预算下扩帧可能提升效果哪些成本并未固定">Q58：为什么固定token预算下扩帧可能提升效果？哪些成本并未固定？</a></li>
+<li><a href="#q59forestprune是否依赖query可能丢失什么">Q59：ForestPrune是否依赖Query？可能丢失什么？</a></li>
+<li><a href="#q60与framefusion等方法怎样做公平比较">Q60：与FrameFusion等方法怎样做公平比较？</a></li>
+</ul>
+</li>
+<li><a href="#34-capd-与-on-policy-distillation">34. CAPD 与 On-Policy Distillation</a>
+<ul>
+<li><a href="#q61opd的精确定义是什么和普通kd差在哪">Q61：OPD的精确定义是什么？和普通KD差在哪？</a></li>
+<li><a href="#q62为什么直接attention蒸馏不够">Q62：为什么直接Attention蒸馏不够？</a></li>
+<li><a href="#q63capd的反事实影响如何定义">Q63：CAPD的反事实影响如何定义？</a></li>
+<li><a href="#q64为什么有-g-个时间组却需要-g1-个逻辑teacher输入">Q64：为什么有 $G$ 个时间组却需要 $G+1$ 个逻辑teacher输入？</a></li>
+<li><a href="#q65移除时间片段会不会产生分布外输入">Q65：移除时间片段会不会产生分布外输入？</a></li>
+<li><a href="#q66attention-policy具体是什么怎样与时间组影响对齐">Q66：Attention policy具体是什么，怎样与时间组影响对齐？</a></li>
+<li><a href="#q67为什么timestamp-token要获得更高蒸馏权重">Q67：为什么timestamp token要获得更高蒸馏权重？</a></li>
+<li><a href="#q68capd的总loss怎样组织">Q68：CAPD的总loss怎样组织？</a></li>
+<li><a href="#q69capd为什么仍然是on-policy-distillation">Q69：CAPD为什么仍然是on-policy distillation？</a></li>
+<li><a href="#q70capd的主要额外成本是什么如何优化">Q70：CAPD的主要额外成本是什么？如何优化？</a></li>
+<li><a href="#q71为什么要与grpovanilla-opd和ral-ad比较">Q71：为什么要与GRPO、Vanilla OPD和RAL-AD比较？</a></li>
+<li><a href="#q72timelens九项recall怎样聚合才可信">Q72：TimeLens九项Recall怎样聚合才可信？</a></li>
+<li><a href="#q73video-mme等通用基准能证明什么不能证明什么">Q73：Video-MME等通用基准能证明什么，不能证明什么？</a></li>
+<li><a href="#q74从qwen3-vl-8b迁移到qwen35架构2b说明什么">Q74：从Qwen3-VL-8B迁移到Qwen3.5架构2B说明什么？</a></li>
+<li><a href="#q75capd最重要的失败模式是什么">Q75：CAPD最重要的失败模式是什么？</a></li>
+</ul>
+</li>
+<li><a href="#35-oneclip-rag">35. OneClip-RAG</a>
+<ul>
+<li><a href="#q76one-shot到底指什么">Q76：“One-shot”到底指什么？</a></li>
+<li><a href="#q77framequery-similarity和peak-score怎样选择cluster-centers">Q77：Frame–query similarity和peak score怎样选择cluster centers？</a></li>
+<li><a href="#q78动态规划边界解决什么问题">Q78：动态规划边界解决什么问题？</a></li>
+<li><a href="#q79clip-relevance如何计算有什么局限">Q79：Clip relevance如何计算？有什么局限？</a></li>
+<li><a href="#q80coarse-to-fine训练的两阶段负例有什么区别">Q80：Coarse-to-fine训练的两阶段负例有什么区别？</a></li>
+<li><a href="#q81synlongvideo为什么同时需要visual-relevance和instruction-divergence">Q81：SynLongVideo为什么同时需要visual relevance和instruction divergence？</a></li>
+<li><a href="#q82query变化时哪些可以缓存哪些必须重算">Q82：Query变化时哪些可以缓存，哪些必须重算？</a></li>
+<li><a href="#q83retrieval漏掉关键clip怎么办">Q83：Retrieval漏掉关键clip怎么办？</a></li>
+<li><a href="#q8422分钟的效率数字怎样防守">Q84：2.2分钟的效率数字怎样防守？</a></li>
+<li><a href="#q85oneclip-rag与文本rag的对应关系和本质差异是什么">Q85：OneClip-RAG与文本RAG的对应关系和本质差异是什么？</a></li>
+</ul>
+</li>
+<li><a href="#36-xplaindf">36. XPlainDF</a>
+<ul>
+<li><a href="#q86xplaindf解决的核心问题是什么">Q86：XPlainDF解决的核心问题是什么？</a></li>
+<li><a href="#q87ib和edl分别起什么作用">Q87：IB和EDL分别起什么作用？</a></li>
+<li><a href="#q88reliability-aware-routing怎样防止错误specialist污染vlm">Q88：Reliability-aware routing怎样防止错误specialist污染VLM？</a></li>
+<li><a href="#q89该项目中的opd反事实学习和model-soup分别是什么">Q89：该项目中的OPD、反事实学习和model soup分别是什么？</a></li>
+<li><a href="#q9009878-macro-f1和0862-overall-score如何防守">Q90：`0.9878 Macro F1`和`0.862 Overall Score`如何防守？</a></li>
+</ul>
+</li>
+</ol>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">Interview Prep · Resume Knowledge Map</div>
+  <h1>鞠少波秋招简历知识地图</h1>
+  <p class="subtitle">简历中每个技术名词、方法与数字的六步答法（是什么 · 为什么 · 怎么做 · 如何验证 · 局限 · 你的贡献）</p>
+  
+  <div class="meta">
+    <span><strong>Source:</strong> <code>RESUME_INTERVIEW_KNOWLEDGE_MAP_CN.md</code></span>
+    <span><strong>SHA256:</strong> <code>9b2fafef5718</code></span>
+    <span><strong>Rendered:</strong> 2026-08-10 09:13 UTC</span>
+    
+  </div>
+</header>
+
+<h1 id="鞠少波秋招简历知识地图">鞠少波秋招简历知识地图</h1>
+<blockquote><p>目标：简历中的每个技术名词、方法和数字，都能回答“是什么、为什么、怎么做、如何验证、有什么局限、你负责什么”。</p></blockquote>
+<h2 id="0-面试回答的统一框架">0. 面试回答的统一框架</h2>
+<p>任何项目问题都按六步回答：</p>
+<ol><li><strong>问题</strong>：业务或研究痛点是什么，原方案为什么不够。</li><li><strong>目标</strong>：优化什么能力，约束是什么。</li><li><strong>方法</strong>：数据、模型、训练、评测分别做了什么。</li><li><strong>机制</strong>：为什么理论上会有效，关键公式或数据流是什么。</li><li><strong>证据</strong>：对照组、消融、指标和样例怎样支持结论。</li><li><strong>边界</strong>：失败模式、未验证假设、团队结果与个人贡献。</li></ol>
+<p>回答项目时先讲主链路，再接受面试官下钻。不要一上来堆模型名和指标。</p>
+<hr />
+<h1 id="一p0所有项目共同依赖的基础">一、P0：所有项目共同依赖的基础</h1>
+<h2 id="1-多模态大模型完整结构">1. 多模态大模型完整结构</h2>
+<p>必须能从输入画到输出：</p>
+<pre><code class="language-text">图片/视频
+  → decode / sample frames
+  → ViT / vision encoder
+  → patch tokens
+  → spatial merge / projector
+  → 与文本 tokens 拼接
+  → LLM
+  → next-token logits
+  → autoregressive generation</code></pre>
+<p>必须掌握：</p>
+<ul><li>ViT 的 patch embedding、2D position encoding、self-attention。</li><li>CLIP/SigLIP 式视觉预训练与生成式 VLM 的区别。</li><li>Projector、Q-Former、cross-attention、early/late fusion 的差别。</li><li>动态分辨率如何改变 patch 数和视觉 token 数。</li><li>图片、多图和视频如何插入文本序列，media placeholder 如何与实际媒体对齐。</li><li>causal mask、position ids、M-RoPE、padding mask。</li><li>视频帧数、分辨率、视觉 token 数、序列长度和 FLOPs/显存的关系。</li><li>训练时 teacher forcing 与推理时 autoregressive decoding 的差别。</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/attention_tutorial.html">Attention</a></li><li><a href="docs/tutorials/transformer_block_tutorial.html">Transformer Block</a></li><li><a href="docs/tutorials/vlm_multimodal_tutorial.html">VLM / Multimodal</a></li><li><a href="docs/tutorials/tokenization_tutorial.html">Tokenization</a></li></ul>
+<p>典型追问：</p>
+<ul><li>一张图片是如何变成 LLM token 的？</li><li>动态视觉 token 为什么能节省计算？</li><li>多图/视频的 position ids 怎么构造？</li><li>media placeholder 数量与视觉特征不一致会发生什么？</li><li>视觉 token 翻倍时，attention 计算量如何变化？</li></ul>
+<h2 id="2-transformer-与-qwen35-35a3b-moe">2. Transformer 与 Qwen3.5-35A3B MoE</h2>
+<p>必须掌握：</p>
+<ul><li>Pre-LN/RMSNorm Transformer block 的完整数据流。</li><li>MHA、MQA、GQA 的参数量、KV cache 和通信差别。</li><li>RoPE/M-RoPE 的作用和边界。</li><li>Dense FFN 与 MoE FFN 的区别。</li><li>Router logits、softmax、Top-K expert selection。</li><li>总参数量与激活参数量的区别：“35A3B”约表示 35B 总参数、每 token 激活约 3B 级参数。</li><li>routed expert 与 shared expert。</li><li>expert capacity、load balance、routing collapse。</li><li>EP 的 token dispatch/combine all-to-all。</li><li>为什么 <code>ep_size=1</code> 时仍然是 MoE，但没有 Expert Parallel 通信。</li><li>Qwen3.5 的 full attention 与 linear/gated attention 混合结构应如何理解。</li><li>若实际模型继承公开 Qwen3.5-35B-A3B recipe，必须以真实 config 为准核对层数、层内组织方式、routed expert 数、Top-K 与 shared expert 数。类似的混合架构（如公开 Qwen3-Next-80B-A3B）常见做法是按 <code>k × [3 × (Gated DeltaNet → MoE) + 1 × (Gated Attention → MoE)]</code> 的 3:1 比例堆叠，可作为理解混合结构的 参照，但<strong>不能把某个具体层数（例如 40 层）当作 DouyinVL 内部模型的既定事实</strong>；面试时应直接读 config， 并说明内部版本与公开配置是否一致。不能只根据模型名猜配置。</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/transformer_block_tutorial.html">Transformer Block</a></li><li><a href="docs/tutorials/moe_tutorial.html">MoE</a></li><li><a href="docs/tutorials/linear_sparse_attention_tutorial.html">线性 / 稀疏注意力</a></li></ul>
+<p>典型追问：</p>
+<ul><li>35B 总参数为什么只有约 3B 激活？</li><li>MoE 是省显存还是省计算？</li><li>Top-K router 如何训练？为什么会负载不均？</li><li>EP 与 FSDP 切 expert 参数有什么本质区别？</li><li>linear attention 为什么不能直接解释为标准 softmax attention map？</li></ul>
+<h2 id="3-训练目标与基本优化">3. 训练目标与基本优化</h2>
+<p>必须掌握：</p>
+<ul><li><p>next-token prediction 和交叉熵：</p>
+<p>$$ \mathcal L_{\mathrm{NTP}} =-\sum_t \log p_\theta(x_t\mid x_{&lt;t}) $$</p></li><li>causal LM 的 label shift。</li><li>padding、prompt、媒体占位符是否进入 loss。</li><li>Adam/AdamW、weight decay、gradient clipping。</li><li>warmup、cosine decay、学习率与 global batch 的关系。</li><li>bf16/fp16/fp32 master states。</li><li>gradient accumulation。</li><li>activation checkpointing。</li><li>loss spike、gradient norm、NaN/Inf 的排查顺序。</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/optimizer_lr_schedule_tutorial.html">优化器与 LR Schedule</a></li><li><a href="docs/tutorials/normalization_init_tutorial.html">归一化 / 残差 / 初始化</a></li><li><a href="docs/tutorials/llm_pretraining_pipeline_tutorial.html">LLM Pretraining Pipeline</a></li></ul>
+<hr />
+<h1 id="二p0douyinvl-千卡-cpt-项目">二、P0：DouyinVL 千卡 CPT 项目</h1>
+<h2 id="4-cpt-与-sft-的区别">4. CPT 与 SFT 的区别</h2>
+<p>必须能回答：</p>
+<div class="table-wrap"><table><thead><tr><th>阶段</th><th>主要数据</th><th>训练目标</th><th>主要解决问题</th></tr></thead><tbody><tr><td>Pretraining</td><td>大规模通用数据</td><td>next-token prediction</td><td>通用表征与生成能力</td></tr><tr><td>CPT</td><td>领域/模态混合语料</td><td>通常仍是 next-token prediction</td><td>领域知识、模态和分布迁移</td></tr><tr><td>SFT</td><td>instruction-response</td><td>response token loss</td><td>指令遵循与输出格式</td></tr><tr><td>Preference/RL</td><td>偏好或在线 rollout</td><td>DPO/PPO/GRPO 等</td><td>行为、推理和奖励对齐</td></tr></tbody></table></div>
+<p>必须掌握：</p>
+<ul><li>为什么 CPT 能做领域迁移。</li><li>CPT 为什么可能损伤 instruction following。</li><li>灾难性遗忘的来源和缓解：保留通用数据、控制学习率、采样配比、回归评测。</li><li>token 配方与“样本数配方”的区别。</li><li>recipe pool 规模与模型实际消费量的区别。</li><li>epoch/cap 为什么能防止小数据集被过采样。</li><li>多源数据如何按 domain、modality、task、quality 分层采样。</li></ul>
+<p>简历口径：</p>
+<ul><li><code>1.547T tokens / 888.73M 样本</code>是 CPT v9 数据池或配方规模。</li><li><code>约 1T tokens</code>是实际千卡训练消费量。</li><li>两者不能混写成“模型训练了 1.547T tokens”。</li></ul>
+<p>典型追问：</p>
+<ul><li>CPT 和 SFT 的 loss 有何不同？</li><li>1.547T 配方池为什么只训练约 1T？</li><li>如何判断某个数据桶需要加权还是降权？</li><li>如何证明提升来自数据配比，而不是训练随机性？</li><li>如何监控 CPT 引发的通用能力遗忘？</li></ul>
+<h2 id="5-多源多模态数据治理">5. 多源多模态数据治理</h2>
+<p>简历中的每个检查项都要能讲出“错误样例—风险—检测方法—处理策略”：</p>
+<h3 id="视觉依赖性">视觉依赖性</h3>
+<ul><li>问题是否必须看图/视频才能回答。</li><li>用 text-blind model 或去媒体对照检测文本可答性。</li><li>防止模型只靠题面、OCR、ASR、标题或数据模板猜答案。</li></ul>
+<h3 id="答案唯一性">答案唯一性</h3>
+<ul><li>MCQ 是否存在多个合理答案。</li><li>开放式 QA 是否有别名、粒度或时态歧义。</li><li>用规则、judge 和人工抽检结合。</li></ul>
+<h3 id="ocrasr-泄漏">OCR/ASR 泄漏</h3>
+<ul><li>OCR/ASR 文本可能直接包含答案。</li><li>Dropout 的目的不是随机破坏数据，而是建立视觉依赖。</li><li>必须解释 dropout 概率、适用样本和防御指标。</li></ul>
+<h3 id="媒体占位符一致性">媒体—占位符一致性</h3>
+<ul><li>文本中的 image/video placeholder 数量、顺序必须与媒体特征一致。</li><li>错配会造成 shape error，更隐蔽时会造成样本语义错位。</li></ul>
+<h3 id="近重复污染">近重复污染</h3>
+<ul><li>exact hash、perceptual hash、MinHash/LSH、embedding similarity。</li><li>必须按源样本先切 Train/Val，再展开 prompt/intent variant。</li><li>benchmark contamination 与普通训练集重复的区别。</li></ul>
+<h3 id="schema-完整性">Schema 完整性</h3>
+<ul><li>必填字段、类型、长度、媒体路径、时间戳、答案、source id。</li><li>数据校验应在昂贵训练前完成。</li></ul>
+<p>典型追问：</p>
+<ul><li>为什么 Option Shuffle 能减少位置偏置？如何验证？</li><li>OCR Dropout 会不会伤害 OCR 能力？</li><li>如何检测 train/val 的同源视频泄漏？</li><li>200M 样本如何做分布式去重和质量统计？</li></ul>
+<h2 id="6-动态视觉-token">6. 动态视觉 Token</h2>
+<p>必须掌握：</p>
+<ul><li>分辨率、patch size、spatial merge 与视觉 token 数的关系。</li><li>视频的帧数 × 每帧 token 数。</li><li>固定 token budget 下如何在帧覆盖与单帧细节间分配。</li><li>aspect ratio bucketing。</li><li>动态 batching 与 token-based batching。</li><li>极长样本如何拖慢整个 batch。</li></ul>
+<p>要能回答：</p>
+<blockquote><p>为什么不能所有图片都用最高分辨率、所有视频都采最多帧？</p></blockquote>
+<p>答案要包含：</p>
+<ul><li>attention/activation成本；</li><li>batch内长度不均造成padding浪费；</li><li>吞吐下降；</li><li>细节与时间覆盖之间的预算权衡；</li><li>按任务和媒体复杂度动态分配。</li></ul>
+<h2 id="7-1024-张-910b-npu-分布式训练">7. 1024 张 910B NPU 分布式训练</h2>
+<p>真实配置：</p>
+<pre><code class="language-text">FSDP2 full shard
+dp_replicate_size = 8
+dp_shard_size = 1024 / 8 = 128
+ulysses_size = 1
+ep_size = 1
+micro_batch_size = 2
+global_batch_size = 2048</code></pre>
+<p>必须能画出：</p>
+<pre><code class="language-text">1024 NPUs
+  = 8 replicated groups
+  × 128-way FSDP shard</code></pre>
+<p>每一步必须掌握：</p>
+<ol><li>每个 rank 读取 2 个不同样本。</li><li>128 卡内，参数/梯度/优化器状态按 FSDP2 分片。</li><li>每个 FSDP wrap unit 在 forward 前 all-gather 参数；wrap unit 常按 block 切，但不能不看配置就笼统说成“每层”。</li><li><code>full_shard=true</code> 时 forward 后重新分片。</li><li>backward 前再次 all-gather 参数。</li><li>backward 后 reduce-scatter 梯度。</li><li>128-way shard 维完成 reduce-scatter 后，8-way replicate 维还要对对应梯度分片做同步，通常表现为 replicate 维 all-reduce。</li><li>optimizer 在本地更新参数和 Adam state 分片。</li><li>DCP 直接保存分布式 checkpoint。</li></ol>
+<p>关键区分：</p>
+<ul><li>这是 FSDP/HSDP，不是 TP：每张卡计算时临时拿到当前 FSDP unit 的完整参数，处理不同样本。</li><li><code>ep_size=1</code>：没有 expert all-to-all。</li><li><code>ulysses_size=1</code>：没有 Ulysses sequence parallel。</li><li>NPU 通信通常对应 HCCL 体系；NCCL 的集合通信概念仍可类比，但不要把硬件后端说错。</li></ul>
+<p>Batch 计算：</p>
+<p>$$ 1024\times2=2048 $$</p>
+<p>因此理论 gradient accumulation 为 1。</p>
+<p>吞吐口径：</p>
+<p>$$ 77B/86400 \approx 891K\ \text{tokens/s（全局）} $$</p>
+<p>$$ 891K/1024\approx870\ \text{tokens/s/NPU} $$</p>
+<p><code>77B tokens/day × 12 days ≈ 924B</code>，与“约 1T tokens”是近似一致的量级。面试时应说明 77B/day 是项目吞吐口径，1T 和 12 天均为约数；若被要求精确核算，应回到训练日志区分有效 token、padding token、实际运行时间和停机时间。</p>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/distributed_training_tutorial.html">Distributed Training</a></li><li><a href="docs/tutorials/llm_pretraining_pipeline_tutorial.html">LLM Pretraining Pipeline</a></li></ul>
+<p>典型追问：</p>
+<ul><li>为什么 35B 模型还要用 1024 卡？</li><li>FSDP2 与 ZeRO-3 有什么对应关系？</li><li>为什么选择 128-way shard + 8-way replicate？</li><li>all-gather、reduce-scatter 分别发生在哪？</li><li>为什么不用 EP？不用 Ulysses 的代价是什么？</li><li>训练 hang、loss spike、吞吐下降怎么排查？</li></ul>
+<h2 id="8-loader解码与训练稳定性">8. Loader、解码与训练稳定性</h2>
+<p>必须掌握端到端吞吐：</p>
+<pre><code class="language-text">存储读取
+→ 样本索引/混合
+→ 图片/视频读取
+→ 视频解码与采帧
+→ resize/tokenize
+→ collate/padding
+→ host-to-device
+→ forward/backward
+→ collective communication</code></pre>
+<p>必须区分：</p>
+<ul><li>data starvation：加速器等待数据。</li><li>compute-bound：模型计算饱和。</li><li>communication-bound：集合通信占主导。</li><li>straggler：某些 rank 因长视频/坏媒体变慢，拖住全局 collective。</li></ul>
+<p>排查指标：</p>
+<ul><li>data time、forward time、backward time、optimizer time；</li><li>device utilization；</li><li>samples/s、tokens/s；</li><li>batch token 长度分布；</li><li>decode failure/timeout；</li><li>all-gather/reduce-scatter耗时；</li><li>rank间 step time 的 P50/P99。</li></ul>
+<p>典型追问：</p>
+<ul><li>为什么一个坏视频可能挂住 1024 卡？</li><li>如何定位是 Loader 慢还是通信慢？</li><li>超长视频如何采帧？</li><li>checkpoint 保存为什么可能造成训练抖动？</li></ul>
+<h2 id="9-benchmark回归与-badcase-回流">9. Benchmark、回归与 badcase 回流</h2>
+<p>必须掌握：</p>
+<ul><li>136 个任务、42 个业务任务为什么要分层，而不是只看平均分。</li><li>macro average 与按样本数量加权平均的差别。</li><li>能力域、数据域、模态域、业务域的分组方法。</li><li>自动评测、规则评测、LLM-as-judge、人工评测的适用边界。</li><li>regression gate 和防御指标。</li><li>benchmark 污染、judge 偏差、格式错误。</li><li>badcase 如何映射回数据桶、采样配比或训练阶段。</li></ul>
+<p>数字归因：</p>
+<ul><li><code>79.28 → 79.87</code>、<code>79.72 → 82.37</code>需要能说明评测集合、聚合方式、对照版本和是否同一训练预算。</li><li><code>相对 Qwen3.5 基座综合 +10.98pt</code>属于团队版本结果。</li><li><code>抖音推理 Base→Instruct +46.91pt</code>需要解释 Base/Instruct 的版本、任务集合和为什么增益很大。</li><li>不要把团队最终指标说成个人单独实验结果。</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/llm_evaluation_benchmarking_tutorial.html">LLM Evaluation &amp; Benchmarking</a></li></ul>
+<hr />
+<h1 id="三p0post-train-完整链路">三、P0：Post-Train 完整链路</h1>
+<h2 id="10-cpt--long-cot-sft--reasoning-rl--general-rl">10. CPT → Long-CoT SFT → Reasoning RL → General RL</h2>
+<p>必须能说明每个阶段解决不同问题：</p>
+<h3 id="cpt">CPT</h3>
+<ul><li>领域知识和多模态分布迁移。</li><li>不保证自然获得强指令遵循和稳定推理格式。</li></ul>
+<h3 id="long-cot-sft">Long-CoT SFT</h3>
+<ul><li>用高质量长推理轨迹冷启动。</li><li>教会模型输出推理过程和任务格式。</li><li>风险：模仿错误推理、过长输出、风格固化。</li></ul>
+<h3 id="reasoning-rl">Reasoning RL</h3>
+<ul><li>用可验证或模型判定奖励强化专项推理。</li><li>需要掌握 PPO/GRPO 的基本目标、advantage、KL约束。</li><li>风险：reward hacking、长度膨胀、格式投机。</li></ul>
+<h3 id="general-rl">General RL</h3>
+<ul><li>在通用帮助性、安全性、格式和业务行为上再平衡。</li><li>防止专项推理强化后只会长思考或牺牲普通任务表现。</li></ul>
+<p>个人边界：</p>
+<ul><li>可以完整解释团队 Post-Train 逻辑。</li><li>个人参与是协同/部分参与，不表述为全链路独立 owner。</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.html">RLHF / DPO / GRPO / PPO</a></li><li><a href="docs/tutorials/kl_divergence_rlhf_tutorial.html">KL Divergence in RLHF</a></li><li><a href="docs/tutorials/reasoning_models_tutorial.html">Reasoning Models</a></li></ul>
+<hr />
+<h1 id="四p0intent-caption-项目">四、P0：Intent Caption 项目</h1>
+<h2 id="11-条件证据压缩的问题定义">11. 条件证据压缩的问题定义</h2>
+<p>必须能清楚区分普通 Caption 与 Intent Caption：</p>
+<pre><code class="language-text">普通 Caption：
+尽量全面描述图像
+
+Intent Caption：
+在固定文本预算下，根据 Intent 保留对下游决策有用、
+视觉可验证、非冗余的原子事实</code></pre>
+<p>形式化：</p>
+<p>$$ c^* =\arg\max_{c:\,|c|\le B} \left[ \text{Evidence}(c) +\text{IntentRelevance}(c,i) +\text{Faithfulness}(c) -\text{Redundancy}(c) \right] $$</p>
+<p>必须掌握：</p>
+<ul><li>原子事实、claim、evidence、intent 的定义。</li><li>Evidence Recall 和 Claim Precision 的矛盾。</li><li>固定长度预算为什么使其成为压缩/选择问题。</li><li>Intent-aware 与把 Intent 文本简单拼进 prompt 的区别。</li><li>下游任务相关性如何通过 Evidence QA 定义。</li></ul>
+<h2 id="12-数据生产与质量门禁">12. 数据生产与质量门禁</h2>
+<p>完整链路：</p>
+<pre><code class="language-text">源视觉样本
+→ Intent 构造
+→ 9类 Evidence QA
+→ Visual QA 验证
+→ Blind QA 验证
+→ Claim Validation
+→ World Knowledge 标注
+→ 源样本级 Train/Val 划分
+→ 展开不同 intent/variant</code></pre>
+<p>必须解释：</p>
+<ul><li>Visual QA：看图后问题是否可回答。</li><li>Blind QA：不看图时是否仍可回答，用于测视觉依赖。</li><li>Claim Validation：caption claim 是否由视觉证据支持。</li><li>World Knowledge：视觉事实与外部知识如何分离。</li><li>为什么先按3,995个源样本切分，再展开为19,665条训练数据。</li><li>为什么115,793条Evidence QA不能当成115,793个独立视觉样本。</li></ul>
+<h2 id="13-iepr-奖励">13. IEPR 奖励</h2>
+<p>对外名称：</p>
+<blockquote><p>IEPR = Intent-aware Evidence Preservation Reward</p></blockquote>
+<p>必须能解释各项：</p>
+<p>$$ R_{\mathrm{IEPR}} =w_rR_{\mathrm{evidence}} +w_pR_{\mathrm{precision}} +w_iR_{\mathrm{intent}} +w_lR_{\mathrm{length}} -w_dR_{\mathrm{redundancy}} $$</p>
+<p>重点不是背权重，而是解释：</p>
+<ul><li>只有 Recall：模型会堆积事实、变长。</li><li>只有 Precision：模型可能输出极短、保守内容。</li><li>只有 Intent Relevance：模型可能重复 Intent 或生成不可验证内容。</li><li>长度效率约束文本预算。</li><li>冗余惩罚防止同义重复刷分。</li></ul>
+<p>必须掌握 multi-objective reward 的：</p>
+<ul><li>尺度归一化；</li><li>reward权重；</li><li>clipping；</li></ul>
+<p>-缺失judge结果；</p>
+<ul><li>reward方差；</li><li>reward hacking；</li><li>分项reward监控。</li></ul>
+<h2 id="14-grpo-强化学习">14. GRPO 强化学习</h2>
+<p>必须掌握：</p>
+<ol><li>同一个prompt采样一组responses。</li><li>Judge和规则计算每个response的reward。</li><li><p>在组内做相对标准化：</p>
+<p> $$  A_i=\frac{r_i-\mu_G}{\sigma_G+\epsilon}  $$</p></li><li>提高正advantage response概率，降低负advantage response概率。</li><li>用ratio clipping和KL约束训练稳定性。</li></ol>
+<p>必须能比较：</p>
+<div class="table-wrap"><table><thead><tr><th>方法</th><th style="text-align:right">是否需要Critic</th><th>数据来源</th><th>核心信号</th></tr></thead><tbody><tr><td>SFT</td><td style="text-align:right">否</td><td>离线答案</td><td>token imitation</td></tr><tr><td>DPO</td><td style="text-align:right">否</td><td>离线偏好对</td><td>chosen vs rejected</td></tr><tr><td>PPO</td><td style="text-align:right">是</td><td>on-policy rollout</td><td>critic advantage</td></tr><tr><td>GRPO</td><td style="text-align:right">否</td><td>on-policy group</td><td>group-relative reward</td></tr></tbody></table></div>
+<h2 id="15-actorjudgerewardupdate-链路">15. Actor–Judge–Reward–Update 链路</h2>
+<p>必须能画出：</p>
+<pre><code class="language-text">Prompt + Image
+  → Actor生成G个caption
+  → Caption Judge
+  → Visual Judge
+  → Evidence QA评分
+  → Claim/Intent/Length/Redundancy组合reward
+  → group-relative advantage
+  → GRPO update</code></pre>
+<p>工程追问：</p>
+<ul><li>grouped judge 为什么比逐条judge省请求？</li><li>grouped judge的顺序偏置如何控制？</li><li>流式reward如何避免等待所有样本？</li><li>请求缓存的key应包含哪些版本信息？</li><li>429为什么不能盲目拆成更多并发单请求？</li><li>模型训练吞吐和外部judge TPM为什么是两个独立瓶颈？</li></ul>
+<h2 id="16-如何解释训练趋势">16. 如何解释训练趋势</h2>
+<p>简历写的是：</p>
+<ul><li>后段相较前段 Reward +13.22pp；</li><li>QA Recall +16.75pp；</li><li>幻觉率下降2.63pp。</li></ul>
+<p>必须说明：</p>
+<ul><li>这是100-step内部前后阶段趋势。</li><li>它不天然等于同一held-out slice上的严格Step 0→Step 100因果增益。</li><li>需要固定request、Judge版本、prompt、采样参数和评测集合，才可做严格配对比较。</li><li>同时检查输出长度是否增加，避免“更长所以Recall更高”。</li></ul>
+<h2 id="17-两阶段拒绝采样与rft">17. 两阶段拒绝采样与RFT</h2>
+<p>链路：</p>
+<pre><code class="language-text">greedy生成
+→ 筛低Recall/高幻觉困难prompt
+→ 对困难prompt做Best-of-N
+→ Precision/Relevance/幻觉作为约束
+→ 在可接受候选中选最高Recall
+→ 形成RFT/SFT数据</code></pre>
+<p>必须掌握：</p>
+<ul><li>为什么先筛困难样本，避免对简单样本浪费采样预算。</li><li>Best-of-N提高样本质量但增加推理成本。</li><li>selection bias：只保留高reward答案可能放大judge偏差。</li><li>RFT是offline imitation，不等于online RL。</li></ul>
+<h2 id="18-统一-benchmark-与评测审计">18. 统一 Benchmark 与评测审计</h2>
+<p>简历中的独立评测资产不能只当作一个数字带过：</p>
+<ul><li>399 个独立视觉样本；</li><li>2,692 条通用 Evidence QA；</li><li>187 条世界知识题；</li><li>Recall、Claim Precision、Intent Relevance、Evidence Alignment、World F1 等多维指标。</li></ul>
+<p>必须掌握：</p>
+<ul><li><strong>独立统计单位</strong>是源视觉样本、intent、QA 还是 claim；置信区间和显著性检验应在真正独立的单位上做。</li><li><strong>Evidence Recall</strong>衡量参考证据覆盖，<strong>Claim Precision</strong>衡量输出 claim 的视觉支持率，二者不能相互替代。</li><li><strong>Evidence Alignment</strong>要说明是在 claim–evidence、caption–QA 还是 judge score 层面定义，必须以真实实现为准。</li><li><strong>World F1</strong>要说明实体别名、同义答案、多粒度答案和开放式文本归一化规则。</li><li>为什么需要把视觉事实和世界知识分开评估，防止模型用语言先验“答对”却没有看图。</li><li>Intent 答案泄漏、QA 类型失衡、实体别名冲突、世界知识污染分别会怎样让指标虚高。</li><li>Judge 版本、prompt、输入顺序、解码参数、缓存版本和失败样本处理必须被冻结，才能比较模型或 checkpoint。</li><li>训练集、RFT 候选池和 Benchmark 要按源样本隔离，不能只按展开后的 QA 文本去重。</li></ul>
+<p>典型追问：</p>
+<ul><li>399 个视觉样本是否足以支撑结论？置信区间怎么估计？</li><li>2,692 条 QA 能否被当作 2,692 个独立样本做 bootstrap？</li><li>Evidence Alignment 与 Recall、Precision 的区别是什么？</li><li>World F1 如何处理别名和开放式答案？</li><li>如何证明 Intent Caption 的收益不是 Judge 偏好或答案泄漏造成的？</li></ul>
+<hr />
+<h1 id="五p0forestprune">五、P0：ForestPrune</h1>
+<h2 id="19-视觉-token-压缩基础">19. 视觉 Token 压缩基础</h2>
+<p>必须掌握：</p>
+<ul><li>token pruning、token merging、KV compression的区别。</li><li>训练无关方法与训练式压缩方法的差别。</li><li>prefill FLOPs、KV cache、显存和延迟随视觉token数的变化。</li><li>为什么逐帧独立压缩会忽略跨帧冗余。</li><li>为什么高压缩率可能反而提高长视频效果：节省预算后可输入更多帧。</li></ul>
+<h2 id="20-forestprune-方法链路">20. ForestPrune 方法链路</h2>
+<p>必须能从头叙述：</p>
+<pre><code class="language-text">多帧视觉tokens
+→ 计算语义相似性
+→ 加入空间邻近约束
+→ 加入时间连续性约束
+→ 构建跨帧token trees/forest
+→ 用树深和节点角色估计重要性
+→ 优先删除局部、短期叶节点
+→ 保留跨帧持续语义轨迹
+→ 满足全局token budget</code></pre>
+<p>必须回答：</p>
+<ul><li>为什么是forest而不是单棵tree？</li><li>候选 tree nodes 如何从每帧 token 中得到，为什么不直接把全部 token 都作为节点？</li><li>edge 如何由语义相似度、空间距离和时间顺序共同构造？</li><li>树深为什么能表示信息持续性？</li><li>root、trunk/internal、leaf、tail 分别如何形式化定义？</li><li>root 数量远大于最终预算时为什么要先合并 trees？</li><li>pruning如何保证恰好满足预算？</li><li>算法时间/空间复杂度。</li><li>是否依赖query；若不依赖，可能丢失哪些任务相关细节？</li><li>与FrameFusion、FastV、ToMe等方法的公平比较条件。</li></ul>
+<p>真实算法口径：</p>
+<ol><li><p>对候选节点特征 $\mathbf F_{\mathrm{nod}}$ 计算 cosine adjacency：</p>
+<p> $$  A=\mathbf F_{\mathrm{nod}}\mathbf F_{\mathrm{nod}}^\top  $$</p></li><li>根据节点二维坐标计算空间距离矩阵 $D$。</li><li><p>用语义阈值 $\tau_s$ 和空间阈值 $\tau_p$ 构造有效连接：</p>
+<p> $$  c_{ij}=1  \quad\Longleftrightarrow\quad  a_{ij}\ge \tau_s  \ \land\  d_{ij}\le \tau_p  $$</p>
+<p> 随后再结合时间顺序和论文中的 <code>LinkNode</code> 规则构建无环 token trees。不能回答成泛化的“阈值或 Top-K 均可”。</p></li><li>当 root 数量远大于保留预算 $K$ 时，先按 root similarity 合并 trees。</li><li>按 tree depth 排序，逐步移除 leaf nodes；若只剩 root/trunk 仍未达到预算，再移除 tail nodes。</li><li>极高压缩率下若只剩 roots，则按论文的时间规则选择最终保留节点，直到输出节点数满足 $K$。</li></ol>
+<p>边界：</p>
+<ul><li>论文中的“globally optimal pruning decision”应解释为<strong>在完整视频和统一预算下做跨帧全局决策</strong>，不要擅自声称求得了组合优化问题的可证明全局最优解。</li><li>构造完整 adjacency/distance matrix 可能引入关于候选节点数的二次成本，因此候选节点压缩既影响效果，也影响 pruning 自身开销。</li></ul>
+<p>数字口径：</p>
+<ul><li>“压缩90%保留95.8%平均准确率”要说明分母是未压缩baseline表现，不是95.8绝对分。</li><li>“MLVU +10.1%”要确认是百分点还是相对百分比，简历当前使用 <code>%</code>，面试时按论文表格口径回答。</li><li>“pruning时间下降81.4%”要说明硬件、token规模、是否含视觉编码。</li><li>64帧扩展到128/256/512时，要说明固定的是视觉token预算，而不是计算完全不变。</li><li>扩帧实验的完整数字要能复述：Video-MME <code>62.8 → 66.5</code>，MLVU <code>71.3 → 72.5</code>，并说明各自对应的帧数和设置。</li></ul>
+<hr />
+<h1 id="六p0capd">六、P0：CAPD</h1>
+<h2 id="21-opd-与蒸馏基础">21. OPD 与蒸馏基础</h2>
+<p>必须掌握：</p>
+<ul><li>知识蒸馏的teacher/student、soft target、temperature、KL loss。</li><li><strong>OPD = On-Policy Distillation</strong>：student 或其行为策略先生成 rollout，teacher 再在 student 实际访问到的 prefix/state 上提供逐 token 分布监督。</li><li>teacher 是否冻结与 on-policy/off-policy 是两个维度：冻结 teacher 并不意味着 offline；关键看训练 state/prefix 来自 student rollout 还是固定数据/teacher trajectory。</li><li><p>一般形式应显式写出 student-visited state distribution。令 $y\sim\pi_b(\cdot|x)$，其中 $\pi_b$ 通常是当前 student 或冻结的 old-policy snapshot，$s_t=(x,y_{&lt;t})$：</p>
+<p>$$ \mathcal L_{\mathrm{OPD}} = \mathbb E_{x\sim\mathcal D,\ y\sim\pi_b} \left[ \sum_t D_f\left( \pi_S(\cdot\mid s_t), \pi_T(\cdot\mid s_t) \right) \right] $$</p></li><li>CAPD 真实实现采用 forward KL、reverse KL、token NLL 还是其他 $f$-divergence，必须按代码和论文填写；不能把普通离线 KD 公式当成 OPD 的完整定义。</li><li>off-policy SFT/KD 在 teacher 或固定数据 prefix 上训练，存在 exposure bias；OPD 的核心是让训练 state distribution 更接近 student 推理分布。</li><li>teacher更大不代表每个token都一定正确。</li></ul>
+<h2 id="22-为什么直接attention蒸馏不够">22. 为什么直接Attention蒸馏不够？</h2>
+<p>必须清楚表述：</p>
+<ul><li>Attention描述模型内部“信息路由到哪里”。</li><li>高attention不等于该证据对输出具有因果影响。</li><li>直接attention matching可能复制teacher的冗余或非因果路由。</li><li>反事实移除更接近“这个时间片段是否影响边界决策”。</li></ul>
+<p>但也要保留边界：</p>
+<blockquote><p>反事实遮挡结果依赖遮挡方式和分布外程度；它比裸attention更接近因果证据，但不能自动等价于严格因果识别。</p></blockquote>
+<h2 id="23-capd-方法链路">23. CAPD 方法链路</h2>
+<p>必须能画出：</p>
+<pre><code class="language-text">完整视频输入 x
+  → Frozen Teacher
+  → next-token分布 p_full
+
+逐组移除连续时间片段 x\g
+  → Frozen Teacher，共G个反事实输入
+  → p_minus_g
+
+计算影响：
+  I_g = D(p_full, p_minus_g)
+
+用途1：
+  用I_g校准teacher attention policy
+
+用途2：
+  提高视觉依赖更强的timestamp token蒸馏权重
+
+Student：
+  同时学习“根据什么证据输出”
+  与“输出什么”</code></pre>
+<p>重要口径：</p>
+<ul><li>若有G个时间组，teacher逻辑输入数是 <code>G+1</code>：1个完整输入 + G个逐组移除输入。</li><li>不要误说成只做G次输入。</li><li>timestamp token为什么视觉依赖更强，需要通过定义或实证说明。</li><li>反事实影响距离可以是KL、JS或其他分布差异；必须以真实实现为准。</li><li>Attention policy loss与token distribution loss如何组合。</li><li>CAPD“不修改 on-policy rollout”表示保留原 OPD 的 student-visited prefixes，只在 teacher supervision 侧增加完整输入与反事实输入；不要误说成 CAPD 是 offline distillation。</li><li>必须说明 attention policy 具体来自哪些层、head、query/token，如何聚合到时间组，以及 student/teacher 架构不同时如何对齐。</li><li>必须区分反事实输入的逻辑数量 $G+1$ 与实际可批处理的 forward 次数；二者不是同一个计时口径。</li></ul>
+<h2 id="24-capd实验设计">24. CAPD实验设计</h2>
+<p>必须掌握：</p>
+<ul><li>teacher：GRPO后训练Qwen3-VL-32B。</li><li>student：Qwen3-VL-8B。</li><li>2,500条样本、1 epoch、全参数训练。</li><li>baseline：GRPO、Vanilla OPD、RAL-AD。</li><li>时间组粒度、组件、attention-loss权重消融。</li><li>TimeLens九项Recall如何聚合。</li><li>Video-MME、LongVideoBench、LVBench用于通用能力保持，而不是直接证明时间定位提升。</li><li>迁移到约3,000条业务数据和Qwen3.5 2B学生，说明适配性，但跨模型结论需说明配置差异。</li><li>需要报告 CAPD 相比 Vanilla OPD 的额外 teacher 计算、显存、缓存和 wall-clock 成本，不能只比较准确率。</li><li>“全面超过”应落实到每项指标、平均值还是统计显著性；若没有多 seed 或置信区间，应明确实验边界。</li></ul>
+<p>数字口径：</p>
+<ul><li>九项Recall平均55.1。</li><li>相比GRPO提升5.9pt，即12.0%相对提升。</li><li><p><code>5.9pt</code>与<code>12.0%</code>不能混淆：</p>
+<p>$$ \frac{5.9}{55.1-5.9}\approx12.0\% $$</p></li></ul>
+<hr />
+<h1 id="七p1其他科研成果">七、P1：其他科研成果</h1>
+<h2 id="25-one-shot-clip-retrieval">25. One-shot Clip Retrieval</h2>
+<p>必须掌握：</p>
+<ul><li>长视频为什么需要clip chunking与retrieval。</li><li>query-guided retrieval与query-agnostic压缩的区别。</li><li>one-shot 的精确定义：同一组 frame–query cross-modal similarities 同时用于 query-guided chunking 和 clip retrieval，避免额外模型和重复特征比较；不是“MLLM 只 forward 一次”，也不等于“只检索一个 clip”。</li><li>cross-modal embedding和相似度。</li><li>peak score 选择 cluster centers、动态规划切分连续 clip，以及 clip relevance 的计算。</li><li>coarse-to-fine训练：先用其他视频的 clips 作粗粒度负例，再用同一长视频中的相似 clips 作细粒度 hard negatives。</li><li>SynLongVideo 的 visual relevance 与 instruction divergence，以及为什么普通 image-caption 预训练 embedding 不擅长 question-guided clip retrieval。</li><li>连续clip为何比离散帧更适合时间事件。</li><li>2.2分钟处理小时视频时，是否包含解码、embedding和LLM推理。</li></ul>
+<p>核心公式：</p>
+<ol><li><p>对密集采样帧计算 query similarity：</p>
+<p> $$  s_i=\cos\left(f_I^i,f_q\right)  $$</p></li><li><p>用局部峰值强度 $g_i$ 选择 cluster centers。论文定义为：</p>
+<p> $$  g_i  =  2s_i  -  \min_{j&lt;i}\left\{s_j\mid s_j\le s_i\right\}  -  \min_{i&lt;k\le t}\left\{s_k\mid s_k\le s_i\right\}  $$</p></li><li>相邻 centers 之间用动态规划选择边界 $b_j^*$，目标是在保持连续性的同时最大化左右子序列的语义一致性。面试时应能解释状态、候选边界和复杂度，而不是只说“按相似度切段”。</li><li><p>clip relevance 复用已计算的 frame similarities，例如：</p>
+<p> $$  r_i=\max\left\{s_j\mid I_j\in V_i\right\}  $$</p></li><li>query 变化时，视频 frame embeddings 可以缓存，但 $s_i$、cluster centers、动态规划边界和检索结果都与 query 绑定，通常需要重新计算。</li></ol>
+<p>典型追问：</p>
+<ul><li>retrieval漏掉关键clip怎么办？</li><li>recall与压缩率如何权衡？</li><li>query变化是否需要重新编码视频？</li><li>与RAG的对应关系是什么？</li><li>peak score 为什么适合找 query-related semantic changes？</li><li>动态规划边界相比固定窗口或 shot boundary 有什么优势？</li><li>coarse-to-fine 的两类负例分别解决什么问题？</li></ul>
+<p>对应教程：</p>
+<ul><li><a href="docs/tutorials/rag_embedding_retrieval_tutorial.html">RAG + Embedding / Retrieval</a></li></ul>
+<h2 id="26-xplaindf">26. XPlainDF</h2>
+<p>这是第五作者项目，优先掌握整体逻辑，不必冒充核心owner。</p>
+<p>至少要能解释：</p>
+<ul><li>Deepfake Detection与可解释检测。</li><li>specialist–generalist fusion。</li><li>specialist先验可能错误，为什么会污染VLM。</li><li>IB：Information Bottleneck基本思想。</li><li>EDL：用evidence构造Dirichlet，表达uncertainty。</li><li>reliability-aware evidence routing。</li><li>global–spatial evidence routing。</li><li>RTEA 的准确全称、输入输出和在系统中的位置。</li><li>counterfactual evidence learning。</li><li>该项目中 OPD 的准确全称和训练分布；不能默认套用 CAPD 中的 On-Policy Distillation。</li><li>model soup。</li><li>Macro F1为什么适合类别不均衡。</li><li>Overall Score如何定义必须以论文为准。</li></ul>
+<p>回答边界：</p>
+<blockquote><p>明确说清自己参与的模块、实验或分析，不把整个框架都说成个人设计。</p></blockquote>
+<hr />
+<h1 id="八p1工程栈必须能落到原理">八、P1：工程栈必须能落到原理</h1>
+<p>简历技能栏中的每个词至少准备一个“原理 + 项目例子 + 故障案例”。</p>
+<h2 id="pytorch">PyTorch</h2>
+<ul><li>autograd、leaf tensor、计算图；</li><li>Dataloader worker、pinned memory、prefetch；</li><li>AMP与GradScaler；</li><li>activation checkpointing；</li><li>distributed process group；</li><li>state_dict与distributed checkpoint。</li></ul>
+<h2 id="transformers">Transformers</h2>
+<ul><li>tokenizer/chat template；</li><li><code>input_ids</code>、<code>attention_mask</code>、<code>position_ids</code>、<code>labels</code>；</li><li><code>generate</code>与训练forward；</li><li>KV cache；</li><li>stopping criteria、EOS；</li><li>自定义modeling与remote code。</li></ul>
+<h2 id="verl--open-verl">VERL / Open-VERL</h2>
+<ul><li>Actor、rollout、reward、reference policy；</li><li>colocated与分离部署；</li><li>on-policy数据生命周期；</li><li>rollout cache；</li><li>reward异步化；</li><li>checkpoint与恢复。</li></ul>
+<h2 id="vllm">vLLM</h2>
+<ul><li>continuous batching；</li><li>PagedAttention；</li><li>prefill/decode；</li><li>tensor parallel serving；</li><li>KV cache管理；</li></ul>
+<p>-吞吐和首token延迟的区别。</p>
+<h2 id="deepspeedfsdpzero-3">DeepSpeed/FSDP/ZeRO-3</h2>
+<ul><li>ZeRO 1/2/3分别切什么；</li><li>FSDP2 per-parameter DTensor；</li><li>all-gather/reduce-scatter；</li><li>HSDP二维mesh；</li><li>checkpoint和meta initialization。</li></ul>
+<h2 id="spark">Spark</h2>
+<ul><li>partition、shuffle、skew；</li><li>map/reduce、join；</li><li>200M样本去重和统计；</li><li>小文件问题；</li><li>retry与幂等。</li></ul>
+<h2 id="linuxgit">Linux/Git</h2>
+<ul><li>GPU/NPU进程、日志、磁盘、网络排障；</li><li>shell管道和退出码；</li><li>Git branch、rebase、cherry-pick、bisect；</li><li>可复现实验的commit/config/data版本绑定。</li></ul>
+<hr />
+<h1 id="九p0简历数字防守表">九、P0：简历数字防守表</h1>
+<div class="table-wrap"><table><thead><tr><th>数字</th><th>必须准备的解释</th></tr></thead><tbody><tr><td>2TB、200M+</td><td>新增数据的存储/样本统计口径，是否压缩后、是否含variant</td></tr><tr><td>1.547T、888.73M</td><td>CPT v9配方池规模，不等于实际消费量</td></tr><tr><td>1T、12天、77B/day</td><td>实际训练约数、有效运行时间、token统计口径</td></tr><tr><td>1024张910B NPU</td><td>8×128 FSDP2/HSDP mesh、每卡micro-batch=2</td></tr><tr><td>79.28→79.87</td><td>聚合任务、同预算对照、绝对百分点</td></tr><tr><td>79.72→82.37</td><td>抖音知识图文子集定义与评测方式</td></tr><tr><td>136/42任务</td><td>benchmark层级、业务任务与公开任务关系</td></tr><tr><td>+10.98pt</td><td>团队版本相对Qwen3.5基座</td></tr><tr><td>+46.91pt</td><td>抖音推理Base→Instruct，需解释版本和任务聚合</td></tr><tr><td>3,995→19,665</td><td>源样本先切分，再展开intent/variant</td></tr><tr><td>115,793 QA</td><td>QA条数，不是独立视觉样本数</td></tr><tr><td>100-step/12,800 rollout</td><td>每step/group/样本关系和有效rollout定义</td></tr><tr><td>+13.22/+16.75/-2.63pp</td><td>训练后段相较前段趋势，不自动等于held-out因果提升</td></tr><tr><td>399/2,692/187</td><td>Intent Caption Benchmark 的独立视觉样本、通用 Evidence QA、世界知识题口径</td></tr><tr><td>90% token/95.8%</td><td>压缩比例与相对保留准确率</td></tr><tr><td>+10.1%、-81.4%</td><td>百分比/百分点、计时范围、硬件</td></tr><tr><td>64→128/256/512</td><td>固定视觉 token 预算下扩帧；vision encoder、pruning 和解码成本不一定固定</td></tr><tr><td>62.8→66.5、71.3→72.5</td><td>ForestPrune 扩帧后的 Video-MME、MLVU 指标及对应帧数</td></tr><tr><td>2,500/1 epoch</td><td>CAPD训练数据与训练轮次</td></tr><tr><td>55.1/+5.9pt/+12.0%</td><td>绝对分、百分点、相对提升三种口径</td></tr><tr><td>约3,000/2B</td><td>CAPD 业务迁移数据量和 Qwen3.5 架构学生规模</td></tr><tr><td>5模型/5基准/+6.1%/+5.2%</td><td>OneClip-RAG 的适配范围及 LongVideoBench、TVQA-Long 增益口径</td></tr><tr><td>2.2分钟/RTX 4090</td><td>小时级视频计时范围、视频时长分布、是否包含解码/embedding/MLLM</td></tr><tr><td>0.9878/0.862</td><td>XPlainDF 的 Macro F1、Overall Score 定义、数据集和 baseline</td></tr></tbody></table></div>
+<hr />
+<h1 id="十个人贡献和团队结果边界">十、个人贡献和团队结果边界</h1>
+<h2 id="可以明确强调">可以明确强调</h2>
+<ul><li>DouyinVL：覆盖数据/基础设施、CPT、scale-up、评测和版本迭代，不应只说成数据工程。</li><li>Intent Caption：项目负责人；问题定义、数据门禁、IEPR、RL链路和评测体系。</li><li>ForestPrune：第一作者。</li><li>CAPD：第一作者。</li></ul>
+<h2 id="必须谨慎">必须谨慎</h2>
+<ul><li>DouyinVL最终benchmark增益是团队版本结果。</li><li>Post-Train可以讲完整逻辑，但个人是协同/部分参与，不说全链路owner。</li><li>Intent Caption内部前后段趋势不能包装成严格配对Step 0提升。</li><li>CAPD中的attention不是天然因果证据；反事实影响也要说明遮挡假设。</li><li>XPlainDF是第五作者，明确个人参与模块。</li><li>Pattern Recognition工作是第二作者，区分主导贡献与协作贡献。</li></ul>
+<hr />
+<h1 id="十一推荐学习顺序">十一、推荐学习顺序</h1>
+<h2 id="第一阶段能守住douyinvl">第一阶段：能守住DouyinVL</h2>
+<ol><li>VLM完整数据流。</li><li>Qwen3.5-35A3B MoE。</li><li>CPT/SFT/RL区别。</li><li>数据配方、去重、泄漏、动态视觉token。</li><li>FSDP2、1024卡真实mesh和通信。</li><li>Benchmark与badcase回流。</li></ol>
+<h2 id="第二阶段能守住intent-caption">第二阶段：能守住Intent Caption</h2>
+<ol><li>条件证据压缩定义。</li><li>Evidence QA与数据门禁。</li><li>IEPR多目标奖励。</li><li>GRPO公式和工程链路。</li><li>Judge、缓存、429、评测偏差。</li><li>统一 Benchmark、Evidence Alignment 与 World F1。</li><li>RFT与Best-of-N。</li></ol>
+<h2 id="第三阶段能守住论文">第三阶段：能守住论文</h2>
+<ol><li>视频视觉token和推理成本。</li><li>ForestPrune完整算法与复杂度。</li><li>On-Policy Distillation 和 attention distillation。</li><li>CAPD反事实定义、两个loss和实验消融。</li><li>OneClip-RAG 的 peak score、动态规划边界和 coarse-to-fine loss。</li><li>XPlainDF 的不确定性建模、RTEA 与证据路由。</li></ol>
+<h2 id="第四阶段模拟面试">第四阶段：模拟面试</h2>
+<p>每个核心项目分别准备：</p>
+<ul><li>30秒一句话版本；</li><li>2分钟STAR/问题—方法—结果版本；</li><li>10分钟白板深挖版本；</li><li>10个基础追问；</li><li>5个实验归因追问；</li><li>3个失败/局限问题；</li><li>1个“如果再做一次怎么改”。</li></ul>
+<hr />
+<h1 id="十二自测标准">十二、自测标准</h1>
+<p>只有同时满足以下条件，才算“基础扎实”：</p>
+<ul><li>不看资料画出VLM、FSDP2和GRPO数据流。</li><li>手算global batch、FSDP shard size、吞吐和相对提升。</li><li>写出NTP、KL distillation、GRPO advantage和IEPR的基本公式。</li><li>写出 OPD 的 student-rollout 期望、ForestPrune 的连接条件、OneClip-RAG 的 peak score。</li><li>解释每个指标的分母、聚合方法和对照版本。</li><li>给出至少一个失败样例和排查路径。</li><li>明确哪些是团队成果、个人主导、协同参与和仍未严格验证的结论。</li></ul>
+<hr />
+<h1 id="十三典型追问参考答案">十三、典型追问参考答案</h1>
+<blockquote><p>以下共 90 道参考问答，覆盖前文典型追问，并针对项目负责人和第一作者经历补充公式、实验归因、工程成本与失败边界。面试时先说第一句话的结论，再根据追问展开机制、证据和限制。</p></blockquote>
+<h2 id="27-多模态模型">27. 多模态模型</h2>
+<h3 id="q1一张图片是如何变成-llm-token-的">Q1：一张图片是如何变成 LLM token 的？</h3>
+<p>图片先经过解码、缩放和归一化，再按 patch 切分。ViT 把每个 patch 线性映射成视觉 hidden state，经过多层 self-attention 得到视觉特征；随后 spatial merge、projector 或 resampler 将其压缩并映射到 LLM hidden dimension。文本中的 image placeholder 被替换为这段视觉 embedding，与文本 embedding 拼成统一序列，再输入 LLM。视觉 token 本质上是连续向量，不是 tokenizer 词表中的离散 token id。</p>
+<h3 id="q2动态视觉-token-为什么能节省计算">Q2：动态视觉 token 为什么能节省计算？</h3>
+<p>固定高分辨率会让简单图片也产生大量无用 patch。动态视觉 token 根据原始分辨率、长宽比、媒体复杂度或任务预算决定 resize 和 merge 后的 token 数。标准 attention 对序列长度 $L$ 的主要计算和 attention matrix 显存为 $O(L^2)$，MLP约为 $O(L)$；减少视觉 token 不仅减少视觉编码成本，也减少后续所有 LLM 层的 prefill 计算和 activation。</p>
+<h3 id="q3多图视频的-position-ids-怎么构造">Q3：多图/视频的 position ids 怎么构造？</h3>
+<p>先为文本和各媒体块建立与实际拼接顺序一致的位置。普通 RoPE 可使用连续一维位置；多模态 RoPE通常把视觉位置拆成时间、高度、宽度坐标，再按模型规定映射到 rotary维度。多图需要保证每个placeholder对应正确的视觉块；视频还需保持帧序和帧内空间坐标。具体实现必须遵循模型processor生成的 <code>position_ids</code> 或 <code>rope_deltas</code>，不能自行假设简单连续编号。</p>
+<h3 id="q4media-placeholder数量与视觉特征不一致会发生什么">Q4：media placeholder数量与视觉特征不一致会发生什么？</h3>
+<p>显式实现通常会在scatter或replace阶段报shape/count mismatch；更危险的实现可能把错误媒体特征填到另一个placeholder，训练仍能运行但图文语义错位。前置检查应验证媒体数量、placeholder数量、顺序、每个媒体的token span及有效路径，并在collate后再次检查展开长度。</p>
+<h3 id="q5视觉-token-翻倍时attention计算量如何变化">Q5：视觉 token 翻倍时，attention计算量如何变化？</h3>
+<p>若总序列几乎由视觉token主导，从 $L$ 增加到 $2L$，标准self-attention的 $QK^\top$ 和 $AV$ 计算约变为4倍，attention matrix显存也约变为4倍；MLP和投影部分约变为2倍。若文本长度不可忽略，应比较 $(L_t+2L_v)^2/(L_t+L_v)^2$，不能直接断言整个模型总FLOPs严格4倍。</p>
+<h2 id="28-qwen35-moe">28. Qwen3.5 MoE</h2>
+<h3 id="q635b总参数为什么只有约3b激活">Q6：35B总参数为什么只有约3B激活？</h3>
+<p>MoE层拥有大量expert参数，但router对每个token只选择Top-K routed experts，再加shared expert和attention等dense部分。因此checkpoint需要存储约35B总参数，但一次token forward只经过被选中的少数experts，激活参数量约为3B级。不同token可选择不同expert，但单个token不会执行全部35B参数。</p>
+<h3 id="q7moe是省显存还是省计算">Q7：MoE是省显存还是省计算？</h3>
+<p>主要省的是“相同总参数容量下的每token计算”，不天然省参数显存。所有experts仍需被存储，所以总权重、optimizer state可能很大；如果没有EP或FSDP，单卡仍可能放不下。MoE用稀疏激活获得更高参数容量，但会增加router、负载均衡和all-to-all等工程成本。</p>
+<h3 id="q8top-k-router如何训练为什么会负载不均">Q8：Top-K router如何训练？为什么会负载不均？</h3>
+<p>Router用token hidden state计算expert logits，经softmax或归一化后选择Top-K experts；主任务loss通过被选路径反传到router，通常还加入load-balancing或router regularization。负载不均来自数据分布和expert早期随机优势形成的正反馈：某些expert更常被选、得到更多训练、随后更容易继续被选。容量限制、auxiliary loss、router bias或token dropping可缓解，但也可能影响质量。</p>
+<h3 id="q9ep与fsdp切expert参数有什么本质区别">Q9：EP与FSDP切expert参数有什么本质区别？</h3>
+<p>EP按expert语义分工：某张卡长期持有一组experts，token根据router结果通过all-to-all发送到目标卡，多卡合作处理同一batch。FSDP按存储维度切参数：expert权重平时分片，计算该FSDP unit前all-gather参数，每张卡仍处理自己的数据。EP通信token activation，FSDP主要通信参数和梯度。</p>
+<h3 id="q10linear-attention为什么不能直接解释为标准softmax-attention-map">Q10：linear attention为什么不能直接解释为标准softmax attention map？</h3>
+<p>标准attention显式形成 $A=\operatorname{softmax}(QK^\top/\sqrt d)$，每个query对应一个对key归一化的权重分布。线性/递归attention通常维护压缩状态，例如 $S_t=f(S_{t-1},k_t,v_t)$，输出由query读取状态；它不一定存在唯一的、逐token归一化的 $L\times L$ attention matrix。由Q/K相似度构造的热图通常只是诊断proxy，不能当成真实路由质量或因果贡献。</p>
+<h2 id="29-cpt与数据">29. CPT与数据</h2>
+<h3 id="q11cpt和sft的loss有何不同">Q11：CPT和SFT的loss有何不同？</h3>
+<p>CPT通常继续使用全序列next-token loss，让模型学习领域语料和多模态分布；SFT使用instruction-response样本，常只对assistant response token计算loss，prompt token被mask。两者数学核心都可用cross-entropy，但监督位置、数据组织和目标能力不同：CPT做分布迁移，SFT做指令行为对齐。</p>
+<h3 id="q121547t配方池为什么只训练约1t">Q12：1.547T配方池为什么只训练约1T？</h3>
+<p>1.547T表示可采样数据池或recipe展开后的token规模，不等于训练必须完整遍历一遍。实际训练由token budget、step数、global batch、序列长度、数据采样权重和各桶epoch/cap共同决定；大桶可能只消费一部分，小桶可能按上限重复采样。简历应把1.547T称为配方池，把约1T称为实际消费量。</p>
+<h3 id="q13如何判断某个数据桶需要加权还是降权">Q13：如何判断某个数据桶需要加权还是降权？</h3>
+<p>同时看四类证据：目标能力缺口、该桶数据质量、边际收益和负迁移。先建立固定训练预算的配比实验，观察对应能力域、相邻能力和防御指标；若加权后目标域提升且通用能力可控，可提高权重。若出现过拟合、模板偏置、答案泄漏、重复样本或通用能力下降，应降权、设cap或先治理数据。</p>
+<h3 id="q14如何证明提升来自数据配比而不是训练随机性">Q14：如何证明提升来自数据配比，而不是训练随机性？</h3>
+<p>保持模型初始化或基座、训练token预算、优化器、学习率、数据质量、评测请求和推理参数一致，只改变配比；最好使用多个seed或至少做中间checkpoint趋势和重复小规模实验。报告目标指标、总体指标、防御指标和置信区间，并检查实际消费token是否符合设计。单次最终分数上涨只能说明相关性较强，不能完全排除训练噪声。</p>
+<h3 id="q15如何监控cpt引发的通用能力遗忘">Q15：如何监控CPT引发的通用能力遗忘？</h3>
+<p>建立领域提升指标与通用防御指标的双轨评测，在训练中定期评估语言、知识、OCR、视频、推理、指令遵循和安全/格式能力；同时保留固定请求、固定解码和基座对照。若领域分数上涨但通用任务持续下降，检查通用数据比例、学习率、训练时长和数据模板偏置，并通过增加通用replay、降低领域桶权重或更早停止缓解。</p>
+<h3 id="q16为什么option-shuffle能减少位置偏置如何验证">Q16：为什么Option Shuffle能减少位置偏置？如何验证？</h3>
+<p>如果正确选项长期集中在A/B位置，模型可以学习位置先验而不理解内容。训练时随机打乱选项并同步更新答案标签，使正确位置近似均匀，迫使模型依据选项语义决策。验证时比较shuffle前后各位置准确率、位置分布熵、固定内容换位一致性，以及text-blind baseline；不能只看总准确率。</p>
+<h3 id="q17ocr-dropout会不会伤害ocr能力">Q17：OCR Dropout会不会伤害OCR能力？</h3>
+<p>可能会，所以不能对所有样本无差别删除OCR。它主要用于答案被附加OCR文本直接泄漏、但视觉中仍可读取的样本，通过概率dropout让模型不能总依赖旁路文本。应保留专门OCR训练桶和OCR回归指标，按任务类型设置概率，并比较视觉理解、OCR识别和文本泄漏防御三类指标。</p>
+<h3 id="q18如何检测trainval的同源视频泄漏">Q18：如何检测Train/Val的同源视频泄漏？</h3>
+<p>先定义稳定的source id，在抽帧、裁剪、prompt、intent和QA variant展开前按源视频分组切分。对无可靠source id的数据，再组合文件hash、关键帧perceptual hash、音频指纹、时长/元数据和视频embedding近邻检索。所有同源剪辑和衍生variant必须进入同一split；最后对跨split候选做阈值审计和人工抽检。</p>
+<h3 id="q19200m样本如何做分布式去重和质量统计">Q19：200M样本如何做分布式去重和质量统计？</h3>
+<p>用Spark等系统先做规范化与稳定指纹：文本exact hash、MinHash/LSH，图片pHash/embedding，视频关键帧指纹和source metadata。按hash或LSH bucket repartition，在分区内生成候选对并用union-find/规则合并重复簇，随后按簇分配split。质量统计用可加和聚合器计算数量、token、长度、模态、来源、失败率和分位数；对skewed key做salting，输出版本化manifest和抽样审计。</p>
+<h3 id="q20为什么不能所有图片都用最高分辨率所有视频都采最多帧">Q20：为什么不能所有图片都用最高分辨率、所有视频都采最多帧？</h3>
+<p>视觉token会提高vision encoder和LLM prefill成本，标准attention对总序列长度近似平方增长；长短样本混合还会造成padding和straggler浪费。在固定算力下，提高单帧分辨率会压缩可用帧数，反之亦然。因此应按任务、媒体长度、细节需求和token budget动态分配，在空间细节、时间覆盖、吞吐和显存之间做权衡。</p>
+<h2 id="30-分布式训练与稳定性">30. 分布式训练与稳定性</h2>
+<h3 id="q21为什么35b模型还要用1024卡">Q21：为什么35B模型还要用1024卡？</h3>
+<p>目的不只是“把35B权重放下”，而是在约1T token预算和12天时间约束下获得足够吞吐，同时分摊参数、梯度、Adam states和activation。你们实际使用128-way FSDP shard降低单卡模型状态，再用8-way replication扩大数据吞吐；1024卡还承担micro-batch 2、global batch 2048的大规模计算。卡数由模型、序列、多模态解码、目标token/day和通信效率共同决定。</p>
+<h3 id="q22fsdp2与zero-3有什么对应关系">Q22：FSDP2与ZeRO-3有什么对应关系？</h3>
+<p>二者都切分parameter、gradient和optimizer state，语义上都属于full sharding。ZeRO-3常以DeepSpeed状态分区描述；FSDP2使用PyTorch DTensor做per-parameter sharding，并通过module hooks在forward/backward前all-gather、backward后reduce-scatter。它们的核心显存思想相同，但API、参数表示、wrap粒度、prefetch和checkpoint生态不同。</p>
+<h3 id="q23为什么选择128-way-shard--8-way-replicate">Q23：为什么选择128-way shard + 8-way replicate？</h3>
+<p>128-way shard显著降低35B MoE的持久模型状态和optimizer显存；8份replica让全部1024卡处理不同数据，提高global throughput，并把full-shard communicator限制在128卡而不是1024卡。它是在单卡显存、all-gather延迟、跨节点带宽和数据并行吞吐之间的折中。精确原因还应结合物理拓扑和profiling，不能仅凭配置断言是全局最优。</p>
+<h3 id="q24all-gatherreduce-scatter分别发生在哪">Q24：all-gather、reduce-scatter分别发生在哪？</h3>
+<p>FSDP wrap unit执行forward前，128个rank把参数分片all-gather成当前unit完整参数；<code>full_shard=true</code>时forward后释放完整参数，backward前再all-gather。每个rank算出局部梯度后，reduce-scatter先对128卡梯度求和，再让每卡只保留对应梯度分片。随后8个replica的同位置梯度分片还要在replicate维做all-reduce同步。</p>
+<h3 id="q25为什么不用ep不用ulysses的代价是什么">Q25：为什么不用EP？不用Ulysses的代价是什么？</h3>
+<p>配置只说明这次recipe将MoE参数交给FSDP，而没有按expert语义做token all-to-all；可能是35A3B在当前显存和通信条件下FSDP已足够，或EP收益不及实现复杂度。<code>ulysses_size=1</code>表示每个rank处理样本完整序列，避免额外all-to-all，但超长序列activation不能沿Ulysses维分摊，单卡序列显存和可支持长度受到更多限制。真实选择原因需由profile和框架稳定性验证。</p>
+<h3 id="q26训练hangloss-spike吞吐下降怎么排查">Q26：训练hang、loss spike、吞吐下降怎么排查？</h3>
+<p>先确定首个异常step和首个异常rank。Hang检查各rank日志、collective序列是否一致、坏样本/解码超时、OOM后僵尸rank和网络/HCCL错误；loss spike检查样本、有效token、label mask、学习率、gradient norm、NaN/Inf和恢复checkpoint；吞吐下降拆分data、forward、backward、collective、optimizer和checkpoint时间，并比较rank间P50/P99。每次只改变一个因素，用可复现样本和配置验证。</p>
+<h3 id="q27为什么一个坏视频可能挂住1024卡">Q27：为什么一个坏视频可能挂住1024卡？</h3>
+<p>同步训练每个step都要进入相同collective。若一个rank在视频解码、远程读取或异常重试上长时间阻塞，其余1023个rank即使已完成计算，也会在下一次all-gather/reduce-scatter等待它；若某rank异常退出但其他rank未及时感知，还可能表现为collective超时。需要解码timeout、预验证、错误样本隔离和全rank一致的异常退出机制。</p>
+<h3 id="q28如何定位是loader慢还是通信慢">Q28：如何定位是Loader慢还是通信慢？</h3>
+<p>分别记录data wait、H2D、forward、backward compute、collective和optimizer时间，同时看device utilization与网络带宽。Loader慢通常表现为step开头GPU空闲、data time升高、CPU/存储/解码繁忙；通信慢表现为NCCL/HCCL collective时间升高、网络饱和或rank straggler。用预生成内存batch可隔离Loader，用缩小world size或通信benchmark可隔离collective。</p>
+<h3 id="q29超长视频如何采帧">Q29：超长视频如何采帧？</h3>
+<p>先按任务决定均匀、分段、镜头边界、query-guided或运动/语义自适应采样；设置最大帧数和视觉token budget，长视频优先保证时间覆盖，再给关键片段更高密度。必须处理可变帧率、重复帧、黑帧和解码失败，并保留原始时间戳映射，避免采样后无法做temporal grounding。</p>
+<h3 id="q30checkpoint保存为什么可能造成训练抖动">Q30：Checkpoint保存为什么可能造成训练抖动？</h3>
+<p>保存会产生device-to-host拷贝、分片序列化、文件系统元数据和HDFS/网络写入；所有rank若在保存点同步，最慢rank决定停顿时间。大量小文件、共享存储拥塞和optimizer state体积会放大抖动。DCP分片保存、异步checkpoint、限流、独立I/O线程和错峰写入可缓解，但必须确保一致性和恢复可用。</p>
+<h2 id="31-judge与rl工程">31. Judge与RL工程</h2>
+<h3 id="q31grouped-judge为什么比逐条judge省请求">Q31：Grouped Judge为什么比逐条Judge省请求？</h3>
+<p>它把同一prompt或多个候选合并到一次模型调用，复用系统提示、图像输入和网络握手，减少请求数和重复prompt token；judge还能在同一上下文内直接比较候选。但单次请求更大，仍受TPM、上下文长度和解析稳定性限制，所以不是无限合并。</p>
+<h3 id="q32grouped-judge的顺序偏置如何控制">Q32：Grouped Judge的顺序偏置如何控制？</h3>
+<p>随机化候选顺序，并保存原始candidate id做反向映射；对关键评测可做多次不同排列或A/B交换，统计一致性。Prompt要求逐候选独立打分而非只选第一个，并用位置分布、交换一致率和人工样本审计检测偏置。</p>
+<h3 id="q33流式reward如何避免等待所有样本">Q33：流式Reward如何避免等待所有样本？</h3>
+<p>将rollout、judge和reward计算拆成带request id的异步任务；单个样本或小批次judge完成后立即解析并写入结果队列，训练侧按group完整性或batch门槛消费，而不是等整个epoch。必须保证幂等、超时、重试、缓存版本和缺失结果策略，避免把晚到reward配错样本。</p>
+<h3 id="q34请求缓存的key应包含哪些版本信息">Q34：请求缓存的Key应包含哪些版本信息？</h3>
+<p>至少包括sample/request id、媒体内容hash、prompt和system prompt、模型及checkpoint、chat template、生成参数、judge版本、reward版本、评测schema和代码/config版本。只用sample id会在prompt或judge升级后错误复用旧结果。</p>
+<h3 id="q35429为什么不能盲目拆成更多并发单请求">Q35：429为什么不能盲目拆成更多并发单请求？</h3>
+<p>429通常表示RPM/TPM或服务容量已超限。把一个group拆成更多并发请求会增加请求数、重复prompt token和瞬时流量，使限流更严重。正确做法是对原group指数退避、降低并发并服从 <code>Retry-After</code>；只有在响应格式损坏而非限流时，才考虑逐条fallback。</p>
+<h3 id="q36模型训练吞吐和外部judge-tpm为什么是两个独立瓶颈">Q36：模型训练吞吐和外部Judge TPM为什么是两个独立瓶颈？</h3>
+<p>训练吞吐由本地NPU/GPU计算、显存和collective决定；Judge TPM是外部服务单位时间可处理的输入输出token配额。即使训练设备空闲，Judge也可能因TPM饱和阻塞reward；反过来Judge充足也不能解决actor rollout慢。需要分别监控tokens/s、队列长度、请求延迟、429率和TPM占用。</p>
+<h2 id="32-intent-captiongrpo-与评测">32. Intent Caption、GRPO 与评测</h2>
+<h3 id="q37iepr为什么必须是多目标奖励完整回答框架是什么">Q37：IEPR为什么必须是多目标奖励？完整回答框架是什么？</h3>
+<p>Intent Caption同时要求证据覆盖、事实可靠、意图相关、长度受控和低冗余，任一单指标都存在退化解。概念上可写为：</p>
+<p>$$ R_{\mathrm{IEPR}} = w_rR_{\mathrm{evidence}} +w_pR_{\mathrm{precision}} +w_iR_{\mathrm{intent}} +w_lR_{\mathrm{length}} -w_dR_{\mathrm{redundancy}} $$</p>
+<p>只有Recall会鼓励堆积事实，只有Precision会鼓励极短保守输出，只有Intent Relevance可能鼓励复述intent或生成不可验证信息。面试时必须进一步给出真实实现中的每个分项、取值范围、归一化、权重、缺失judge处理和clipping；上式只是问题定义，不能替代代码中的精确reward。</p>
+<h3 id="q38为什么选grpo而不是dpoppo或纯rft">Q38：为什么选GRPO而不是DPO、PPO或纯RFT？</h3>
+<p>该任务能针对同一图像和intent采样多条caption，并通过Evidence QA、Claim、Intent和长度规则得到在线reward，因此适合组内相对比较。GRPO不需要额外critic，能用同prompt的组均值反映prompt难度；DPO需要预先构造稳定偏好对，PPO需要训练value model，纯RFT只能模仿筛出的答案，不能持续探索并利用在线reward。代价是GRPO需要多条on-policy rollout，且group reward方差、judge吞吐和reward hacking都要单独治理。</p>
+<h3 id="q39写出intent-caption使用的grpo核心目标">Q39：写出Intent Caption使用的GRPO核心目标。</h3>
+<p>对同一prompt采样 $G$ 个响应，reward为 $r_i$，组相对advantage为：</p>
+<p>$$ A_i = \frac{r_i-\mu_G}{\sigma_G+\epsilon} $$</p>
+<p>令行为策略为 $\pi_{\mathrm{old}}$，当前策略为 $\pi_\theta$，第 $t$ 个生成token的ratio为：</p>
+<p>$$ \rho_{i,t} = \exp\left( \log\pi_\theta(y_{i,t}\mid s_{i,t}) - \log\pi_{\mathrm{old}}(y_{i,t}\mid s_{i,t}) \right) $$</p>
+<p>简化的clipped objective为：</p>
+<p>$$ \mathcal L_{\mathrm{GRPO}} = - \frac{1}{G} \sum_{i=1}^{G} \frac{1}{M_i} \sum_t m_{i,t} \min\left( \rho_{i,t}A_i,\, \operatorname{clip}(\rho_{i,t},1-\varepsilon,1+\varepsilon)A_i \right) + \beta\mathcal L_{\mathrm{KL}} $$</p>
+<p>其中 $m_{i,t}$ 只选择actor生成token，$M_i=\sum_t m_{i,t}$。真实项目是否使用per-token或per-sequence归一化、哪种KL estimator和loss reduction，必须按Open-VERL配置回答。</p>
+<h3 id="q40group内reward标准差为0怎么办">Q40：group内reward标准差为0怎么办？</h3>
+<p>如果同组reward完全相同，组内比较不提供学习信号。实现上应使用 $\epsilon$ 防止除零，并把该组advantage置零或跳过；不能靠极小分母放大数值噪声。频繁出现零方差通常说明采样温度过低、group size过小、reward过于离散、judge饱和或任务太容易/太难，需要从数据课程、采样和reward分辨率上处理。</p>
+<h3 id="q41100-step12800条rollout应该如何防守">Q41：<code>100-step、12,800条rollout</code>应该如何防守？</h3>
+<p>必须解释“rollout”的计数单位。至少准备：</p>
+<p>$$ N_{\mathrm{rollout}} = N_{\mathrm{step}} \times N_{\mathrm{prompt/step}} \times G \times N_{\mathrm{actor\ replica}} $$</p>
+<p>并说明12,800是原始生成数、judge成功数、进入训练的有效响应数还是去重后数量；失败、超时、截断和缺失reward是否计入。若100步共12,800条，则平均每步128条，但这不能单独反推出prompt数和group size。</p>
+<h3 id="q42caption-judge与visual-judge冲突怎么办">Q42：Caption Judge与Visual Judge冲突怎么办？</h3>
+<p>先明确职责：Caption Judge更适合语言完整性、claim拆分和意图相关性，Visual Judge负责视觉可验证性和幻觉。冲突时不能简单平均，应按预先定义的优先级、置信度或拒绝规则组合，例如视觉不支持的claim即使语言质量高也不能获得高总分。还应在人工标注集上分别测judge相关性、交换顺序一致率、假阳性/假阴性，并监控版本升级后的分布漂移。</p>
+<h3 id="q43如何证明qa-recall提升不是因为输出变长">Q43：如何证明QA Recall提升不是因为输出变长？</h3>
+<p>至少同时报告Recall、Claim Precision、平均有效长度、单位token证据数和幻觉率，并在长度匹配的输出子集上做配对比较。可画accuracy–length或Recall–length曲线，或在相同长度预算下比较checkpoint。如果Recall只随长度上涨而Precision和长度效率下降，就不能声称模型学会了更好的证据选择。</p>
+<h3 id="q44399个视觉样本和2692条qa的独立统计单位是什么">Q44：399个视觉样本和2,692条QA的独立统计单位是什么？</h3>
+<p>同一视觉样本派生出的多个intent、QA和claim存在相关性，不能把2,692条QA当作完全独立样本直接bootstrap。更稳妥的是以源视觉样本为cluster做cluster bootstrap，或做分层/层级bootstrap：先重采样源样本，再在样本内聚合QA。399个独立视觉样本决定了外层有效样本量，2,692条QA主要提高样本内能力覆盖。</p>
+<h3 id="q45evidence-alignment与recallclaim-precision有什么区别">Q45：Evidence Alignment与Recall、Claim Precision有什么区别？</h3>
+<p>Recall问“参考证据被覆盖了多少”，Claim Precision问“输出claim中有多少能被视觉支持”；Evidence Alignment进一步问输出claim是否与相应Evidence QA或证据槽正确对应。一个caption可能覆盖很多正确事实但没有覆盖当前intent的关键证据，也可能claim本身正确却对应错证据，因此三者需要分开报告。精确匹配、judge匹配还是embedding匹配必须以真实评测实现为准。</p>
+<h3 id="q46world-f1如何处理实体别名和开放式答案">Q46：World F1如何处理实体别名和开放式答案？</h3>
+<p>先做答案规范化，包括大小写、标点、单位、时间格式、实体别名和可接受同义词，再基于标准答案集合计算precision、recall和F1。若用LLM judge处理开放答案，应冻结prompt和模型版本并做人类校准。世界知识题还必须与视觉事实题分开，因为模型可能只靠语言先验答对，不能把它当作视觉证据能力。</p>
+<h3 id="q47如何防止intent答案泄漏和世界知识污染让benchmark虚高">Q47：如何防止Intent答案泄漏和世界知识污染让Benchmark虚高？</h3>
+<p>分别做去intent、去媒体、去OCR/ASR和text-only对照；如果不看图仍能高准确回答，说明存在泄漏。按源样本和衍生variant做split隔离，并检查训练/RFT池与Benchmark的exact、近重复和embedding相似性。对世界知识题还要区分问题是否需要视觉实体识别，避免把纯常识题混入视觉能力增益。</p>
+<h3 id="q48两阶段拒绝采样为什么有selection-bias如何缓解">Q48：两阶段拒绝采样为什么有selection bias？如何缓解？</h3>
+<p>只保留高judge分候选会把judge偏好、长度偏好和系统性误判蒸馏回actor。缓解方法包括：多judge或规则交叉验证、设置Precision/幻觉硬约束、保留一定多样性、人工审计边界样本、报告筛选前后分布变化，并在独立held-out Benchmark上验证。RFT数据最好保存全部候选和各分项reward，便于后续追溯选择偏差。</p>
+<h3 id="q49为什么训练后段相较前段的趋势不是严格因果增益">Q49：为什么训练后段相较前段的趋势不是严格因果增益？</h3>
+<p>前后阶段可能使用不同rollout请求、采样随机性、输出长度、judge负载和失败率，因此两段均值变化不等于固定样本上的Step 0到Step 100提升。严格比较需要固定评测集、judge版本、prompt、解码参数和统计单位，对同一请求做paired evaluation并报告置信区间。当前数字应表述为训练内部趋势，而不是严格held-out因果结论。</p>
+<h2 id="33-forestprune">33. ForestPrune</h2>
+<h3 id="q50为什么是forest而不是单棵tree">Q50：为什么是Forest而不是单棵Tree？</h3>
+<p>视频中存在多个相对独立的语义对象、区域和事件轨迹，强行连成一棵树会引入低相似度边并破坏结构。Forest允许多个roots分别代表不同语义簇，再通过树深和节点角色建模跨帧持续性。它既能表达多个并行语义轨迹，也允许完全无可靠连接的节点形成新root。</p>
+<h3 id="q51候选节点和edge如何构造">Q51：候选节点和Edge如何构造？</h3>
+<p>ForestPrune先从每帧视觉token中选择代表性候选节点，得到 $\mathbf F_{\mathrm{nod}}$；使用全部token会让二次相似度矩阵和噪声连接都显著增加。随后计算：</p>
+<p>$$ A=\mathbf F_{\mathrm{nod}}\mathbf F_{\mathrm{nod}}^\top $$</p>
+<p>并根据二维坐标得到空间距离矩阵 $D$。有效连接满足：</p>
+<p>$$ c_{ij}=1 \quad\Longleftrightarrow\quad a_{ij}\ge\tau_s \ \land\ d_{ij}\le\tau_p $$</p>
+<p>最后结合时间顺序和<code>LinkNode</code>规则形成无环trees。真实方法不是泛化的“阈值或Top-K均可”；候选节点策略、父节点选择和连接方向都应按论文算法回答。</p>
+<h3 id="q52树深为什么能表示信息持续性边界是什么">Q52：树深为什么能表示信息持续性？边界是什么？</h3>
+<p>相似语义若在连续帧中稳定出现，会沿时间方向形成更深路径，因此tree depth是跨帧持续性的proxy。短期噪声往往只能形成浅树或leaf。但遮挡、镜头切换、视角变化和外观突变会打断真实轨迹；一次性关键事件也可能只出现一帧。因此深度不是语义重要性的充分条件，需要与节点角色和结构规则共同使用。</p>
+<h3 id="q53roottrunkinternalleaf和tail分别是什么">Q53：Root、trunk/internal、leaf和tail分别是什么？</h3>
+<p>Root是tree的起点或代表节点；trunk/internal node连接前后节点，承担结构传递；leaf没有后续子节点；tail是当前tree时间上最靠后的末端节点。ForestPrune先删leaf以减少局部冗余，若预算仍未满足再逐步删除tail。不能把所有leaf等同于无用token，因为短暂关键事件也可能是leaf，这是方法的潜在失败模式。</p>
+<h3 id="q54root太多时如何处理为什么不能直接删到预算">Q54：Root太多时如何处理？为什么不能直接删到预算？</h3>
+<p>当root数量远大于保留预算 $K$ 时，如果直接删roots，可能在还未利用语义关系前丢失整个语义簇。论文先基于root similarity合并trees并更新结构，再执行预算裁剪。这样做的目标是先减少重复语义簇，再在tree内部根据深度和节点角色压缩。</p>
+<h3 id="q55pruning如何保证满足预算">Q55：Pruning如何保证满足预算？</h3>
+<p>真实流程不是全局Top-$K$打分。算法先按tree depth排序，再逐步移除leaf nodes；当所有tree只剩root和trunk但预算仍未满足时，再移除时间末端tail nodes；极高压缩下若只剩roots，则按论文时间规则选出最终保留节点。该过程持续到保留集合大小等于 $K$，最后应显式检查输出token数。</p>
+<h3 id="q56forestprune的时间和空间复杂度瓶颈是什么">Q56：ForestPrune的时间和空间复杂度瓶颈是什么？</h3>
+<p>设候选节点总数为 $M=T N'$。若显式构造完整相似度矩阵和距离矩阵，核心成本至少包含 $O(M^2d)$ 相似度计算和 $O(M^2)$ 存储；建树、排序和迭代剪枝还会增加额外成本。候选节点预压缩因此不仅是质量选择，也是控制pruning自身复杂度的关键。实际回答应补充实现是否分块、是否只比较特定时间窗口及真实profiling结果。</p>
+<h3 id="q57globally-optimal-pruning应如何谨慎解释">Q57：“Globally optimal pruning”应如何谨慎解释？</h3>
+<p>应解释为ForestPrune相对逐帧局部方法，在完整视频和统一token budget下进行跨帧全局决策。除非论文给出了优化问题的严格全局最优证明，否则不要声称算法求得组合优化意义上的数学全局最优解。更安全的表述是“global budget-aware”或“video-level global pruning decision”。</p>
+<h3 id="q58为什么固定token预算下扩帧可能提升效果哪些成本并未固定">Q58：为什么固定token预算下扩帧可能提升效果？哪些成本并未固定？</h3>
+<p>高比例压缩释放了视觉token预算，使模型能用相近的LLM输入token数覆盖更多帧，从而提高长视频时间覆盖。实验中Video-MME从62.8提升至66.5，MLVU从71.3提升至72.5。但vision encoder仍需处理更多原始帧，解码、特征提取和ForestPrune构图成本也可能增长；固定的是送入MLLM的视觉token预算，不是端到端计算完全不变。</p>
+<h3 id="q59forestprune是否依赖query可能丢失什么">Q59：ForestPrune是否依赖Query？可能丢失什么？</h3>
+<p>若方法是query-agnostic，一次压缩结果可服务多个问题，适合缓存和通用视频表示；但全局持续性不等于特定query相关性，可能删除短暂动作、细小文字、边缘对象或只出现一次的关键事件。可通过保守预算、短事件/OCR保护、query-aware二阶段重排或与retrieval结合缓解。</p>
+<h3 id="q60与framefusion等方法怎样做公平比较">Q60：与FrameFusion等方法怎样做公平比较？</h3>
+<p>应固定基础MLLM、输入帧、分辨率、视觉token预算、解码参数、硬件、dtype和计时边界，并同时报告准确率、prefill延迟、端到端延迟、峰值显存和pruning自身耗时。<code>-81.4% pruning time</code>必须明确比较对象、硬件、token规模及是否包含vision encoding；<code>+10.1%</code>也要明确是论文表中的相对百分比还是绝对百分点。</p>
+<h2 id="34-capd-与-on-policy-distillation">34. CAPD 与 On-Policy Distillation</h2>
+<h3 id="q61opd的精确定义是什么和普通kd差在哪">Q61：OPD的精确定义是什么？和普通KD差在哪？</h3>
+<p>OPD是On-Policy Distillation。Student或其old-policy snapshot先生成 $y\sim\pi_b(\cdot|x)$，teacher再在student实际访问到的prefix $s_t=(x,y_{&lt;t})$ 上提供分布监督：</p>
+<p>$$ \mathcal L_{\mathrm{OPD}} = \mathbb E_{x\sim\mathcal D,\ y\sim\pi_b} \left[ \sum_t D_f\left( \pi_S(\cdot\mid s_t), \pi_T(\cdot\mid s_t) \right) \right] $$</p>
+<p>普通KD通常在固定数据或teacher trajectory上训练，属于off-policy；OPD的关键不是teacher是否冻结，而是state distribution来自student rollout。CAPD真实使用的KL方向和estimator必须按代码回答。</p>
+<h3 id="q62为什么直接attention蒸馏不够">Q62：为什么直接Attention蒸馏不够？</h3>
+<p>Attention weight描述模型内部信息路由，不等于某段视觉证据对输出的因果贡献。Teacher可能对冗余token分散注意，且student与teacher的层数、head和结构未必可逐项对齐。直接MSE/KL匹配attention可能复制噪声。CAPD通过移除时间组后next-token分布的变化估计该组对边界决策的影响，再校准attention监督，但仍需承认遮挡引入的分布外偏差。</p>
+<h3 id="q63capd的反事实影响如何定义">Q63：CAPD的反事实影响如何定义？</h3>
+<p>对完整输入得到teacher分布 $p_{\mathrm{full}}$，对移除时间组 $g$ 的输入得到 $p_{-g}$，定义：</p>
+<p>$$ I_g = D\left( p_{\mathrm{full}}, p_{-g} \right) $$</p>
+<p>其中 $D$ 可能是KL、JS或其他分布距离。面试时必须给出真实实现中的方向、求和token位置、词表范围、是否按timestamp token聚合以及归一化方式；不能只回答“可以用任意距离”。</p>
+<h3 id="q64为什么有-g-个时间组却需要-g1-个逻辑teacher输入">Q64：为什么有 $G$ 个时间组却需要 $G+1$ 个逻辑teacher输入？</h3>
+<p>因为所有反事实影响都需要同一个完整输入分布作为基准：1个完整视频输入加上 $G$ 个分别移除时间组的输入，共 $G+1$ 个逻辑样本。工程上它们可以在batch维合并，因此逻辑输入数量不等于串行forward次数；计时和显存分析必须区分这两个口径。</p>
+<h3 id="q65移除时间片段会不会产生分布外输入">Q65：移除时间片段会不会产生分布外输入？</h3>
+<p>会。删除连续帧可能改变时长、position ids、帧间连续性和媒体token数量，使teacher分布变化部分来自输入格式扰动而非真实证据缺失。需要使用与训练分布尽量一致的mask/replace策略、保持位置与token contract，并通过随机移除、无关片段移除或不同遮挡方式做对照。CAPD比裸attention更接近因果证据，但不等于严格因果识别。</p>
+<h3 id="q66attention-policy具体是什么怎样与时间组影响对齐">Q66：Attention policy具体是什么，怎样与时间组影响对齐？</h3>
+<p>必须从真实实现回答四件事：使用哪些层和heads；query来自哪些输出token；视觉attention如何聚合到frame/group；teacher和student结构不同时如何对齐。概念上可把teacher attention聚合成组级policy $a_g$，再用反事实影响 $I_g$ 构造校准target，但具体是重加权、归一化、KL还是MSE不能猜，必须给出代码中的公式。</p>
+<h3 id="q67为什么timestamp-token要获得更高蒸馏权重">Q67：为什么timestamp token要获得更高蒸馏权重？</h3>
+<p>时间边界输出直接依赖视频时序证据，相比普通功能词或语言模板token，其正确性更受视觉片段影响。因此CAPD对视觉依赖更强的timestamp token提高蒸馏权重，目标是把teacher的边界决策知识集中传给student。但“更视觉依赖”需要用token类型定义、去视觉对照或消融支持，不能只凭直觉。</p>
+<h3 id="q68capd的总loss怎样组织">Q68：CAPD的总loss怎样组织？</h3>
+<p>概念上由输出分布蒸馏与证据/attention policy监督组成：</p>
+<p>$$ \mathcal L_{\mathrm{CAPD}} = \mathcal L_{\mathrm{OPD}} + \lambda_{\mathrm{attn}} \mathcal L_{\mathrm{policy}} $$</p>
+<p>如果timestamp token另有权重，则应在 $\mathcal L_{\mathrm{OPD}}$ 的token reduction中显式体现。真实回答必须补齐 $\mathcal L_{\mathrm{OPD}}$ 的KL方向、$\mathcal L_{\mathrm{policy}}$ 的定义、影响归一化、mask和 $\lambda_{\mathrm{attn}}$；这五项缺一不可。</p>
+<h3 id="q69capd为什么仍然是on-policy-distillation">Q69：CAPD为什么仍然是on-policy distillation？</h3>
+<p>CAPD保留原OPD的student rollout和student-visited prefixes，只在teacher监督侧增加完整视频与反事实视频，并改变attention policy或token weighting。反事实teacher查询不会把训练变成offline；判断on/off-policy看state visitation来自谁，而不是teacher调用了多少次。</p>
+<h3 id="q70capd的主要额外成本是什么如何优化">Q70：CAPD的主要额外成本是什么？如何优化？</h3>
+<p>主要成本是每个样本需要 $G+1$ 个teacher逻辑输入，还可能需要导出attention和full-vocab logits。可通过反事实样本batch化、teacher冻结、预计算/缓存、只保存必要层attention、缩小距离计算词表范围、混合精度和异步数据准备优化。实验应报告相对Vanilla OPD的teacher FLOPs、峰值显存、tokens/s和wall-clock，而不只报告准确率。</p>
+<h3 id="q71为什么要与grpovanilla-opd和ral-ad比较">Q71：为什么要与GRPO、Vanilla OPD和RAL-AD比较？</h3>
+<p>GRPO代表直接用任务reward优化student；Vanilla OPD检验普通输出分布蒸馏；RAL-AD代表attention相关蒸馏baseline。三者分别回答“是否需要蒸馏”“是否需要反事实校准”“是否优于已有attention distillation”。公平比较要求相同student初始化、数据、epoch、输出格式、训练预算和评测协议。</p>
+<h3 id="q72timelens九项recall怎样聚合才可信">Q72：TimeLens九项Recall怎样聚合才可信？</h3>
+<p>需要列出三项基准各自的子任务和Recall定义，先报告逐项结果，再说明55.1是简单macro average、按样本加权还是其他聚合。若九项样本规模不同，macro与micro含义差异很大。<code>+5.9pt</code>是绝对百分点，<code>12.0%</code>是相对提升，因为baseline约为 $55.1-5.9=49.2$：</p>
+<p>$$ \frac{5.9}{49.2}\approx12.0\% $$</p>
+<h3 id="q73video-mme等通用基准能证明什么不能证明什么">Q73：Video-MME等通用基准能证明什么，不能证明什么？</h3>
+<p>它们能检查时间定位专项训练是否明显伤害通用视频理解，但不能直接证明时间边界能力提升。若只观察到平均分“保持”，还要说明是否在测量噪声内、是否有多seed或置信区间。专项结论应主要由TimeLens及边界定位指标支持。</p>
+<h3 id="q74从qwen3-vl-8b迁移到qwen35架构2b说明什么">Q74：从Qwen3-VL-8B迁移到Qwen3.5架构2B说明什么？</h3>
+<p>它提供了跨模型规模、架构和业务数据分布的适配证据，但不自动证明普适性。应报告哪些模块复用、哪些attention接口重新对齐、时间组和loss权重是否重调，以及业务数据约3,000条时是否仍使用相同训练预算。跨设置结果不能与主实验直接做绝对数值比较。</p>
+<h3 id="q75capd最重要的失败模式是什么">Q75：CAPD最重要的失败模式是什么？</h3>
+<p>包括：遮挡产生OOD输入；影响距离受teacher校准误差影响；短片段移除可能同时破坏多种证据；teacher本身边界错误会被放大；attention接口跨模型不一致；$G+1$ teacher成本过高；timestamp weighting可能牺牲普通文本质量。回答时至少给出一个真实badcase和对应消融或缓解方案。</p>
+<h2 id="35-oneclip-rag">35. OneClip-RAG</h2>
+<h3 id="q76one-shot到底指什么">Q76：“One-shot”到底指什么？</h3>
+<p>One-shot指同一组frame–query cross-modal similarities既用于query-guided video chunking，又复用于clip retrieval，从而把原本分开的切分和检索统一到一次处理流程。它不表示MLLM只forward一次，也不表示只检索一个clip。</p>
+<h3 id="q77framequery-similarity和peak-score怎样选择cluster-centers">Q77：Frame–query similarity和peak score怎样选择cluster centers？</h3>
+<p>先计算：</p>
+<p>$$ s_i=\cos\left(f_I^i,f_q\right) $$</p>
+<p>再用局部峰值强度：</p>
+<p>$$ g_i = 2s_i - \min_{j&lt;i}\left\{s_j\mid s_j\le s_i\right\} - \min_{i&lt;k\le t}\left\{s_k\mid s_k\le s_i\right\} $$</p>
+<p>选择 $g_i$ 最大的一组frames作为cluster centers。它偏好相对两侧具有明显query相关性峰值的位置，用于捕获与问题相关的语义变化，而不是普通shot boundary。</p>
+<h3 id="q78动态规划边界解决什么问题">Q78：动态规划边界解决什么问题？</h3>
+<p>相邻cluster centers之间的中间frames既可能属于左clip，也可能属于右clip。OneClip-RAG在所有候选边界上优化左右连续子序列的语义一致性，得到 $b_j^*$，从而保持clip连续且避免逐帧离散选择。回答时应能解释DP的状态、候选边界、目标函数以及为什么它比固定窗口更适合跨scene的query相关事件。</p>
+<h3 id="q79clip-relevance如何计算有什么局限">Q79：Clip relevance如何计算？有什么局限？</h3>
+<p>论文复用已计算的frame similarities，例如：</p>
+<p>$$ r_i = \max\left\{ s_j\mid I_j\in V_i \right\} $$</p>
+<p>优点是无需额外clip encoder；局限是单个高分frame可能让整段clip得分过高，对长clip长度和噪声不够鲁棒。可讨论mean/top-$k$ pooling或长度校准，但必须区分论文实现与后续改进建议。</p>
+<h3 id="q80coarse-to-fine训练的两阶段负例有什么区别">Q80：Coarse-to-fine训练的两阶段负例有什么区别？</h3>
+<p>Coarse阶段用其他视频的clip frames作负例，先学会从不同视频中找到正确上下文；fine阶段改用同一长视频中内容相似但与当前问题不对应的clips作hard negatives，训练细粒度instruction following。两阶段顺序体现从跨视频区分到视频内精确定位的课程学习。</p>
+<h3 id="q81synlongvideo为什么同时需要visual-relevance和instruction-divergence">Q81：SynLongVideo为什么同时需要visual relevance和instruction divergence？</h3>
+<p>Visual relevance让拼接的短视频在视觉上连贯，形成有挑战但合理的长视频；instruction divergence防止不同片段对应几乎相同的问题，否则检索模型无法学会区分相关clip。公开论文数据包含44,878个video-question pairs、997个已有长视频和430个合成长视频，平均约7.7分钟；简历未写这些数字，面试时可作为论文细节准备。</p>
+<h3 id="q82query变化时哪些可以缓存哪些必须重算">Q82：Query变化时哪些可以缓存，哪些必须重算？</h3>
+<p>原始视频解码结果和每帧视觉embedding可以缓存；新query只需重新编码文本并计算 $s_i$。但OneClip-RAG的cluster centers、DP边界、clip集合和retrieval结果都由 $s_i$ 决定，因此query变化后通常要重新chunk和retrieve。不能把它回答成普通固定chunk双塔RAG。</p>
+<h3 id="q83retrieval漏掉关键clip怎么办">Q83：Retrieval漏掉关键clip怎么办？</h3>
+<p>可提高dense sampling频率、cluster center数量或retrieval Top-$K$，加入多尺度/重叠clip和均匀采样兜底；对低置信query触发扩大检索。评测必须拆分clip retrieval recall与最终QA accuracy，区分“没有检到证据”和“检到后MLLM仍答错”。增加候选会提高recall，但也增加上下文成本和干扰。</p>
+<h3 id="q8422分钟的效率数字怎样防守">Q84：2.2分钟的效率数字怎样防守？</h3>
+<p>必须说明硬件是单张RTX 4090、视频时长分布、base MLLM、采样帧数、输出长度和计时范围。公开结论是平均处理小时级视频约2.2分钟，但面试中应回到论文实验脚本确认是否包含视频解码、frame embedding、chunking、retrieval和MLLM生成。没有确认前不要擅自说成纯检索时间或完整端到端SLA。</p>
+<h3 id="q85oneclip-rag与文本rag的对应关系和本质差异是什么">Q85：OneClip-RAG与文本RAG的对应关系和本质差异是什么？</h3>
+<p>视频clip对应document chunk，VL embedding model对应retriever，相关clips作为外部上下文交给MLLM。但视频chunk边界由query和时间连续性共同决定，原始媒体解码成本高，同一query下的证据具有顺序和动作连续性；因此不能简单照搬固定长度文本chunk和静态向量索引。</p>
+<h2 id="36-xplaindf">36. XPlainDF</h2>
+<h3 id="q86xplaindf解决的核心问题是什么">Q86：XPlainDF解决的核心问题是什么？</h3>
+<p>Deepfake specialist可以提供局部伪造证据，但specialist本身可能错误或过度自信；如果不加判断地把其先验交给通用VLM，会导致错误证据传播。XPlainDF的核心是specialist–generalist fusion与reliability-aware evidence routing，让VLM利用可靠证据并拒绝不可靠先验，同时输出可解释检测依据。</p>
+<h3 id="q87ib和edl分别起什么作用">Q87：IB和EDL分别起什么作用？</h3>
+<p>Information Bottleneck通过限制表示保留与任务相关的信息、压制冗余噪声；Evidential Deep Learning把分类evidence映射为Dirichlet参数，用总evidence和分布浓度表达预测与不确定性。面试时应给出真实模块的输入输出、loss和uncertainty定义，而不能只背概念。</p>
+<h3 id="q88reliability-aware-routing怎样防止错误specialist污染vlm">Q88：Reliability-aware routing怎样防止错误specialist污染VLM？</h3>
+<p>核心是根据specialist evidence及其不确定性决定证据是否进入、以多大权重进入global/spatial路径。高置信且一致的证据被加强，冲突或高不确定证据被降权或拒绝。具体routing score、阈值、RTEA全称及全局–空间融合位置必须按论文和本人负责模块补齐；当前简历无法支持更具体的公式，不能编造。</p>
+<h3 id="q89该项目中的opd反事实学习和model-soup分别是什么">Q89：该项目中的OPD、反事实学习和model soup分别是什么？</h3>
+<p>这些缩写和方法必须逐项回到论文确认。尤其不能默认这里的OPD与CAPD中的On-Policy Distillation同义。反事实证据学习应说明改变或移除哪类evidence、监督什么不变性；model soup应说明平均哪些checkpoint、为什么权重空间平均有效、是否使用uniform或greedy soup。</p>
+<h3 id="q9009878-macro-f1和0862-overall-score如何防守">Q90：<code>0.9878 Macro F1</code>和<code>0.862 Overall Score</code>如何防守？</h3>
+<p>必须说明数据集是XPlainVerse、类别分布、Macro F1的类别平均方式、Overall Score的组成、对照baseline、是否单模型或model soup、阈值选择和测试协议。作为第五作者，应明确自己负责的模块、实验或分析，不把完整框架和最终数字表述为个人独立完成。</p>
+
+<footer class="aris-footer">
+  Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
+  source path <code>RESUME_INTERVIEW_KNOWLEDGE_MAP_CN.md</code> ·
+  SHA256 <code>9b2fafef5718</code> ·
+  generated at 2026-08-10 09:13 UTC.
+  This is a generated view — edit the source Markdown, then re-render.
+</footer>
+</main>
+
+</div>
+
+<!-- P0 polish: paper popover host (populated by IIFE below) -->
+<div id="cite-pop" hidden role="dialog" aria-labelledby="cite-pop-title">
+  <button class="cp-close" type="button" aria-label="Close">×</button>
+  <div class="cp-content"></div>
+</div>
+
+<!-- P0 polish: figure lightbox (native <dialog>, graceful fallback) -->
+<dialog class="lightbox" id="figure-lightbox" aria-label="Figure detail">
+  <div class="lb-inner">
+    <button class="lb-close" type="button" aria-label="Close">×</button>
+    <img alt="" />
+    <figcaption></figcaption>
+  </div>
+</dialog>
+
+<!-- P0 polish: paper registry sidecar, embedded by render_html.py (--papers) -->
+<script>window.PAPER_REGISTRY = {};</script>
+
+<!-- P0 polish: interactive enhancements (TOC scrollspy, code-card auto-collapse,
+     paper popovers, figure lightbox, print-restore for <details>, blog-mode H2). -->
+<script>
+(function () {
+  "use strict";
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c];
+    });
+  }
+
+  // --- Feature 5: Print degradation fix ---------------------------------
+  // Force every <details> open during print, restore the pre-print state after.
+  var _stashOpen = [];
+  var _printing = false;
+  window.addEventListener("beforeprint", function () {
+    if (_printing) return;  // guard against multi-fire (Chrome print preview)
+    _printing = true;
+    _stashOpen = [];
+    document.querySelectorAll("details:not([open])").forEach(function (d) {
+      _stashOpen.push(d);
+      d.open = true;
+    });
+  });
+  window.addEventListener("afterprint", function () {
+    _stashOpen.forEach(function (d) { if (d.isConnected) d.open = false; });
+    _stashOpen = [];
+    _printing = false;
+  });
+
+  // --- Feature 3: TOC scrollspy -----------------------------------------
+  var tocLinks = [].slice.call(document.querySelectorAll("nav.toc a"));
+  var headings = tocLinks.map(function (a) {
+    var id = a.getAttribute("href").replace(/^#/, "");
+    return document.getElementById(id);
+  }).filter(Boolean);
+  if (headings.length && typeof IntersectionObserver !== "undefined") {
+    var linkById = new Map();
+    headings.forEach(function (h, i) { linkById.set(h.id, tocLinks[i]); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tocLinks.forEach(function (l) { l.classList.remove("active"); });
+        var lk = linkById.get(en.target.id);
+        if (lk) lk.classList.add("active");
+      });
+    }, { rootMargin: "-15% 0px -75% 0px" });
+    headings.forEach(function (h) { io.observe(h); });
+  }
+
+  // --- Feature 1: Long-code auto-collapse -------------------------------
+  var COLLAPSE_THRESHOLD = 30;
+
+  function wrapCodeCard(pre, openByDefault) {
+    if (!pre || pre.closest("details.code-card")) return;
+    var code = pre.querySelector("code");
+    if (!code) return;
+    var lines = code.textContent.replace(/\n+$/, "").split("\n").length;
+    var det = document.createElement("details");
+    det.className = "code-card";
+    det.open = openByDefault;
+    var sum = document.createElement("summary");
+    function updateSummary() {
+      sum.textContent = (det.open ? "▾ 收起代码 · " : "▸ 展开代码 · ") + lines + " 行";
+    }
+    updateSummary();
+    det.addEventListener("toggle", updateSummary);
+    pre.parentNode.insertBefore(det, pre);
+    det.appendChild(sum);
+    det.appendChild(pre);
+  }
+
+  // Honor explicit per-block flags first.
+  document.querySelectorAll("pre[data-collapse]").forEach(function (pre) {
+    var flag = pre.getAttribute("data-collapse");
+    if (flag === "collapsed") wrapCodeCard(pre, false);
+    // "open" → leave fully expanded, do not wrap.
+  });
+  // Then auto-wrap long unflagged blocks.
+  document.querySelectorAll("pre > code").forEach(function (code) {
+    var pre = code.closest("pre");
+    if (!pre || pre.closest("details") || pre.hasAttribute("data-collapse")) return;
+    var lines = code.textContent.replace(/\n+$/, "").split("\n").length;
+    if (lines >= COLLAPSE_THRESHOLD) wrapCodeCard(pre, false);
+  });
+
+  // --- Feature 10: Figure lightbox --------------------------------------
+  var lightbox = document.getElementById("figure-lightbox");
+  if (lightbox) {
+    var lbImg = lightbox.querySelector("img");
+    var lbCap = lightbox.querySelector("figcaption");
+    var lbClose = lightbox.querySelector(".lb-close");
+    function openLightbox(srcImg) {
+      lbImg.src = srcImg.src;
+      lbImg.alt = srcImg.alt || "";
+      var cap = srcImg.closest("figure") ? srcImg.closest("figure").querySelector("figcaption") : null;
+      lbCap.textContent = cap ? cap.textContent : "";
+      lbCap.hidden = !cap;
+      if (typeof lightbox.showModal === "function") lightbox.showModal();
+      else lightbox.hidden = false;
+    }
+    function closeLightbox() {
+      if (typeof lightbox.close === "function") lightbox.close();
+      else lightbox.hidden = true;
+    }
+    document.querySelectorAll("main figure img, main > p > img").forEach(function (img) {
+      if (img.closest("dialog")) return;
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", function () { openLightbox(img); });
+    });
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      // Backdrop click closes; clicks inside .lb-inner do not bubble here.
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  // --- Feature 2: Paper popover -----------------------------------------
+  var PAPERS = window.PAPER_REGISTRY || {};
+  var pop = document.getElementById("cite-pop");
+  var popContent = pop ? pop.querySelector(".cp-content") : null;
+  var popClose = pop ? pop.querySelector(".cp-close") : null;
+  var popTrigger = null;
+
+  function showPopover(el) {
+    var key = el.dataset.ref;
+    var info = PAPERS[key];
+    if (!info || !pop || !popContent) return;
+    popContent.innerHTML =
+      '<div class="cp-title" id="cite-pop-title">' + escapeHtml(info.title || key) + '</div>' +
+      (info.authors
+        ? '<div class="cp-meta">' + escapeHtml(info.authors) +
+            (info.date ? ' · ' + escapeHtml(info.date) : '') +
+            (info.inst ? ' · ' + escapeHtml(info.inst) : '') + '</div>'
+        : '') +
+      (info.key ? '<div class="cp-key">' + escapeHtml(info.key) + '</div>' : '') +
+      (info.arxiv
+        ? '<a class="cp-link" href="https://arxiv.org/abs/' + encodeURIComponent(info.arxiv) +
+          '" target="_blank" rel="noopener">arXiv ' + escapeHtml(info.arxiv) + ' ↗</a>'
+        : '');
+    var r = el.getBoundingClientRect();
+    pop.hidden = false;  // unhide first so offsetHeight is measurable
+    var margin = 16;
+    var popWidth = Math.min(360, Math.max(0, window.innerWidth - margin * 2));
+    var popHeight = Math.min(pop.offsetHeight || 200, Math.max(0, window.innerHeight - margin * 2));
+    pop.style.left = Math.max(margin, Math.min(r.left, window.innerWidth - popWidth - margin)) + "px";
+    pop.style.top = Math.max(margin, Math.min(r.bottom + 8, window.innerHeight - popHeight - margin)) + "px";
+    popTrigger = el;
+    if (popClose) popClose.focus();
+  }
+  function hidePopover() {
+    if (pop) pop.hidden = true;
+    if (popTrigger) popTrigger.focus();
+    popTrigger = null;
+  }
+  document.querySelectorAll("[data-ref]").forEach(function (el) {
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+    el.addEventListener("click", function (e) { e.stopPropagation(); showPopover(el); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showPopover(el); }
+    });
+  });
+  if (popClose) popClose.addEventListener("click", hidePopover);
+  document.addEventListener("click", function (e) {
+    if (pop && !pop.hidden && !pop.contains(e.target) && !e.target.matches("[data-ref]")) hidePopover();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && pop && !pop.hidden) hidePopover();
+  });
+
+  // --- Feature 7: Blog-mode active-H2 highlight (opt-in) ----------------
+  if (document.body.classList.contains("aris-blog")) {
+    var h2s = [].slice.call(document.querySelectorAll("main h2"));
+    if (h2s.length && typeof IntersectionObserver !== "undefined") {
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            h2s.forEach(function (h) { h.classList.remove("aris-active-h2"); });
+            en.target.classList.add("aris-active-h2");
+          }
+        });
+      }, { rootMargin: "-15% 0px -75% 0px" });
+      h2s.forEach(function (h) { io2.observe(h); });
+    }
+
+    // --- Feature 8: Focus-dim reading mode (B1) + floating toggle (B2) +
+    //     ↑/↓ section nav (B4). Built only inside this .aris-blog guard, so
+    //     non-blog tutorials never construct it. Default OFF. While ON:
+    //     dims non-current sections (h3-granular), keeps the intro bright,
+    //     pauses F7's io2, and binds a scroll listener (removed on OFF — no
+    //     new *persistent* global hook). Restores everything on OFF / print.
+    var mainEl = document.querySelector("main");
+    if (mainEl) {
+      var focusBtn = document.createElement("button");
+      focusBtn.className = "aris-focus-toggle";
+      focusBtn.type = "button";
+      focusBtn.setAttribute("aria-pressed", "false");
+      focusBtn.textContent = "🎯 Focus";
+      document.body.appendChild(focusBtn);
+
+      var focusHint = document.createElement("div");
+      focusHint.className = "aris-focus-hint";
+      document.body.appendChild(focusHint);
+      var hintTimer = null;
+      var showFocusHint = function (msg) {
+        focusHint.textContent = msg;
+        focusHint.classList.add("show");
+        if (hintTimer) clearTimeout(hintTimer);
+        hintTimer = setTimeout(function () { focusHint.classList.remove("show"); }, 1600);
+      };
+
+      var focusKids = function () { return [].slice.call(mainEl.children); };
+      var headerIdxList = function (kids) {
+        var idxs = [];
+        kids.forEach(function (el, i) {
+          if (el.tagName === "H2" || el.tagName === "H3") idxs.push(i);
+        });
+        return idxs;
+      };
+      // Deterministic current-section pick (no IntersectionObserver): the
+      // header whose top is closest to but above the viewport's 40% line;
+      // fallback = first header still below the line; then first header.
+      var activeHeaderIdx = function (kids, headerIdxs) {
+        var best = -1, bestTop = -Infinity, lineY = window.innerHeight * 0.4;
+        headerIdxs.forEach(function (idx) {
+          var top = kids[idx].getBoundingClientRect().top;
+          if (top < lineY && top > bestTop) { bestTop = top; best = idx; }
+        });
+        if (best < 0) {
+          for (var i = 0; i < headerIdxs.length; i++) {
+            if (kids[headerIdxs[i]].getBoundingClientRect().top >= 0) { best = headerIdxs[i]; break; }
+          }
+          if (best < 0) best = headerIdxs[0];
+        }
+        return best;
+      };
+      var updateFocus = function () {
+        var kids = focusKids();
+        var headerIdxs = headerIdxList(kids);
+        if (!headerIdxs.length) {                 // no h2/h3 → keep all bright (never dim a headerless page)
+          kids.forEach(function (el) { el.classList.add("aris-in-focus"); });
+          return;
+        }
+        var best = activeHeaderIdx(kids, headerIdxs);
+        var next = kids.length;
+        for (var j = 0; j < headerIdxs.length; j++) {
+          if (headerIdxs[j] > best) { next = headerIdxs[j]; break; }
+        }
+        var introEnd = headerIdxs[0];  // header.hero + anything before first heading stays bright
+        kids.forEach(function (el, i) {
+          el.classList.toggle("aris-in-focus", (i < introEnd) || (i >= best && i < next));
+        });
+      };
+      var onFocusScroll = function () {
+        if (document.body.classList.contains("aris-focus-dim")) updateFocus();
+      };
+      var onFocusKeydown = function (e) {
+        var tg = e.target;
+        if (tg && (tg.tagName === "INPUT" || tg.tagName === "TEXTAREA" || tg.tagName === "SELECT" || tg.isContentEditable)) return;
+        if (e.key === "Escape") {
+          var popEl = document.getElementById("cite-pop");
+          if (popEl && !popEl.hidden) return;     // an open popover handles Esc first
+          setFocus(false);
+          return;
+        }
+        if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+        e.preventDefault();
+        var heads = [].slice.call(document.querySelectorAll("main h2, main h3"));
+        if (!heads.length) return;
+        var cur = 0, bestDist = Infinity;
+        heads.forEach(function (h, i) {
+          var d = Math.abs(h.getBoundingClientRect().top - 80);
+          if (d < bestDist) { bestDist = d; cur = i; }
+        });
+        var ni = e.key === "ArrowDown" ? Math.min(cur + 1, heads.length - 1) : Math.max(cur - 1, 0);
+        heads[ni].scrollIntoView({ behavior: "smooth", block: "start" });
+        showFocusHint((ni + 1) + " / " + heads.length + "　" + heads[ni].textContent.trim().slice(0, 24));
+      };
+      var setFocus = function (on) {
+        document.body.classList.toggle("aris-focus-dim", on);
+        focusBtn.classList.toggle("on", on);
+        focusBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        focusBtn.textContent = on ? "🎯 Focus ON" : "🎯 Focus";
+        if (on) {
+          window.addEventListener("scroll", onFocusScroll, { passive: true });
+          document.addEventListener("keydown", onFocusKeydown, true);    // capture phase: see an open popover before its bubble Esc handler (also: bound only while ON, guardrail 2)
+          if (typeof io2 !== "undefined" && io2) io2.disconnect();        // pause F7
+          updateFocus();
+          showFocusHint("Focus 模式：↑ / ↓ 切换小节，Esc 退出");
+        } else {
+          window.removeEventListener("scroll", onFocusScroll);
+          document.removeEventListener("keydown", onFocusKeydown, true);
+          focusKids().forEach(function (el) { el.classList.remove("aris-in-focus"); });
+          if (typeof io2 !== "undefined" && io2) h2s.forEach(function (h) { io2.observe(h); });  // resume F7
+        }
+      };
+      focusBtn.addEventListener("click", function () {
+        setFocus(!document.body.classList.contains("aris-focus-dim"));
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,4 +1,18 @@
 {
+  "RESUME_INTERVIEW_KNOWLEDGE_MAP_CN.html": {
+    "eyebrow": "Interview Prep · Resume Knowledge Map",
+    "lang": "zh-CN",
+    "md": "RESUME_INTERVIEW_KNOWLEDGE_MAP_CN.md",
+    "subtitle": "简历中每个技术名词、方法与数字的六步答法（是什么 · 为什么 · 怎么做 · 如何验证 · 局限 · 你的贡献）",
+    "title": "鞠少波秋招简历知识地图"
+  },
+  "STUDY_DIRECTORY_CN.html": {
+    "eyebrow": "Study Roadmap · ARIS in AI Offer",
+    "lang": "zh-CN",
+    "md": "STUDY_DIRECTORY_CN.md",
+    "subtitle": "按依赖关系组织的 33 篇中文面试教程学习路径（打地基 → 专项能力 → 面试输出）",
+    "title": "ARIS AI 秋招学习目录"
+  },
   "docs/index.html": {
     "lang": "zh-CN",
     "md": "docs/about.md",
