@@ -19,3 +19,4 @@ Thumbs.db
 # ARIS homepage generator intermediates
 .aris-homepage/
 *.bak-*
+work/
